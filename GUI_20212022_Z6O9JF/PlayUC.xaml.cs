@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Net.Sockets;
 
 namespace GUI_20212022_Z6O9JF
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for PlayUC.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PlayUC : UserControl
     {
-        public MainWindow()
+        public PlayUC()
         {
             InitializeComponent();
-            CC.Content = new MenuUC(CC);
         }
     }
 }

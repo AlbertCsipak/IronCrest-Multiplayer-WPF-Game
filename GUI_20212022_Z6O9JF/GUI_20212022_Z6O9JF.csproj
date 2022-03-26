@@ -6,4 +6,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ClientSocket\ClientSocket.csproj" />
+    <ProjectReference Include="..\ServerSocket\ServerSocket.csproj" />
+  </ItemGroup>
+
 </Project>
