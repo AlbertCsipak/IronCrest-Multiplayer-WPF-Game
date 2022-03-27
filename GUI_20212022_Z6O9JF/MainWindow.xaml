@@ -4,27 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_20212022_Z6O9JF"
+        xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF"
         mc:Ignorable="d"
-        Title="RTSDEV" Height="450" Width="800">
+        Title="RTSDEV" Height="300" Width="300">
+    <Window.DataContext>
+        <vm:MainWindowViewModel></vm:MainWindowViewModel>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="1" Grid.Column="0" Content="Play" FontSize="50" Click="Button_Click"></Button>
-        <Button Grid.Row="3" Grid.Column="0" Content="Settings" FontSize="50" Click="Button_Click_1"></Button>
-        <Button Grid.Row="5" Grid.Column="0" Content="Quit" FontSize="50" Click="Button_Click_2"></Button>
-
-        <ContentControl x:Name="CC"></ContentControl>
+        <Button Content="join" Command="{Binding clientComm}"></Button>
+        <Button Grid.Row="1" Content="blue" Command="{Binding bComm}"></Button>
+        <Button Grid.Row="2" Content="red" Command="{Binding rComm}"></Button>
+        <Button Grid.Row="3" Content="skip" Command="{Binding skipCommand}"></Button>
+        <ListBox Grid.Row="4" ItemsSource="{Binding Data}"></ListBox>
     </Grid>
 </Window>

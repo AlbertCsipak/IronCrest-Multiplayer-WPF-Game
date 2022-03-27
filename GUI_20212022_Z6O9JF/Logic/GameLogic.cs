@@ -1,29 +1,41 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Toolkit.Mvvm.Messaging;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 
-namespace ClientSocket
+namespace GUI_20212022_Z6O9JF.Logic
 {
-    public class Client<T>
+    public class GameLogic : IGameLogic
     {
         public int ClientId { get; set; }
         public bool CanSend { get; set; }
         ObservableCollection<string> Data;
         List<Task> Tasks;
         Socket MySocket;
-        public Client()
+        IMessenger Messenger;
+        public GameLogic(IMessenger messenger)
         {
-
+            Data = new ObservableCollection<string>();
+            this.Messenger = messenger;
         }
-        public void DataConnection(ref ObservableCollection<string> data)
+        public ObservableCollection<string> Setup() { return this.Data; }
+        public void Red() { Data.Add("red"); }
+        public void Blue() { Data.Add("blue"); }
+        public void Skip()
         {
-            this.Data = data;
+            if (CanSend)
+            {
+                MySocket.Send(Encoding.ASCII.GetBytes("skip"));
+            }
         }
-        public void Connect(string ip = "127.0.0.1")
+        public void Connect(string ip = "26.99.118.45")
         {
             MySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             MySocket.Connect(IPAddress.Parse(ip), 10000);
@@ -37,18 +49,12 @@ namespace ClientSocket
             {
                 while (true)
                 {
-                    ;
                     if (CanSend)
                     {
                         string json = JsonConvert.SerializeObject(Data);
                         MySocket.Send(Encoding.ASCII.GetBytes(json));
-                        Data.Add("red");
-                        ;
-                        //nem küldi le elég mélyre 
-                        ;
                     }
-                    ;
-                    System.Threading.Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(30);//10packets/sec
                 }
             }, TaskCreationOptions.LongRunning);
 
@@ -75,8 +81,13 @@ namespace ClientSocket
                     }
                     else
                     {
-                        Data = JsonConvert.DeserializeObject<ObservableCollection<string>>(message);
-                        ;
+                        ObservableCollection<string> helper = JsonConvert.DeserializeObject<ObservableCollection<string>>(message);
+                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Data.Clear()));
+                        foreach (var item in helper)
+                        {
+                            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Data.Add(item)));
+                            //cross thread exception miatt meg kell hivni az ui main threadjet
+                        }
                     }
                 }
             }, TaskCreationOptions.LongRunning);
@@ -87,14 +98,6 @@ namespace ClientSocket
             receive.Start();
             send.Start();
         }
-        public void Disconnect()
-        {
-            if (MySocket != null && MySocket.Connected)
-            {
-                MySocket.Shutdown(SocketShutdown.Both);
-                MySocket.Close();
-                MySocket.Dispose();
-            }
-        }
+
     }
 }
