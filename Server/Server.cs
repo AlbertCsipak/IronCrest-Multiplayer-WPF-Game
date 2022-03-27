@@ -14,7 +14,6 @@ namespace Server
         {
             Init(ip, clients);
             Session(turnLength);
-            //test
         }
         public void Init(string ip, int clients)
         {
