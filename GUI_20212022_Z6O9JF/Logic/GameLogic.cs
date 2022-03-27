@@ -47,22 +47,22 @@ namespace GUI_20212022_Z6O9JF.Logic
 
             Task send = new Task(() =>
             {
-                while (true)
+                while (MySocket.Connected)
                 {
                     if (CanSend)
                     {
                         string json = JsonConvert.SerializeObject(Data);
                         MySocket.Send(Encoding.ASCII.GetBytes(json));
                     }
-                    System.Threading.Thread.Sleep(30);//10packets/sec
+                    System.Threading.Thread.Sleep(100);//10packets/sec
                 }
             }, TaskCreationOptions.LongRunning);
 
             Task receive = new Task(() =>
             {
-                while (true)
+                while (MySocket.Connected)
                 {
-                    byte[] buffer = new byte[1024];
+                    byte[] buffer = new byte[2048];
                     MySocket.Receive(buffer);
 
                     string message = "";
@@ -82,11 +82,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                     else
                     {
                         ObservableCollection<string> helper = JsonConvert.DeserializeObject<ObservableCollection<string>>(message);
-                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Data.Clear()));
-                        foreach (var item in helper)
+                        if (helper != null)
                         {
-                            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Data.Add(item)));
-                            //cross thread exception miatt meg kell hivni az ui main threadjet
+                            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Data.Clear()));
+                            foreach (var item in helper)
+                            {
+                                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Data.Add(item)));
+                                //cross thread exception miatt meg kell hivni az ui main threadjet
+                            }
                         }
                     }
                 }

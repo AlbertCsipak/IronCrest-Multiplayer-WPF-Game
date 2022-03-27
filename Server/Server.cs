@@ -9,19 +9,19 @@ namespace Server
 {
     public class Server
     {
-        List<Socket> Clients { get; set; }
-        public Server(string ip = "26.99.118.45", int clients = 2, int turnLength = 100)
+        List<Socket> Clients;
+        Socket ServerSocket;
+        public Server(string ip = "26.99.118.45", int clients = 2, int turnLength = 100, int port = 10000)
         {
-            Init(ip, clients);
-            Session(turnLength);
+            Init(ip, clients, port);
+            Session(turnLength, clients);
         }
-        public void Init(string ip, int clients)
+        public void Init(string ip, int clients, int port)
         {
 
-            Socket listenerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            var endPoint = new IPEndPoint(IPAddress.Parse(ip), 10000);
-            listenerSocket.Bind(endPoint);
-            listenerSocket.Listen(clients);
+            ServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            ServerSocket.Bind(new IPEndPoint(IPAddress.Parse(ip), port));
+            ServerSocket.Listen(clients);
 
             List<Task> tasks = new List<Task>();
             Clients = new List<Socket>();
@@ -32,7 +32,7 @@ namespace Server
 
             while (Clients.Count < clients)
             {
-                Socket client = listenerSocket.Accept();
+                Socket client = ServerSocket.Accept();
                 Clients.Add(client);
                 client.Send(Encoding.ASCII.GetBytes(id.ToString()));
                 Console.WriteLine("Client " + id + " has joined.");
@@ -41,12 +41,12 @@ namespace Server
 
             Console.WriteLine("Ready...");
         }
-        public void Session(int turnLength)
+        public void Session(int turnLength, int clients)
         {
 
             Task core = new Task(() =>
             {
-                while (true)
+                while (Clients.Count == clients)
                 {
                     foreach (var item in Clients)
                     {
@@ -93,6 +93,7 @@ namespace Server
                         }
                     }
                 }
+                //save here
             }, TaskCreationOptions.LongRunning);
 
             core.Start();
