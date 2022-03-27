@@ -1,6 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
