@@ -6,26 +6,8 @@
         xmlns:local="clr-namespace:GUI_20212022_Z6O9JF"
         xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
         mc:Ignorable="d"
-        Title="RTSDEV" Height="300" Width="300">
-    <Window.DataContext>
-        <vm:MainWindowViewModel></vm:MainWindowViewModel>
-    </Window.DataContext>
+        Title="RTSDEV" Height="768" Width="1366">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <Button Content="join" Command="{Binding clientComm}"></Button>
-        <Button Grid.Row="1" Content="blue" Command="{Binding bComm}"></Button>
-        <Button Grid.Row="2" Content="red" Command="{Binding rComm}"></Button>
-        <Button Grid.Row="3" Content="skip" Command="{Binding skipCommand}"></Button>
-        <ListBox Grid.Row="4" ItemsSource="{Binding Data}"></ListBox>
+        
     </Grid>
 </Window>
