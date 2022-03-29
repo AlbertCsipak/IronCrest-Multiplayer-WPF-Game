@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    public class Server
+    public class SocketServer
     {
         List<Socket> Clients;
         Socket ServerSocket;
-        public Server(string ip = "26.99.118.45", int clients = 2, int turnLength = 100, int port = 10000)
+        public SocketServer(string ip = "26.99.118.45", int clients = 2, int turnLength = 100, int port = 10000)
         {
             Init(ip, clients, port);
             Session(turnLength, clients);

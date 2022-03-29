@@ -32,13 +32,11 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public MainWindowViewModel(/*IGameLogic gameLogic*/)
         {
             gameLogic = new GameLogic(this.Messenger);
-
             Data = gameLogic.Setup();
 
-            clientComm = new RelayCommand(() => gameLogic.Connect());
-            rComm = new RelayCommand(() => gameLogic.Red());
-            bComm = new RelayCommand(() => gameLogic.Blue());
+            clientComm = new RelayCommand(() => gameLogic.ClientSetup());
             skipCommand = new RelayCommand(() => gameLogic.Skip());
+            rComm = new RelayCommand(() => gameLogic.Red());
 
 
             Messenger.Register<MainWindowViewModel, string, string>(this, "BasicChannel", (recipient, msg) =>

@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:GUI_20212022_Z6O9JF"
         xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
         mc:Ignorable="d"
-        Title="RTSDEV" Height="768" Width="1366">
+        Title="RTSDEV" Height="300" Width="300">
     <Grid>
-        
+        <ContentControl x:Name="cc"></ContentControl>
     </Grid>
 </Window>

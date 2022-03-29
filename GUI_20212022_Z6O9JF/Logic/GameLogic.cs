@@ -9,75 +9,53 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using SocketClient;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
     public class GameLogic : IGameLogic
     {
-        public int ClientId { get; set; }
-        public bool CanSend { get; set; }
+        int ClientId { get; set; }
+        bool CanSend { get; set; }
         ObservableCollection<string> Data;
-        List<Task> Tasks;
-        Socket MySocket;
+        SocketClient<string> socketClient;
         IMessenger Messenger;
         public GameLogic(IMessenger messenger)
         {
-            Data = new ObservableCollection<string>();
+            socketClient = new SocketClient<string>();
             this.Messenger = messenger;
+            this.Data = new ObservableCollection<string>();
         }
-        public ObservableCollection<string> Setup() { return this.Data; }
-        public void Red() { Data.Add("red"); }
-        public void Blue() { Data.Add("blue"); }
-        public void Skip()
+        public ObservableCollection<string> Setup()
         {
-            if (CanSend)
-            {
-                MySocket.Send(Encoding.ASCII.GetBytes("skip"));
-            }
+            return Data;
         }
-        public void Connect(string ip = "26.99.118.45")
+        public void ClientSetup()
         {
-            MySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            MySocket.Connect(IPAddress.Parse(ip), 10000);
-            Tasks = new List<Task>();
+            socketClient.Connect();
+            this.ClientId = socketClient.ClientId;
 
-            byte[] id = new byte[1];
-            MySocket.Receive(id);
-            ClientId = int.Parse(Encoding.ASCII.GetString(id));
-
-            Task send = new Task(() =>
+            Task Send = new Task(() =>
             {
-                while (MySocket.Connected)
+                while (socketClient.MySocket.Connected)
                 {
                     if (CanSend)
                     {
-                        string json = JsonConvert.SerializeObject(Data);
-                        MySocket.Send(Encoding.ASCII.GetBytes(json));
+                        socketClient.DataSend(Data);
+                        ;
                     }
-                    System.Threading.Thread.Sleep(100);//10packets/sec
                 }
             }, TaskCreationOptions.LongRunning);
 
-            Task receive = new Task(() =>
+            Task Receive = new Task(() =>
             {
-                while (MySocket.Connected)
+                while (socketClient.MySocket.Connected)
                 {
-                    byte[] buffer = new byte[2048];
-                    MySocket.Receive(buffer);
-
-                    string message = "";
-                    int idx = 0;
-                    while (buffer[idx] != 0)
-                    {
-                        byte[] helper = new byte[1];
-                        helper[0] = buffer[idx];
-                        message = message + Encoding.ASCII.GetString(helper);
-                        idx++;
-                    }
-
+                    string message = socketClient.DataReceive();
                     if (message.Equals("false") || message.Equals("true"))
                     {
                         CanSend = bool.Parse(message);
+                        ;
                     }
                     else
                     {
@@ -89,18 +67,17 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Data.Add(item)));
                                 //cross thread exception miatt meg kell hivni az ui main threadjet
+                                ;
                             }
                         }
                     }
                 }
             }, TaskCreationOptions.LongRunning);
 
-            Tasks.Add(send);
-            Tasks.Add(receive);
-
-            receive.Start();
-            send.Start();
+            Send.Start();
+            Receive.Start();
         }
-
+        public void Skip() { socketClient.Skip(); }
+        public void Red() { Data.Add("red"); }
     }
 }

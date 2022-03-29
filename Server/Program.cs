@@ -9,7 +9,7 @@ namespace Server
             //the server is standalone, it needs to be started seperately.
             Console.WindowWidth = 100;
             Console.WindowHeight = 10;
-            Server server = new Server();
+            SocketServer server = new SocketServer();
         }
     }
 }
