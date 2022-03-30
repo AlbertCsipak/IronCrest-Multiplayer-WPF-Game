@@ -1,0 +1,11 @@
+﻿namespace GUI_20212022_Z6O9JF.Models
+{
+    public enum VillageType { Viking, Crusader, Mongolian, Arabian }
+    public class Village
+    {
+        public string Name { get; set; }
+        public int[,] Position { get; set; }
+        public int Level { get; set; }
+        public VillageType VillageType { get; set; }
+    }
+}
