@@ -6,11 +6,12 @@
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="1800" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged" >
     <Grid x:Name="grid">
         <renderer:MainMenuDisplay x:Name="display"/>
-
+        <Image gif:ImageBehavior.AnimatedSource="\Images\Menu\main_background.gif" Stretch="Fill"/>
         <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
