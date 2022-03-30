@@ -7,93 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\Characters\bjorn.png" />
-    <None Remove="Images\Characters\dark_night.png" />
-    <None Remove="Images\Characters\genghis_khan.png" />
-    <None Remove="Images\Characters\jhin.png" />
-    <None Remove="Images\Characters\mongolian_mouse.png" />
-    <None Remove="Images\Characters\prophet.png" />
-    <None Remove="Images\Characters\sigurd.png" />
-    <None Remove="Images\Characters\standing_arabian.png" />
-    <None Remove="Images\Characters\standing_crusader.png" />
-    <None Remove="Images\Characters\standing_mongolian.png" />
-    <None Remove="Images\Characters\standing_viking.png" />
-    <None Remove="Images\Characters\white_knight.png" />
-    <None Remove="Images\Map\buzamezo.png" />
-    <None Remove="Images\Map\erdo.png" />
-    <None Remove="Images\Map\falu_fekete_level1.png" />
-    <None Remove="Images\Map\falu_fekete_level2.png" />
-    <None Remove="Images\Map\falu_fekete_level3.png" />
-    <None Remove="Images\Map\falu_kek_level1.png" />
-    <None Remove="Images\Map\falu_kek_level2.png" />
-    <None Remove="Images\Map\falu_kek_level3.png" />
-    <None Remove="Images\Map\falu_piros_level1.png" />
-    <None Remove="Images\Map\falu_piros_level2.png" />
-    <None Remove="Images\Map\falu_piros_level3.png" />
-    <None Remove="Images\Map\falu_sarga_level1.png" />
-    <None Remove="Images\Map\falu_sarga_level2.png" />
-    <None Remove="Images\Map\falu_sarga_level3.png" />
-    <None Remove="Images\Map\hegy.png" />
-    <None Remove="Images\Map\mezo.png" />
-    <None Remove="Images\Map\viz.png" />
-    <None Remove="Images\Menu\goldmine_background.png" />
-    <None Remove="Images\Menu\main_background.gif" />
-    <None Remove="Images\Other\compass.png" />
-    <None Remove="Images\Resources\gold.png" />
-    <None Remove="Images\Resources\heart.png" />
-    <None Remove="Images\Resources\log.png" />
-    <None Remove="Images\Resources\stone.png" />
-    <None Remove="Images\Resources\sword.png" />
-    <None Remove="Images\Resources\wheat.png" />
     <None Remove="Maps\map1.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\Characters\bjorn.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\dark_night.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\genghis_khan.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\jhin.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\mongolian_mouse.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\prophet.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\sigurd.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\standing_arabian.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\standing_crusader.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\standing_mongolian.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\standing_viking.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Characters\white_knight.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Menu\goldmine_background.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Menu\main_background.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Other\compass.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Maps\map1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
