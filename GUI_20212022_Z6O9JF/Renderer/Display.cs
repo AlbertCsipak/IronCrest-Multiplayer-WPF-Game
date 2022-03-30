@@ -24,23 +24,39 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         switch (gameLogic.GameMap[i, j])
                         {
                             case GameLogic.FieldType.grass:
-                                drawingContext.DrawRectangle(Brushes.Green, new Pen(Brushes.Black, 1), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                drawingContext.DrawRectangle(Brushes.Green, new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
                             case GameLogic.FieldType.water:
-                                drawingContext.DrawRectangle(Brushes.Blue, new Pen(Brushes.Black, 1), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                drawingContext.DrawRectangle(Brushes.Blue, new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
                             case GameLogic.FieldType.village:
-                                drawingContext.DrawRectangle(Brushes.Brown, new Pen(Brushes.Black, 1), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                drawingContext.DrawRectangle(Brushes.Brown, new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
                             case GameLogic.FieldType.desert:
-                                drawingContext.DrawRectangle(Brushes.Yellow, new Pen(Brushes.Black, 1), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                drawingContext.DrawRectangle(Brushes.Yellow, new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
                             case GameLogic.FieldType.snow:
-                                drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Black, 1), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                drawingContext.DrawRectangle(Brushes.White, new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
                             default:
                                 break;
                         }
+                    }
+                }
+
+                foreach (var player in gameLogic.Players)
+                {
+                    foreach (var item in player.Units)
+                    {
+
+                    }
+                    foreach (var item in player.Villages)
+                    {
+
+                    }
+                    foreach (var item in player.Heroes)
+                    {
+
                     }
                 }
             }

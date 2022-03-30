@@ -22,5 +22,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
 
         }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            cc.Content = new GameUC(cc);
+        }
     }
 }

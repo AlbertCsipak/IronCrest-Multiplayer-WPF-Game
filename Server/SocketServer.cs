@@ -11,12 +11,12 @@ namespace Server
     {
         List<Socket> Clients;
         Socket ServerSocket;
-        public SocketServer(string ip = "26.99.118.45", int clients = 2, int turnLength = 100, int port = 10000, int bufferSize = 2048)
+        public SocketServer(string ip = "26.99.118.45", int clients = 2, int turnLength = 100, int port = 10000, int bufferSize = 2048, string map = "1")
         {
-            Init(ip, clients, port);
+            Init(ip, clients, port, map);
             Session(turnLength, clients, bufferSize);
         }
-        public void Init(string ip, int clients, int port)
+        public void Init(string ip, int clients, int port, string map)
         {
 
             ServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -37,6 +37,11 @@ namespace Server
                 client.Send(Encoding.ASCII.GetBytes(id.ToString()));
                 Console.WriteLine("Client " + id + " has joined.");
                 id++;
+            }
+
+            foreach (var client in Clients)
+            {
+                client.Send(Encoding.ASCII.GetBytes(map));
             }
 
             Console.WriteLine("Ready...");

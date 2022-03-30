@@ -11,8 +11,10 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public class GameLogic : IGameLogic
     {
-        bool CanSend { get; set; }
-        ObservableCollection<Player> Players;
+        bool CanSend;
+        int ClientId;
+        public string Map { get; set; }
+        public ObservableCollection<Player> Players { get; set; }
         SocketClient.SocketClient socketClient;
         public FieldType[,] GameMap { get; set; }
         public enum FieldType { grass, water, village, desert, snow }
@@ -20,7 +22,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             socketClient = new SocketClient.SocketClient();
             this.Players = new ObservableCollection<Player>();
-            GameMap = GameMapSetup("C:/Users/berci/source/repos/GUI_20212022_Z6O9JF/GUI_20212022_Z6O9JF/Maps/map1.txt");
         }
         public ObservableCollection<Player> Setup() { return Players; }
         public FieldType[,] GameMapSetup(string path)
@@ -61,6 +62,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void ClientSetup()
         {
             socketClient.Connect();
+            ClientId = socketClient.ClientId;
+            Map = socketClient.Map;
+
             Task Send = new Task(() =>
             {
                 while (socketClient.MySocket.Connected)
@@ -99,6 +103,5 @@ namespace GUI_20212022_Z6O9JF.Logic
             Send.Start();
             Receive.Start();
         }
-        public void Skip() { socketClient.Skip(); }
     }
 }

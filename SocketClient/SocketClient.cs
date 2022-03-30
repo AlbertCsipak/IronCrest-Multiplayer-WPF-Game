@@ -9,6 +9,7 @@ namespace SocketClient
     public class SocketClient
     {
         public int ClientId { get; set; }
+        public string Map { get; set; }
         public Socket MySocket;
         public SocketClient() { }
         public void Connect(string ip = "26.99.118.45", int port = 10000)
@@ -21,6 +22,10 @@ namespace SocketClient
                 byte[] id = new byte[1];
                 MySocket.Receive(id);
                 ClientId = int.Parse(Encoding.ASCII.GetString(id));
+
+                byte[] map = new byte[1];
+                MySocket.Receive(map);
+                Map = Encoding.ASCII.GetString(map);
             }
         }
         public void Disconnect()

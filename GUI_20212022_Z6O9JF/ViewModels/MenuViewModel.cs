@@ -12,7 +12,6 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     {
         public IGameLogic gameLogic;
         public ICommand clientComm { get; set; }
-        public ICommand skipCommand { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -31,7 +30,6 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
 
             clientComm = new RelayCommand(() => gameLogic.ClientSetup());
-            skipCommand = new RelayCommand(() => gameLogic.Skip());
         }
     }
 }
