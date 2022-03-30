@@ -64,6 +64,10 @@ namespace SocketClient
                 helper[0] = buffer[idx];
                 message = message + Encoding.ASCII.GetString(helper);
                 idx++;
+                if (bufferSize-1 == idx)
+                {
+                    break;
+                }
             }
             return message;
         }

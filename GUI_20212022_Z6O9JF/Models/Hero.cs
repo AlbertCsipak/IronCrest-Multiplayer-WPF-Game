@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace GUI_20212022_Z6O9JF.Models
 {
-    public class Villages
+    public enum HeroType { Viking, Crusader, Mongolian, Arabian }
+    public class Hero
     {
         public string Name { get; set; }
-        public int Health { get; set; }
+        public int Damage { get; set; }
         public int[,] Position { get; set; }
+        public HeroType HeroType { get; set; }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GUI_20212022_Z6O9JF.Models
+﻿namespace GUI_20212022_Z6O9JF.Models
 {
     public class Quest
     {
@@ -12,10 +6,11 @@ namespace GUI_20212022_Z6O9JF.Models
         public bool Done { get; set; }
         public Quest(int crit)
         {
-         
+
         }
-        public bool QuestDone(int crit) {
-            if (crit>100)
+        public bool QuestDone(int crit)
+        {
+            if (crit > 100)
             {
                 return true;
             }
