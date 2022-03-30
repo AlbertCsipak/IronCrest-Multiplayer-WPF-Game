@@ -13,12 +13,12 @@ namespace GUI_20212022_Z6O9JF.Renderer
         public void Resize(Size size) { this.size = size; }
         protected override void OnRender(DrawingContext drawingContext)
         {
-            if (gameLogic != null)
-            {
-                MediaPlayer player = new MediaPlayer();
-                player.Open(new Uri("Images/Menu/main_background.gif", UriKind.RelativeOrAbsolute));
-                player.Play(); drawingContext.DrawVideo(player, new Rect(0, 0, size.Width, size.Height));
-            }
+            //if (gameLogic != null)
+            //{
+            //    MediaPlayer player = new MediaPlayer();
+            //    player.Open(new Uri("Images/Menu/main_background.gif", UriKind.RelativeOrAbsolute));
+            //    player.Play(); drawingContext.DrawVideo(player, new Rect(0, 0, size.Width, size.Height));
+            //}
         }
     }
 }
