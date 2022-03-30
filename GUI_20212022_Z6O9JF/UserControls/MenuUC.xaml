@@ -10,16 +10,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="1800" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged" >
     <Grid x:Name="grid">
-        <renderer:MainMenuDisplay x:Name="display"/>
-        <Image gif:ImageBehavior.AnimatedSource="\Images\Menu\main_background.gif" Stretch="Fill"/>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-        </Grid.RowDefinitions>-->
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <renderer:MainMenuDisplay x:Name="display" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+        <Image gif:ImageBehavior.AnimatedSource="\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+        <Label Grid.Row="0" Grid.Column="1" Content="Seed and Armies" FontSize="150" FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" BorderThickness="10,10,10,10" Foreground="#FF2C2E46" >
+        </Label>
+        <Label Grid.Row="2" Grid.Column="1" Content="START GAME" FontSize="80" FontFamily="Poor Richard" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#B3C8B7"/>
         <!--<Button  Content="skip" Command="{Binding skipCommand}" Click="Button_Click_1"></Button>
         <Button Content="Play" Click="Button_Click"/>
         <ListBox  ItemsSource="{Binding Players}"></ListBox>-->
