@@ -7,10 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Menu\main_background.gif" />
     <None Remove="Maps\map1.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\Menu\main_background.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Maps\map1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
