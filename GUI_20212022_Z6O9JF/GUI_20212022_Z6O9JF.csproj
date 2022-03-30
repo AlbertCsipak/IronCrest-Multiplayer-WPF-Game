@@ -39,7 +39,13 @@
     <None Remove="Images\Menu\goldmine_background.png" />
     <None Remove="Images\Menu\main_background.gif" />
     <None Remove="Images\Other\compass.png" />
+    <None Remove="Images\Resources\Augusta.ttf" />
+    <None Remove="Images\Resources\Ithornët.ttf" />
+    <None Remove="Images\Resources\slkscr.ttf" />
     <None Remove="Maps\map1.txt" />
+    <None Remove="Resources\8bitlim.ttf" />
+    <None Remove="Resources\kongtext.ttf" />
+    <None Remove="Resources\press-start.k.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -139,6 +145,14 @@
     <Content Include="Images\Other\compass.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\8bitlim.ttf" />
+    <Resource Include="Resources\Augusta.ttf" />
+    <Resource Include="Resources\Ithornët.ttf" />
+    <Resource Include="Resources\kongtext.ttf" />
+    <Resource Include="Resources\press-start.k.ttf" />
+    <Resource Include="Resources\slkscr.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Maps\map1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
