@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 
 namespace GUI_20212022_Z6O9JF.Renderer
 {
-    public class Display : FrameworkElement
+    public class GameDisplay : FrameworkElement
     {
         IGameLogic gameLogic;
         Size size;

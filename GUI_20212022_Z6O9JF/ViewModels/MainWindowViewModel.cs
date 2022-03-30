@@ -9,6 +9,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     public class MainWindowViewModel : ObservableRecipient
     {
         public IGameLogic gameLogic;
+        public object View
+        {
+            get { return gameLogic.View; }
+        }
         public static bool IsInDesignMode
         {
             get
@@ -25,6 +29,13 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public MainWindowViewModel(IGameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
+            gameLogic.ChangeView("menu");
+
+            Messenger.Register<MainWindowViewModel, string, string>(this, "Base", (recipient, msg) =>
+            {
+                OnPropertyChanged("View");
+            });
+
 
 
         }

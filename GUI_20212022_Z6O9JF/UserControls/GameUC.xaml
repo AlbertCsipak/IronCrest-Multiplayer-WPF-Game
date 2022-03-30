@@ -8,6 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded" >
     <Grid x:Name="grid">
-        <disp:Display x:Name="display"></disp:Display>
+        <disp:GameDisplay x:Name="display"></disp:GameDisplay>
     </Grid>
 </UserControl>
