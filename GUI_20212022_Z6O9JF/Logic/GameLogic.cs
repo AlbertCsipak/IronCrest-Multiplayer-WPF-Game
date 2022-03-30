@@ -1,4 +1,6 @@
 ﻿using GUI_20212022_Z6O9JF.Models;
+using GUI_20212022_Z6O9JF.UserControls;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
@@ -13,17 +15,19 @@ namespace GUI_20212022_Z6O9JF.Logic
     {
         bool CanSend;
         int ClientId;
+        public object View { get; set; }
         public string Map { get; set; }
         public ObservableCollection<Player> Players { get; set; }
         SocketClient.SocketClient socketClient;
-        public FieldType[,] GameMap { get; set; }
         public enum FieldType { grass, water, village, desert, snow }
-        public GameLogic()
+        public FieldType[,] GameMap { get; set; }
+        IMessenger messenger;
+        public GameLogic(IMessenger messenger)
         {
+            this.messenger = messenger;
             socketClient = new SocketClient.SocketClient();
             this.Players = new ObservableCollection<Player>();
         }
-        public ObservableCollection<Player> Setup() { return Players; }
         public FieldType[,] GameMapSetup(string path)
         {
             string[] lines = File.ReadAllLines(path);
@@ -64,7 +68,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             socketClient.Connect();
             ClientId = socketClient.ClientId;
             Map = socketClient.Map;
-            //test
             Task Send = new Task(() =>
             {
                 while (socketClient.MySocket.Connected)
@@ -102,6 +105,18 @@ namespace GUI_20212022_Z6O9JF.Logic
 
             Send.Start();
             Receive.Start();
+        }
+        public void ChangeView(string view)
+        {
+            if (view.Equals("game"))
+            {
+                View = new GameUC();
+            }
+            else if (view.Equals("menu"))
+            {
+                View = new MenuUC();
+            }
+            messenger.Send("ViewChanged", "Base");
         }
     }
 }

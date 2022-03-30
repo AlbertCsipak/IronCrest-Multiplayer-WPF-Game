@@ -11,18 +11,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
     public partial class MenuUC : UserControl
     {
         IGameLogic gameLogic;
-        ContentControl cc;
-        public MenuUC(ContentControl cc)
+        public MenuUC()
         {
             InitializeComponent();
             this.DataContext = new MenuViewModel();
             this.gameLogic = (this.DataContext as MenuViewModel).gameLogic;
-            this.cc = cc;
             display.LogicSetup(gameLogic);
-        }
-        public MenuUC()
-        {
-
         }
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {

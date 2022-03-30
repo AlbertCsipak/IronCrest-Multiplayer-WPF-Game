@@ -8,9 +8,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         GameLogic.FieldType[,] GameMap { get; set; }
         string Map { get; set; }
         ObservableCollection<Player> Players { get; set; }
+        object View { get; set; }
 
+        void ChangeView(string view);
         void ClientSetup();
         GameLogic.FieldType[,] GameMapSetup(string path);
-        ObservableCollection<Player> Setup();
     }
 }
