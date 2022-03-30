@@ -64,7 +64,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             socketClient.Connect();
             ClientId = socketClient.ClientId;
             Map = socketClient.Map;
-            adsadasd
             Task Send = new Task(() =>
             {
                 while (socketClient.MySocket.Connected)
