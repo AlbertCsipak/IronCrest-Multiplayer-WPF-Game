@@ -1,6 +1,7 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace GUI_20212022_Z6O9JF.Renderer
 {
@@ -24,7 +25,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         switch (gameLogic.GameMap[i, j])
                         {
                             case GameLogic.FieldType.grass:
-                                drawingContext.DrawRectangle(Brushes.Green, new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                drawingContext.DrawRectangle(new ImageBrush(new Uri), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
                             case GameLogic.FieldType.water:
                                 drawingContext.DrawRectangle(Brushes.Blue, new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
