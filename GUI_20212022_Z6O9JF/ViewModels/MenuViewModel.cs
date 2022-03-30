@@ -1,14 +1,18 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
-    public class MainWindowViewModel : ObservableRecipient
+    public class MenuViewModel : ObservableRecipient
     {
         public IGameLogic gameLogic;
+        public ICommand clientComm { get; set; }
+        public ICommand skipCommand { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -21,12 +25,13 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public MainWindowViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
-        public MainWindowViewModel(IGameLogic gameLogic)
+        public MenuViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
+        public MenuViewModel(IGameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
 
-
+            clientComm = new RelayCommand(() => gameLogic.ClientSetup());
+            skipCommand = new RelayCommand(() => gameLogic.Skip());
         }
     }
 }

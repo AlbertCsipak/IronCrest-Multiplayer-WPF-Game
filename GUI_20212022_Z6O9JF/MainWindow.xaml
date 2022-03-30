@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_20212022_Z6O9JF"
-        xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
         mc:Ignorable="d"
         Title="RTSDEV" Height="300" Width="300">
     <Grid>

@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.UserControls;
+using GUI_20212022_Z6O9JF.ViewModels;
 using System.Windows;
 
 namespace GUI_20212022_Z6O9JF
@@ -11,7 +12,8 @@ namespace GUI_20212022_Z6O9JF
         public MainWindow()
         {
             InitializeComponent();
-            cc.Content = new MenuUC();
+            this.DataContext = new MainWindowViewModel();
+            cc.Content = new MenuUC(cc);
         }
     }
 }
