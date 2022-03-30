@@ -43,7 +43,6 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         }
                     }
                 }
-
                 foreach (var player in gameLogic.Players)
                 {
                     foreach (var item in player.Units)
