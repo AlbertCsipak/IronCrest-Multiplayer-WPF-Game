@@ -3,6 +3,7 @@ using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -14,6 +15,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IGameLogic gameLogic;
         public ICommand BackCommand { get; set; }
         public ICommand GameCommand { get; set; }
+        public ICommand NextFaction { get; set; }
+        public ICommand PreviousFaction { get; set; }
+        int index = 0;
+        public Faction SelectedFaction { get { return gameLogic.AvailableFactions[index]; } } 
         public static bool IsInDesignMode
         {
             get
@@ -31,15 +36,41 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             this.gameLogic = gameLogic;
 
-
             gameLogic.ClientConnect();
             gameLogic.GameMap = gameLogic.GameMapSetup($"Maps/map{gameLogic.Map}.txt");
 
             string name = "bercike";
-            Faction faction = new Faction();
-            faction = Faction.Viking;
 
-            GameCommand = new RelayCommand(() => gameLogic.ChampSelect(name,faction));
+            GameCommand = new RelayCommand(() => gameLogic.ChampSelect(SelectedFaction,name));
+            NextFaction = new RelayCommand(() =>
+            {
+                if (gameLogic.AvailableFactions.Count-1 > index)
+                {
+                    index++;
+                }
+                else
+                {
+                    index = 0;
+                }
+                OnPropertyChanged("SelectedFaction");
+            });
+            PreviousFaction = new RelayCommand(() =>
+            {
+                if (index > 0)
+                {
+                    index--;
+                }
+                else
+                {
+                    index = gameLogic.AvailableFactions.Count-1;
+                }
+                OnPropertyChanged("SelectedFaction");
+            });
+
+            Messenger.Register<JoinGameViewModel, string, string>(this, "Base", (recipient, msg) =>
+            {
+                OnPropertyChanged("SelectedFaction");
+            });
         }
     }
 }

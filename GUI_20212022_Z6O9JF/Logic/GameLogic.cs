@@ -23,12 +23,19 @@ namespace GUI_20212022_Z6O9JF.Logic
         public int ClientId { get; set; }
         public FieldType[,] GameMap { get; set; }
         public ObservableCollection<Player> Players { get; set; }
-        public enum FieldType { field, water, village, hill, forest,wheat }
+        public List<Faction> AvailableFactions { get; set; }
+        public enum FieldType { field, water, village, hill, forest, wheat }
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
             socketClient = new SocketClient.SocketClient();
             this.Players = new ObservableCollection<Player>();
+
+            AvailableFactions = new List<Faction>();
+            AvailableFactions.Add(Faction.Viking);
+            AvailableFactions.Add(Faction.Crusader);
+            AvailableFactions.Add(Faction.Arabian);
+            AvailableFactions.Add(Faction.Mongolian);
         }
         public FieldType[,] GameMapSetup(string path)
         {
@@ -84,6 +91,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
             Task Receive = new Task(() =>
             {
+                int counter = 0;
                 while (socketClient.MySocket.Connected)
                 {
                     string message = socketClient.DataReceive();
@@ -92,6 +100,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (message.Equals("false") || message.Equals("true"))
                         {
                             CanSend = bool.Parse(message);
+                            if (counter< 4 && message.Equals("true"))
+                            {
+                                counter++;
+                                foreach (var item in Players)
+                                {
+                                    AvailableFactions.Remove(item.Faction);
+                                    messenger.Send("FactionRemoved", "Base");
+                                }
+                            }
                         }
                         else
                         {
@@ -134,7 +151,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Task s = new Task(() => { SocketServer socketServer = new SocketServer(); }, TaskCreationOptions.LongRunning);
             s.Start();
         }
-        public void ChampSelect(string name, Faction faction)
+        public void ChampSelect(Faction faction, string name = "Anon")
         {
             if (CanSend)
             {
