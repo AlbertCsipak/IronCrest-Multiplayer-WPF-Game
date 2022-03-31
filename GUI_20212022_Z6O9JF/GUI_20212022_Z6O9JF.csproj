@@ -39,6 +39,8 @@
     <None Remove="Images\Menu\goldmine_background.png" />
     <None Remove="Images\Menu\main_background.gif" />
     <None Remove="Images\Other\compass.png" />
+    <None Remove="Images\Other\crest_icon.png" />
+    <None Remove="Images\Other\icon.png" />
     <None Remove="Images\Resources\Augusta.ttf" />
     <None Remove="Images\Resources\Ithornët.ttf" />
     <None Remove="Images\Resources\slkscr.ttf" />
@@ -143,6 +145,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Other\compass.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Other\crest_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Other\icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\8bitlim.ttf" />

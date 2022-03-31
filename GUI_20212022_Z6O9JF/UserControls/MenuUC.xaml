@@ -9,6 +9,9 @@
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="1800" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -22,7 +25,7 @@
         </Grid.ColumnDefinitions>
         <Image gif:ImageBehavior.AnimatedSource="\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
         <renderer:MainMenuDisplay x:Name="display" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-        <Button Content="START GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"  Grid.Row="2" Grid.Column="1" FontSize="90" FontFamily="Poor Richard" Command="{Binding ChangeView}" BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <Button Content="START GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"  Grid.Row="2" Grid.Column="1" FontSize="90" FontFamily="Poor Richard" Command="{Binding ChangeViewCommand}" BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" >
             <Button.Resources>
                 <Style TargetType="Border">
                     <Style.Triggers>

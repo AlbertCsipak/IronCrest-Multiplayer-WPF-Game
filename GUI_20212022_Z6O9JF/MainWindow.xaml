@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GUI_20212022_Z6O9JF"
         xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
         mc:Ignorable="d"
-        Title="RTSDEV" Height="300" Width="300">
+        Title="RTSDEV" Height="300" Width="300" WindowState="Maximized" WindowStyle="None" Icon="Images\Other\icon.png">
     <Window.DataContext>
         <vm:MainWindowViewModel></vm:MainWindowViewModel>
     </Window.DataContext>
