@@ -21,7 +21,7 @@ namespace GUI_20212022_Z6O9JF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (music.IsMuted)
             {
                 music.IsMuted = false;
