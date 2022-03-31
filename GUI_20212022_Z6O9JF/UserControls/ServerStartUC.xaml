@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="1800">
+             d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
