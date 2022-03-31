@@ -45,6 +45,7 @@
     <None Remove="Images\Resources\Ithornët.ttf" />
     <None Remove="Images\Resources\slkscr.ttf" />
     <None Remove="Maps\map1.txt" />
+    <None Remove="Music\standard.mp3" />
     <None Remove="Resources\8bitlim.ttf" />
     <None Remove="Resources\kongtext.ttf" />
     <None Remove="Resources\press-start.k.ttf" />
@@ -151,6 +152,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Other\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Music\standard.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\8bitlim.ttf" />

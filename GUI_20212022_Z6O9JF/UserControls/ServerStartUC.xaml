@@ -25,13 +25,24 @@
                FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
                BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
         </Label>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label Content="TurnLength" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="30"></Label>
+            <ComboBox ItemsSource="{Binding TurnLengths}" SelectedItem="{Binding TurnLength}" Height="50"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="1">
+            <Label Content="Map" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="30"></Label>
+            <ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding Map}" Height="50"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.Column="1">
+            <Label Content="Players" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="30"></Label>
+            <ComboBox ItemsSource="{Binding Clients}" SelectedItem="{Binding Client}" Height="50"></ComboBox>
+        </StackPanel>
+        <StackPanel Grid.Row="5" Grid.Column="1">
+            <Label Content="IP" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="30"></Label>
+            <TextBox Text="{Binding IP}" Height="50"></TextBox>
+        </StackPanel>
 
-        <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding TurnLength}"></ComboBox>
-        <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Map}"></ComboBox>
-        <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Clients}"></ComboBox>
-        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding IP}"></TextBox>
-        
-        
+
         <Button Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
                 Grid.Row="6" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding StartGameCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">

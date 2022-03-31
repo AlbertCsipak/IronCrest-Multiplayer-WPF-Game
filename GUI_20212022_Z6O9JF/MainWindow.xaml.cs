@@ -1,5 +1,8 @@
 ﻿using GUI_20212022_Z6O9JF.ViewModels;
+using System;
+using System.Media;
 using System.Windows;
+using System.Windows.Media;
 
 namespace GUI_20212022_Z6O9JF
 {
@@ -12,6 +15,7 @@ namespace GUI_20212022_Z6O9JF
         {
             InitializeComponent();
             this.DataContext = new MainWindowViewModel();
+            music.Play();
         }
     }
 }

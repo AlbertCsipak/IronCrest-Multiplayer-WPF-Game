@@ -2,6 +2,7 @@
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -12,6 +13,15 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     {
         public IGameLogic gameLogic;
         public ICommand BackCommand { get; set; }
+        public ICommand StartCommand { get; set; }
+        public List<int> TurnLengths { get; set; }
+        public List<int> Clients { get; set; }
+        public List<int> Maps { get; set; }
+        public string IP { get; set; }
+        public int ClientNumber { get; set; }
+        public int TurnLength { get; set; }
+        public int Map { get; set; }
+
         public static bool IsInDesignMode
         {
             get
@@ -29,11 +39,27 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             this.gameLogic = gameLogic;
 
+            TurnLengths = new List<int>();
+            Clients = new List<int>();
+            Maps = new List<int>();
 
+            TurnLengths.Add(30);
+            TurnLengths.Add(45);
+            TurnLengths.Add(60);
+            TurnLengths.Add(90);
+
+            Clients.Add(2);
+            Clients.Add(3);
+            Clients.Add(4);
+            Clients.Add(5);
+            Clients.Add(6);
+
+            Maps.Add(1);
+            Maps.Add(2);
 
             BackCommand = new RelayCommand(() => gameLogic.ChangeView("lobby"));
-            //gameLogic.ClientConnect();
-            //gameLogic.GameMap = gameLogic.GameMapSetup($"Maps/map{gameLogic.Map}.txt");
+
+            StartCommand = new RelayCommand(() => gameLogic.StartServer());
         }
     }
 }
