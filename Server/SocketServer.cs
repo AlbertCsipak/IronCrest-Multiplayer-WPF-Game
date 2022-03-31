@@ -27,7 +27,7 @@ namespace Server
 
             int id = 1;
 
-            //Console.WriteLine("Waiting for " + clients + " clients...");
+            Console.WriteLine("Waiting for " + clients + " clients...");
 
             while (Clients.Count < clients)
             {
@@ -35,7 +35,7 @@ namespace Server
                 Socket client = ServerSocket.Accept();
                 Clients.Add(client);
                 client.Send(Encoding.ASCII.GetBytes(id.ToString()));
-                //Console.WriteLine("Client " + id + " has joined.");
+                Console.WriteLine("Client " + id + " has joined.");
                 id++;
                 ;
             }
@@ -45,7 +45,7 @@ namespace Server
                 client.Send(Encoding.ASCII.GetBytes(map));
             }
 
-            //Console.WriteLine("Ready...");
+            Console.WriteLine("Ready...");
         }
         public void Session(int turnLength, int clients, int bufferSize)
         {
@@ -60,7 +60,7 @@ namespace Server
                         try
                         {
                             item.Send(Encoding.ASCII.GetBytes("true"));
-                            //Console.WriteLine("I've sent true to " + item.RemoteEndPoint);
+                            Console.WriteLine("I've sent true to " + item.RemoteEndPoint);
 
                             string msg = "";
                             int x = 0;
@@ -72,7 +72,22 @@ namespace Server
 
                                 msg = Encoding.ASCII.GetString(buffer);
 
-                                //Console.WriteLine("Server received a packet from :" + item.RemoteEndPoint);
+                                Console.WriteLine("Server received a packet from :" + item.RemoteEndPoint);
+
+                                string message = "";
+                                int idx = 0;
+                                while (buffer[idx] != 0)
+                                {
+                                    byte[] helper = new byte[1];
+                                    helper[0] = buffer[idx];
+                                    message = message + Encoding.ASCII.GetString(helper);
+                                    idx++;
+                                    if (bufferSize - 1 == idx)
+                                    {
+                                        break;
+                                    }
+                                }
+                                Console.WriteLine(message);
 
                                 if (msg.Contains("skip"))
                                 {
@@ -89,11 +104,11 @@ namespace Server
                                 Console.WriteLine(x.ToString());
                             }
                             item.Send(Encoding.ASCII.GetBytes("false"));
-                            //Console.WriteLine("switch");
+                            Console.WriteLine("switch");
                         }
                         catch (Exception e)
                         {
-                            //Console.WriteLine(e.Message);
+                            Console.WriteLine(e.Message);
                         }
                     }
                 }
@@ -103,7 +118,7 @@ namespace Server
 
             core.Start();
 
-            //Console.ReadLine();
+            Console.ReadLine();
         }
     }
 }

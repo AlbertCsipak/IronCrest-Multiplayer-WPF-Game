@@ -77,7 +77,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     if (CanSend)
                     {
-                        socketClient.DataSend(Players, packetSpeed: 100);
+                        socketClient.DataSend(Players, packetSpeed: 500);
                     }
                 }
             }, TaskCreationOptions.LongRunning);
