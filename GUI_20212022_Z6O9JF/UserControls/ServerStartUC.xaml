@@ -67,7 +67,7 @@
         <Button Background="Transparent"
                 Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
                 BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-            <Image Source="\Images\Other\exit.png"></Image>
+            <Image Source="\Images\Other\back.png"></Image>
             <Button.Resources>
                 <Style TargetType="Border">
                     <Style.Triggers>
