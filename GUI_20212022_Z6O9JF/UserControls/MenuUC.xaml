@@ -71,7 +71,7 @@
             </Button.Resources>
         </Button>
         <Button  Background="Transparent"
-                Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
+                Grid.Row="6" Grid.Column="2" Click="Button_Click" Command="{Binding BackCommand}"
                 BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <Image Source="\Images\Other\exit.png"></Image>
             <Button.Resources>

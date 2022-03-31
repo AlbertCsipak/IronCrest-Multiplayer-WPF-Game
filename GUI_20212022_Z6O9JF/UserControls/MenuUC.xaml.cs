@@ -16,5 +16,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.DataContext = new MenuViewModel();
             this.gameLogic = (this.DataContext as MenuViewModel).gameLogic;
         }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+        }
     }
 }
