@@ -57,7 +57,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             Maps.Add(1);
             Maps.Add(2);
 
-            BackCommand = new RelayCommand(() => gameLogic.ChangeView("lobby"));
+            BackCommand = new RelayCommand(() => gameLogic.ChangeView("menu"));
 
             StartCommand = new RelayCommand(() => gameLogic.StartServer());
         }

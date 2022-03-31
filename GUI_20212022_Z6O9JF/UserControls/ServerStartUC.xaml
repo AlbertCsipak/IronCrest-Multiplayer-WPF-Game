@@ -44,7 +44,7 @@
 
 
         <Button Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
-                Grid.Row="6" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding StartGameCommand}"
+                Grid.Row="6" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding StartCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button.Resources>
                 <Style TargetType="Border">

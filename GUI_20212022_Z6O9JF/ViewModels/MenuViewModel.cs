@@ -11,7 +11,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     public class MenuViewModel : ObservableRecipient
     {
         public IGameLogic gameLogic;
-        public ICommand ChangeViewCommand { get; set; }
+        public ICommand BackCommand { get; set; }
+        public ICommand JoinGameCommand { get; set; }
+        public ICommand CreateGameCommand { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -29,7 +31,14 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             this.gameLogic = gameLogic;
 
-            ChangeViewCommand = new RelayCommand(() => gameLogic.ChangeView("lobby"));
+
+
+            BackCommand = new RelayCommand(() => gameLogic.ChangeView("menu"));
+            JoinGameCommand = new RelayCommand(() => gameLogic.ChangeView("join"));
+            CreateGameCommand = new RelayCommand(() => gameLogic.ChangeView("server"));
+
+            //gameLogic.ClientConnect();
+            //gameLogic.GameMap = gameLogic.GameMapSetup($"Maps/map{gameLogic.Map}.txt");
         }
     }
 }
