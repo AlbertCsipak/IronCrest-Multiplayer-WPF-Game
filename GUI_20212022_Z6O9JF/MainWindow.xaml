@@ -12,5 +12,7 @@
         <Image gif:ImageBehavior.AnimatedSource="\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="1" Grid.RowSpan="1"/>
         <ContentControl Content="{Binding View}"></ContentControl>
         <MediaElement Source="Music/standard.mp3" LoadedBehavior="Manual" Name="music"/>
+        <Button x:Name="btn_mute" Background="Transparent"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="Button_Click" Height="90" Width="90" Margin="30,0,0,30" BorderBrush="Transparent">
+        </Button>
     </Grid>
 </Window>

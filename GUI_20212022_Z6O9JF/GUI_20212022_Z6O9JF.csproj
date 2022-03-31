@@ -41,6 +41,8 @@
     <None Remove="Images\Other\compass.png" />
     <None Remove="Images\Other\crest_icon.png" />
     <None Remove="Images\Other\icon.png" />
+    <None Remove="Images\Other\muted.png" />
+    <None Remove="Images\Other\unmuted.png" />
     <None Remove="Images\Resources\Augusta.ttf" />
     <None Remove="Images\Resources\Ithornët.ttf" />
     <None Remove="Images\Resources\slkscr.ttf" />
@@ -152,6 +154,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Other\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Other\muted.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Other\unmuted.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Music\standard.mp3">

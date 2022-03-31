@@ -8,6 +8,9 @@
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              mc:Ignorable="d" 
              d:DesignHeight="1000" d:DesignWidth="1800">
+    <UserControl.Resources>
+        <SolidColorBrush Color="#B3C8B7" x:Key="greenish_blue"/>
+    </UserControl.Resources>
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -27,7 +30,7 @@
                FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
                BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
         </Label>
-        <Button Content="START GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+        <Button Content="START GAME" Foreground="{DynamicResource greenish_blue}" Padding="30" Background="Transparent"
                 Grid.Row="5" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding ChangeViewCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button.Resources>
