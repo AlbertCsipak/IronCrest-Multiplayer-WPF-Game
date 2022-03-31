@@ -8,10 +8,7 @@
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="1800" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
-    <UserControl.Resources>
-        
-    </UserControl.Resources>
+             d:DesignHeight="1000" d:DesignWidth="1800">
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -24,8 +21,9 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Image gif:ImageBehavior.AnimatedSource="\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-        <renderer:MainMenuDisplay x:Name="display" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
-        <Button Content="START GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"  Grid.Row="2" Grid.Column="1" FontSize="90" FontFamily="Poor Richard" Command="{Binding ChangeViewCommand}" BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <Button Content="START GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+                Grid.Row="2" Grid.Column="1" FontSize="90" FontFamily="Poor Richard" Command="{Binding ChangeViewCommand}"
+                BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Style.Triggers>
@@ -33,7 +31,6 @@
                             <Setter Property="Background" Value="#72414B"></Setter>
                         </Trigger>
                     </Style.Triggers>
-                    <!--<Setter Property="CornerRadius" Value="30"></Setter>-->
                 </Style>
                 <Style TargetType="Button">
                     <Style.Triggers>
@@ -43,27 +40,10 @@
                     </Style.Triggers>
                 </Style>
             </Button.Resources>
-            <!--<Button.ContentTemplate>
-                <DataTemplate>
-                    <TextBlock Text="START GAME" Foreground="#B3C8B7" Padding="10" >
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#FF2C2E46"></Setter>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                </DataTemplate>
-            </Button.ContentTemplate>-->
         </Button>
-        <Label Grid.Row="0" Grid.Column="1" Content="Seed and Armies" FontSize="150" FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" BorderThickness="10,10,10,10" Foreground="#FF2C2E46" >
+        <Label Grid.Row="0" Grid.Column="1" Content="IronCrest" FontSize="150"
+               FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
+               BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
         </Label>
-        <!--<Label Grid.Row="2" Grid.Column="1" Content="START GAME" FontSize="80" FontFamily="Poor Richard" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#B3C8B7"/>-->
-        <!--<Button  Content="skip" Command="{Binding skipCommand}" Click="Button_Click_1"></Button>
-        <Button Content="Play" Click="Button_Click"/>
-        <ListBox  ItemsSource="{Binding Players}"></ListBox>-->
     </Grid>
 </UserControl>

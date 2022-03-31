@@ -15,15 +15,15 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public class GameLogic : IGameLogic
     {
-        public ObservableCollection<Player> Players { get; set; }
+        IMessenger messenger;
+        SocketClient.SocketClient socketClient;
         public object View { get; set; }
         public string Map { get; set; }
-        public enum FieldType { grass, water, village, desert, snow }
+        public bool CanSend { get; set; }
+        public int ClientId { get; set; }
         public FieldType[,] GameMap { get; set; }
-        SocketClient.SocketClient socketClient;
-        bool CanSend;
-        int ClientId;
-        IMessenger messenger;
+        public ObservableCollection<Player> Players { get; set; }
+        public enum FieldType { grass, water, village, desert, snow }
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -117,6 +117,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             else if (view.Equals("menu"))
             {
                 View = new MenuUC();
+            }
+            else if (view.Equals("lobby"))
+            {
+                View = new LobbyUC();
             }
             messenger.Send("ViewChanged", "Base");
         }

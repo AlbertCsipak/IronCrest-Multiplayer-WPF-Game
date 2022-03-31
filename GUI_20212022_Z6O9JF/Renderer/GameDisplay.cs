@@ -1,8 +1,6 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
-using System;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace GUI_20212022_Z6O9JF.Renderer
 {
@@ -49,23 +47,23 @@ namespace GUI_20212022_Z6O9JF.Renderer
                 //                break;
                 //        }
                 //    }
-                }
-                //foreach (var player in gameLogic.Players)
-                //{
-                //    foreach (var item in player.Units)
-                //    {
-
-                //    }
-                //    foreach (var item in player.Villages)
-                //    {
-
-                //    }
-                //    foreach (var item in player.Heroes)
-                //    {
-
-                //    }
-                //}
             }
+            //foreach (var player in gameLogic.Players)
+            //{
+            //    foreach (var item in player.Units)
+            //    {
+
+            //    }
+            //    foreach (var item in player.Villages)
+            //    {
+
+            //    }
+            //    foreach (var item in player.Heroes)
+            //    {
+
+            //    }
+            //}
+        }
 
 
 
