@@ -64,14 +64,15 @@
             </Button.Resources>
         </Button>
         
-        <Button Content="X" Foreground="DarkRed" Background="Transparent"
-                Grid.Row="6" Grid.Column="2" FontSize="50" FontFamily="Poor Richard" Command="{Binding BackCommand}"
+        <Button Background="Transparent"
+                Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
                 BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Image Source="\Images\Other\exit.png"></Image>
             <Button.Resources>
                 <Style TargetType="Border">
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#72414B"></Setter>
+                            <Setter Property="Background" Value="Transparent"></Setter>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
