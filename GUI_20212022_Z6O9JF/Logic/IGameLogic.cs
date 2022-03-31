@@ -5,6 +5,8 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public interface IGameLogic
     {
+        bool CanSend { get; set; }
+        int ClientId { get; set; }
         GameLogic.FieldType[,] GameMap { get; set; }
         string Map { get; set; }
         ObservableCollection<Player> Players { get; set; }
@@ -14,6 +16,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         void ChangeView(string view);
         void ClientConnect();
         GameLogic.FieldType[,] GameMapSetup(string path);
-        void StartServer();
+        void StartServer(int turnLemgth, int clients, int map, string ip);
     }
 }

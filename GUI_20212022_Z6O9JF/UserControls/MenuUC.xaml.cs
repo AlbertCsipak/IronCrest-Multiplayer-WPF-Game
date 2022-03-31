@@ -16,9 +16,5 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.DataContext = new MenuViewModel();
             this.gameLogic = (this.DataContext as MenuViewModel).gameLogic;
         }
-        private void Button_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            gameLogic.ChangeView("game");
-        }
     }
 }

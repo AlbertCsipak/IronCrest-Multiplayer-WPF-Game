@@ -118,10 +118,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 View = new MenuUC();
             }
-            else if (view.Equals("lobby"))
-            {
-                View = new LobbyUC();
-            }
             else if (view.Equals("server"))
             {
                 View = new ServerStartUC();
@@ -132,10 +128,11 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             messenger.Send("ViewChanged", "Base");
         }
-        public void StartServer()
+        public void StartServer(int turnLemgth, int clients, int map, string ip)
         {
             Task s = new Task(() => { SocketServer socketServer = new SocketServer(); }, TaskCreationOptions.LongRunning);
             s.Start();
+            ChangeView("join");
         }
         public void ChampSelect(string name, Faction faction)
         {
