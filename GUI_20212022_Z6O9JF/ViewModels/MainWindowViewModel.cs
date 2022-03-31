@@ -35,9 +35,6 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             {
                 OnPropertyChanged("View");
             });
-
-
-
         }
     }
 }

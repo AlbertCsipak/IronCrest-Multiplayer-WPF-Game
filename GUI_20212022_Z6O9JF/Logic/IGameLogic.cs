@@ -11,7 +11,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         object View { get; set; }
 
         void ChangeView(string view);
-        void ClientSetup();
+        void ClientConnect();
         GameLogic.FieldType[,] GameMapSetup(string path);
+        void StartServer();
     }
 }

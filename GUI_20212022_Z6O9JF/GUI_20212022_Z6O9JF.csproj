@@ -166,6 +166,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Server\SocketServer.csproj" />
     <ProjectReference Include="..\SocketClient\SocketClient.csproj" />
   </ItemGroup>
 

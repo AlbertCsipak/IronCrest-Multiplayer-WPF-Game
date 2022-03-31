@@ -1,15 +1,14 @@
-﻿using System;
-
-namespace Server
+﻿namespace Server
 {
     class Program
     {
         static void Main(string[] args)
         {
             //the server is standalone, it needs to be started seperately.
-            Console.WindowWidth = 50;
-            Console.WindowHeight = 10;
-            SocketServer server = new SocketServer();
+            //Console.WindowWidth = 50;
+            //Console.WindowHeight = 10;
+            //SocketServer server = new SocketServer();
+            ;
         }
     }
 }

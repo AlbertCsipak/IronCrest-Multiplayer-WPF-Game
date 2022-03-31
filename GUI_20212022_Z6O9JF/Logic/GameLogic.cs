@@ -2,7 +2,9 @@
 using GUI_20212022_Z6O9JF.UserControls;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
+using Server;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
@@ -13,14 +15,14 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public class GameLogic : IGameLogic
     {
-        bool CanSend;
-        int ClientId;
+        public ObservableCollection<Player> Players { get; set; }
         public object View { get; set; }
         public string Map { get; set; }
-        public ObservableCollection<Player> Players { get; set; }
-        SocketClient.SocketClient socketClient;
         public enum FieldType { grass, water, village, desert, snow }
         public FieldType[,] GameMap { get; set; }
+        SocketClient.SocketClient socketClient;
+        bool CanSend;
+        int ClientId;
         IMessenger messenger;
         public GameLogic(IMessenger messenger)
         {
@@ -63,7 +65,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
             return map;
         }
-        public void ClientSetup()
+        public void ClientConnect()
         {
             socketClient.Connect();
             ClientId = socketClient.ClientId;
@@ -117,6 +119,34 @@ namespace GUI_20212022_Z6O9JF.Logic
                 View = new MenuUC();
             }
             messenger.Send("ViewChanged", "Base");
+        }
+        public void StartServer()
+        {
+            Task s = new Task(() => { SocketServer socketServer = new SocketServer(); }, TaskCreationOptions.LongRunning);
+            s.Start();
+        }
+        public void ChampSelect(string name, Faction faction)
+        {
+            Players.Add(new Player()
+            {
+                PlayerID = ClientId,
+                Name = name,
+                Faction = faction,
+                Moves = 2,
+                ArmyPower = 0,
+                BattlesWon = 0,
+                Popularity = 0,
+                GoldMine = false,
+                Heroes = new List<Hero>(),
+                Quests = new List<Quest>(),
+                Units = new List<Unit>(),
+                Villages = new List<Village>(),
+                Food = 10,
+                Gold = 10,
+                Stone = 10,
+                Wood = 10
+            });
+            socketClient.Skip();
         }
     }
 }

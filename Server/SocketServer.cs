@@ -13,6 +13,7 @@ namespace Server
         Socket ServerSocket;
         public SocketServer(string ip = "26.99.118.45", int clients = 2, int turnLength = 100, int port = 10000, int bufferSize = 2048, string map = "1")
         {
+            ;
             Init(ip, clients, port, map);
             Session(turnLength, clients, bufferSize);
         }
@@ -23,20 +24,21 @@ namespace Server
             ServerSocket.Bind(new IPEndPoint(IPAddress.Parse(ip), port));
             ServerSocket.Listen(clients);
 
-            List<Task> tasks = new List<Task>();
             Clients = new List<Socket>();
 
             int id = 1;
 
-            Console.WriteLine("Waiting for " + clients + " clients...");
+            //Console.WriteLine("Waiting for " + clients + " clients...");
 
             while (Clients.Count < clients)
             {
+                ;
                 Socket client = ServerSocket.Accept();
                 Clients.Add(client);
                 client.Send(Encoding.ASCII.GetBytes(id.ToString()));
-                Console.WriteLine("Client " + id + " has joined.");
+                //Console.WriteLine("Client " + id + " has joined.");
                 id++;
+                ;
             }
 
             foreach (var client in Clients)
@@ -44,7 +46,7 @@ namespace Server
                 client.Send(Encoding.ASCII.GetBytes(map));
             }
 
-            Console.WriteLine("Ready...");
+            //Console.WriteLine("Ready...");
         }
         public void Session(int turnLength, int clients, int bufferSize)
         {
@@ -53,12 +55,13 @@ namespace Server
             {
                 while (Clients.Count == clients)
                 {
+                    ;
                     foreach (var item in Clients)
                     {
                         try
                         {
                             item.Send(Encoding.ASCII.GetBytes("true"));
-                            Console.WriteLine("I've sent true to " + item.RemoteEndPoint);
+                            //Console.WriteLine("I've sent true to " + item.RemoteEndPoint);
 
                             string msg = "";
                             int x = 0;
@@ -70,7 +73,7 @@ namespace Server
 
                                 msg = Encoding.ASCII.GetString(buffer);
 
-                                Console.WriteLine("Server received a packet from :" + item.RemoteEndPoint);
+                                //Console.WriteLine("Server received a packet from :" + item.RemoteEndPoint);
 
                                 if (msg.Contains("skip"))
                                 {
@@ -87,19 +90,21 @@ namespace Server
                                 Console.WriteLine(x.ToString());
                             }
                             item.Send(Encoding.ASCII.GetBytes("false"));
-                            Console.WriteLine("switch");
+                            //Console.WriteLine("switch");
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine(e.Message);
+                            //Console.WriteLine(e.Message);
                         }
                     }
                 }
+                ServerSocket.Close();
+                ServerSocket.Dispose();
             }, TaskCreationOptions.LongRunning);
 
             core.Start();
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }
