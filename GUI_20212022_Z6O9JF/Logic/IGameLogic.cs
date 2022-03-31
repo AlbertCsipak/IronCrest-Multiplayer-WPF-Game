@@ -10,6 +10,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         ObservableCollection<Player> Players { get; set; }
         object View { get; set; }
 
+        void ChampSelect(string name, Faction faction);
         void ChangeView(string view);
         void ClientConnect();
         GameLogic.FieldType[,] GameMapSetup(string path);
