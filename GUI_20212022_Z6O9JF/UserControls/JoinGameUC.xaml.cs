@@ -15,6 +15,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             InitializeComponent();
             this.DataContext = new JoinGameViewModel();
             this.gameLogic = (this.DataContext as JoinGameViewModel).gameLogic;
+            ;
         }
     }
 }

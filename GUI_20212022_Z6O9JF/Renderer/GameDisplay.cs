@@ -16,6 +16,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
         {
             if (gameLogic != null)
             {
+                ;
                 double rowHeight = size.Height / gameLogic.GameMap.GetLength(0);
                 double colWidth = size.Width / gameLogic.GameMap.GetLength(1);
 
@@ -25,25 +26,25 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     {
                         switch (gameLogic.GameMap[i, j])
                         {
-                            case GameLogic.FieldType.grass:
+                            case GameLogic.FieldType.field:
                                 drawingContext.DrawRectangle(
-                                 new ImageBrush(new BitmapImage(new Uri("Images/Map/mezo.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                 new ImageBrush(new BitmapImage(new Uri("Images/Map/field.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
                             case GameLogic.FieldType.water:
                                 drawingContext.DrawRectangle(
-                                 new ImageBrush(new BitmapImage(new Uri("Images/Map/viz.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                 new ImageBrush(new BitmapImage(new Uri("Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
-                            case GameLogic.FieldType.village:
+                            case GameLogic.FieldType.forest:
                                 drawingContext.DrawRectangle(
-                                  new ImageBrush(new BitmapImage(new Uri("Images/Map/mezo.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                  new ImageBrush(new BitmapImage(new Uri("Images/Map/wood.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
-                            case GameLogic.FieldType.desert:
+                            case GameLogic.FieldType.hill:
                                 drawingContext.DrawRectangle(
-                                  new ImageBrush(new BitmapImage(new Uri("Images/Map/buzamezo.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                  new ImageBrush(new BitmapImage(new Uri("Images/Map/mountain.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
-                            case GameLogic.FieldType.snow:
+                            case GameLogic.FieldType.wheat:
                                 drawingContext.DrawRectangle(
-                                   new ImageBrush(new BitmapImage(new Uri("Images/Map/hegy.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
+                                   new ImageBrush(new BitmapImage(new Uri("Images/Map/food.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0.5), new Rect(j * colWidth, i * rowHeight, colWidth, rowHeight));
                                 break;
                             default:
                                 break;

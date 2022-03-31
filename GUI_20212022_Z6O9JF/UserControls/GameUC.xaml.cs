@@ -17,6 +17,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.DataContext = new GameViewModel();
             this.gameLogic = (this.DataContext as GameViewModel).gameLogic;
             display.LogicSetup(gameLogic);
+            InvalidateVisual();
         }
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {

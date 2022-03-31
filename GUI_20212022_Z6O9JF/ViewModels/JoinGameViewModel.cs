@@ -12,6 +12,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     {
         public IGameLogic gameLogic;
         public ICommand BackCommand { get; set; }
+        public ICommand GameCommand { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -30,11 +31,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
 
 
-
-            BackCommand = new RelayCommand(() => gameLogic.ChangeView("lobby"));
-
             gameLogic.ClientConnect();
             gameLogic.GameMap = gameLogic.GameMapSetup($"Maps/map{gameLogic.Map}.txt");
+
+            GameCommand = new RelayCommand(() => gameLogic.ChangeView("game"));
         }
     }
 }

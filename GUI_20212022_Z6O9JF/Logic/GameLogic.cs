@@ -23,7 +23,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public int ClientId { get; set; }
         public FieldType[,] GameMap { get; set; }
         public ObservableCollection<Player> Players { get; set; }
-        public enum FieldType { grass, water, village, desert, snow }
+        public enum FieldType { field, water, village, hill, forest,wheat }
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -42,27 +42,27 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     switch (lines[i + 2][j])
                     {
-                        case 'g':
-                            map[i, j] = FieldType.grass;
-                            break;
-                        case 'w':
-                            map[i, j] = FieldType.water;
+                        case 'm':
+                            map[i, j] = FieldType.field;
                             break;
                         case 'v':
-                            map[i, j] = FieldType.village;
+                            map[i, j] = FieldType.water;
                             break;
-                        case 'd':
-                            map[i, j] = FieldType.desert;
+                        case 'e':
+                            map[i, j] = FieldType.forest;
                             break;
-                        case 's':
-                            map[i, j] = FieldType.snow;
+                        case 'h':
+                            map[i, j] = FieldType.hill;
+                            break;
+                        case 'b':
+                            map[i, j] = FieldType.wheat;
                             break;
                         default:
                             break;
                     }
                 }
             }
-
+            ;
             return map;
         }
         public void ClientConnect()
