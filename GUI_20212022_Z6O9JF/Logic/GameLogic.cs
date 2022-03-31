@@ -136,28 +136,31 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void ChampSelect(string name, Faction faction)
         {
-            Players.Add(new Player()
+            if (CanSend)
             {
-                PlayerID = ClientId,
-                Name = name,
-                Faction = faction,
-                Moves = 2,
-                ArmyPower = 0,
-                BattlesWon = 0,
-                Popularity = 0,
-                GoldMine = false,
-                Heroes = new List<Hero>(),
-                Quests = new List<Quest>(),
-                Units = new List<Unit>(),
-                Villages = new List<Village>(),
-                Food = 0,
-                Gold = 0,
-                Stone = 0,
-                Wood = 0
-            });
-            ChangeView("game");
-            System.Threading.Thread.Sleep(600);
-            socketClient.Skip();
+                Players.Add(new Player()
+                {
+                    PlayerID = ClientId,
+                    Name = name,
+                    Faction = faction,
+                    Moves = 2,
+                    ArmyPower = 0,
+                    BattlesWon = 0,
+                    Popularity = 0,
+                    GoldMine = false,
+                    Heroes = new List<Hero>(),
+                    Quests = new List<Quest>(),
+                    Units = new List<Unit>(),
+                    Villages = new List<Village>(),
+                    Food = 0,
+                    Gold = 0,
+                    Stone = 0,
+                    Wood = 0
+                });
+                ChangeView("game");
+                System.Threading.Thread.Sleep(600);
+                socketClient.Skip();
+            }
         }
     }
 }
