@@ -132,7 +132,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             Task s = new Task(() => { SocketServer socketServer = new SocketServer(); }, TaskCreationOptions.LongRunning);
             s.Start();
-            ChangeView("join");
         }
         public void ChampSelect(string name, Faction faction)
         {
