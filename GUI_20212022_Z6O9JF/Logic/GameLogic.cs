@@ -128,7 +128,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             messenger.Send("ViewChanged", "Base");
         }
-        public void StartServer(int turnLemgth, int clients, int map, string ip)
+        public void StartServer(int turnLength = 100, int clients = 2, int map = 1, string ip = "127.0.0.1")
         {
             Task s = new Task(() => { SocketServer socketServer = new SocketServer(); }, TaskCreationOptions.LongRunning);
             s.Start();
