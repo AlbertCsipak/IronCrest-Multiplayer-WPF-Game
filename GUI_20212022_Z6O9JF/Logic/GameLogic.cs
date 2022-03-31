@@ -122,6 +122,14 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 View = new LobbyUC();
             }
+            else if (view.Equals("server"))
+            {
+                View = new ServerStartUC();
+            }
+            else if (view.Equals("join"))
+            {
+                View = new JoinGameUC();
+            }
             messenger.Send("ViewChanged", "Base");
         }
         public void StartServer()
@@ -145,10 +153,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                 Quests = new List<Quest>(),
                 Units = new List<Unit>(),
                 Villages = new List<Village>(),
-                Food = 10,
-                Gold = 10,
-                Stone = 10,
-                Wood = 10
+                Food = 0,
+                Gold = 0,
+                Stone = 0,
+                Wood = 0
             });
             socketClient.Skip();
         }

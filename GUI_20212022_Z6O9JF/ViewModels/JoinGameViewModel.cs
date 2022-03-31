@@ -8,12 +8,10 @@ using System.Windows.Input;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
-    public class LobbyViewModel : ObservableRecipient
+    public class JoinGameViewModel : ObservableRecipient
     {
         public IGameLogic gameLogic;
         public ICommand BackCommand { get; set; }
-        public ICommand JoinGameCommand { get; set; }
-        public ICommand CreateGameCommand { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -26,17 +24,14 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public LobbyViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
-        public LobbyViewModel(IGameLogic gameLogic)
+        public JoinGameViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
+        public JoinGameViewModel(IGameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
 
 
 
-            BackCommand = new RelayCommand(() => gameLogic.ChangeView("menu"));
-            JoinGameCommand = new RelayCommand(() => gameLogic.ChangeView("join"));
-            CreateGameCommand = new RelayCommand(() => gameLogic.ChangeView("server"));
-
+            BackCommand = new RelayCommand(() => gameLogic.ChangeView("lobby"));
             //gameLogic.ClientConnect();
             //gameLogic.GameMap = gameLogic.GameMapSetup($"Maps/map{gameLogic.Map}.txt");
         }
