@@ -7,7 +7,7 @@
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="1800">
+             d:DesignHeight="1080" d:DesignWidth="1920">
     <UserControl.Resources>
         <SolidColorBrush Color="#B3C8B7" x:Key="greenish_blue"/>
     </UserControl.Resources>

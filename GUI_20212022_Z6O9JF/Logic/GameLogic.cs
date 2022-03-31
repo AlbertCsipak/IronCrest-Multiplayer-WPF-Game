@@ -70,13 +70,14 @@ namespace GUI_20212022_Z6O9JF.Logic
             socketClient.Connect();
             ClientId = socketClient.ClientId;
             Map = socketClient.Map;
+
             Task Send = new Task(() =>
             {
                 while (socketClient.MySocket.Connected)
                 {
                     if (CanSend)
                     {
-                        socketClient.DataSend(Players);
+                        socketClient.DataSend(Players, packetSpeed: 100);
                     }
                 }
             }, TaskCreationOptions.LongRunning);
