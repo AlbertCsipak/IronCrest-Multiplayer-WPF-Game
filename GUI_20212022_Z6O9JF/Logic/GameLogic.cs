@@ -155,6 +155,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                 Stone = 0,
                 Wood = 0
             });
+            ChangeView("game");
+            System.Threading.Thread.Sleep(600);
             socketClient.Skip();
         }
     }

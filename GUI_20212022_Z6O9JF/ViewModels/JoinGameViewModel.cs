@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -34,7 +35,11 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             gameLogic.ClientConnect();
             gameLogic.GameMap = gameLogic.GameMapSetup($"Maps/map{gameLogic.Map}.txt");
 
-            GameCommand = new RelayCommand(() => gameLogic.ChangeView("game"));
+            string name = "bercike";
+            Faction faction = new Faction();
+            faction = Faction.Viking;
+
+            GameCommand = new RelayCommand(() => gameLogic.ChampSelect(name,faction));
         }
     }
 }
