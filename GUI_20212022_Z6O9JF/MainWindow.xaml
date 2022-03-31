@@ -8,6 +8,32 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="IronCrest" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" Icon="Images\Other\icon.png">
+    <Window.Resources>
+        <Style x:Key="button_style" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Transparent"></Setter>
+                                <Setter Property="FontSize" Value="50"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Transparent"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="LightGray"></Setter>
+                                <Setter Property="Foreground" Value="Gray"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid Name="grid">
         <Image gif:ImageBehavior.AnimatedSource="\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="1" Grid.RowSpan="1"/>
         <ContentControl Content="{Binding View}"></ContentControl>
