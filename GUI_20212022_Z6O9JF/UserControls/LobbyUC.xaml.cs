@@ -7,14 +7,14 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// <summary>
     /// Interaction logic for JoinGameUC.xaml
     /// </summary>
-    public partial class JoinGameUC : UserControl
+    public partial class LobbyUC : UserControl
     {
         IGameLogic gameLogic;
-        public JoinGameUC()
+        public LobbyUC()
         {
             InitializeComponent();
-            this.DataContext = new JoinGameViewModel();
-            this.gameLogic = (this.DataContext as JoinGameViewModel).gameLogic;
+            this.DataContext = new LobbyViewModel();
+            this.gameLogic = (this.DataContext as LobbyViewModel).gameLogic;
             ;
         }
     }

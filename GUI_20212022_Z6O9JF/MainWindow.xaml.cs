@@ -21,7 +21,7 @@ namespace GUI_20212022_Z6O9JF
             InitializeComponent();
             c1 = new Cursor("Resources/blurite_sword.cur");
             grid.Cursor = c1;
-            this.DataContext = new MainWindowViewModel();
+            this.DataContext = new MainViewModel();
             img_mute.Source = new BitmapImage(unmutedUri);
             music.Play();
 
