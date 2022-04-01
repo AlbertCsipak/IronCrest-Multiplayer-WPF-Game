@@ -1,7 +1,9 @@
 ﻿using GUI_20212022_Z6O9JF.ViewModels;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -12,13 +14,17 @@ namespace GUI_20212022_Z6O9JF
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public Uri unmutedUri = new Uri("Images/Other/unmuted.png", UriKind.RelativeOrAbsolute);
         public Uri mutedUri = new Uri("Images/Other/muted.png", UriKind.RelativeOrAbsolute);
+        Cursor c1;
         public MainWindow()
         {
-            InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
             
+            InitializeComponent();
+            c1 = new Cursor("Resources/blurite_sword.cur");
+            grid.Cursor = c1;
+            this.DataContext = new MainWindowViewModel();
             img_mute.Source = new BitmapImage(unmutedUri);
             music.Play();
             
