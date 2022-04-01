@@ -2,7 +2,6 @@
 using GUI_20212022_Z6O9JF.UserControls;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
-using Server;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -77,7 +76,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             socketClient.Connect();
 
-            if (socketClient.MySocket!=null)
+            if (socketClient.MySocket != null)
             {
                 ClientId = socketClient.ClientId;
                 Map = socketClient.Map;
@@ -147,7 +146,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 View = new ServerStartUC();
             }
-            else if (view.Equals("join") && socketClient.ClientId!=0)
+            else if (view.Equals("join") && socketClient.ClientId != 0)
             {
                 View = new JoinGameUC();
             }

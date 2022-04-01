@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\8bitlim.ttf" />
+    <None Remove="Resources\Augusta.ttf" />
+    <None Remove="Resources\blurite_sword.cur" />
     <None Remove="Resources\Images\Characters\bjorn.png" />
     <None Remove="Resources\Images\Characters\dark_night.png" />
     <None Remove="Resources\Images\Characters\genghis_khan.png" />
@@ -45,19 +48,32 @@
     <None Remove="Resources\Images\Other\icon.png" />
     <None Remove="Resources\Images\Other\muted.png" />
     <None Remove="Resources\Images\Other\unmuted.png" />
-    <None Remove="Resources\Images\Resources\Augusta.ttf" />
-    <None Remove="Resources\Images\Resources\Ithornët.ttf" />
-    <None Remove="Resources\Images\Resources\slkscr.ttf" />
+    <None Remove="Resources\Images\Resources\gold.png" />
+    <None Remove="Resources\Images\Resources\heart.png" />
+    <None Remove="Resources\Images\Resources\log.png" />
+    <None Remove="Resources\Images\Resources\stone.png" />
+    <None Remove="Resources\Images\Resources\sword.png" />
+    <None Remove="Resources\Images\Resources\wheat.png" />
+    <None Remove="Resources\Ithornët.ttf" />
+    <None Remove="Resources\kongtext.ttf" />
     <None Remove="Resources\Maps\map1.txt" />
+    <None Remove="Resources\Maps\map2.txt" />
     <None Remove="Resources\Music\button.mp3" />
     <None Remove="Resources\Music\standard.mp3" />
-    <None Remove="Resources\8bitlim.ttf" />
-    <None Remove="Resources\blurite_sword.cur" />
-    <None Remove="Resources\kongtext.ttf" />
     <None Remove="Resources\press-start.k.ttf" />
+    <None Remove="Resources\slkscr.ttf" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\8bitlim.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Augusta.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\blurite_sword.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Characters\bjorn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -172,41 +188,6 @@
     <Content Include="Resources\Images\Other\unmuted.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Music\button.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Music\standard.mp3">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\blurite_sword.cur">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Resource Include="Resources\8bitlim.ttf" />
-    <Resource Include="Resources\Augusta.ttf" />
-    <Resource Include="Resources\Ithornët.ttf" />
-    <Resource Include="Resources\kongtext.ttf" />
-    <Resource Include="Resources\press-start.k.ttf" />
-    <Resource Include="Resources\slkscr.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Content Include="Resources\Maps\map1.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Server\SocketServer.csproj" />
-    <ProjectReference Include="..\SocketClient\SocketClient.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Resources\Images\Resources\gold.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -225,6 +206,42 @@
     <Content Include="Resources\Images\Resources\wheat.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Ithornët.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\kongtext.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Maps\map1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Maps\map2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Music\button.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Music\standard.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\press-start.k.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\slkscr.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Server\SocketServer.csproj" />
+    <ProjectReference Include="..\SocketClient\SocketClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>
