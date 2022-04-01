@@ -52,7 +52,6 @@ namespace Server
             {
                 while (Clients.Count == clients)
                 {
-                    ;
                     foreach (var item in Clients)
                     {
                         try
@@ -107,19 +106,18 @@ namespace Server
                         catch (Exception e)
                         {
                             Console.WriteLine(e.Message);
+                            Console.WriteLine("Press enter to close the server window.");
+                            Clients.Remove(item);
                         }
                     }
-                }
-                if (ServerSocket != null)
-                {
-                    Clients.Clear();
-                    ServerSocket.Close();
-                    ServerSocket.Dispose();
                 }
             }, TaskCreationOptions.LongRunning);
             core.Start();
 
             Console.ReadLine();
+
+            ServerSocket.Close();
+            ServerSocket.Dispose();
         }
     }
 }

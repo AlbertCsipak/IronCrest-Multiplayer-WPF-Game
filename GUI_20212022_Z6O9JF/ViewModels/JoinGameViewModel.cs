@@ -35,7 +35,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             this.gameLogic = gameLogic;
 
-            gameLogic.ClientConnect();
+            //gameLogic.ClientConnect();
             gameLogic.GameMap = gameLogic.GameMapSetup($"Maps/map{gameLogic.Map}.txt");
 
             string name = "bercike";

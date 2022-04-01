@@ -2,7 +2,6 @@
 using GUI_20212022_Z6O9JF.UserControls;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
-using Server;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -76,56 +75,62 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void ClientConnect()
         {
             socketClient.Connect();
-            ClientId = socketClient.ClientId;
-            Map = socketClient.Map;
 
-            Task Send = new Task(() =>
+            if (socketClient.MySocket != null)
             {
-                while (socketClient.MySocket.Connected)
-                {
-                    if (CanSend)
-                    {
-                        socketClient.DataSend(Players, packetSpeed: 500);
-                    }
-                }
-            }, TaskCreationOptions.LongRunning);
+                ClientId = socketClient.ClientId;
+                Map = socketClient.Map;
 
-            Task Receive = new Task(() =>
-            {
-                int counter = 0;
-                while (socketClient.MySocket.Connected)
+                Task Send = new Task(() =>
                 {
-                    string message = socketClient.DataReceive();
-                    if (message != null)
+                    while (socketClient.MySocket.Connected)
                     {
-                        if (message.Equals("false") || message.Equals("true"))
+                        if (CanSend)
                         {
-                            CanSend = bool.Parse(message);
-                            if (counter < 4 && message.Equals("true"))
+                            socketClient.DataSend(Players, packetSpeed: 500);
+                        }
+                    }
+                }, TaskCreationOptions.LongRunning);
+
+                Task Receive = new Task(() =>
+                {
+                    int counter = 0;
+                    while (socketClient.MySocket.Connected)
+                    {
+                        string message = socketClient.DataReceive();
+                        if (message != null)
+                        {
+                            if (message.Equals("false") || message.Equals("true"))
                             {
-                                counter++;
-                                foreach (var item in Players)
+                                CanSend = bool.Parse(message);
+                                if (counter < 4 && message.Equals("true"))
                                 {
-                                    AvailableFactions.Remove(item.Faction);
-                                    messenger.Send("FactionRemoved", "Base");
+                                    counter++;
+                                    foreach (var item in Players)
+                                    {
+                                        AvailableFactions.Remove(item.Faction);
+                                        AvailableFactions.Sort();
+                                        messenger.Send("FactionRemoved", "Base");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Players.Clear()));
+                                foreach (var item in JsonConvert.DeserializeObject<ObservableCollection<Player>>(message))
+                                {
+                                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Players.Add(item)));
+                                    //cross thread exception miatt meg kell hivni az ui main threadjet
                                 }
                             }
                         }
-                        else
-                        {
-                            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Players.Clear()));
-                            foreach (var item in JsonConvert.DeserializeObject<ObservableCollection<Player>>(message))
-                            {
-                                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Players.Add(item)));
-                                //cross thread exception miatt meg kell hivni az ui main threadjet
-                            }
-                        }
                     }
-                }
-            }, TaskCreationOptions.LongRunning);
+                }, TaskCreationOptions.LongRunning);
 
-            Send.Start();
-            Receive.Start();
+                Send.Start();
+                Receive.Start();
+                ChangeView("join");
+            }
         }
         public void ChangeView(string view)
         {
@@ -141,7 +146,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 View = new ServerStartUC();
             }
-            else if (view.Equals("join"))
+            else if (view.Equals("join") && socketClient.ClientId != 0)
             {
                 View = new JoinGameUC();
             }

@@ -17,14 +17,15 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand BackCommand { get; set; }
         public ICommand StartCommand { get; set; }
         public ICommand LoadCommand { get; set; }
-        public ICommand StopCommand { get; set; }
         public List<int> TurnLengths { get; set; }
         public List<int> Clients { get; set; }
-        public List<int> Maps { get; set; }
+        public List<string> Maps { get; set; }
+        public List<string> SaveGames { get; set; }
         public string IP { get; set; }
         public int ClientNumber { get; set; }
         public int TurnLength { get; set; }
-        public int Map { get; set; }
+        public string Map { get; set; }
+        public string SaveGame { get; set; }
         ObservableCollection<Player> vs;
 
         public static bool IsInDesignMode
@@ -46,24 +47,36 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
             TurnLengths = new List<int>();
             Clients = new List<int>();
-            Maps = new List<int>();
+            Maps = new List<string>();
+            SaveGames = new List<string>();
+
+            SaveGames.Add("New Game");
+            SaveGames.Add("#2 4players");
+            SaveGames.Add("#2 4players");
+            SaveGames.Add("#2 4players");
 
             TurnLengths.Add(30);
             TurnLengths.Add(45);
             TurnLengths.Add(60);
             TurnLengths.Add(90);
 
+            Clients.Add(1);
             Clients.Add(2);
             Clients.Add(3);
             Clients.Add(4);
 
-            Maps.Add(1);
-            Maps.Add(2);
+            Maps.Add("1");
+            Maps.Add("2");
+
+            IP = "127.0.0.1";
+            SaveGame = SaveGames[0];
+            ClientNumber = Clients[1];
+            TurnLength = TurnLengths[2];
+            Map = Maps[0];
 
             BackCommand = new RelayCommand(() => gameLogic.ChangeView("menu"));
 
-            StartCommand = new RelayCommand(() => gameLogic.StartServer());
-            LoadCommand = new RelayCommand(() => gameLogic.LoadGame(vs));
+            StartCommand = new RelayCommand(() => gameLogic.StartServer(turnLength:TurnLength,clients:ClientNumber,map:Map,ip:IP));        
         }
     }
 }

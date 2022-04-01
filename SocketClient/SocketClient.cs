@@ -16,16 +16,24 @@ namespace SocketClient
         {
             if (MySocket is null)
             {
-                MySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                MySocket.Connect(IPAddress.Parse(ip), port);
+                try
+                {
+                    MySocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    MySocket.Connect(IPAddress.Parse(ip), port);
 
-                byte[] id = new byte[1];
-                MySocket.Receive(id);
-                ClientId = int.Parse(Encoding.ASCII.GetString(id));
+                    byte[] id = new byte[1];
+                    MySocket.Receive(id);
+                    ClientId = int.Parse(Encoding.ASCII.GetString(id));
 
-                byte[] map = new byte[1];
-                MySocket.Receive(map);
-                Map = Encoding.ASCII.GetString(map);
+                    byte[] map = new byte[1];
+                    MySocket.Receive(map);
+                    Map = Encoding.ASCII.GetString(map);
+                    ;
+                }
+                catch (Exception e)
+                {
+                    MySocket = null;
+                }
             }
         }
         public void Disconnect()
