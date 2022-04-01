@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
-    public class ServerStartViewModel : ObservableRecipient
+    public class ServerViewModel : ObservableRecipient
     {
         public IGameLogic gameLogic;
         public ICommand BackCommand { get; set; }
@@ -40,8 +40,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public ServerStartViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
-        public ServerStartViewModel(IGameLogic gameLogic)
+        public ServerViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
+        public ServerViewModel(IGameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
 
@@ -75,8 +75,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             Map = Maps[0];
 
             BackCommand = new RelayCommand(() => gameLogic.ChangeView("menu"));
-
-            StartCommand = new RelayCommand(() => gameLogic.StartServer(turnLength:TurnLength,clients:ClientNumber,map:Map,ip:IP));        
+            StartCommand = new RelayCommand(() => gameLogic.StartServer(turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP));
         }
     }
 }

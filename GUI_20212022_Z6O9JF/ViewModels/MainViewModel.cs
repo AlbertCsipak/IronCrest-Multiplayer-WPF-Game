@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
-    public class MainWindowViewModel : ObservableRecipient
+    public class MainViewModel : ObservableRecipient
     {
         public IGameLogic gameLogic;
         public object View
@@ -25,13 +25,13 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public MainWindowViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
-        public MainWindowViewModel(IGameLogic gameLogic)
+        public MainViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
+        public MainViewModel(IGameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
             gameLogic.ChangeView("menu");
 
-            Messenger.Register<MainWindowViewModel, string, string>(this, "Base", (recipient, msg) =>
+            Messenger.Register<MainViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
                 OnPropertyChanged("View");
             });

@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
-    public class JoinGameViewModel : ObservableRecipient
+    public class LobbyViewModel : ObservableRecipient
     {
         public IGameLogic gameLogic;
         public ICommand BackCommand { get; set; }
@@ -30,8 +30,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public JoinGameViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
-        public JoinGameViewModel(IGameLogic gameLogic)
+        public LobbyViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
+        public LobbyViewModel(IGameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
 
@@ -66,7 +66,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("SelectedFaction");
             });
 
-            Messenger.Register<JoinGameViewModel, string, string>(this, "Base", (recipient, msg) =>
+            Messenger.Register<LobbyViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
                 OnPropertyChanged("SelectedFaction");
             });

@@ -129,7 +129,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                 Send.Start();
                 Receive.Start();
-                ChangeView("join");
+                ChangeView("lobby");
             }
         }
         public void ChangeView(string view)
@@ -144,11 +144,11 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             else if (view.Equals("server"))
             {
-                View = new ServerStartUC();
+                View = new ServerUC();
             }
-            else if (view.Equals("join") && socketClient.ClientId != 0)
+            else if (view.Equals("lobby") && socketClient.ClientId != 0)
             {
-                View = new JoinGameUC();
+                View = new LobbyUC();
             }
             messenger.Send("ViewChanged", "Base");
         }
