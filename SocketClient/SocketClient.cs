@@ -12,7 +12,7 @@ namespace SocketClient
         public string Map { get; set; }
         public Socket MySocket;
         public SocketClient() { }
-        public void Connect(string ip = "26.99.118.45", int port = 10000)
+        public void Connect(string ip = "127.0.0.1", int port = 10000)
         {
             if (MySocket is null)
             {
