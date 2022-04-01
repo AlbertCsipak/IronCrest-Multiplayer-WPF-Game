@@ -51,6 +51,7 @@
     <None Remove="Maps\map1.txt" />
     <None Remove="Music\standard.mp3" />
     <None Remove="Resources\8bitlim.ttf" />
+    <None Remove="Resources\blurite_sword.cur" />
     <None Remove="Resources\kongtext.ttf" />
     <None Remove="Resources\press-start.k.ttf" />
   </ItemGroup>
@@ -171,6 +172,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Music\standard.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\blurite_sword.cur">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\8bitlim.ttf" />

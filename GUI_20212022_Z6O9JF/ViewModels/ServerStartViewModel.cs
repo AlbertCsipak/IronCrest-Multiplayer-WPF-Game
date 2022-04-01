@@ -51,8 +51,6 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             Clients.Add(2);
             Clients.Add(3);
             Clients.Add(4);
-            Clients.Add(5);
-            Clients.Add(6);
 
             Maps.Add(1);
             Maps.Add(2);

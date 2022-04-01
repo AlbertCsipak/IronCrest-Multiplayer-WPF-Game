@@ -22,30 +22,14 @@
                BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
         </Label>
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="50" HorizontalAlignment="Center">
-            <Button Content="asd" Height="50" Width="100" Command="{Binding NextFaction}"></Button>
+            <Button Content="--" Height="50" Width="100" Command="{Binding NextFaction}"></Button>
             <Label Background="Blue" Content="{Binding SelectedFaction}" Width="1000" Foreground="White" FontSize="100"></Label>
-            <Button Content="asd" Height="50" Width="100" Command="{Binding PreviousFaction}"></Button>
+            <Button Content="--" Height="50" Width="100" Command="{Binding PreviousFaction}"></Button>
         </StackPanel>
         
-        <Button Content="LOCK IN" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+        <Button Style="{DynamicResource button_style}" Content="LOCK IN" Foreground="#B3C8B7" Padding="30" Background="Transparent"
                 Grid.Row="6" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding GameCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#72414B"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Transparent" ></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Resources>
         </Button>
     </Grid>
 </UserControl>
