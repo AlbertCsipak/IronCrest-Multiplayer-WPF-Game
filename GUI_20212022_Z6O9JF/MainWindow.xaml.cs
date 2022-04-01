@@ -37,5 +37,19 @@ namespace GUI_20212022_Z6O9JF
                 btn_mute.Background = new ImageBrush(new BitmapImage(new Uri("Images/Other/muted.png", UriKind.RelativeOrAbsolute)));
             }
         }
+
+        private void volume_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            double volume = volume_slider.Value;
+            music.Volume = volume/100;
+            if (volume==0.0)
+            {
+                music.IsMuted = true; btn_mute.Background = new ImageBrush(new BitmapImage(new Uri("Images/Other/muted.png", UriKind.RelativeOrAbsolute)));
+            }
+            else
+            {
+                music.IsMuted = false; btn_mute.Background = new ImageBrush(new BitmapImage(new Uri("Images/Other/unmuted.png", UriKind.RelativeOrAbsolute)));
+            }
+        }
     }
 }
