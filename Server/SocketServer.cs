@@ -11,7 +11,7 @@ namespace Server
     {
         List<Socket> Clients;
         Socket ServerSocket;
-        public SocketServer(string ip = "26.99.118.45", int clients = 1, int turnLength = 100, int port = 10000, int bufferSize = 2048, string map = "1")
+        public SocketServer(string ip = "127.0.0.1", int clients = 2, int turnLength = 100, int port = 10000, int bufferSize = 2048, string map = "1")
         {
             Init(ip, clients, port, map);
             Session(turnLength, clients, bufferSize);

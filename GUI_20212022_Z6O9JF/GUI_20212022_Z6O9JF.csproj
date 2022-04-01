@@ -51,6 +51,7 @@
     <None Remove="Maps\map1.txt" />
     <None Remove="Music\standard.mp3" />
     <None Remove="Resources\8bitlim.ttf" />
+    <None Remove="Resources\blurite_sword.cur" />
     <None Remove="Resources\kongtext.ttf" />
     <None Remove="Resources\press-start.k.ttf" />
   </ItemGroup>
@@ -173,6 +174,9 @@
     <Content Include="Music\standard.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\blurite_sword.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Resources\8bitlim.ttf" />
     <Resource Include="Resources\Augusta.ttf" />
     <Resource Include="Resources\Ithornët.ttf" />
@@ -217,6 +221,10 @@
     <Content Include="Images\Resources\wheat.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
 
 </Project>
