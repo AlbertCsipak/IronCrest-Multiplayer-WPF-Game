@@ -51,21 +51,15 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="5*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="btn_create_game" Style="{DynamicResource button_style}" Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
-                 Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding StartCommand}"
-                BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btn_create_game_Click"/>
-
+                 Grid.Column="1" FontSize="40" FontFamily="Poor Richard" Command="{Binding StartCommand}"
+                BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
             <Button x:Name="btn_join_game" Style="{DynamicResource button_style}" Content="LOAD GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
-            Grid.Column="2" FontSize="50" FontFamily="Poor Richard" Command="{Binding }"
-            BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btn_load_game_Click"/>
-
-            <Button x:Name="btn_stop_server" Style="{DynamicResource button_style}" Content="STOP SERVER" Foreground="#B3C8B7" Padding="30" Background="Transparent"
-            Grid.Column="3" FontSize="50" FontFamily="Poor Richard" Command="{Binding }"
-            BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btn_stop_game_Click"/>
+            Grid.Column="2" FontSize="40" FontFamily="Poor Richard" Command="{Binding LoadCommand}"
+            BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
         <Button Style="{DynamicResource button_style}" Background="Transparent"
                 Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"

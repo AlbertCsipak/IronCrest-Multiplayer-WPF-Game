@@ -3,7 +3,6 @@ using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -18,7 +17,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand NextFaction { get; set; }
         public ICommand PreviousFaction { get; set; }
         int index = 0;
-        public Faction SelectedFaction { get { return gameLogic.AvailableFactions[index]; } } 
+        public Faction SelectedFaction { get { return gameLogic.AvailableFactions[index]; } }
         public static bool IsInDesignMode
         {
             get
@@ -41,10 +40,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
             string name = "bercike";
 
-            GameCommand = new RelayCommand(() => gameLogic.ChampSelect(SelectedFaction,name));
+            GameCommand = new RelayCommand(() => gameLogic.ChampSelect(SelectedFaction, name));
             NextFaction = new RelayCommand(() =>
             {
-                if (gameLogic.AvailableFactions.Count-1 > index)
+                if (gameLogic.AvailableFactions.Count - 1 > index)
                 {
                     index++;
                 }
@@ -62,7 +61,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 }
                 else
                 {
-                    index = gameLogic.AvailableFactions.Count-1;
+                    index = gameLogic.AvailableFactions.Count - 1;
                 }
                 OnPropertyChanged("SelectedFaction");
             });

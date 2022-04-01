@@ -18,6 +18,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         void ChangeView(string view);
         void ClientConnect();
         GameLogic.FieldType[,] GameMapSetup(string path);
-        void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1");
+        void LoadGame(ObservableCollection<Player> vs, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1");
+        void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 2048);
     }
 }

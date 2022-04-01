@@ -6,6 +6,7 @@ using Server;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,8 +17,6 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public class GameLogic : IGameLogic
     {
-        IMessenger messenger;
-        SocketClient.SocketClient socketClient;
         public object View { get; set; }
         public string Map { get; set; }
         public bool CanSend { get; set; }
@@ -26,6 +25,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         public ObservableCollection<Player> Players { get; set; }
         public List<Faction> AvailableFactions { get; set; }
         public enum FieldType { field, water, village, hill, forest, wheat }
+        SocketClient.SocketClient socketClient;
+        IMessenger messenger;
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -70,7 +71,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                     }
                 }
             }
-            ;
             return map;
         }
         public void ClientConnect()
@@ -147,19 +147,13 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             messenger.Send("ViewChanged", "Base");
         }
-        public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
-        {
-            Task s = new Task(() => { SocketServer socketServer = new SocketServer(ip: ip, clients: clients, turnLength: turnLength, map: map); }, TaskCreationOptions.LongRunning);
-            s.Start();
-
-        }
         public void ChampSelect(Faction faction, string name = "Anon")
         {
             if (CanSend)
             {
-                if (Players.Any(t => t.Name == name))
+                if (Players.Any(t => t.Faction == faction))
                 {
-
+                    Players.Where(t => t.Faction == faction).Select(t => t.Name == name);
                 }
                 else
                 {
@@ -187,6 +181,18 @@ namespace GUI_20212022_Z6O9JF.Logic
                 System.Threading.Thread.Sleep(600);
                 socketClient.Skip();
             }
+        }
+        public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 2048)
+        {
+            ProcessStartInfo server = new ProcessStartInfo();
+            server.FileName = "SocketServer.exe";
+            server.Arguments = $" {ip} {clients} {port} {map} {turnLength} {bufferSize}";
+            Process.Start(server);
+        }
+        public void LoadGame(ObservableCollection<Player> vs, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
+        {
+            Players = vs;
+            StartServer(turnLength: turnLength, clients: clients, map: map, ip: ip);
         }
     }
 }

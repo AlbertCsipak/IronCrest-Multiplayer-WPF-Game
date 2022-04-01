@@ -16,21 +16,5 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.DataContext = new ServerStartViewModel();
             this.gameLogic = (this.DataContext as ServerStartViewModel).gameLogic;
         }
-
-        private void btn_create_game_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            btn_create_game.IsEnabled = false;
-        }
-        private void btn_load_game_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-
-        }
-        private void btn_stop_game_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            btn_create_game.IsEnabled = true;
-                //szerver leállítása;
-        }
-
-        
     }
 }

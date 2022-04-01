@@ -49,6 +49,7 @@
     <None Remove="Images\Resources\Ithornët.ttf" />
     <None Remove="Images\Resources\slkscr.ttf" />
     <None Remove="Maps\map1.txt" />
+    <None Remove="Music\button.mp3" />
     <None Remove="Music\standard.mp3" />
     <None Remove="Resources\8bitlim.ttf" />
     <None Remove="Resources\blurite_sword.cur" />
@@ -169,6 +170,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Other\unmuted.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Music\button.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Music\standard.mp3">
