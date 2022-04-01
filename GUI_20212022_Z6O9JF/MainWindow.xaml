@@ -263,8 +263,6 @@
         </Style>
     </Window.Resources>
     
-    
-    
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -278,7 +276,7 @@
         
         <ContentControl Content="{Binding View}" Grid.RowSpan="2" Grid.ColumnSpan="3" ></ContentControl>
         
-        <MediaElement Source="Music/standard.mp3" LoadedBehavior="Manual" Name="music" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+        <MediaElement Source="Resources/Music/standard.mp3" LoadedBehavior="Manual" Name="music" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
         
         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
             <Image x:Name="img_mute" Grid.Column="0" Grid.Row="1" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,10"></Image>
