@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
+             xmlns:converter="clr-namespace:GUI_20212022_Z6O9JF.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <converter:HeroSelectorConverter x:Key="converter"/>
+    </UserControl.Resources>
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -21,10 +25,14 @@
                FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
                BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
         </Label>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="50" HorizontalAlignment="Center">
-            <Button Content="--" Height="50" Width="100" Command="{Binding NextFaction}"></Button>
-            <Label Background="Blue" Content="{Binding SelectedFaction}" Width="1000" Foreground="White" FontSize="100"></Label>
-            <Button Content="--" Height="50" Width="100" Command="{Binding PreviousFaction}"></Button>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="20" Width="1000" HorizontalAlignment="Center">
+            <Button Style="{StaticResource button_style}" Height="100" Width="100" Command="{Binding NextFaction}">
+                <Image Source="\Resources\Images\Menu\arrow_left.png"></Image>
+            </Button>
+            <Image Source="{Binding SelectedFaction, Converter={StaticResource converter}}" Width="800"></Image>
+            <Button Style="{StaticResource button_style}" Height="100" Width="100" Command="{Binding PreviousFaction}">
+                <Image Source="\Resources\Images\Menu\arrow_right.png"></Image>
+            </Button>
         </StackPanel>
         
         <Button Style="{DynamicResource button_style}" Content="LOCK IN" Foreground="#B3C8B7" Padding="30" Background="Transparent"

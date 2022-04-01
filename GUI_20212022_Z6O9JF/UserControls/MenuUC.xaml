@@ -37,7 +37,7 @@
         </Button>
         <Button Style="{DynamicResource button_style}" Background="Transparent"
                 Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
-                BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Exit_Click">
+                BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Exit_Click" >
             <Image x:Name="img_exit" Source="\Resources\Images\Other\exit.png"></Image>
         </Button>
     </Grid>

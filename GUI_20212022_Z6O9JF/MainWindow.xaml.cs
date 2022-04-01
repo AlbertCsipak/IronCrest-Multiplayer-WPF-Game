@@ -1,9 +1,9 @@
 ﻿using GUI_20212022_Z6O9JF.ViewModels;
 using System;
-using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace GUI_20212022_Z6O9JF
@@ -13,28 +13,23 @@ namespace GUI_20212022_Z6O9JF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MediaElement background_music;
-        public MediaElement button_clink_sound;
-        SoundPlayer player = new SoundPlayer("file.wav");
+        
+        public MediaPlayer background_music = new MediaPlayer();
+        public MediaPlayer button_click = new MediaPlayer();
         public Uri unmutedUri = new Uri("Resources/Images/Other/unmuted.png", UriKind.RelativeOrAbsolute);
         public Uri mutedUri = new Uri("Resources/Images/Other/muted.png", UriKind.RelativeOrAbsolute);
         Cursor c1;
 
         public MainWindow()
         {
-            background_music = new MediaElement();
-            button_clink_sound = new MediaElement();
             InitializeComponent();
             c1 = new Cursor("Resources/blurite_sword.cur");
             grid.Cursor = c1;
             this.DataContext = new MainViewModel();
             img_mute.Source = new BitmapImage(unmutedUri);
-            
-            button_clink_sound.Source = new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute);
-            
-            background_music.Source = new Uri("Resources/Music/standard.mp3", UriKind.RelativeOrAbsolute);
-            background_music.LoadedBehavior = MediaState.Manual;
-            button_clink_sound.LoadedBehavior = MediaState.Manual;
+
+            button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
+            background_music.Open(new Uri("Resources/Music/standard.mp3", UriKind.RelativeOrAbsolute));
             background_music.Play();
 
         }

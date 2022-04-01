@@ -16,6 +16,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand GameCommand { get; set; }
         public ICommand NextFaction { get; set; }
         public ICommand PreviousFaction { get; set; }
+        public string SelectedString { get; set; }
         int index = 0;
         public Faction SelectedFaction { get { return gameLogic.AvailableFactions[index]; } }
         public static bool IsInDesignMode
@@ -34,7 +35,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public LobbyViewModel(IGameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
-
+            this.SelectedString = "\\Resources\\Images\\Characters\\standing_viking.png";
             //gameLogic.ClientConnect();
             gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
 

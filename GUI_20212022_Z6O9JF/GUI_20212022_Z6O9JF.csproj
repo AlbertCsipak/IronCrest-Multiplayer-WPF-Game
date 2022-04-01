@@ -41,6 +41,7 @@
     <None Remove="Resources\Images\Map\yellow_village_lvl3.png" />
     <None Remove="Resources\Images\Menu\goldmine_background.png" />
     <None Remove="Resources\Images\Menu\main_background.gif" />
+    <None Remove="Resources\Images\Menu\yellow_icon_mongolian.png" />
     <None Remove="Resources\Images\Other\back.png" />
     <None Remove="Resources\Images\Other\compass.png" />
     <None Remove="Resources\Images\Other\crest_icon.png" />
@@ -167,6 +168,9 @@
     <Content Include="Resources\Images\Menu\main_background.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\yellow_icon_mongolian.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Other\back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -245,7 +249,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Converters\" />
     <Folder Include="Resources\Saves\" />
   </ItemGroup>
 

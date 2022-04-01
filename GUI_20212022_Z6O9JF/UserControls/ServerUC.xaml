@@ -53,11 +53,11 @@
 
         <Button x:Name="btn_create_game" Style="{DynamicResource button_style}" Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
                  Grid.Column="1" Grid.Row="6" FontSize="50" FontFamily="Poor Richard" Command="{Binding StartCommand}"
-                BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
         
         <Button Style="{DynamicResource button_style}" Background="Transparent"
                 Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
-                BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click">
             <Image Source="\Resources\Images\Other\back.png"></Image>
         </Button>
     </Grid>
