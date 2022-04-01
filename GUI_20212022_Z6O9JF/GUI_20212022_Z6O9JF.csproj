@@ -7,50 +7,50 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\Characters\bjorn.png" />
-    <None Remove="Images\Characters\dark_night.png" />
-    <None Remove="Images\Characters\genghis_khan.png" />
-    <None Remove="Images\Characters\jhin.png" />
-    <None Remove="Images\Characters\mongolian_mouse.png" />
-    <None Remove="Images\Characters\prophet.png" />
-    <None Remove="Images\Characters\sigurd.png" />
-    <None Remove="Images\Characters\standing_arabian.png" />
-    <None Remove="Images\Characters\standing_crusader.png" />
-    <None Remove="Images\Characters\standing_mongolian.png" />
-    <None Remove="Images\Characters\standing_viking.png" />
-    <None Remove="Images\Characters\white_knight.png" />
-    <None Remove="Images\Map\black_village_lvl1.png" />
-    <None Remove="Images\Map\black_village_lvl2.png" />
-    <None Remove="Images\Map\black_village_lvl3.png" />
-    <None Remove="Images\Map\blue_village_lvl1.png" />
-    <None Remove="Images\Map\blue_village_lvl2.png" />
-    <None Remove="Images\Map\blue_village_lvl3.png" />
-    <None Remove="Images\Map\field.png" />
-    <None Remove="Images\Map\food.png" />
-    <None Remove="Images\Map\mountain.png" />
-    <None Remove="Images\Map\red_village_lvl1.png" />
-    <None Remove="Images\Map\red_village_lvl2.png" />
-    <None Remove="Images\Map\red_village_lvl3.png" />
-    <None Remove="Images\Map\water.png" />
-    <None Remove="Images\Map\wood.png" />
-    <None Remove="Images\Map\yellow_village_lvl1.png" />
-    <None Remove="Images\Map\yellow_village_lvl2.png" />
-    <None Remove="Images\Map\yellow_village_lvl3.png" />
-    <None Remove="Images\Menu\goldmine_background.png" />
-    <None Remove="Images\Menu\main_background.gif" />
-    <None Remove="Images\Other\back.png" />
-    <None Remove="Images\Other\compass.png" />
-    <None Remove="Images\Other\crest_icon.png" />
-    <None Remove="Images\Other\exit.png" />
-    <None Remove="Images\Other\icon.png" />
-    <None Remove="Images\Other\muted.png" />
-    <None Remove="Images\Other\unmuted.png" />
-    <None Remove="Images\Resources\Augusta.ttf" />
-    <None Remove="Images\Resources\Ithornët.ttf" />
-    <None Remove="Images\Resources\slkscr.ttf" />
-    <None Remove="Maps\map1.txt" />
-    <None Remove="Music\button.mp3" />
-    <None Remove="Music\standard.mp3" />
+    <None Remove="Resources\Images\Characters\bjorn.png" />
+    <None Remove="Resources\Images\Characters\dark_night.png" />
+    <None Remove="Resources\Images\Characters\genghis_khan.png" />
+    <None Remove="Resources\Images\Characters\jhin.png" />
+    <None Remove="Resources\Images\Characters\mongolian_mouse.png" />
+    <None Remove="Resources\Images\Characters\prophet.png" />
+    <None Remove="Resources\Images\Characters\sigurd.png" />
+    <None Remove="Resources\Images\Characters\standing_arabian.png" />
+    <None Remove="Resources\Images\Characters\standing_crusader.png" />
+    <None Remove="Resources\Images\Characters\standing_mongolian.png" />
+    <None Remove="Resources\Images\Characters\standing_viking.png" />
+    <None Remove="Resources\Images\Characters\white_knight.png" />
+    <None Remove="Resources\Images\Map\black_village_lvl1.png" />
+    <None Remove="Resources\Images\Map\black_village_lvl2.png" />
+    <None Remove="Resources\Images\Map\black_village_lvl3.png" />
+    <None Remove="Resources\Images\Map\blue_village_lvl1.png" />
+    <None Remove="Resources\Images\Map\blue_village_lvl2.png" />
+    <None Remove="Resources\Images\Map\blue_village_lvl3.png" />
+    <None Remove="Resources\Images\Map\field.png" />
+    <None Remove="Resources\Images\Map\food.png" />
+    <None Remove="Resources\Images\Map\mountain.png" />
+    <None Remove="Resources\Images\Map\red_village_lvl1.png" />
+    <None Remove="Resources\Images\Map\red_village_lvl2.png" />
+    <None Remove="Resources\Images\Map\red_village_lvl3.png" />
+    <None Remove="Resources\Images\Map\water.png" />
+    <None Remove="Resources\Images\Map\wood.png" />
+    <None Remove="Resources\Images\Map\yellow_village_lvl1.png" />
+    <None Remove="Resources\Images\Map\yellow_village_lvl2.png" />
+    <None Remove="Resources\Images\Map\yellow_village_lvl3.png" />
+    <None Remove="Resources\Images\Menu\goldmine_background.png" />
+    <None Remove="Resources\Images\Menu\main_background.gif" />
+    <None Remove="Resources\Images\Other\back.png" />
+    <None Remove="Resources\Images\Other\compass.png" />
+    <None Remove="Resources\Images\Other\crest_icon.png" />
+    <None Remove="Resources\Images\Other\exit.png" />
+    <None Remove="Resources\Images\Other\icon.png" />
+    <None Remove="Resources\Images\Other\muted.png" />
+    <None Remove="Resources\Images\Other\unmuted.png" />
+    <None Remove="Resources\Images\Resources\Augusta.ttf" />
+    <None Remove="Resources\Images\Resources\Ithornët.ttf" />
+    <None Remove="Resources\Images\Resources\slkscr.ttf" />
+    <None Remove="Resources\Maps\map1.txt" />
+    <None Remove="Resources\Music\button.mp3" />
+    <None Remove="Resources\Music\standard.mp3" />
     <None Remove="Resources\8bitlim.ttf" />
     <None Remove="Resources\blurite_sword.cur" />
     <None Remove="Resources\kongtext.ttf" />
@@ -58,124 +58,124 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\Characters\bjorn.png">
+    <Content Include="Resources\Images\Characters\bjorn.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\dark_night.png">
+    <Content Include="Resources\Images\Characters\dark_night.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\genghis_khan.png">
+    <Content Include="Resources\Images\Characters\genghis_khan.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\jhin.png">
+    <Content Include="Resources\Images\Characters\jhin.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\mongolian_mouse.png">
+    <Content Include="Resources\Images\Characters\mongolian_mouse.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\prophet.png">
+    <Content Include="Resources\Images\Characters\prophet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\sigurd.png">
+    <Content Include="Resources\Images\Characters\sigurd.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\standing_arabian.png">
+    <Content Include="Resources\Images\Characters\standing_arabian.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\standing_crusader.png">
+    <Content Include="Resources\Images\Characters\standing_crusader.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\standing_mongolian.png">
+    <Content Include="Resources\Images\Characters\standing_mongolian.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\standing_viking.png">
+    <Content Include="Resources\Images\Characters\standing_viking.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Characters\white_knight.png">
+    <Content Include="Resources\Images\Characters\white_knight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\black_village_lvl1.png">
+    <Content Include="Resources\Images\Map\black_village_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\black_village_lvl2.png">
+    <Content Include="Resources\Images\Map\black_village_lvl2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\black_village_lvl3.png">
+    <Content Include="Resources\Images\Map\black_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\blue_village_lvl1.png">
+    <Content Include="Resources\Images\Map\blue_village_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\blue_village_lvl2.png">
+    <Content Include="Resources\Images\Map\blue_village_lvl2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\blue_village_lvl3.png">
+    <Content Include="Resources\Images\Map\blue_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\field.png">
+    <Content Include="Resources\Images\Map\field.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\food.png">
+    <Content Include="Resources\Images\Map\food.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\mountain.png">
+    <Content Include="Resources\Images\Map\mountain.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\red_village_lvl1.png">
+    <Content Include="Resources\Images\Map\red_village_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\red_village_lvl2.png">
+    <Content Include="Resources\Images\Map\red_village_lvl2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\red_village_lvl3.png">
+    <Content Include="Resources\Images\Map\red_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\water.png">
+    <Content Include="Resources\Images\Map\water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\wood.png">
+    <Content Include="Resources\Images\Map\wood.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\yellow_village_lvl1.png">
+    <Content Include="Resources\Images\Map\yellow_village_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\yellow_village_lvl2.png">
+    <Content Include="Resources\Images\Map\yellow_village_lvl2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Map\yellow_village_lvl3.png">
+    <Content Include="Resources\Images\Map\yellow_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Menu\goldmine_background.png">
+    <Content Include="Resources\Images\Menu\goldmine_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Menu\main_background.gif">
+    <Content Include="Resources\Images\Menu\main_background.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Other\back.png">
+    <Content Include="Resources\Images\Other\back.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Other\compass.png">
+    <Content Include="Resources\Images\Other\compass.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Other\crest_icon.png">
+    <Content Include="Resources\Images\Other\crest_icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Other\exit.png">
+    <Content Include="Resources\Images\Other\exit.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Other\icon.png">
+    <Content Include="Resources\Images\Other\icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Other\muted.png">
+    <Content Include="Resources\Images\Other\muted.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Other\unmuted.png">
+    <Content Include="Resources\Images\Other\unmuted.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Music\button.mp3">
+    <Content Include="Resources\Music\button.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Music\standard.mp3">
+    <Content Include="Resources\Music\standard.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\blurite_sword.cur">
@@ -189,7 +189,7 @@
     <Resource Include="Resources\slkscr.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Content Include="Maps\map1.txt">
+    <Content Include="Resources\Maps\map1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -207,22 +207,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\Resources\gold.png">
+    <Content Include="Resources\Images\Resources\gold.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Resources\heart.png">
+    <Content Include="Resources\Images\Resources\heart.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Resources\log.png">
+    <Content Include="Resources\Images\Resources\log.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Resources\stone.png">
+    <Content Include="Resources\Images\Resources\stone.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Resources\sword.png">
+    <Content Include="Resources\Images\Resources\sword.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Resources\wheat.png">
+    <Content Include="Resources\Images\Resources\wheat.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
