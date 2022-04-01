@@ -47,47 +47,15 @@
         </StackPanel>
 
 
-        <Button Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+        <Button Style="{DynamicResource button_style}" Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
                 Grid.Row="6" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding StartCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="#72414B"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Transparent" ></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Resources>
         </Button>
-        
-        <Button Background="Transparent"
+
+        <Button Style="{DynamicResource button_style}" Background="Transparent"
                 Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
                 BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <Image Source="\Images\Other\back.png"></Image>
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Transparent"></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Transparent" ></Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Resources>
         </Button>
     </Grid>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using GUI_20212022_Z6O9JF.ViewModels;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -17,6 +18,7 @@ namespace GUI_20212022_Z6O9JF
             this.DataContext = new MainWindowViewModel();
             btn_mute.Background = new ImageBrush(new BitmapImage(new Uri("Images/Other/unmuted.png", UriKind.RelativeOrAbsolute)));
             music.Play();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
