@@ -19,11 +19,9 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Image gif:ImageBehavior.AnimatedSource="\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
-        <ContentControl Content="{Binding View}" Grid.RowSpan="2" Grid.ColumnSpan="3"></ContentControl>
+        <ContentControl Content="{Binding View}" Grid.RowSpan="2" Grid.ColumnSpan="3" ></ContentControl>
         <MediaElement Source="Music/standard.mp3" LoadedBehavior="Manual" Name="music" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
-        <Button Grid.Column="0" Grid.Row="1" Style="{DynamicResource button_style}" x:Name="btn_mute" VerticalAlignment="Center" HorizontalAlignment="Center" Click="Button_Click" BorderBrush="Transparent" Width="70" Height="70">
-            <Image x:Name="mute_image" Source="{Binding ImageSource, UpdateSourceTrigger=Default}"></Image>
-        </Button>
+        <Image x:Name="img_mute" Grid.Column="0" Grid.Row="1" Width="70" Height="70" ></Image>
         <Slider Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="200" Margin="0,29,65,17" Value="100" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True"/>
     </Grid>
 </Window>

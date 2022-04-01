@@ -12,11 +12,14 @@ namespace GUI_20212022_Z6O9JF
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Uri unmutedUri = new Uri("Images/Other/unmuted.png", UriKind.RelativeOrAbsolute);
+        public Uri mutedUri = new Uri("Images/Other/muted.png", UriKind.RelativeOrAbsolute);
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = new MainWindowViewModel();
-            btn_mute.Background = new ImageBrush(new BitmapImage(new Uri("Images/Other/unmuted.png", UriKind.RelativeOrAbsolute)));
+            
+            img_mute.Source = new BitmapImage(unmutedUri);
             music.Play();
             
         }
@@ -28,13 +31,13 @@ namespace GUI_20212022_Z6O9JF
             {
                 music.IsMuted = false;
                 music.Play();
-                btn_mute.Background = new ImageBrush(new BitmapImage(new Uri("Images/Other/unmuted.png", UriKind.RelativeOrAbsolute)));
+                img_mute.Source = new BitmapImage(mutedUri);
             }
             else
             {
                 music.IsMuted = true;
                 music.Pause();
-                btn_mute.Background = new ImageBrush(new BitmapImage(new Uri("Images/Other/muted.png", UriKind.RelativeOrAbsolute)));
+                img_mute.Source = new BitmapImage(unmutedUri);
             }
         }
 
@@ -44,11 +47,11 @@ namespace GUI_20212022_Z6O9JF
             music.Volume = volume/100;
             if (volume==0.0)
             {
-                music.IsMuted = true; btn_mute.Background = new ImageBrush(new BitmapImage(new Uri("Images/Other/muted.png", UriKind.RelativeOrAbsolute)));
+                music.IsMuted = true; img_mute.Source = new BitmapImage(mutedUri);
             }
             else
             {
-                music.IsMuted = false; btn_mute.Background = new ImageBrush(new BitmapImage(new Uri("Images/Other/unmuted.png", UriKind.RelativeOrAbsolute)));
+                music.IsMuted = false; img_mute.Source = new BitmapImage(unmutedUri);
             }
         }
     }
