@@ -264,7 +264,6 @@
     </Window.Resources>
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
@@ -275,7 +274,11 @@
         <Image gif:ImageBehavior.AnimatedSource="\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
         <ContentControl Content="{Binding View}" Grid.RowSpan="2" Grid.ColumnSpan="3" ></ContentControl>
         <MediaElement Source="Music/standard.mp3" LoadedBehavior="Manual" Name="music" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
-        <Image x:Name="img_mute" Grid.Column="0" Grid.Row="1" Width="70" Height="70" ></Image>
-        <Slider Style="{DynamicResource SliderStyle1}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="300" Margin="0,29,65,17" Value="100" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" Cursor="Hand" SmallChange="1" />
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
+            
+        
+        <Image x:Name="img_mute" Grid.Column="0" Grid.Row="1" Width="70" Height="70" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10"></Image>
+        <Slider Style="{DynamicResource SliderStyle1}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,20,0,40" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="170" Value="50" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" Cursor="Hand" SmallChange="1" Height="18" />
+        </StackPanel>
     </Grid>
 </Window>

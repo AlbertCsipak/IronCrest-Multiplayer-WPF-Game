@@ -17,9 +17,9 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="1" Content="GAME CREATOR" FontSize="120"
                FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
@@ -46,12 +46,27 @@
                      FontFamily="Poor Richard"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
         </StackPanel>
 
+        <Grid Grid.Row="6" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btn_create_game" Style="{DynamicResource button_style}" Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+                 Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding StartCommand}"
+                BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btn_create_game_Click"/>
 
-        <Button Style="{DynamicResource button_style}" Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
-                Grid.Row="6" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding StartCommand}"
-                BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
-        </Button>
 
+            <Button x:Name="btn_join_game" Style="{DynamicResource button_style}" Content="LOAD GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+            Grid.Column="2" FontSize="50" FontFamily="Poor Richard" Command="{Binding }"
+            BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btn_load_game_Click"/>
+
+            <Button x:Name="btn_stop_server" Style="{DynamicResource button_style}" Content="STOP SERVER" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+            Grid.Column="3" FontSize="50" FontFamily="Poor Richard" Command="{Binding }"
+            BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btn_stop_game_Click"/>
+        </Grid>
         <Button Style="{DynamicResource button_style}" Background="Transparent"
                 Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
                 BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
