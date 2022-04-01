@@ -27,17 +27,17 @@
         </Label>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label Content="TurnLength" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
-            <ComboBox ItemsSource="{Binding TurnLengths}" SelectedIndex="0" SelectedItem="{Binding TurnLength}"  Height="50" Width="300" FontSize="30" 
+            <ComboBox ItemsSource="{Binding TurnLengths}" SelectedItem="{Binding TurnLength}"  Height="50" Width="300" FontSize="30" 
                       FontFamily="Poor Richard"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
             <Label Content="Map" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
-            <ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding Map}" SelectedIndex="0" Height="50" Width="300" FontSize="30" 
+            <ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding Map}" Height="50" Width="300" FontSize="30" 
                       FontFamily="Poor Richard"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
             <Label Content="Players" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
-            <ComboBox ItemsSource="{Binding Clients}" SelectedIndex="1" SelectedItem="{Binding Client}" Height="50" Width="300" FontSize="30" 
+            <ComboBox ItemsSource="{Binding Clients}" SelectedItem="{Binding ClientNumber}" Height="50" Width="300" FontSize="30" 
                       FontFamily="Poor Richard" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1">
