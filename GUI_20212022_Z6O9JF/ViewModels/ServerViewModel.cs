@@ -6,6 +6,8 @@ using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -26,8 +28,6 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public int TurnLength { get; set; }
         public string Map { get; set; }
         public string SaveGame { get; set; }
-        ObservableCollection<Player> vs;
-
         public static bool IsInDesignMode
         {
             get
@@ -50,10 +50,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             Maps = new List<string>();
             SaveGames = new List<string>();
 
-            SaveGames.Add("New Game");
-            SaveGames.Add("#2 4players");
-            SaveGames.Add("#2 4players");
-            SaveGames.Add("#2 4players");
+            foreach (var item in Directory.GetFiles("Resources/Saves"))
+            {
+                SaveGames.Add(item.Split('\\')[1].Split('.')[0]);
+            }
 
             TurnLengths.Add(30);
             TurnLengths.Add(45);
@@ -69,13 +69,25 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             Maps.Add("2");
 
             IP = "127.0.0.1";
-            SaveGame = SaveGames[0];
+            SaveGame = "NewGame";
             ClientNumber = Clients[1];
             TurnLength = TurnLengths[2];
             Map = Maps[0];
 
             BackCommand = new RelayCommand(() => gameLogic.ChangeView("menu"));
-            StartCommand = new RelayCommand(() => gameLogic.StartServer(turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP));
+            StartCommand = new RelayCommand(() =>
+            {
+
+                if (SaveGame.Equals("NewGame"))
+                {
+                    gameLogic.StartServer(turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP);
+                }
+                else
+                {
+                    string save = File.ReadAllText($"Resources/Saves/{SaveGame}.txt");
+                    gameLogic.LoadGame(save: save, turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP);
+                }
+            });
         }
     }
 }

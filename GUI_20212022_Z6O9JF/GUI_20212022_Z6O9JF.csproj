@@ -63,6 +63,7 @@
     <None Remove="Resources\Music\button.mp3" />
     <None Remove="Resources\Music\standard.mp3" />
     <None Remove="Resources\press-start.k.ttf" />
+    <None Remove="Resources\Saves\NewGame.txt" />
     <None Remove="Resources\slkscr.ttf" />
   </ItemGroup>
 
@@ -235,6 +236,9 @@
     <Content Include="Resources\press-start.k.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Saves\NewGame.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\slkscr.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -250,10 +254,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Server\SocketServer.csproj" />
     <ProjectReference Include="..\SocketClient\SocketClient.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\Saves\" />
   </ItemGroup>
 
 </Project>

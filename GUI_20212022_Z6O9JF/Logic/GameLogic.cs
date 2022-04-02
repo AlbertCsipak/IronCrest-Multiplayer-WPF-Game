@@ -17,13 +17,10 @@ namespace GUI_20212022_Z6O9JF.Logic
     public class GameLogic : IGameLogic
     {
         public object View { get; set; }
-        public string Map { get; set; }
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
-        public FieldType[,] GameMap { get; set; }
         public ObservableCollection<Player> Players { get; set; }
         public List<Faction> AvailableFactions { get; set; }
-        public enum FieldType { field, water, village, hill, forest, wheat }
         SocketClient.SocketClient socketClient;
         IMessenger messenger;
         public GameLogic(IMessenger messenger)
@@ -37,40 +34,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             AvailableFactions.Add(Faction.Crusader);
             AvailableFactions.Add(Faction.Arabian);
             AvailableFactions.Add(Faction.Mongolian);
-        }
-        public FieldType[,] GameMapSetup(string path)
-        {
-            string[] lines = File.ReadAllLines(path);
-            ;
-            FieldType[,] map = new FieldType[int.Parse(lines[0]), int.Parse(lines[1])];
-
-            for (int i = 0; i < map.GetLength(0); i++)
-            {
-                for (int j = 0; j < map.GetLength(1); j++)
-                {
-                    switch (lines[i + 2][j])
-                    {
-                        case 'm':
-                            map[i, j] = FieldType.field;
-                            break;
-                        case 'v':
-                            map[i, j] = FieldType.water;
-                            break;
-                        case 'e':
-                            map[i, j] = FieldType.forest;
-                            break;
-                        case 'h':
-                            map[i, j] = FieldType.hill;
-                            break;
-                        case 'b':
-                            map[i, j] = FieldType.wheat;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            return map;
         }
         public void ClientConnect(string ip)
         {
@@ -103,7 +66,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if (message.Equals("false") || message.Equals("true"))
                             {
                                 CanSend = bool.Parse(message);
-                                if (counter < 4 && message.Equals("true"))
+                                if (counter < 1 && message.Equals("true"))
                                 {
                                     counter++;
                                     foreach (var item in Players)
@@ -120,7 +83,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 foreach (var item in JsonConvert.DeserializeObject<ObservableCollection<Player>>(message))
                                 {
                                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => Players.Add(item)));
-                                    //cross thread exception miatt meg kell hivni az ui main threadjet
                                 }
                             }
                         }
@@ -159,6 +121,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 if (Players.Any(t => t.Faction == faction))
                 {
                     Players.Where(t => t.Faction == faction).Select(t => t.Name == name);
+                    Players.Where(t => t.Faction == faction).Select(t => t.PlayerID == ClientId);
                 }
                 else
                 {
@@ -194,10 +157,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             server.Arguments = $" {ip} {clients} {port} {map} {turnLength} {bufferSize}";
             Process.Start(server);
         }
-        public void LoadGame(ObservableCollection<Player> vs, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
+        public void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
         {
-            Players = vs;
-            StartServer(turnLength: turnLength, clients: clients, map: map, ip: ip);
+            Players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(save.Split('@')[0]);
+            StartServer(turnLength: turnLength, clients: Players.Count, map: save.Split('@')[1], ip: ip);
         }
     }
 }
