@@ -13,7 +13,7 @@
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="9*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
@@ -22,19 +22,29 @@
             <ColumnDefinition Width="6*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="1" Content="CHAMPION SELECT" FontSize="120"
+        <Label Grid.Row="0" Grid.Column="1" Content="SELECT A FACTION" FontSize="120"
                FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
                BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
         </Label>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="20" Width="1000" HorizontalAlignment="Center">
-            <Button Style="{StaticResource button_style}" Height="100" Width="100" Command="{Binding NextFaction}">
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Column="1" Grid.Row="1" Style="{DynamicResource button_image_style}" Height="100" Width="100" Command="{Binding NextFaction}" Click="Button_Click" HorizontalAlignment="Left">
                 <Image Source="\Resources\Images\Menu\arrow_left.png"></Image>
             </Button>
-            <Image Source="{Binding SelectedFaction, Converter={StaticResource converter}}" Width="800"></Image>
-            <Button Style="{StaticResource button_style}" Height="100" Width="100" Command="{Binding PreviousFaction}">
+            <Image Grid.Column="1" Grid.Row="1" Source="{Binding SelectedFaction, Converter={StaticResource converter}}" Width="500"></Image>
+            <Button Grid.Column="1" Grid.Row="1" Style="{DynamicResource button_image_style}" Height="100" Width="100" Command="{Binding PreviousFaction}" Click="Button_Click" HorizontalAlignment="Right">
                 <Image Source="\Resources\Images\Menu\arrow_right.png"></Image>
             </Button>
-        </StackPanel>
+        </Grid>
         <StackPanel Grid.Row="2" Grid.Column="1">
             <Label Content="NAME" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="50" FontFamily="Poor Richard"></Label>
             <TextBox Text="{Binding Name}" Height="50" Width="200" FontSize="40" Background="Transparent" BorderBrush="#B3C8B7" BorderThickness="3"
@@ -42,7 +52,7 @@
                      Foreground="#B3C8B7" VerticalContentAlignment="Center"></TextBox>
         </StackPanel>
 
-        <Button Style="{DynamicResource button_style}" Content="LOCK IN" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+        <Button Style="{DynamicResource button_image_style}" Content="LOCK IN" Foreground="#B3C8B7" Padding="30" Background="Transparent"
                 Grid.Row="3" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding GameCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
         </Button>
