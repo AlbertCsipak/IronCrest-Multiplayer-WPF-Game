@@ -9,9 +9,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     public class MainViewModel : ObservableRecipient
     {
         public IGameLogic gameLogic;
+        public IClientLogic clientLogic;
         public object View
         {
-            get { return gameLogic.View; }
+            get { return clientLogic.View; }
         }
         public static bool IsInDesignMode
         {
@@ -25,11 +26,12 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public MainViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
-        public MainViewModel(IGameLogic gameLogic)
+        public MainViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IClientLogic>(), Ioc.Default.GetService<IGameLogic>()) { }
+        public MainViewModel(IClientLogic clientLogic,IGameLogic gameLogic)
         {
+            this.clientLogic = clientLogic;
             this.gameLogic = gameLogic;
-            gameLogic.ChangeView("menu");
+            clientLogic.ChangeView("menu");
 
             Messenger.Register<MainViewModel, string, string>(this, "Base", (recipient, msg) =>
             {

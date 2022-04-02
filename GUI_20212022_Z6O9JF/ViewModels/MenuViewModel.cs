@@ -10,7 +10,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 {
     public class MenuViewModel : ObservableRecipient
     {
-        public IGameLogic gameLogic;
+        public IClientLogic clientLogic;
         public ICommand BackCommand { get; set; }
         public ICommand JoinGameCommand { get; set; }
         public ICommand CreateGameCommand { get; set; }
@@ -27,15 +27,15 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public MenuViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
-        public MenuViewModel(IGameLogic gameLogic)
+        public MenuViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IClientLogic>()) { }
+        public MenuViewModel(IClientLogic clientLogic)
         {
-            this.gameLogic = gameLogic;
+            this.clientLogic = clientLogic;
 
             IP = "127.0.0.1";
 
-            JoinGameCommand = new RelayCommand(() => gameLogic.ClientConnect(IP));
-            CreateGameCommand = new RelayCommand(() => gameLogic.ChangeView("server"));
+            JoinGameCommand = new RelayCommand(() => clientLogic.ClientConnect(IP));
+            CreateGameCommand = new RelayCommand(() => clientLogic.ChangeView("server"));
         }
     }
 }

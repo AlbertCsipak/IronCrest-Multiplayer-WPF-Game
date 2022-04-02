@@ -1,13 +1,10 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
-using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -15,7 +12,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 {
     public class ServerViewModel : ObservableRecipient
     {
-        public IGameLogic gameLogic;
+        public IClientLogic clientLogic;
         public ICommand BackCommand { get; set; }
         public ICommand StartCommand { get; set; }
         public ICommand LoadCommand { get; set; }
@@ -40,10 +37,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public ServerViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
-        public ServerViewModel(IGameLogic gameLogic)
+        public ServerViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IClientLogic>()) { }
+        public ServerViewModel(IClientLogic clientLogic)
         {
-            this.gameLogic = gameLogic;
+            this.clientLogic = clientLogic;
 
             TurnLengths = new List<int>();
             Clients = new List<int>();
@@ -74,18 +71,18 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             TurnLength = TurnLengths[2];
             Map = Maps[0];
 
-            BackCommand = new RelayCommand(() => gameLogic.ChangeView("menu"));
+            BackCommand = new RelayCommand(() => clientLogic.ChangeView("menu"));
             StartCommand = new RelayCommand(() =>
             {
 
                 if (SaveGame.Equals("NewGame"))
                 {
-                    gameLogic.StartServer(turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP);
+                    clientLogic.StartServer(turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP);
                 }
                 else
                 {
                     string save = File.ReadAllText($"Resources/Saves/{SaveGame}.txt");
-                    gameLogic.LoadGame(save: save, turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP);
+                    clientLogic.LoadGame(save: save, turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP);
                 }
             });
         }

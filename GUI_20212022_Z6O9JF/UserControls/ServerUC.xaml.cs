@@ -11,13 +11,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// </summary>
     public partial class ServerUC : UserControl
     {
-        IGameLogic gameLogic;
         public MediaPlayer button_click = new MediaPlayer();
         public ServerUC()
         {
             InitializeComponent();
             this.DataContext = new ServerViewModel();
-            this.gameLogic = (this.DataContext as ServerViewModel).gameLogic;
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)

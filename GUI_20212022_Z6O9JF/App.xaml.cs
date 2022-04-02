@@ -16,6 +16,7 @@ namespace GUI_20212022_Z6O9JF
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                 .AddSingleton<IGameLogic, GameLogic>()
+                .AddSingleton<IClientLogic, ClientLogic>()
                 .AddSingleton<IMessenger>(WeakReferenceMessenger.Default)
                 .BuildServiceProvider()
             );

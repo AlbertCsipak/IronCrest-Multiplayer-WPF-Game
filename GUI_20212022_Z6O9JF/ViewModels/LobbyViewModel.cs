@@ -12,6 +12,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     public class LobbyViewModel : ObservableRecipient
     {
         public IGameLogic gameLogic;
+        public IClientLogic clientLogic;
         public ICommand BackCommand { get; set; }
         public ICommand GameCommand { get; set; }
         public ICommand NextFaction { get; set; }
@@ -32,15 +33,16 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public LobbyViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>()) { }
-        public LobbyViewModel(IGameLogic gameLogic)
+        public LobbyViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>(),Ioc.Default.GetService<IClientLogic>()) { }
+        public LobbyViewModel(IGameLogic gameLogic,IClientLogic clientLogic)
         {
             this.gameLogic = gameLogic;
+            this.clientLogic = clientLogic;
             gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
 
             Name = "Anon";
 
-            GameCommand = new RelayCommand(() => gameLogic.ChampSelect(SelectedFaction, Name));
+            GameCommand = new RelayCommand(() => clientLogic.ChampSelect(SelectedFaction, Name));
             NextFaction = new RelayCommand(() =>
             {
                 if (gameLogic.AvailableFactions.Count - 1 > index)

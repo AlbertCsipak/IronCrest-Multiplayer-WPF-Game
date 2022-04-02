@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -31,7 +30,7 @@ namespace GUI_20212022_Z6O9JF
 
             c1 = new Cursor("Resources/blurite_sword.cur");
             grid.Cursor = c1;
-            
+
             img_mute.Source = new BitmapImage(unmutedUri);
 
 
@@ -62,12 +61,12 @@ namespace GUI_20212022_Z6O9JF
             background_music.Volume = volume / 1000;
             if (volume == 0.0)
             {
-                background_music.IsMuted = true; 
+                background_music.IsMuted = true;
                 img_mute.Source = new BitmapImage(mutedUri);
             }
             else
             {
-                background_music.IsMuted = false; 
+                background_music.IsMuted = false;
                 img_mute.Source = new BitmapImage(unmutedUri);
             }
         }
@@ -80,7 +79,7 @@ namespace GUI_20212022_Z6O9JF
             if (players.Contains("Name"))
             {
                 string save = players + "@" + map;
-                File.AppendAllText($"Resources/Saves/{DateTime.Now.Month}-{DateTime.Now.Day}-{DateTime.Now.Hour}-{DateTime.Now.Minute}_players-{gameLogic.Players.Count}_map-{gameLogic.Map}.txt",save);
+                File.AppendAllText($"Resources/Saves/{DateTime.Now.Month}-{DateTime.Now.Day}-{DateTime.Now.Hour}-{DateTime.Now.Minute}_players-{gameLogic.Players.Count}_map-{gameLogic.Map}.txt", save);
             }
 
         }

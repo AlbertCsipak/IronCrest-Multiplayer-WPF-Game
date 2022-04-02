@@ -11,13 +11,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// </summary>
     public partial class LobbyUC : UserControl
     {
-        IGameLogic gameLogic;
         public MediaPlayer button_click = new MediaPlayer();
         public LobbyUC()
         {
             InitializeComponent();
             this.DataContext = new LobbyViewModel();
-            this.gameLogic = (this.DataContext as LobbyViewModel).gameLogic;
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
         }
     }
