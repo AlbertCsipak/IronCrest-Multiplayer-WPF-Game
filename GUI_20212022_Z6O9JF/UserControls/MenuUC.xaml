@@ -31,10 +31,18 @@
                 Grid.Row="5" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding CreateGameCommand}" Click="Button_Click"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
         </Button>
-        <Button Style="{DynamicResource button_style}" Content="JOIN GAME" Foreground="{DynamicResource greenish_blue}" Background="Transparent"
-                Grid.Row="6" Grid.Column="1" FontSize="50"  FontFamily="Poor Richard" Command="{Binding JoinGameCommand}"
-                BorderBrush="Transparent" HorizontalAlignment="Center"  VerticalContentAlignment="Center" Padding="30" Click="Button_Click">
-        </Button>
+
+        <StackPanel Grid.Row="6" Grid.Column="1" VerticalAlignment="Top">
+            <Button Style="{DynamicResource button_style}" Content="JOIN GAME" Foreground="{DynamicResource greenish_blue}" Background="Transparent"
+                FontSize="40"  FontFamily="Poor Richard" Command="{Binding JoinGameCommand}"
+                BorderBrush="Transparent" HorizontalAlignment="Center"  VerticalContentAlignment="Center" Padding="15" Click="Button_Click">
+            </Button>
+            <TextBox Text="{Binding IP}" Width="150" FontFamily="Poor Richard" 
+                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                     FontSize="25" Background="Transparent" BorderBrush="{DynamicResource greenish_blue}" 
+                     BorderThickness="2" Foreground="{DynamicResource greenish_blue}"></TextBox>
+        </StackPanel>        
+        
         <Button Style="{DynamicResource button_style}" Background="Transparent"
                 Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
                 BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Exit_Click" >

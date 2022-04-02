@@ -14,6 +14,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand BackCommand { get; set; }
         public ICommand JoinGameCommand { get; set; }
         public ICommand CreateGameCommand { get; set; }
+        public string IP { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -31,7 +32,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             this.gameLogic = gameLogic;
 
-            JoinGameCommand = new RelayCommand(() => gameLogic.ClientConnect());
+            IP = "127.0.0.1";
+
+            JoinGameCommand = new RelayCommand(() => gameLogic.ClientConnect(IP));
             CreateGameCommand = new RelayCommand(() => gameLogic.ChangeView("server"));
         }
     }

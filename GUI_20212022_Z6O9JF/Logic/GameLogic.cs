@@ -72,9 +72,9 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             return map;
         }
-        public void ClientConnect()
+        public void ClientConnect(string ip)
         {
-            socketClient.Connect();
+            socketClient.Connect(ip: ip);
 
             if (socketClient.MySocket != null)
             {

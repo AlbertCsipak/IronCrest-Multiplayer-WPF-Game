@@ -13,7 +13,8 @@
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -34,9 +35,15 @@
                 <Image Source="\Resources\Images\Menu\arrow_right.png"></Image>
             </Button>
         </StackPanel>
-        
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label Content="NAME" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="50" FontFamily="Poor Richard"></Label>
+            <TextBox Text="{Binding Name}" Height="50" Width="200" FontSize="40" Background="Transparent" BorderBrush="#B3C8B7" BorderThickness="3"
+                     FontFamily="Poor Richard"  HorizontalContentAlignment="Center"
+                     Foreground="#B3C8B7" VerticalContentAlignment="Center"></TextBox>
+        </StackPanel>
+
         <Button Style="{DynamicResource button_style}" Content="LOCK IN" Foreground="#B3C8B7" Padding="30" Background="Transparent"
-                Grid.Row="6" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding GameCommand}"
+                Grid.Row="3" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding GameCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
         </Button>
     </Grid>
