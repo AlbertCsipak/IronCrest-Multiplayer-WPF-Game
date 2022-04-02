@@ -29,20 +29,13 @@ namespace Server
 
             while (Clients.Count < clients)
             {
-                ;
                 Socket client = ServerSocket.Accept();
                 Clients.Add(client);
                 client.Send(Encoding.ASCII.GetBytes(id.ToString()));
+                client.Send(Encoding.ASCII.GetBytes(map));
                 Console.WriteLine("Client " + id + " has joined.");
                 id++;
-                ;
             }
-
-            foreach (var client in Clients)
-            {
-                client.Send(Encoding.ASCII.GetBytes(map));
-            }
-
             Console.WriteLine("Ready...");
         }
         public void Session(int turnLength, int clients, int bufferSize)

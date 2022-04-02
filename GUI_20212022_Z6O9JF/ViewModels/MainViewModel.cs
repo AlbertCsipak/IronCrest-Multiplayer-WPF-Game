@@ -27,7 +27,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             }
         }
         public MainViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IClientLogic>(), Ioc.Default.GetService<IGameLogic>()) { }
-        public MainViewModel(IClientLogic clientLogic,IGameLogic gameLogic)
+        public MainViewModel(IClientLogic clientLogic, IGameLogic gameLogic)
         {
             this.clientLogic = clientLogic;
             this.gameLogic = gameLogic;

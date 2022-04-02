@@ -149,6 +149,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             server.FileName = "SocketServer.exe";
             server.Arguments = $" {ip} {clients} {port} {map} {turnLength} {bufferSize}";
             Process.Start(server);
+            ChangeView("menu");
         }
         public void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
         {

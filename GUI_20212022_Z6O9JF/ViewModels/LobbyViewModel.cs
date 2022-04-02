@@ -33,8 +33,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public LobbyViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>(),Ioc.Default.GetService<IClientLogic>()) { }
-        public LobbyViewModel(IGameLogic gameLogic,IClientLogic clientLogic)
+        public LobbyViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IGameLogic>(), Ioc.Default.GetService<IClientLogic>()) { }
+        public LobbyViewModel(IGameLogic gameLogic, IClientLogic clientLogic)
         {
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
