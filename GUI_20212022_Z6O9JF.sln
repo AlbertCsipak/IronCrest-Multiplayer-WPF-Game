@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUI_20212022_Z6O9JF", "GUI_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocketServer", "Server\SocketServer.csproj", "{A81B7586-6B99-48C4-89CF-516CE3BE3A68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketClient", "SocketClient\SocketClient.csproj", "{3D54A07C-E4B7-486F-85F8-E7CB5E38062F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocketClient", "SocketClient\SocketClient.csproj", "{3D54A07C-E4B7-486F-85F8-E7CB5E38062F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
