@@ -59,6 +59,7 @@
     <None Remove="Resources\kongtext.ttf" />
     <None Remove="Resources\Maps\map1.txt" />
     <None Remove="Resources\Maps\map2.txt" />
+    <None Remove="Resources\Music\ambient.mp3" />
     <None Remove="Resources\Music\button.mp3" />
     <None Remove="Resources\Music\standard.mp3" />
     <None Remove="Resources\press-start.k.ttf" />
@@ -220,6 +221,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Maps\map2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Music\ambient.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Music\button.mp3">
