@@ -60,39 +60,5 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             return map;
         }
-        public void Move(double[,][] HexagonPoints, Point point, double width, double height)
-        {
-            double Height = height / GameMap.GetLength(0);
-            double Width = width / GameMap.GetLength(1);
-            //double a = (point.X - Width) / Width;
-            //double b = (point.Y - Height) / Height;
-
-            //int x = (int)Math.Round(a);
-            //int y = (int)Math.Round(b);
-
-            int x = -1;
-            int y = -1;
-
-            for (int i = 0; i < HexagonPoints.GetLength(0); i++)
-            {
-                for (int j = 0; j < HexagonPoints.GetLength(1); j++)
-                {
-                    if (point.X > HexagonPoints[i, j][0] - Width && point.X < HexagonPoints[i, j][0] + Width
-                        && point.Y > HexagonPoints[i, j][1] - Height && point.Y < HexagonPoints[i, j][1] + Height)
-                    {
-                        ;
-                        x = i;
-                        y = j;
-                    }
-                }
-            }
-
-            if (x != -1)
-            {
-                GameMap[x, y] = FieldType.water;
-
-            }
-            ;
-        }
     }
 }

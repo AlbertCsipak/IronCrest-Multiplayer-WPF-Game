@@ -28,8 +28,8 @@ namespace GUI_20212022_Z6O9JF
             this.DataContext = new MainViewModel();
             gameLogic = (this.DataContext as MainViewModel).gameLogic;
 
-            c1 = new Cursor("Resources/blurite_sword.cur");
-            grid.Cursor = c1;
+            //c1 = new Cursor("Resources/blurite_sword.cur");
+            //grid.Cursor = c1;
 
             img_mute.Source = new BitmapImage(unmutedUri);
 

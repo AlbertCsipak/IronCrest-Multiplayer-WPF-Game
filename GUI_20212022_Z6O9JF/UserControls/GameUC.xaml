@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              xmlns:disp="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
+             d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>

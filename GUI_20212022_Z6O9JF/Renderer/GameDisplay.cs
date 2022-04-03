@@ -1,8 +1,10 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace GUI_20212022_Z6O9JF.Renderer
 {
@@ -10,13 +12,15 @@ namespace GUI_20212022_Z6O9JF.Renderer
     {
         IGameLogic gameLogic;
         Size size;
+        Grid grid;
         public double[,][] HexagonPoints { get; set; }
         public GameDisplay()
         {
 
         }
-        public void LogicSetup(IGameLogic gameLogic)
+        public void LogicSetup(IGameLogic gameLogic,Grid grid)
         {
+            this.grid = grid;
             this.gameLogic = gameLogic;
             HexagonPoints = new double[gameLogic.GameMap.GetLength(0), gameLogic.GameMap.GetLength(1)][];
         }
@@ -74,54 +78,70 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     {
                         if (HexagonPoints[i, j][0] != 0 && HexagonPoints[i, j][1] != 0)
                         {
-                            StreamGeometry geometry = new StreamGeometry();
-                            using (StreamGeometryContext ctx = geometry.Open())
-                            {
-                                ctx.BeginFigure(new Point(HexagonPoints[i, j][0] - width / 1.5, HexagonPoints[i, j][1]), true, true);
-                                ctx.LineTo(new Point(HexagonPoints[i, j][0] - width / 3, HexagonPoints[i, j][1] - height), true, false);
-                                ctx.LineTo(new Point(HexagonPoints[i, j][0] + width / 3, HexagonPoints[i, j][1] - height), true, false);
-                                ctx.LineTo(new Point(HexagonPoints[i, j][0] + width / 1.5, HexagonPoints[i, j][1]), true, false);
-                                ctx.LineTo(new Point(HexagonPoints[i, j][0] + width / 3, HexagonPoints[i, j][1] + height), true, false);
-                                ctx.LineTo(new Point(HexagonPoints[i, j][0] - width / 3, HexagonPoints[i, j][1] + height), true, false);
-                            }
-                            geometry.Freeze();
-                            Rect rect = geometry.Bounds;
 
-                            rect.Height = rect.Height + height / 2;
-                            rect.Width = rect.Width + width / 8;
-                            rect.Y = rect.Y - height / 4;
-                            rect.X = rect.X - width / 16;
+                            Polygon polygon = new Polygon();
+                            PointCollection points = new PointCollection();
+                            points.Add(new Point(HexagonPoints[i, j][0] - width / 1.5, HexagonPoints[i, j][1]));
+                            points.Add(new Point(HexagonPoints[i, j][0] -width / 3, HexagonPoints[i, j][1] - height));
+                            points.Add(new Point(HexagonPoints[i, j][0] + width / 3, HexagonPoints[i, j][1] - height));
+                            points.Add(new Point(HexagonPoints[i, j][0] + width / 1.5, HexagonPoints[i, j][1]));
+                            points.Add(new Point(HexagonPoints[i, j][0] + width / 3, HexagonPoints[i, j][1] + height));
+                            points.Add(new Point(HexagonPoints[i, j][0] - width / 3, HexagonPoints[i, j][1] + height));
+                            polygon.Points = points;
+                            polygon.AllowDrop = true;
+                            polygon.Stroke = Brushes.Transparent;
+                            polygon.StrokeThickness = 5;
+                            polygon.ClipToBounds = false;
+                            polygon.FillRule = FillRule.Nonzero;
+                            
+                            polygon.IsManipulationEnabled = true;
+                            polygon.MouseLeftButtonDown += Polygon_MouseLeftButtonDown;
+                            polygon.MouseEnter += Polygon_MouseEnter;
+                            polygon.MouseLeave += Polygon_MouseLeave;
 
-                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), null, rect);
-                            switch (gameLogic.GameMap[i, j])
+                            switch (gameLogic.GameMap[i,j])
                             {
                                 case GameLogic.FieldType.field:
+                                    polygon.Fill = new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute)));
                                     break;
                                 case GameLogic.FieldType.water:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), null, rect);
+                                    polygon.Fill = new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute)));
                                     break;
-                                //case GameLogic.FieldType.village:
-                                //    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), null, rect);
-                                //    break;
-                                //case GameLogic.FieldType.hill:
-                                //    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/mountain.png", UriKind.RelativeOrAbsolute))), null, rect);
-                                //    break;
-                                //case GameLogic.FieldType.forest:
-                                //    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/wood.png", UriKind.RelativeOrAbsolute))), null, rect);
-                                //    break;
-                                //case GameLogic.FieldType.wheat:
-                                //    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/food.png", UriKind.RelativeOrAbsolute))), null, rect);
-                                //    break;
-                                //default:
-                                //    break;
+                                case GameLogic.FieldType.village:
+                                    break;
+                                case GameLogic.FieldType.hill:
+                                    polygon.Fill = new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/mountain.png", UriKind.RelativeOrAbsolute)));
+                                    break;
+                                case GameLogic.FieldType.forest:
+                                    polygon.Fill = new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/wood.png", UriKind.RelativeOrAbsolute)));
+                                    break;
+                                case GameLogic.FieldType.wheat:
+                                    polygon.Fill = new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/food.png", UriKind.RelativeOrAbsolute)));
+                                    break;
+                                default:
+                                    break;
                             }
-                            drawingContext.DrawRectangle(null, new Pen(Brushes.Red,1), rect);
-                            drawingContext.DrawRectangle(null, new Pen(Brushes.Red, 1), new Rect(HexagonPoints[i,j][0]-2,HexagonPoints[i,j][1]-2,4,4));
+                            grid.Children.Add(polygon);
                         }
                     }
                 }
-
             }
+        }
+
+        private void Polygon_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            (sender as Polygon).Stroke = Brushes.Transparent;
+        }
+
+
+        private void Polygon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            (sender as Polygon).Stroke = Brushes.Turquoise;
+        }
+
+        private void Polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            (sender as Polygon).Fill = Brushes.Black;
         }
     }
 }
