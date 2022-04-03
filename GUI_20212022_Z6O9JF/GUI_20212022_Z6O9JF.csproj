@@ -34,6 +34,7 @@
     <None Remove="Resources\Images\Map\red_village_lvl1.png" />
     <None Remove="Resources\Images\Map\red_village_lvl2.png" />
     <None Remove="Resources\Images\Map\red_village_lvl3.png" />
+    <None Remove="Resources\Images\Map\tom and jerry images %281%29.png" />
     <None Remove="Resources\Images\Map\water.png" />
     <None Remove="Resources\Images\Map\wood.png" />
     <None Remove="Resources\Images\Map\yellow_village_lvl1.png" />
@@ -150,6 +151,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\red_village_lvl3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Map\tom and jerry images (1).png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\water.png">

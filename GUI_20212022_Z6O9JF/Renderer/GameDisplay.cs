@@ -78,26 +78,29 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     {
                         if (HexagonPoints[i, j][0] != 0 && HexagonPoints[i, j][1] != 0)
                         {
-
                             Polygon polygon = new Polygon();
                             PointCollection points = new PointCollection();
-                            points.Add(new Point(HexagonPoints[i, j][0] - width / 1.5, HexagonPoints[i, j][1]));
-                            points.Add(new Point(HexagonPoints[i, j][0] -width / 3, HexagonPoints[i, j][1] - height));
-                            points.Add(new Point(HexagonPoints[i, j][0] + width / 3, HexagonPoints[i, j][1] - height));
-                            points.Add(new Point(HexagonPoints[i, j][0] + width / 1.5, HexagonPoints[i, j][1]));
-                            points.Add(new Point(HexagonPoints[i, j][0] + width / 3, HexagonPoints[i, j][1] + height));
-                            points.Add(new Point(HexagonPoints[i, j][0] - width / 3, HexagonPoints[i, j][1] + height));
+
+                            double a = 1.3;
+                            points.Add(new Point(HexagonPoints[i, j][0] - width/1.5*a, HexagonPoints[i, j][1]));
+                            points.Add(new Point(HexagonPoints[i, j][0] -width/3*a, HexagonPoints[i, j][1] - height));
+                            points.Add(new Point(HexagonPoints[i, j][0] + width/3*a, HexagonPoints[i, j][1] - height));
+                            points.Add(new Point(HexagonPoints[i, j][0] + width/1.5*a , HexagonPoints[i, j][1]));
+                            points.Add(new Point(HexagonPoints[i, j][0] + width/3 *a, HexagonPoints[i, j][1] + height));
+                            points.Add(new Point(HexagonPoints[i, j][0] - width / 3 * a, HexagonPoints[i, j][1] + height));
                             polygon.Points = points;
                             polygon.AllowDrop = true;
                             polygon.Stroke = Brushes.Transparent;
                             polygon.StrokeThickness = 3;
                             polygon.ClipToBounds = false;
-                            
+
+                            polygon.Tag = HexagonPoints[i, j];
+
                             polygon.IsManipulationEnabled = true;
                             polygon.MouseLeftButtonDown += Polygon_MouseLeftButtonDown;
                             polygon.MouseEnter += Polygon_MouseEnter;
                             polygon.MouseLeave += Polygon_MouseLeave;
-
+                            ImageBrush imageBrush = new ImageBrush();
                             switch (gameLogic.GameMap[i,j])
                             {
                                 case GameLogic.FieldType.field:
@@ -121,6 +124,8 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                     break;
                             }
                             grid.Children.Add(polygon);
+                            int asd = grid.Children.IndexOf(polygon); ;
+                            ;
                         }
                     }
                 }
