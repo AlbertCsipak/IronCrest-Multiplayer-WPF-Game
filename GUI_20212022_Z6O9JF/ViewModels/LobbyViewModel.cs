@@ -38,7 +38,6 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
-            gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
 
             Name = "Anon";
 

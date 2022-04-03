@@ -25,6 +25,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public GameViewModel(IGameLogic gameLogic)
         {
             this.gameLogic = gameLogic;
+
+            gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
+
         }
     }
 }
