@@ -90,9 +90,8 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             polygon.Points = points;
                             polygon.AllowDrop = true;
                             polygon.Stroke = Brushes.Transparent;
-                            polygon.StrokeThickness = 5;
+                            polygon.StrokeThickness = 3;
                             polygon.ClipToBounds = false;
-                            polygon.FillRule = FillRule.Nonzero;
                             
                             polygon.IsManipulationEnabled = true;
                             polygon.MouseLeftButtonDown += Polygon_MouseLeftButtonDown;
