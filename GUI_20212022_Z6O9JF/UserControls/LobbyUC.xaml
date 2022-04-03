@@ -40,7 +40,8 @@
             <Button Grid.Column="1" Grid.Row="1" Style="{DynamicResource button_image_style}" Height="100" Width="100" Command="{Binding NextFaction}" Click="Button_Click" HorizontalAlignment="Left">
                 <Image Source="\Resources\Images\Menu\arrow_left.png"></Image>
             </Button>
-            <Image Grid.Column="1" Grid.Row="1" Source="{Binding SelectedFaction, Converter={StaticResource converter}}" Width="500"></Image>
+            <Image Grid.Column="1" Grid.Row="1" Source="\Resources\Images\Menu\frame_trans_1.png" Width="500"/>
+            <Image Grid.Column="1" Grid.Row="1" Source="{Binding SelectedFaction, Converter={StaticResource converter}}" Width="500"/>
             <Button Grid.Column="1" Grid.Row="1" Style="{DynamicResource button_image_style}" Height="100" Width="100" Command="{Binding PreviousFaction}" Click="Button_Click" HorizontalAlignment="Right">
                 <Image Source="\Resources\Images\Menu\arrow_right.png"></Image>
             </Button>

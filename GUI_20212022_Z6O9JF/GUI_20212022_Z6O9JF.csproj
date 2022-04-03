@@ -41,6 +41,7 @@
     <None Remove="Resources\Images\Map\yellow_village_lvl3.png" />
     <None Remove="Resources\Images\Menu\arrow_left.png" />
     <None Remove="Resources\Images\Menu\arrow_right.png" />
+    <None Remove="Resources\Images\Menu\frame_trans_1.png" />
     <None Remove="Resources\Images\Menu\goldmine_background.png" />
     <None Remove="Resources\Images\Menu\main_background.gif" />
     <None Remove="Resources\Images\Menu\yellow_icon_mongolian.png" />
@@ -170,6 +171,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\arrow_right.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\frame_trans_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\goldmine_background.png">
