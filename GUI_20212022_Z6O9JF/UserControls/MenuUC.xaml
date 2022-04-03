@@ -27,13 +27,13 @@
                FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
                BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
         </Label>
-        <Button Style="{DynamicResource button_style}" Content="HOST GAME" Foreground="{DynamicResource greenish_blue}" Padding="30" Background="Transparent"
+        <Button Style="{DynamicResource button_text_style}" Content="HOST GAME" Foreground="{DynamicResource greenish_blue}" Padding="30" Background="Transparent"
                 Grid.Row="5" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding CreateGameCommand}" Click="Button_Click"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
         </Button>
 
         <StackPanel Grid.Row="6" Grid.Column="1" VerticalAlignment="Top">
-            <Button Style="{DynamicResource button_style}" Content="JOIN GAME" Foreground="{DynamicResource greenish_blue}" Background="Transparent"
+            <Button Style="{DynamicResource button_text_style}" Content="JOIN GAME" Foreground="{DynamicResource greenish_blue}" Background="Transparent"
                 FontSize="40"  FontFamily="Poor Richard" Command="{Binding JoinGameCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center"  VerticalContentAlignment="Center" Padding="15" Click="Button_Click">
             </Button>
@@ -41,11 +41,11 @@
                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                      FontSize="25" Background="Transparent" BorderBrush="{DynamicResource greenish_blue}" 
                      BorderThickness="2" Foreground="{DynamicResource greenish_blue}"></TextBox>
-        </StackPanel>        
-        
-        <Button Style="{DynamicResource button_style}" Background="Transparent"
+        </StackPanel>
+
+        <Button Style="{DynamicResource button_image_style}" Background="Transparent"
                 Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
-                BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Exit_Click" >
+                BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Opacity="0.7" Click="Button_Exit_Click" >
             <Image x:Name="img_exit" Source="\Resources\Images\Other\exit.png"></Image>
         </Button>
     </Grid>
