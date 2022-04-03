@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              xmlns:disp="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded" >
-    <Grid Background="White">
+             d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded" MouseLeftButtonDown="UserControl_MouseLeftButtonDown">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -18,8 +18,11 @@
             <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid x:Name="grid" Grid.Row="1" Grid.Column="1" Background="Red">
+
+        <Grid x:Name="grid" Grid.Row="1" Grid.Column="1">
+            <!--megvan bolondulva de jó-->
             <disp:GameDisplay x:Name="display"></disp:GameDisplay>
         </Grid>
     </Grid>
+    
 </UserControl>

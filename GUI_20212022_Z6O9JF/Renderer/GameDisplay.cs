@@ -10,12 +10,13 @@ namespace GUI_20212022_Z6O9JF.Renderer
     {
         IGameLogic gameLogic;
         Size size;
-        double[,][] HexagonPoints;
+        public double[,][] HexagonPoints { get; set; }
         public GameDisplay()
         {
-            
+
         }
-        public void LogicSetup(IGameLogic gameLogic) { 
+        public void LogicSetup(IGameLogic gameLogic)
+        {
             this.gameLogic = gameLogic;
             HexagonPoints = new double[gameLogic.GameMap.GetLength(0), gameLogic.GameMap.GetLength(1)][];
         }
@@ -86,37 +87,40 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             geometry.Freeze();
                             Rect rect = geometry.Bounds;
 
-                            //a kövi 3 csak visual bug fix
                             rect.Height = rect.Height + height / 2;
-                            rect.Width = rect.Width + width / 16;
+                            rect.Width = rect.Width + width / 8;
                             rect.Y = rect.Y - height / 4;
+                            rect.X = rect.X - width / 16;
 
-                            switch (gameLogic.GameMap[i,j])
+                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), null, rect);
+                            switch (gameLogic.GameMap[i, j])
                             {
                                 case GameLogic.FieldType.field:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), null, rect);
                                     break;
                                 case GameLogic.FieldType.water:
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), null, rect);
                                     break;
-                                case GameLogic.FieldType.village:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), null, rect);
-                                    break;
-                                case GameLogic.FieldType.hill:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/mountain.png", UriKind.RelativeOrAbsolute))), null, rect);
-                                    break;
-                                case GameLogic.FieldType.forest:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/wood.png", UriKind.RelativeOrAbsolute))), null, rect);
-                                    break;
-                                case GameLogic.FieldType.wheat:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/food.png", UriKind.RelativeOrAbsolute))), null, rect);
-                                    break;
-                                default:
-                                    break;
+                                //case GameLogic.FieldType.village:
+                                //    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), null, rect);
+                                //    break;
+                                //case GameLogic.FieldType.hill:
+                                //    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/mountain.png", UriKind.RelativeOrAbsolute))), null, rect);
+                                //    break;
+                                //case GameLogic.FieldType.forest:
+                                //    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/wood.png", UriKind.RelativeOrAbsolute))), null, rect);
+                                //    break;
+                                //case GameLogic.FieldType.wheat:
+                                //    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/food.png", UriKind.RelativeOrAbsolute))), null, rect);
+                                //    break;
+                                //default:
+                                //    break;
                             }
+                            drawingContext.DrawRectangle(null, new Pen(Brushes.Red,1), rect);
+                            drawingContext.DrawRectangle(null, new Pen(Brushes.Red, 1), new Rect(HexagonPoints[i,j][0]-2,HexagonPoints[i,j][1]-2,4,4));
                         }
                     }
                 }
+
             }
         }
     }

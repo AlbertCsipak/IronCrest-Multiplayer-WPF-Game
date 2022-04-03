@@ -30,5 +30,14 @@ namespace GUI_20212022_Z6O9JF.UserControls
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             display.InvalidateVisual();
         }
+
+        private void UserControl_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Point tmp = new Point();
+            tmp = e.GetPosition(display);
+            gameLogic.Move(display.HexagonPoints, tmp, grid.ActualWidth, grid.ActualHeight);
+            display.InvalidateVisual();
+            ;
+        }
     }
 }
