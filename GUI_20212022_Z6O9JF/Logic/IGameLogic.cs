@@ -10,6 +10,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         GameLogic.FieldType[,] GameMap { get; set; }
         string Map { get; set; }
         ObservableCollection<Player> Players { get; set; }
+
         GameLogic.FieldType[,] GameMapSetup(string path);
     }
 }
