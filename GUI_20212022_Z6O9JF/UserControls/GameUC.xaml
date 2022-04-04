@@ -18,8 +18,11 @@
             <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
+        
+        <Image Source="\Resources\Images\Menu\water.png" Stretch="Fill"/>
         <Grid x:Name="grid" Grid.Row="1" Grid.Column="1">
             <renderer:Display x:Name="display"/>
         </Grid>
+        
     </Grid>
 </UserControl>
