@@ -45,6 +45,7 @@
     <None Remove="Resources\Images\Menu\frame_trans_1.png" />
     <None Remove="Resources\Images\Menu\goldmine_background.png" />
     <None Remove="Resources\Images\Menu\main_background.gif" />
+    <None Remove="Resources\Images\Menu\ocean.png" />
     <None Remove="Resources\Images\Menu\water.png" />
     <None Remove="Resources\Images\Menu\yellow_icon_mongolian.png" />
     <None Remove="Resources\Images\Other\back.png" />
@@ -185,6 +186,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\main_background.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\ocean.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\water.png">

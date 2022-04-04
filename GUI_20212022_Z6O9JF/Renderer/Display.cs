@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,10 +27,10 @@ namespace GUI_20212022_Z6O9JF.Renderer
         }
         public void GetCoordinates()
         {
-            
+
             double rectHeight = size.Height / HexagonPoints.GetLength(0);
             double rectWidth = size.Width / HexagonPoints.GetLength(1);
-            ;
+
             if (size.Width > 0)
             {
                 for (int i = 0; i < HexagonPoints.GetLength(0); i++)
@@ -37,28 +38,15 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     for (int j = 0; j < HexagonPoints.GetLength(1); j++)
                     {
                         HexagonPoints[i, j] = new double[2];
-
-                        int x = i % 2 == 0 ? 2 : 1;
-                        if (i == HexagonPoints.GetLength(0) - 1)
+                        if (j % 2 == 1)
                         {
-                            if (i % 2 == 0)
-                            {
-                                HexagonPoints[i, j][0] = 0;
-                                HexagonPoints[i, j][1] = 0;
-                            }
-                        }
-                        else if (j == HexagonPoints.GetLength(1) - 1)
-                        {
-                            if (i % 2 == 0)
-                            {
-                                HexagonPoints[i, j][0] = j * rectWidth + rectWidth / x;
-                                HexagonPoints[i, j][1] = i * rectHeight + rectHeight;
-                            }
+                            HexagonPoints[i, j][0] = i * rectHeight + rectHeight * 1.5 / 2 +rectHeight/4;
+                            HexagonPoints[i, j][1] = j * rectWidth + rectWidth / 2;
                         }
                         else
                         {
-                            HexagonPoints[i, j][0] = j * rectWidth + rectWidth / x;
-                            HexagonPoints[i, j][1] = i * rectHeight + rectHeight;
+                            HexagonPoints[i, j][0] = i * rectHeight + rectHeight / 4 + rectHeight / 4;
+                            HexagonPoints[i, j][1] = j * rectWidth + rectWidth / 2;
                         }
                     }
                 }
@@ -68,8 +56,8 @@ namespace GUI_20212022_Z6O9JF.Renderer
         {
             if (HexagonPoints[0, 0] != null)
             {
-                double width = HexagonPoints[0, 0][0];
-                double height = HexagonPoints[0, 0][1];
+                double height = size.Height / HexagonPoints.GetLength(0);
+                double width = size.Width / HexagonPoints.GetLength(1);
                 for (int i = 0; i < HexagonPoints.GetLength(0); i++)
                 {
                     for (int j = 0; j < HexagonPoints.GetLength(1); j++)
@@ -78,9 +66,9 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         {
 
                             Rect rect = new Rect();
-                            rect.Location = new Point(HexagonPoints[i, j][0] - width * 0.65, HexagonPoints[i, j][1] - height*1.1);
-                            rect.Width = width + width*0.3;
-                            rect.Height = height + height*1.1;
+                            rect.Location = new Point(HexagonPoints[i, j][1] - width/2*1.3, HexagonPoints[i, j][0] - height/2*1.1);
+                            rect.Width = width*1.3;
+                            rect.Height = height*1.1;
 
 
                             switch (gameLogic.GameMap[i, j].FieldType)
@@ -118,19 +106,19 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             Polygon polygon = new Polygon();
                             PointCollection points = new PointCollection();
 
-                            points.Add(new Point(HexagonPoints[i, j][0] - width / 1.5, HexagonPoints[i, j][1]));
-                            points.Add(new Point(HexagonPoints[i, j][0] - width / 3, HexagonPoints[i, j][1] - height));
-                            points.Add(new Point(HexagonPoints[i, j][0] + width / 3, HexagonPoints[i, j][1] - height));
-                            points.Add(new Point(HexagonPoints[i, j][0] + width / 1.5, HexagonPoints[i, j][1]));
-                            points.Add(new Point(HexagonPoints[i, j][0] + width / 3, HexagonPoints[i, j][1] + height));
-                            points.Add(new Point(HexagonPoints[i, j][0] - width / 3, HexagonPoints[i, j][1] + height));
+                            points.Add(new Point(HexagonPoints[i, j][1] - width/1.5 , HexagonPoints[i, j][0]));
+                            points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] - height/2));
+                            points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] - height/2));
+                            points.Add(new Point(HexagonPoints[i, j][1] + width /1.5, HexagonPoints[i, j][0]));
+                            points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] + height/2));
+                            points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] + height/2));
 
                             polygon.Points = points;
 
                             polygon.AllowDrop = true;
                             polygon.Stroke = Brushes.Transparent;
                             polygon.Fill = Brushes.Transparent;
-                            polygon.StrokeThickness = 2.5;
+                            polygon.StrokeThickness = 2;
                             polygon.IsManipulationEnabled = true;
                             polygon.Tag = gameLogic.GameMap[i, j];
 
@@ -153,7 +141,11 @@ namespace GUI_20212022_Z6O9JF.Renderer
 
         private void Polygon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            (sender as Polygon).Stroke = Brushes.Turquoise;
+            Polygon polygon = (sender as Polygon);
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
+            {
+                polygon.Stroke = Brushes.Turquoise;
+            }
         }
 
         private void Polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

@@ -7,22 +7,10 @@
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="5*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-            <RowDefinition Height="1*"></RowDefinition>
-        </Grid.RowDefinitions>
-        
-        <Image Source="\Resources\Images\Menu\water.png" Stretch="Fill"/>
-        <Grid x:Name="grid" Grid.Row="1" Grid.Column="1">
-            <renderer:Display x:Name="display"/>
-        </Grid>
-        
+    <Grid x:Name="grid">
+
+        <Image Source="\Resources\Images\Menu\ocean.png" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="3"/>
+        <renderer:Display x:Name="display"/>
+
     </Grid>
 </UserControl>
