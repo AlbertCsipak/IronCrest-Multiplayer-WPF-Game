@@ -24,34 +24,34 @@ namespace GUI_20212022_Z6O9JF.Logic
             AvailableFactions.Add(Faction.Mongolian);
         }
         public string Map { get; set; }
-        public enum FieldType { field, water, village, hill, forest, wheat }
-        public FieldType[,] GameMap { get; set; }
-        public FieldType[,] GameMapSetup(string path)
+        public HexagonTile[,] GameMap { get; set; }
+        public HexagonTile[,] GameMapSetup(string path)
         {
             string[] lines = File.ReadAllLines(path);
             ;
-            FieldType[,] map = new FieldType[int.Parse(lines[0]), int.Parse(lines[1])];
+            HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
 
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
+                    map[i, j] = new HexagonTile();
                     switch (lines[i + 2][j])
                     {
                         case 'm':
-                            map[i, j] = FieldType.field;
+                            map[i, j].FieldType = FieldType.field;
                             break;
                         case 'v':
-                            map[i, j] = FieldType.water;
+                            map[i, j].FieldType = FieldType.water;
                             break;
                         case 'e':
-                            map[i, j] = FieldType.forest;
+                            map[i, j].FieldType = FieldType.forest;
                             break;
                         case 'h':
-                            map[i, j] = FieldType.hill;
+                            map[i, j].FieldType = FieldType.hill;
                             break;
                         case 'b':
-                            map[i, j] = FieldType.wheat;
+                            map[i, j].FieldType = FieldType.wheat;
                             break;
                         default:
                             break;
