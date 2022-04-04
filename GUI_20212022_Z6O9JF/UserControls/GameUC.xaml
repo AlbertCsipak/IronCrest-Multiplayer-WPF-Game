@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
-             xmlns:disp="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
+             xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded">
     <Grid>
@@ -18,11 +18,8 @@
             <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-
         <Grid x:Name="grid" Grid.Row="1" Grid.Column="1">
-            <!--megvan bolondulva de jó-->
-            <disp:GameDisplay x:Name="display"></disp:GameDisplay>
+            <renderer:Display x:Name="display"/>
         </Grid>
     </Grid>
-    
 </UserControl>
