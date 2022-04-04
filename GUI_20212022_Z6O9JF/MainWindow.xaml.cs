@@ -35,7 +35,7 @@ namespace GUI_20212022_Z6O9JF
             img_mute.Source = new BitmapImage(unmutedUri);
 
 
-            background_ambient.Open(new Uri("Resources/Music/ambient.mp3", UriKind.RelativeOrAbsolute));
+            background_ambient.Open(new Uri("Resources/Music/Lannister_music.mp3", UriKind.RelativeOrAbsolute));
             background_ambient.Volume = 0.025;
             background_ambient.Play();
             background_ambient.MediaEnded += Background_ambient_MediaEnded;

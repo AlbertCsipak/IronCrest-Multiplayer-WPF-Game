@@ -64,6 +64,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
             Maps.Add("1");
             Maps.Add("2");
+            Maps.Add("3");
 
             IP = "127.0.0.1";
             SaveGame = "NewGame";
