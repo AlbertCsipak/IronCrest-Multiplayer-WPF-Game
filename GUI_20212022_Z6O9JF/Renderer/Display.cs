@@ -15,13 +15,14 @@ namespace GUI_20212022_Z6O9JF.Renderer
         Size size;
         Grid grid;
         double[,][] HexagonPoints;
-        public void LogicSetup(IGameLogic gameLogic,Grid grid)
+        public void LogicSetup(IGameLogic gameLogic, Grid grid)
         {
             this.grid = grid;
             this.gameLogic = gameLogic;
             HexagonPoints = new double[gameLogic.GameMap.GetLength(0), gameLogic.GameMap.GetLength(1)][];
         }
-        public void Resize(Size size) {
+        public void Resize(Size size)
+        {
             this.size = size;
             GetCoordinates();
         }
@@ -40,7 +41,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         HexagonPoints[i, j] = new double[2];
                         if (j % 2 == 1)
                         {
-                            HexagonPoints[i, j][0] = i * rectHeight + rectHeight * 1.5 / 2 +rectHeight/4;
+                            HexagonPoints[i, j][0] = i * rectHeight + rectHeight * 1.5 / 2 + rectHeight / 4;
                             HexagonPoints[i, j][1] = j * rectWidth + rectWidth / 2;
                         }
                         else
@@ -64,61 +65,51 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     {
                         if (HexagonPoints[i, j][0] != 0 && HexagonPoints[i, j][1] != 0)
                         {
-
                             Rect rect = new Rect();
-                            rect.Location = new Point(HexagonPoints[i, j][1] - width/2*1.3, HexagonPoints[i, j][0] - height/2*1.1);
-                            rect.Width = width*1.3;
-                            rect.Height = height*1.1;
-
+                            rect.Location = new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1);
+                            rect.Width = width * 1.3;
+                            rect.Height = height * 1.1;
 
                             switch (gameLogic.GameMap[i, j].FieldType)
                             {
-                                case Models.FieldType.field:
+                                case FieldType.field:
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
-                                case Models.FieldType.water:
+                                case FieldType.water:
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
-                                case Models.FieldType.village:
+                                case FieldType.village:
                                     drawingContext.DrawRectangle(Brushes.Green, new Pen(Brushes.Black, 1), rect);
                                     break;
-                                case Models.FieldType.hill:
+                                case FieldType.hill:
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/mountain.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
-                                case Models.FieldType.forest:
+                                case FieldType.forest:
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/wood.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
-                                case Models.FieldType.wheat:
+                                case FieldType.wheat:
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/food.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
                                 default:
                                     break;
                             }
-                        }
-                    }
-                }
-                for (int i = 0; i < HexagonPoints.GetLength(0); i++)
-                {
-                    for (int j = 0; j < HexagonPoints.GetLength(1); j++)
-                    {
-                        if (HexagonPoints[i, j][0] != 0 && HexagonPoints[i, j][1] != 0)
-                        {
+
                             Polygon polygon = new Polygon();
                             PointCollection points = new PointCollection();
 
-                            points.Add(new Point(HexagonPoints[i, j][1] - width/1.5 , HexagonPoints[i, j][0]));
-                            points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] - height/2));
-                            points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] - height/2));
-                            points.Add(new Point(HexagonPoints[i, j][1] + width /1.5, HexagonPoints[i, j][0]));
-                            points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] + height/2));
-                            points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] + height/2));
+                            points.Add(new Point(HexagonPoints[i, j][1] - width / 1.5, HexagonPoints[i, j][0]));
+                            points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] - height / 2));
+                            points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] - height / 2));
+                            points.Add(new Point(HexagonPoints[i, j][1] + width / 1.5, HexagonPoints[i, j][0]));
+                            points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] + height / 2));
+                            points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] + height / 2));
 
                             polygon.Points = points;
 
                             polygon.AllowDrop = true;
                             polygon.Stroke = Brushes.Transparent;
                             polygon.Fill = Brushes.Transparent;
-                            polygon.StrokeThickness = 2;
+                            polygon.StrokeThickness = 3;
                             polygon.IsManipulationEnabled = true;
                             polygon.Tag = gameLogic.GameMap[i, j];
 
@@ -150,7 +141,11 @@ namespace GUI_20212022_Z6O9JF.Renderer
 
         private void Polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            (sender as Polygon).Fill = Brushes.Black;
+            Polygon polygon = (sender as Polygon);
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
+            {
+                polygon.Fill = Brushes.White;
+            }
         }
     }
 }
