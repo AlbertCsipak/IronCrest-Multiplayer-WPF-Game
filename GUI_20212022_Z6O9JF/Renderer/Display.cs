@@ -116,6 +116,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             polygon.MouseLeftButtonDown += Polygon_MouseLeftButtonDown;
                             polygon.MouseEnter += Polygon_MouseEnter;
                             polygon.MouseLeave += Polygon_MouseLeave;
+                            polygon.MouseRightButtonDown += Polygon_MouseRightButtonDown;
 
                             grid.Children.Add(polygon);
                         }
@@ -124,9 +125,22 @@ namespace GUI_20212022_Z6O9JF.Renderer
             }
         }
 
+        private void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Polygon polygon = (sender as Polygon);
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
+            {
+                polygon.ReleaseMouseCapture();
+            }
+        }
+
         private void Polygon_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            (sender as Polygon).Stroke = Brushes.Transparent;
+            Polygon polygon = (sender as Polygon);
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
+            {
+                polygon.Stroke = Brushes.Transparent;
+            }
         }
 
 
@@ -144,7 +158,8 @@ namespace GUI_20212022_Z6O9JF.Renderer
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                polygon.Fill = Brushes.White;
+                polygon.CaptureMouse();
+                polygon.Stroke = Brushes.Red;
             }
         }
     }
