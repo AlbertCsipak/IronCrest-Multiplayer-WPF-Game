@@ -33,6 +33,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 (polygon.Tag as HexagonTile).Objects.Add(item);
                                 SelectedPolygon.Stroke = Brushes.Transparent;
                                 SelectedPolygon = null;
+                                gameLogic.SelectedHexagonTile = null;
                             }
                         }
                     }
