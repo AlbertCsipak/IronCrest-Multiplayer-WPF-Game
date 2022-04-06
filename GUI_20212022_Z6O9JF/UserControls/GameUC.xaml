@@ -19,7 +19,8 @@
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Image x:Name="background" Grid.RowSpan="3" Grid.ColumnSpan="3" Source="\Resources\Images\Map\blue_background.png"/>
+        <Image x:Name="background" Grid.RowSpan="3" Grid.ColumnSpan="3" Source="\Resources\Images\Map\blue_background.png" Stretch="Fill"/>
+        
         <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3">
             <renderer:Display x:Name="display"/>
         </Grid>
@@ -27,6 +28,8 @@
         <Label Content="{Binding CanSend}" Grid.Column="1" Grid.Row="0" Foreground="Red" FontSize="50" Background="White"></Label>
         
         <Button Grid.Column="1" Grid.Row="2" Content="Add Unit" FontSize="50" Command="{Binding AddUnitCommand}"></Button>
-
+        <Button Style="{StaticResource button_image_style}" Grid.Column="2" Grid.Row="2" Width="260" Height="170" Background="Transparent" Click="Button_Click">
+            <Image x:Name="skip_image" Source="\Resources\Images\Menu\skip_framed_button_unpressed.png" Width="260"></Image>
+        </Button>
     </Grid>
 </UserControl>

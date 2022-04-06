@@ -3,6 +3,7 @@ using GUI_20212022_Z6O9JF.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -16,6 +17,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IClientLogic clientLogic;
         IGameLogic gameLogic;
         IControlLogic controlLogic;
+        public MediaPlayer button_click = new MediaPlayer();
         DispatcherTimer dt;
         public GameUC()
         {
@@ -25,7 +27,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
             this.controlLogic = (this.DataContext as GameViewModel).controlLogic;
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
-
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(100);
             dt.Tick += (sender, eventargs) =>
@@ -42,6 +43,13 @@ namespace GUI_20212022_Z6O9JF.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
+            button_click.Play();
+            skip_image.Source = new BitmapImage(new Uri("Resources/Images/Menu/skip_framed_button_pressed.png", UriKind.RelativeOrAbsolute));
         }
     }
 }
