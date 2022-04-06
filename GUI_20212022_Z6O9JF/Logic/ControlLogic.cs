@@ -26,7 +26,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         foreach (var item in gameLogic.SelectedHexagonTile.Objects.ToList())
                         {
-                            if (item.CanMove)
+                            if (item.CanMove && item.OwnerId == gameLogic.ClientID)
                             {
                                 gameLogic.SelectedHexagonTile.Objects.Remove(item);
                                 item.Move((polygon.Tag as HexagonTile).Position);

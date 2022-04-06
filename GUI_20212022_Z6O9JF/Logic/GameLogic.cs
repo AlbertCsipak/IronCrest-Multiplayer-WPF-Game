@@ -67,6 +67,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (GameMap != null)
             {
+                foreach (var item in GameMap)
+                {
+                    item.Objects.Clear();
+                }
                 //System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
                 if (Players.Count>0)
                 {
@@ -116,6 +120,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         newUnit.UnitType = UnitType.Viking;
                         newUnit.Position = SelectedHexagonTile.Position;
                         newUnit.Name = "Barni";
+                        newUnit.OwnerId = ClientID;
                         SelectedHexagonTile.Objects.Add(newUnit);
                         item.Units.Add(newUnit);
                     }
@@ -134,6 +139,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         newUnit.UnitType = UnitType.Viking;
                         newUnit.Position = SelectedHexagonTile.Position;
                         newUnit.Name = "Barni";
+                        newUnit.OwnerId = ClientID;
                         ;
                         SelectedHexagonTile.Objects.Add(newUnit);
                         item.Units.Add(newUnit);

@@ -3,6 +3,7 @@
     public enum HeroType { Viking, Crusader, Mongolian, Arabian }
     public class Hero : IGameItem 
     {
+        public int OwnerId { get; set; }
         public string Name { get; set; }
         public int Damage { get; set; }
         public HeroType HeroType { get; set; }
