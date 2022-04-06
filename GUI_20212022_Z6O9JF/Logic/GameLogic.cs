@@ -110,6 +110,24 @@ namespace GUI_20212022_Z6O9JF.Logic
                         newUnit.UnitType = UnitType.Viking;
                         newUnit.Position = SelectedHexagonTile.Position;
                         newUnit.Name = "Barni";
+                        SelectedHexagonTile.Objects.Add(newUnit);
+                        item.Units.Add(newUnit);
+                    }
+                }
+            }
+        }
+        public void MoveUnit()
+        {
+            if (SelectedHexagonTile != null)
+            {
+                foreach (var item in Players)
+                {
+                    if (item.PlayerID == ClientID)
+                    {
+                        Unit newUnit = new Unit();
+                        newUnit.UnitType = UnitType.Viking;
+                        newUnit.Position = SelectedHexagonTile.Position;
+                        newUnit.Name = "Barni";
                         ;
                         SelectedHexagonTile.Objects.Add(newUnit);
                         item.Units.Add(newUnit);

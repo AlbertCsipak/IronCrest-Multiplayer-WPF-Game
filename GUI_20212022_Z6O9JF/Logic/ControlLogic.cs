@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Models;
+using System.Linq;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -8,6 +9,7 @@ namespace GUI_20212022_Z6O9JF.Logic
     {
         IGameLogic gameLogic;
         IClientLogic clientLogic;
+        Polygon SelectedPolygon;
         public ControlLogic(IGameLogic gameLogic, IClientLogic clientLogic)
         {
             this.gameLogic = gameLogic;
@@ -18,8 +20,23 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                polygon.Stroke = Brushes.Transparent;
-                gameLogic.SelectedHexagonTile = null;
+                if (SelectedPolygon != null && SelectedPolygon != polygon)
+                {
+                    if (gameLogic.SelectedHexagonTile.Objects.Count > 0)
+                    {
+                        foreach (var item in gameLogic.SelectedHexagonTile.Objects.ToList())
+                        {
+                            if (item.CanMove)
+                            {
+                                gameLogic.SelectedHexagonTile.Objects.Remove(item);
+                                item.Move((polygon.Tag as HexagonTile).Position);
+                                (polygon.Tag as HexagonTile).Objects.Add(item);
+                                SelectedPolygon.Stroke = Brushes.Transparent;
+                                SelectedPolygon = null;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -28,7 +45,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                polygon.Stroke = Brushes.Transparent;
+                if (SelectedPolygon != polygon)
+                {
+                    polygon.Stroke = Brushes.Transparent;
+                }
             }
         }
 
@@ -38,7 +58,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                polygon.Stroke = Brushes.Turquoise;
+                if (SelectedPolygon != polygon)
+                {
+                    polygon.Stroke = Brushes.White;
+                }
             }
         }
 
@@ -47,8 +70,13 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
+                if (SelectedPolygon != null)
+                {
+                    SelectedPolygon.Stroke = Brushes.Transparent;
+                }
+                SelectedPolygon = polygon;
                 polygon.Stroke = Brushes.Red;
-                gameLogic.SelectedHexagonTile = (polygon.Tag as HexagonTile);
+                gameLogic.SelectedHexagonTile = (SelectedPolygon.Tag as HexagonTile);
             }
         }
     }
