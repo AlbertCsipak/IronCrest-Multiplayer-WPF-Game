@@ -69,6 +69,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
             Messenger.Register<LobbyViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
+                index = 0;
                 OnPropertyChanged("SelectedFaction");
             });
         }
