@@ -45,13 +45,13 @@ namespace SocketClient
                 MySocket.Dispose();
             }
         }
-        public void DataSend(object vs, int packetSpeed = 500)
+        public void DataSend(object vs, int packetSpeed = 100)
         {
             string json = JsonConvert.SerializeObject(vs);
             MySocket.Send(Encoding.ASCII.GetBytes(json));
             System.Threading.Thread.Sleep(packetSpeed);//10packets/sec
         }
-        public string DataReceive(int bufferSize = 2048)
+        public string DataReceive(int bufferSize = 4096)
         {
             byte[] buffer = new byte[bufferSize];
             try

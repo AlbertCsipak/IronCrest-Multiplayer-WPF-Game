@@ -79,14 +79,22 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 {
                                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
                                 }
-                                gameLogic.HexagonObjects();
                             }
                         }
                     }
                 }, TaskCreationOptions.LongRunning);
 
+                Task Update = new Task(() => {
+                    while (socketClient.MySocket.Connected)
+                    {
+                        gameLogic.HexagonObjects();
+                        System.Threading.Thread.Sleep(100);
+                    }
+                },TaskCreationOptions.LongRunning);
+
                 Send.Start();
                 Receive.Start();
+                Update.Start();
                 ChangeView("lobby");
             }
         }
@@ -137,7 +145,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 socketClient.Skip();
             }
         }
-        public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 2048)
+        public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 4096)
         {
             ProcessStartInfo server = new ProcessStartInfo();
             server.FileName = "SocketServer.exe";
