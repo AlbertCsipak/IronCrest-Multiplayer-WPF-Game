@@ -26,7 +26,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
 
             dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(16.666);
+            dt.Interval = TimeSpan.FromMilliseconds(100);
             dt.Tick += (sender, eventargs) =>
             {
                 display.InvalidateVisual();

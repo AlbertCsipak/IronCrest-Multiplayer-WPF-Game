@@ -107,7 +107,6 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             }
                             if (sizeChanged)
                             {
-
                                 Polygon polygon = new Polygon();
                                 PointCollection points = new PointCollection();
 

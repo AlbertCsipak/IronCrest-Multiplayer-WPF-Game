@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
-        Title="IronCrest" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" Icon="Resources\Images\Other\icon.png" Closing="Window_Closing">
+        Title="IronCrest" Height="1080" Width="1920" Icon="Resources\Images\Other\icon.png" Closing="Window_Closing">
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>

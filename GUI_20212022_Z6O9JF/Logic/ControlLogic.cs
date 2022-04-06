@@ -18,6 +18,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
+                polygon.Stroke = Brushes.Transparent;
                 gameLogic.SelectedHexagonTile = null;
             }
         }
@@ -46,6 +47,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
+                polygon.Stroke = Brushes.Red;
                 gameLogic.SelectedHexagonTile = (polygon.Tag as HexagonTile);
             }
         }
