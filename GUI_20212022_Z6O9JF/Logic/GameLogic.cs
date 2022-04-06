@@ -69,6 +69,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 foreach (var item in GameMap)
                 {
+                    item.OwnerId = 0;
                     item.Objects.Clear();
                 }
                 //System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
@@ -80,28 +81,19 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             foreach (var item in player.Units.ToList())
                             {
-                                if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
-                                {
-                                    GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
-                                }
                                 GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                                GameMap[item.Position[0], item.Position[1]].OwnerId = ClientID;
                             }
                             foreach (var item in player.Villages.ToList())
                             {
-                                if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
-                                {
-                                    GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
-                                }
                                 GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                                GameMap[item.Position[0], item.Position[1]].OwnerId = ClientID;
                             }
                             if (player.Hero != null)
                             {
                                 var item = player.Hero;
-                                if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
-                                {
-                                    GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
-                                }
                                 GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                                GameMap[item.Position[0], item.Position[1]].OwnerId = ClientID;
                             }
                         }
                     }
@@ -124,27 +116,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                         SelectedHexagonTile.Objects.Add(newUnit);
                         SelectedHexagonTile.OwnerId = ClientID;
                         item.Units.Add(newUnit);
-                    }
-                }
-            }
-        }
-        public void MoveUnit()
-        {
-            if (SelectedHexagonTile != null)
-            {
-                foreach (var item in Players)
-                {
-                    if (item.PlayerID == ClientID)
-                    {
-                        Unit newUnit = new Unit();
-                        newUnit.UnitType = UnitType.Viking;
-                        newUnit.Position = SelectedHexagonTile.Position;
-                        newUnit.Name = "Barni";
-                        newUnit.OwnerId = ClientID;
-                        ;
-                        SelectedHexagonTile.Objects.Add(newUnit);
-                        item.Units.Add(newUnit);
-                        ;
                     }
                 }
             }

@@ -72,7 +72,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                if ((polygon.Tag as HexagonTile).OwnerId==gameLogic.ClientID || (polygon.Tag as HexagonTile).OwnerId ==0 )
+                if ((polygon.Tag as HexagonTile).OwnerId==gameLogic.ClientID || (polygon.Tag as HexagonTile).OwnerId == 0)
                 {
                     if (SelectedPolygon != null)
                     {
