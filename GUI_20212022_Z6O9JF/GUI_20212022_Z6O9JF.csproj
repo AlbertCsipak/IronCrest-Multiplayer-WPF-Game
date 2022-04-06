@@ -31,6 +31,7 @@
     <None Remove="Resources\Images\Map\field.png" />
     <None Remove="Resources\Images\Map\food.png" />
     <None Remove="Resources\Images\Map\mountain.png" />
+    <None Remove="Resources\Images\Map\mountain_water.png" />
     <None Remove="Resources\Images\Map\red_village_lvl1.png" />
     <None Remove="Resources\Images\Map\red_village_lvl2.png" />
     <None Remove="Resources\Images\Map\red_village_lvl3.png" />
@@ -111,6 +112,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\mountain.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Map\mountain_water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\red_village_lvl1.png">
