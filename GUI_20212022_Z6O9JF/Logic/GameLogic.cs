@@ -122,6 +122,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         newUnit.Name = "Barni";
                         newUnit.OwnerId = ClientID;
                         SelectedHexagonTile.Objects.Add(newUnit);
+                        SelectedHexagonTile.OwnerId = ClientID;
                         item.Units.Add(newUnit);
                     }
                 }
