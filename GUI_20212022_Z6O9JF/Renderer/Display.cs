@@ -1,6 +1,7 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using GUI_20212022_Z6O9JF.Models;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -134,7 +135,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 grid.Children.Add(polygon);
                             }
 
-                            foreach (var item in gameLogic.GameMap[i, j].Objects)
+                            foreach (var item in gameLogic.GameMap[i, j].Objects.ToList())
                             {
                                 drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/bjorn.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                             }

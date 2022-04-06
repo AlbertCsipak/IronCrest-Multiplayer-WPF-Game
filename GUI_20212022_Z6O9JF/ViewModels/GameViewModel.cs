@@ -14,6 +14,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand AddUnitCommand { get; set; }
+        public bool CanSend { get { return clientLogic.CanSend; } }
         public static bool IsInDesignMode
         {
             get
@@ -35,7 +36,20 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
             gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
 
-            AddUnitCommand = new RelayCommand(() => gameLogic.AddUnit());
+            AddUnitCommand = new RelayCommand(() =>
+            {
+                if (clientLogic.CanSend)
+                {
+                    gameLogic.AddUnit();
+                }
+            });
+
+
+
+            Messenger.Register<GameViewModel, string, string>(this, "Base", (recipient, msg) =>
+            {
+                OnPropertyChanged("CanSend");
+            });
 
         }
     }

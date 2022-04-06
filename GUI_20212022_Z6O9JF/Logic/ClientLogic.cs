@@ -60,6 +60,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if (message.Equals("false") || message.Equals("true"))
                             {
                                 CanSend = bool.Parse(message);
+                                messenger.Send("CanSend", "Base");
                                 if (counter < 1 && message.Equals("true"))
                                 {
                                     counter++;

@@ -3,6 +3,7 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
@@ -66,9 +67,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (GameMap != null)
             {
-                foreach (var player in Players)
+                //System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
+                foreach (var player in Players.ToList())
                 {
-                    foreach (var item in player.Units)
+                    foreach (var item in player.Units.ToList())
                     {
                         if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
                         {
@@ -76,7 +78,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         }
                         GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                     }
-                    foreach (var item in player.Villages)
+                    foreach (var item in player.Villages.ToList())
                     {
                         if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
                         {
