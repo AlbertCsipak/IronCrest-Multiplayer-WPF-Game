@@ -19,11 +19,11 @@
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
 
-
+        <Image x:Name="background" Grid.RowSpan="3" Grid.ColumnSpan="3" Source="\Resources\Images\Map\blue_background.png"/>
         <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3">
             <renderer:Display x:Name="display"/>
         </Grid>
-
+        
         <Label Content="{Binding CanSend}" Grid.Column="1" Grid.Row="0" Foreground="Red" FontSize="50" Background="White"></Label>
         
         <Button Grid.Column="1" Grid.Row="2" Content="Add Unit" FontSize="50" Command="{Binding AddUnitCommand}"></Button>
