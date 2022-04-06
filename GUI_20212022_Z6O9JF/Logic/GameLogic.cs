@@ -73,28 +73,25 @@ namespace GUI_20212022_Z6O9JF.Logic
                     item.Objects.Clear();
                 }
                 //System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
-                if (Players.Count>0)
+                foreach (var player in Players.ToList())
                 {
-                    foreach (var player in Players.ToList())
+                    if (player != null)
                     {
-                        if (player != null)
+                        foreach (var item in player.Units.ToList())
                         {
-                            foreach (var item in player.Units.ToList())
-                            {
-                                GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
-                                GameMap[item.Position[0], item.Position[1]].OwnerId = ClientID;
-                            }
-                            foreach (var item in player.Villages.ToList())
-                            {
-                                GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
-                                GameMap[item.Position[0], item.Position[1]].OwnerId = ClientID;
-                            }
-                            if (player.Hero != null)
-                            {
-                                var item = player.Hero;
-                                GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
-                                GameMap[item.Position[0], item.Position[1]].OwnerId = ClientID;
-                            }
+                            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                            GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
+                        }
+                        foreach (var item in player.Villages.ToList())
+                        {
+                            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                            GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
+                        }
+                        if (player.Hero != null)
+                        {
+                            var item = player.Hero;
+                            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                            GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
                     }
                 }
