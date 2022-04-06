@@ -45,7 +45,7 @@ namespace SocketClient
                 MySocket.Dispose();
             }
         }
-        public void DataSend(object vs, int packetSpeed = 50)
+        public void DataSend(object vs, int packetSpeed = 500)
         {
             string json = JsonConvert.SerializeObject(vs);
             MySocket.Send(Encoding.ASCII.GetBytes(json));

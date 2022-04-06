@@ -12,7 +12,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 {
     public class ServerViewModel : ObservableRecipient
     {
-        public IClientLogic clientLogic;
+        public IClientLogic clientLogic { get; set; }
         public ICommand BackCommand { get; set; }
         public ICommand StartCommand { get; set; }
         public ICommand LoadCommand { get; set; }

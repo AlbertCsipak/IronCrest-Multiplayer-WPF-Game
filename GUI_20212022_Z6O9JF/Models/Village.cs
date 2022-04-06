@@ -4,8 +4,12 @@
     public class Village
     {
         public string Name { get; set; }
-        public int[,] Position { get; set; }
+        public int[] Position { get; set; }
         public int Level { get; set; }
         public VillageType VillageType { get; set; }
+        public Village()
+        {
+            Position = new int[2];
+        }
     }
 }

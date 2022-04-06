@@ -6,7 +6,6 @@ namespace GUI_20212022_Z6O9JF.Logic
     {
         bool CanSend { get; set; }
         int ClientId { get; set; }
-        IGameLogic gameLogic { get; set; }
         object View { get; set; }
 
         void ChampSelect(Faction faction, string name = "Anon");

@@ -17,6 +17,7 @@ namespace GUI_20212022_Z6O9JF
                 new ServiceCollection()
                 .AddSingleton<IGameLogic, GameLogic>()
                 .AddSingleton<IClientLogic, ClientLogic>()
+                .AddSingleton<IControlLogic, ControlLogic>()
                 .AddSingleton<IMessenger>(WeakReferenceMessenger.Default)
                 .BuildServiceProvider()
             );

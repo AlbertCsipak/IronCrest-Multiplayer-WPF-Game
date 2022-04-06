@@ -8,6 +8,8 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public class GameLogic : IGameLogic
     {
+        public int ClientID { get; set; }
+        public HexagonTile SelectedHexagonTile { get; set; }
         public ObservableCollection<Player> Players { get; set; }
         public List<Faction> AvailableFactions { get; set; }
         IMessenger messenger;
@@ -27,7 +29,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         public HexagonTile[,] GameMapSetup(string path)
         {
             string[] lines = File.ReadAllLines(path);
-            ;
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
 
             for (int i = 0; i < map.GetLength(0); i++)
@@ -35,6 +36,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                 for (int j = 0; j < map.GetLength(1); j++)
                 {
                     map[i, j] = new HexagonTile();
+                    map[i, j].Position[0] = i;
+                    map[i, j].Position[1] = j;
                     switch (lines[i + 2][j])
                     {
                         case 'm':
@@ -58,6 +61,61 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
             }
             return map;
+        }
+        public void HexagonObjects()
+        {
+            if (GameMap != null)
+            {
+                foreach (var player in Players)
+                {
+                    foreach (var item in player.Units)
+                    {
+                        if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
+                        {
+                            GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
+                        }
+                        GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                    }
+                    foreach (var item in player.Villages)
+                    {
+                        if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
+                        {
+                            GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
+                        }
+                        GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                    }
+                    if (player.Hero != null)
+                    {
+                        var item = player.Hero;
+                        if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
+                        {
+                            GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
+                        }
+                        GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                    }
+                }
+            }
+
+        }
+        public void AddUnit()
+        {
+            if (SelectedHexagonTile != null)
+            {
+                foreach (var item in Players)
+                {
+                    if (item.PlayerID == ClientID)
+                    {
+                        Unit newUnit = new Unit();
+                        newUnit.UnitType = UnitType.Viking;
+                        newUnit.Position = SelectedHexagonTile.Position;
+                        newUnit.Name = "Barni";
+                        ;
+                        SelectedHexagonTile.Objects.Add(newUnit);
+                        item.Units.Add(newUnit);
+                        ;
+                    }
+                }
+            }
         }
     }
 }

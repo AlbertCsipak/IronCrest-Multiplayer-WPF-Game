@@ -8,8 +8,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 {
     public class MainViewModel : ObservableRecipient
     {
-        public IGameLogic gameLogic;
-        public IClientLogic clientLogic;
+        public IGameLogic gameLogic { get; set; }
+        public IClientLogic clientLogic { get; set; }
         public object View
         {
             get { return clientLogic.View; }

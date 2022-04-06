@@ -15,13 +15,13 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public class ClientLogic : IClientLogic
     {
-        public IGameLogic gameLogic { get; set; }
+        IGameLogic gameLogic;
+        IMessenger messenger;
         public object View { get; set; }
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
 
         SocketClient.SocketClient socketClient;
-        IMessenger messenger;
         public ClientLogic(IMessenger messenger, IGameLogic gameLogic)
         {
             this.messenger = messenger;
@@ -35,6 +35,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (socketClient.MySocket != null)
             {
                 ClientId = socketClient.ClientId;
+                gameLogic.ClientID = ClientId;
                 gameLogic.Map = socketClient.Map;
 
                 Task Send = new Task(() =>
@@ -77,6 +78,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 {
                                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
                                 }
+                                gameLogic.HexagonObjects();
                             }
                         }
                     }
@@ -124,22 +126,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Name = name,
                         Faction = faction,
                         Moves = 2,
-                        ArmyPower = 0,
-                        BattlesWon = 0,
-                        Popularity = 0,
-                        GoldMine = false,
-                        Heroes = new List<Hero>(),
                         Quests = new List<Quest>(),
                         Units = new List<Unit>(),
                         Villages = new List<Village>(),
-                        Food = 0,
-                        Gold = 0,
-                        Stone = 0,
-                        Wood = 0
                     });
                 }
                 ChangeView("game");
-                System.Threading.Thread.Sleep(600);
+                System.Threading.Thread.Sleep(1000);
                 socketClient.Skip();
             }
         }
@@ -149,7 +142,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             server.FileName = "SocketServer.exe";
             server.Arguments = $" {ip} {clients} {port} {map} {turnLength} {bufferSize}";
             Process.Start(server);
-            ChangeView("menu");
+            ClientConnect(ip);
         }
         public void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
         {

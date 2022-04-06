@@ -11,24 +11,35 @@ namespace GUI_20212022_Z6O9JF.Renderer
 {
     public class Display : FrameworkElement
     {
+        IClientLogic clientLogic;
         IGameLogic gameLogic;
+        IControlLogic controlLogic;
         Size size;
         Grid grid;
         double[,][] HexagonPoints;
-        public void LogicSetup(IGameLogic gameLogic, Grid grid)
+        bool sizeChanged;
+        public Display()
+        {
+
+        }
+        public void LogicSetup(IClientLogic clientLogic, IGameLogic gameLogic, IControlLogic controlLogic, Grid grid)
         {
             this.grid = grid;
+            this.clientLogic = clientLogic;
             this.gameLogic = gameLogic;
+            this.controlLogic = controlLogic;
             HexagonPoints = new double[gameLogic.GameMap.GetLength(0), gameLogic.GameMap.GetLength(1)][];
+            sizeChanged = true;
         }
         public void Resize(Size size)
         {
             this.size = size;
             GetCoordinates();
+            InvalidateVisual();
+            sizeChanged = true;
         }
         public void GetCoordinates()
         {
-
             double rectHeight = size.Height / HexagonPoints.GetLength(0);
             double rectWidth = size.Width / HexagonPoints.GetLength(1);
 
@@ -93,73 +104,44 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 default:
                                     break;
                             }
+                            if (sizeChanged)
+                            {
 
-                            Polygon polygon = new Polygon();
-                            PointCollection points = new PointCollection();
+                                Polygon polygon = new Polygon();
+                                PointCollection points = new PointCollection();
 
-                            points.Add(new Point(HexagonPoints[i, j][1] - width / 1.5, HexagonPoints[i, j][0]));
-                            points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] - height / 2));
-                            points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] - height / 2));
-                            points.Add(new Point(HexagonPoints[i, j][1] + width / 1.5, HexagonPoints[i, j][0]));
-                            points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] + height / 2));
-                            points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] + height / 2));
+                                points.Add(new Point(HexagonPoints[i, j][1] - width / 1.5, HexagonPoints[i, j][0]));
+                                points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] - height / 2));
+                                points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] - height / 2));
+                                points.Add(new Point(HexagonPoints[i, j][1] + width / 1.5, HexagonPoints[i, j][0]));
+                                points.Add(new Point(HexagonPoints[i, j][1] + width / 3, HexagonPoints[i, j][0] + height / 2));
+                                points.Add(new Point(HexagonPoints[i, j][1] - width / 3, HexagonPoints[i, j][0] + height / 2));
 
-                            polygon.Points = points;
+                                polygon.Points = points;
 
-                            polygon.AllowDrop = true;
-                            polygon.Stroke = Brushes.Transparent;
-                            polygon.Fill = Brushes.Transparent;
-                            polygon.StrokeThickness = 3;
-                            polygon.IsManipulationEnabled = true;
-                            polygon.Tag = gameLogic.GameMap[i, j];
+                                polygon.AllowDrop = true;
+                                polygon.Stroke = Brushes.Transparent;
+                                polygon.Fill = Brushes.Transparent;
+                                polygon.StrokeThickness = 3;
+                                polygon.IsManipulationEnabled = true;
+                                polygon.Tag = gameLogic.GameMap[i, j];
 
-                            polygon.MouseLeftButtonDown += Polygon_MouseLeftButtonDown;
-                            polygon.MouseEnter += Polygon_MouseEnter;
-                            polygon.MouseLeave += Polygon_MouseLeave;
-                            polygon.MouseRightButtonDown += Polygon_MouseRightButtonDown;
+                                polygon.MouseLeftButtonDown += controlLogic.Polygon_MouseLeftButtonDown;
+                                polygon.MouseEnter += controlLogic.Polygon_MouseEnter;
+                                polygon.MouseLeave += controlLogic.Polygon_MouseLeave;
+                                polygon.MouseRightButtonDown += controlLogic.Polygon_MouseRightButtonDown;
 
-                            grid.Children.Add(polygon);
+                                grid.Children.Add(polygon);
+                            }
+
+                            foreach (var item in gameLogic.GameMap[i, j].Objects)
+                            {
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/bjorn.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                            }
                         }
                     }
                 }
-            }
-        }
-
-        private void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Polygon polygon = (sender as Polygon);
-            if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
-            {
-                polygon.ReleaseMouseCapture();
-            }
-        }
-
-        private void Polygon_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            Polygon polygon = (sender as Polygon);
-            if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
-            {
-                polygon.Stroke = Brushes.Transparent;
-            }
-        }
-
-
-        private void Polygon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            Polygon polygon = (sender as Polygon);
-            if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
-            {
-                polygon.Stroke = Brushes.Turquoise;
-            }
-        }
-
-        private void Polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            Polygon polygon = (sender as Polygon);
-            if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
-            {
-                polygon.CaptureMouse();
-                polygon.Stroke = Brushes.Red;
+                sizeChanged = false;
             }
         }
     }

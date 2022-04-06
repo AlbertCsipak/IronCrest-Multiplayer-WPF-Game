@@ -5,7 +5,12 @@
     {
         public string Name { get; set; }
         public int Damage { get; set; }
-        public int[,] Position { get; set; }
+        public int[] Position { get; set; }
         public HeroType HeroType { get; set; }
+        public Hero()
+        {
+            Position = new int[2];
+        }
     }
+
 }

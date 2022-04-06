@@ -7,10 +7,12 @@ namespace GUI_20212022_Z6O9JF.Models
     public class HexagonTile
     {
         public FieldType FieldType { get; set; }
+        public int[] Position { get; set; }
         public ObservableCollection<object> Objects { get; set; }
         public HexagonTile()
         {
-
+            Objects = new ObservableCollection<object>();
+            Position = new int[2];
         }
     }
 }

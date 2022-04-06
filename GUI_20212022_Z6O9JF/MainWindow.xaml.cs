@@ -36,11 +36,11 @@ namespace GUI_20212022_Z6O9JF
 
             background_ambient.Open(new Uri("Resources/Music/ambient.mp3", UriKind.RelativeOrAbsolute));
             background_ambient.Volume = 0.025;
-            background_ambient.Play();
+            //background_ambient.Play();
             background_ambient.MediaEnded += Background_ambient_MediaEnded;
 
             background_music.Open(new Uri("Resources/Music/Lannister_music.mp3", UriKind.RelativeOrAbsolute));
-            background_music.Play();
+            //background_music.Play();
             background_music.MediaEnded += Background_music_MediaEnded;
 
         }
