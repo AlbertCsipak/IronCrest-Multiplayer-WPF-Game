@@ -44,7 +44,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         if (CanSend)
                         {
-                            socketClient.DataSend(gameLogic.Players, packetSpeed: 100);
+                            socketClient.DataSend(gameLogic.Players, packetSpeed: 500);
                         }
                     }
                 }, TaskCreationOptions.LongRunning);
@@ -79,14 +79,22 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 {
                                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
                                 }
-                                gameLogic.HexagonObjects();
                             }
                         }
                     }
                 }, TaskCreationOptions.LongRunning);
 
+                Task Update = new Task(() => {
+                    while (socketClient.MySocket.Connected)
+                    {
+                        gameLogic.HexagonObjects();
+                        System.Threading.Thread.Sleep(100);
+                    }
+                },TaskCreationOptions.LongRunning);
+
                 Send.Start();
                 Receive.Start();
+                Update.Start();
                 ChangeView("lobby");
             }
         }
