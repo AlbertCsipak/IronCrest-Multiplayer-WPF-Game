@@ -20,7 +20,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                if (SelectedPolygon != null)
+                if (SelectedPolygon != null && SelectedPolygon != polygon)
                 {
                     if (gameLogic.SelectedHexagonTile.Objects.Count > 0)
                     {
@@ -31,6 +31,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 gameLogic.SelectedHexagonTile.Objects.Remove(item);
                                 item.Move((polygon.Tag as HexagonTile).Position);
                                 (polygon.Tag as HexagonTile).Objects.Add(item);
+                                SelectedPolygon.Stroke = Brushes.Transparent;
+                                SelectedPolygon = null;
                             }
                         }
                     }

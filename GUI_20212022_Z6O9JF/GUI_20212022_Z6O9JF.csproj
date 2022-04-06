@@ -131,9 +131,6 @@
     <Content Include="Resources\Images\Map\red_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\tom and jerry images (1).png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Images\Map\water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
