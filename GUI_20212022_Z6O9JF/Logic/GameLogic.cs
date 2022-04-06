@@ -72,30 +72,33 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     foreach (var player in Players.ToList())
                     {
-                        foreach (var item in player.Units.ToList())
+                        if (player != null)
                         {
-                            if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
+                            foreach (var item in player.Units.ToList())
                             {
-                                GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
+                                if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
+                                {
+                                    GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
+                                }
+                                GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             }
-                            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
-                        }
-                        foreach (var item in player.Villages.ToList())
-                        {
-                            if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
+                            foreach (var item in player.Villages.ToList())
                             {
-                                GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
+                                if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
+                                {
+                                    GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
+                                }
+                                GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             }
-                            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
-                        }
-                        if (player.Hero != null)
-                        {
-                            var item = player.Hero;
-                            if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
+                            if (player.Hero != null)
                             {
-                                GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
+                                var item = player.Hero;
+                                if (GameMap[item.Position[0], item.Position[1]].Objects.Contains(item))
+                                {
+                                    GameMap[item.Position[0], item.Position[1]].Objects.Remove(item);
+                                }
+                                GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             }
-                            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                         }
                     }
                 }
