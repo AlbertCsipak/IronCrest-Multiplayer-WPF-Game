@@ -41,7 +41,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
             Name = "Anon";
 
-            GameCommand = new RelayCommand(() => clientLogic.ChampSelect(SelectedFaction, Name));
+            GameCommand = new RelayCommand(() => { clientLogic.ChampSelect(SelectedFaction, Name); index = 0; });
             NextFaction = new RelayCommand(() =>
             {
                 if (gameLogic.AvailableFactions.Count - 1 > index)
