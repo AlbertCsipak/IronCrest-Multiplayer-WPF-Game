@@ -25,9 +25,11 @@
     <None Remove="Resources\Images\Map\black_village_lvl1.png" />
     <None Remove="Resources\Images\Map\black_village_lvl2.png" />
     <None Remove="Resources\Images\Map\black_village_lvl3.png" />
+    <None Remove="Resources\Images\Map\blue_background.png" />
     <None Remove="Resources\Images\Map\blue_village_lvl1.png" />
     <None Remove="Resources\Images\Map\blue_village_lvl2.png" />
     <None Remove="Resources\Images\Map\blue_village_lvl3.png" />
+    <None Remove="Resources\Images\Map\brown_background.png" />
     <None Remove="Resources\Images\Map\field.png" />
     <None Remove="Resources\Images\Map\food.png" />
     <None Remove="Resources\Images\Map\mountain.png" />
@@ -103,6 +105,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\blue_village_lvl3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Map\brown_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\field.png">
@@ -295,6 +300,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\slkscr.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Images\Map\blue_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
