@@ -3,6 +3,7 @@
     public enum UnitType { Viking, Crusader, Mongolian, Arabian }
     public class Unit :IGameItem
     {
+        public int OwnerId { get; set; }
         public static int ID { get; set; }
         public string Name { get; set; }
         public int[] Position { get; set; }

@@ -3,6 +3,7 @@
     public enum VillageType { Viking, Crusader, Mongolian, Arabian }
     public class Village : IGameItem
     {
+        public int OwnerId { get; set; }
         public string Name { get; set; }
         public int[] Position { get; set; }
         public int Level { get; set; }
