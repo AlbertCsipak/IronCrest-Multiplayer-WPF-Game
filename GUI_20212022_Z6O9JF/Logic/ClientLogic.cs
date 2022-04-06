@@ -75,9 +75,16 @@ namespace GUI_20212022_Z6O9JF.Logic
                             else
                             {
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
-                                foreach (var item in JsonConvert.DeserializeObject<ObservableCollection<Player>>(message))
+                                try
                                 {
-                                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
+                                    foreach (var item in JsonConvert.DeserializeObject<ObservableCollection<Player>>(message))
+                                    {
+                                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
+                                    }
+                                }
+                                catch (Exception)
+                                {
+
                                 }
                             }
                         }
@@ -88,7 +95,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     while (socketClient.MySocket.Connected)
                     {
                         gameLogic.HexagonObjects();
-                        System.Threading.Thread.Sleep(100);
+                        System.Threading.Thread.Sleep(500);
                     }
                 },TaskCreationOptions.LongRunning);
 
