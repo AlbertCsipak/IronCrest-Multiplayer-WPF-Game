@@ -1,0 +1,8 @@
+Build 3 villages.;false
+Reach lvl 15 army power.;false
+Reach lvl 12 popularity.;false
+Win 3 battles.;false
+Own 2 heroes.;false
+Have 20 golds.;false
+Have at least one lvl 3 village.;false
+Have 7 units.;false
