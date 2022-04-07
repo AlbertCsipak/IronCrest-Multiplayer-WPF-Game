@@ -28,7 +28,7 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label Content="Number of quests to win" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
             <ComboBox ItemsSource="{Binding NumberOfQuests}" SelectedItem="{Binding Quest}"  Height="50" Width="300" FontSize="30" 
-                      FontFamily="Poor Richard"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#79524a">
+                      FontFamily="Poor Richard"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
@@ -39,11 +39,11 @@
         <StackPanel Grid.Row="3" Grid.Column="1">
             <Label Content="Players" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
             <ComboBox ItemsSource="{Binding Clients}" SelectedItem="{Binding ClientNumber}" Height="50" Width="300" FontSize="30" 
-                      FontFamily="Poor Richard" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></ComboBox>
+                      FontFamily="Poor Richard"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1">
             <Label Content="IP" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
-            <TextBox Text="{Binding IP}" Height="50" Width="300" FontSize="30" 
+            <TextBox Text="{Binding IP}" Height="50" Width="300" FontSize="30"  Background="#65424b" Foreground="White"
                      FontFamily="Poor Richard"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
         </StackPanel>
         <StackPanel Grid.Row="5" Grid.Column="1">
