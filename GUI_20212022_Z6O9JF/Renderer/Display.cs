@@ -19,6 +19,8 @@ namespace GUI_20212022_Z6O9JF.Renderer
         Grid grid;
         double[,][] HexagonPoints;
         bool sizeChanged;
+        int gif;
+        static Random random;
         public Display()
         {
 
@@ -81,14 +83,21 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             rect.Location = new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1);
                             rect.Width = width * 1.3;
                             rect.Height = height * 1.1;
-
+                            random = new Random();
                             switch (gameLogic.GameMap[i, j].FieldType)
                             {
                                 case FieldType.field:
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
                                 case FieldType.water:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                    if (gif<30)
+                                    {
+                                        drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                    }
+                                    else
+                                    {
+                                        drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water2.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                    }
                                     break;
                                 case FieldType.village:
                                     drawingContext.DrawRectangle(Brushes.Green, new Pen(Brushes.Black, 1), rect);
@@ -105,6 +114,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 default:
                                     break;
                             }
+
                             if (sizeChanged)
                             {
                                 Polygon polygon = new Polygon();
@@ -152,12 +162,17 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         }
                     }
                 }
+                gif++;
+                if (gif > 60)
+                {
+                    gif = 0;
+                }
                 sizeChanged = false;
             }
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_bottom.png", UriKind.RelativeOrAbsolute)), new Rect(0, size.Height-200, size.Width, 200));
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_up.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width, 300));
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_left.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, 200, size.Height));
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_right.png", UriKind.RelativeOrAbsolute)), new Rect(size.Width-200, 0, 200, size.Height));
+            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_bottom.png", UriKind.RelativeOrAbsolute)), new Rect(0, size.Height, size.Width, 100));
+            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_up.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width, 100));
+            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_left.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, 100, size.Height));
+            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_right.png", UriKind.RelativeOrAbsolute)), new Rect(size.Width-200, 0, 100, size.Height));
 
         }
     }
