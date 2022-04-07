@@ -14,16 +14,31 @@ namespace GUI_20212022_Z6O9JF.Logic
         public ObservableCollection<Player> Players { get; set; }
         public List<Faction> AvailableFactions { get; set; }
         IMessenger messenger;
+        public bool IsNewGame { get; set; }
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
             this.Players = new ObservableCollection<Player>();
 
             AvailableFactions = new List<Faction>();
-            AvailableFactions.Add(Faction.Viking);
-            AvailableFactions.Add(Faction.Crusader);
-            AvailableFactions.Add(Faction.Arabian);
-            AvailableFactions.Add(Faction.Mongolian);
+            IsNewGame = true;
+        }
+        public void SelectableFactions()
+        {
+            if (IsNewGame)
+            {
+                AvailableFactions.Add(Faction.Viking);
+                AvailableFactions.Add(Faction.Crusader);
+                AvailableFactions.Add(Faction.Arabian);
+                AvailableFactions.Add(Faction.Mongolian);
+            }
+            else
+            {
+                foreach (var item in Players)
+                {
+                    AvailableFactions.Add(item.Faction);
+                }
+            }
         }
         public string Map { get; set; }
         public HexagonTile[,] GameMap { get; set; }

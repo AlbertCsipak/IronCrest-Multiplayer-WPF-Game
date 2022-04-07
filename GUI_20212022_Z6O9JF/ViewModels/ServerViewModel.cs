@@ -82,7 +82,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 }
                 else
                 {
+                    ;
                     string save = File.ReadAllText($"Resources/Saves/{SaveGame}.txt");
+                    ;
                     clientLogic.LoadGame(save: save, turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP);
                 }
             });

@@ -20,7 +20,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         public object View { get; set; }
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
-
         SocketClient.SocketClient socketClient;
         public ClientLogic(IMessenger messenger, IGameLogic gameLogic)
         {
@@ -162,7 +161,11 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
         {
+            ;
             gameLogic.Players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(save.Split('@')[0]);
+            gameLogic.IsNewGame = false;
+            gameLogic.SelectableFactions();
+            ;
             StartServer(turnLength: turnLength, clients: gameLogic.Players.Count, map: save.Split('@')[1], ip: ip);
         }
     }
