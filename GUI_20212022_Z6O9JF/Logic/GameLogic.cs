@@ -117,5 +117,25 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
             }
         }
+        public void AddVilage()
+        {
+            if (SelectedHexagonTile != null)
+            {
+                foreach (var item in Players)
+                {
+                    if (item.PlayerID == ClientID)
+                    {
+                        Village newVillage = new Village();
+                        newVillage.Position = SelectedHexagonTile.Position;
+                        newVillage.Level = 1;
+                        newVillage.VillageType = VillageType.Viking;
+                        newVillage.OwnerId = ClientID;
+                        SelectedHexagonTile.Objects.Add(newVillage);
+                        SelectedHexagonTile.OwnerId = ClientID;
+                        item.Villages.Add(newVillage);
+                    }
+                }
+            }
+        }
     }
 }

@@ -136,7 +136,18 @@ namespace GUI_20212022_Z6O9JF.Renderer
 
                             foreach (var item in gameLogic.GameMap[i, j].Objects.ToList())
                             {
-                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/bjorn.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                if (item is Village)
+                                {
+                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/blue_village_lvl1.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                }
+                            }
+
+                            foreach (var item in gameLogic.GameMap[i, j].Objects.ToList())
+                            {
+                                if (item is Unit)
+                                {
+                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/bjorn.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                }
                             }
                         }
                     }

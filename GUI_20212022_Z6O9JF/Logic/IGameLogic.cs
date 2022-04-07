@@ -14,6 +14,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         HexagonTile SelectedHexagonTile { get; set; }
 
         void AddUnit();
+        void AddVilage();
         HexagonTile[,] GameMapSetup(string path);
         void HexagonObjects();
     }

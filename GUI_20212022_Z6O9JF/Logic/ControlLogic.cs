@@ -81,8 +81,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     polygon.Stroke = Brushes.Red;
                     SelectedPolygon = polygon;
                     gameLogic.SelectedHexagonTile = (SelectedPolygon.Tag as HexagonTile);
-                }
-                
+                } 
             }
         }
     }

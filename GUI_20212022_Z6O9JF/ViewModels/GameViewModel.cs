@@ -14,6 +14,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand AddUnitCommand { get; set; }
+        public ICommand AddVillageCommand { get; set; }
         public bool CanSend { get { return clientLogic.CanSend; } }
         public static bool IsInDesignMode
         {
@@ -41,6 +42,13 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 if (clientLogic.CanSend)
                 {
                     gameLogic.AddUnit();
+                }
+            });
+            AddVillageCommand = new RelayCommand(() =>
+            {
+                if (clientLogic.CanSend)
+                {
+                    gameLogic.AddVilage();
                 }
             });
 
