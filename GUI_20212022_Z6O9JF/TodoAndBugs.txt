@@ -1,5 +1,6 @@
-Bugs:
-R�l�psz egy enemy village re �s kifagy
+﻿Bugs:
+- Rálépsz egy enemy village re és kifagy
+- a faction selector folyton visszaugrik a vikingre, (1 játékosnál)
 
 
 
@@ -17,7 +18,16 @@ R�l�psz egy enemy village re �s kifagy
 
 
 Todo:
-
+- button animáció (skip,back,exit)
+- mozogni csak szomszédos hexagonra lehessen
+- game UC-n bebindollni a nyersanyagokat, és a küldetéseket
+- combox lenyitásakor a szöveg legyen középen
+- random küldetések kiosztása a game elején
+- random mystory eventek megírása
+- harcrendszer
+- kereskedelmi pontok (iránytűk)
+- game screen brightness/saturation/hue levétele
+- splash screen (EXTRA FEATURE, majd a végén)
 
 
 
