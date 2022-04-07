@@ -3,7 +3,7 @@
 namespace GUI_20212022_Z6O9JF.Models
 {
 
-    public enum FieldType { field, water, village, hill, forest, wheat }
+    public enum FieldType { field, water, village, hill, forest, wheat, goldMine }
     public class HexagonTile
     {
         public int OwnerId { get; set; }

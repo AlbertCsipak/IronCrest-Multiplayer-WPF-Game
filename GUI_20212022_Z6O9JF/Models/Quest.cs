@@ -8,9 +8,9 @@
         {
 
         }
-        public bool QuestDone(int crit)
+        public bool QuestDone(int count, int crit)
         {
-            if (crit > 100)
+            if (count >= crit)
             {
                 return true;
             }

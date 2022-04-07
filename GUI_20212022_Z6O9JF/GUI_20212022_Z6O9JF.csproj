@@ -37,6 +37,7 @@
     <None Remove="Resources\Images\Map\cloud_up.png" />
     <None Remove="Resources\Images\Map\field.png" />
     <None Remove="Resources\Images\Map\food.png" />
+    <None Remove="Resources\Images\Map\gold_mine.png" />
     <None Remove="Resources\Images\Map\mountain.png" />
     <None Remove="Resources\Images\Map\mountain_brown.png" />
     <None Remove="Resources\Images\Map\mountain_water.png" />
@@ -141,6 +142,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\food.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Map\gold_mine.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\mountain.png">

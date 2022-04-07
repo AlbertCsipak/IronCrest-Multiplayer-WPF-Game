@@ -70,6 +70,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                         case 'b':
                             map[i, j].FieldType = FieldType.wheat;
                             break;
+                        case 'A':
+                            map[i, j].FieldType = FieldType.goldMine;
+                            break;
                         default:
                             break;
                     }
