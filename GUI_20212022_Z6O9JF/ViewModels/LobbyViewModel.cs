@@ -41,7 +41,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
             gameLogic.SelectableFactions();
 
-            Name = "Anon";
+            Name = "";
 
             GameCommand = new RelayCommand(() => { clientLogic.ChampSelect(SelectedFaction, Name); index = 0; });
             NextFaction = new RelayCommand(() =>
