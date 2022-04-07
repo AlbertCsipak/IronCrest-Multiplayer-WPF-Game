@@ -28,13 +28,13 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label Content="Number of quests to win" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
             <ComboBox ItemsSource="{Binding NumberOfQuests}" SelectedItem="{Binding Quest}"  Height="50" Width="300" FontSize="30" 
-                      FontFamily="Poor Richard"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                      FontFamily="Poor Richard">
             </ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
             <Label Content="Map" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
             <ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding Map}" Height="50" Width="300" FontSize="30" 
-                      FontFamily="Poor Richard"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></ComboBox>
+                      FontFamily="Poor Richard"></ComboBox>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
             <Label Content="Players" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
@@ -49,7 +49,7 @@
         <StackPanel Grid.Row="5" Grid.Column="1">
             <Label Content="SavedGames" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
             <ComboBox ItemsSource="{Binding SaveGames}" SelectedItem="{Binding SaveGame}" Height="50" Width="300" FontSize="30" 
-                      FontFamily="Poor Richard" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></ComboBox>
+                      FontFamily="Poor Richard"></ComboBox>
         </StackPanel>
 
         <Button x:Name="btn_create_game" Style="{DynamicResource button_text_style}" Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"

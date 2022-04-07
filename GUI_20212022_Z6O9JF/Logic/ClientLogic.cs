@@ -124,7 +124,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             messenger.Send("ViewChanged", "Base");
         }
-        public void ChampSelect(Faction faction, string name = "Anon")
+        public void ChampSelect(Faction faction, string name)
         {
             if (CanSend)
             {
