@@ -143,6 +143,11 @@ namespace GUI_20212022_Z6O9JF.Renderer
                 }
                 sizeChanged = false;
             }
+            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_bottom.png", UriKind.RelativeOrAbsolute)), new Rect(0, size.Height-200, size.Width, 200));
+            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_up.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width, 300));
+            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_left.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, 200, size.Height));
+            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_right.png", UriKind.RelativeOrAbsolute)), new Rect(size.Width-200, 0, 200, size.Height));
+
         }
     }
 }
