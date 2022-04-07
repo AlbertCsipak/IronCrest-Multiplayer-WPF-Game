@@ -16,13 +16,13 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand BackCommand { get; set; }
         public ICommand StartCommand { get; set; }
         public ICommand LoadCommand { get; set; }
-        public List<int> TurnLengths { get; set; }
+        public List<int> NumberOfQuests { get; set; }
         public List<int> Clients { get; set; }
         public List<string> Maps { get; set; }
         public List<string> SaveGames { get; set; }
         public string IP { get; set; }
         public int ClientNumber { get; set; }
-        public int TurnLength { get; set; }
+        public int Quest { get; set; }
         public string Map { get; set; }
         public string SaveGame { get; set; }
         public static bool IsInDesignMode
@@ -42,7 +42,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             this.clientLogic = clientLogic;
 
-            TurnLengths = new List<int>();
+            NumberOfQuests = new List<int>();
             Clients = new List<int>();
             Maps = new List<string>();
             SaveGames = new List<string>();
@@ -52,10 +52,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 SaveGames.Add(item.Split('\\')[1].Split('.')[0]);
             }
 
-            TurnLengths.Add(30);
-            TurnLengths.Add(45);
-            TurnLengths.Add(60);
-            TurnLengths.Add(90);
+            NumberOfQuests.Add(2);
+            NumberOfQuests.Add(3);
+            NumberOfQuests.Add(4);
+            NumberOfQuests.Add(5);
 
             Clients.Add(1);
             Clients.Add(2);
@@ -69,7 +69,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             IP = "127.0.0.1";
             SaveGame = "NewGame";
             ClientNumber = Clients[1];
-            TurnLength = TurnLengths[2];
+            Quest = NumberOfQuests[1];
             Map = Maps[0];
 
             BackCommand = new RelayCommand(() => clientLogic.ChangeView("menu"));
@@ -78,14 +78,14 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
                 if (SaveGame.Equals("NewGame"))
                 {
-                    clientLogic.StartServer(turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP);
+                    clientLogic.StartServer(turnLength: Quest, clients: ClientNumber, map: Map, ip: IP);
                 }
                 else
                 {
                     ;
                     string save = File.ReadAllText($"Resources/Saves/{SaveGame}.txt");
                     ;
-                    clientLogic.LoadGame(save: save, turnLength: TurnLength, clients: ClientNumber, map: Map, ip: IP);
+                    clientLogic.LoadGame(save: save, turnLength: Quest, clients: ClientNumber, map: Map, ip: IP);
                 }
             });
         }

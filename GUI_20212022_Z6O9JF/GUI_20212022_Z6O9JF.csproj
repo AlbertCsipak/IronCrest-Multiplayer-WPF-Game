@@ -53,6 +53,7 @@
     <None Remove="Resources\Images\Map\yellow_village_lvl3.png" />
     <None Remove="Resources\Images\Menu\arrow_left.png" />
     <None Remove="Resources\Images\Menu\arrow_right.png" />
+    <None Remove="Resources\Images\Menu\board.png" />
     <None Remove="Resources\Images\Menu\frame_trans_1.png" />
     <None Remove="Resources\Images\Menu\goldmine_background.png" />
     <None Remove="Resources\Images\Menu\main_background.gif" />
@@ -179,6 +180,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\yellow_village_lvl3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\board.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\scroll.png">
