@@ -153,7 +153,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 4096)
         {
-            gameLogic.SelectableFactions();
             ProcessStartInfo server = new ProcessStartInfo();
             server.FileName = "SocketServer.exe";
             server.Arguments = $" {ip} {clients} {port} {map} {turnLength} {bufferSize}";
@@ -163,7 +162,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
         {
             gameLogic.Players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(save.Split('@')[0]);
-            gameLogic.IsNewGame = false;
             StartServer(turnLength: turnLength, clients: gameLogic.Players.Count, map: save.Split('@')[1], ip: ip);
         }
     }
