@@ -30,6 +30,11 @@
     <None Remove="Resources\Images\Map\blue_village_lvl2.png" />
     <None Remove="Resources\Images\Map\blue_village_lvl3.png" />
     <None Remove="Resources\Images\Map\brown_background.png" />
+    <None Remove="Resources\Images\Map\cloud2.png" />
+    <None Remove="Resources\Images\Map\cloud_bottom.png" />
+    <None Remove="Resources\Images\Map\cloud_left.png" />
+    <None Remove="Resources\Images\Map\cloud_right.png" />
+    <None Remove="Resources\Images\Map\cloud_up.png" />
     <None Remove="Resources\Images\Map\field.png" />
     <None Remove="Resources\Images\Map\food.png" />
     <None Remove="Resources\Images\Map\mountain.png" />
@@ -51,6 +56,8 @@
     <None Remove="Resources\Images\Menu\main_background.gif" />
     <None Remove="Resources\Images\Menu\ocean.png" />
     <None Remove="Resources\Images\Menu\scroll.png" />
+    <None Remove="Resources\Images\Menu\skip_framed_button_pressed.png" />
+    <None Remove="Resources\Images\Menu\skip_framed_button_unpressed.png" />
     <None Remove="Resources\Images\Menu\water.png" />
     <None Remove="Resources\Images\Menu\yellow_icon_mongolian.png" />
     <None Remove="Resources\Images\Other\back.png" />
@@ -112,6 +119,21 @@
     <Content Include="Resources\Images\Map\brown_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Map\cloud2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Map\cloud_bottom.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Map\cloud_left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Map\cloud_right.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Map\cloud_up.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Map\field.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -152,6 +174,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\scroll.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\skip_framed_button_pressed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\skip_framed_button_unpressed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
