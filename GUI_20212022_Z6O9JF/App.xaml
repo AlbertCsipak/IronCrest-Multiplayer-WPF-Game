@@ -14,14 +14,14 @@
                 </Grid.ColumnDefinitions>
                 <Border
                   x:Name="Border" 
-                  Grid.ColumnSpan="3"
+                  Grid.ColumnSpan="2"
                   CornerRadius="2"
                   Background="#65424b"
                   BorderBrush="#65424b"
                   BorderThickness="1" />
                 <Border 
                   Grid.Column="0"
-                  CornerRadius="3" 
+                  CornerRadius="2" 
                   Margin="1" 
                   Background="#65424b" 
                   BorderBrush="#65424b"
@@ -82,11 +82,11 @@
                             ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                             Margin="3,3,23,3"
                             VerticalAlignment="Center"
-                            HorizontalAlignment="Left" />
+                            HorizontalAlignment="Center" />
                             <TextBox x:Name="PART_EditableTextBox"
                             Style="{x:Null}" 
                             Template="{StaticResource ComboBoxTextBox}" 
-                            HorizontalAlignment="Left" 
+                            HorizontalAlignment="Center" 
                             VerticalAlignment="Center" 
                             Margin="3,3,23,3"
                             Focusable="True" 
@@ -129,7 +129,7 @@
                                 <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
                             </Trigger>
                             <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
-                                <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="0"/>
+                                <Setter TargetName="DropDownBorder" Property="CornerRadius" Value="2"/>
                                 <Setter TargetName="DropDownBorder" Property="Margin" Value="0,2,0,0"/>
                             </Trigger>
                             <Trigger Property="IsEditable"  Value="true">
