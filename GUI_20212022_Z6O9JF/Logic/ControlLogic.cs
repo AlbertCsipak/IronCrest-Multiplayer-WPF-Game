@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Models;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -60,7 +61,26 @@ namespace GUI_20212022_Z6O9JF.Logic
                 if (SelectedPolygon != polygon)
                 {
                     polygon.Stroke = Brushes.White;
+                    
                 }
+            }
+        }
+        public void PolygonBorderBrush(ref Polygon polygon)
+        {
+            switch ((polygon.Tag as HexagonTile).Objects.Select(x => x.FactionType).FirstOrDefault())
+            {
+                case Faction.Arabian:
+                    polygon.Stroke = Brushes.Red;
+                    break;
+                case Faction.Crusader:
+                    polygon.Stroke = Brushes.Black;
+                    break;
+                case Faction.Mongolian:
+                    polygon.Stroke = Brushes.Yellow;
+                    break;
+                case Faction.Viking:
+                    polygon.Stroke = Brushes.Blue;
+                    break;
             }
         }
 
@@ -73,9 +93,22 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     if (SelectedPolygon != null)
                     {
+                        PolygonBorderBrush(ref polygon);
+                        if ((polygon.Tag as HexagonTile).Objects.Count!=0)
+                        {
+                            foreach (var item in (polygon.Tag as HexagonTile).NeighborCoords())
+                            {
+                                //TERV: HIGHLIGHTOLJA EGY HEXAGON 6 SZOMSZÉDJÁT 
+                                Polygon curPol = new Polygon();
+                                if (gameLogic.GameMap[item.X, item.Y].FieldType!=FieldType.water)
+                                {
+                                    PolygonBorderBrush(ref polygon);
+                                }
+                            }
+                        }
                         SelectedPolygon.Stroke = Brushes.Transparent;
                     }
-                    polygon.Stroke = Brushes.Red;
+                    
                     SelectedPolygon = polygon;
                     gameLogic.SelectedHexagonTile = (SelectedPolygon.Tag as HexagonTile);
                 } 

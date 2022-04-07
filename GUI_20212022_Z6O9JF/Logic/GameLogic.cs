@@ -13,7 +13,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         public HexagonTile SelectedHexagonTile { get; set; }
         public ObservableCollection<Player> Players { get; set; }
         public List<Faction> AvailableFactions { get; set; }
+        public string Map { get; set; }
+        public HexagonTile[,] GameMap { get; set; }
         IMessenger messenger;
+
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -39,8 +42,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             messenger.Send("FactionsAdded", "Base");
         }
-        public string Map { get; set; }
-        public HexagonTile[,] GameMap { get; set; }
+        
         public HexagonTile[,] GameMapSetup(string path)
         {
             string[] lines = File.ReadAllLines(path);
@@ -123,7 +125,23 @@ namespace GUI_20212022_Z6O9JF.Logic
                     if (item.PlayerID == ClientID)
                     {
                         Unit newUnit = new Unit();
-                        newUnit.UnitType = UnitType.Viking;
+                        switch (item.Faction)
+                        {
+                            case Faction.Viking:
+                                newUnit.FactionType = Faction.Viking;
+                                break;
+                            case Faction.Crusader:
+                                newUnit.FactionType = Faction.Crusader;
+                                break;
+                            case Faction.Mongolian:
+                                newUnit.FactionType = Faction.Mongolian;
+                                break;
+                            case Faction.Arabian:
+                                newUnit.FactionType = Faction.Arabian;
+                                break;
+                            default:
+                                break;
+                        }
                         newUnit.Position = SelectedHexagonTile.Position;
                         newUnit.Name = "Barni";
                         newUnit.OwnerId = ClientID;
@@ -136,7 +154,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void AddVilage()
         {
-            if (SelectedHexagonTile != null)
+            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType==FieldType.field)
             {
                 foreach (var item in Players)
                 {
@@ -145,7 +163,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Village newVillage = new Village();
                         newVillage.Position = SelectedHexagonTile.Position;
                         newVillage.Level = 1;
-                        newVillage.VillageType = VillageType.Viking;
+                        newVillage.FactionType = Faction.Viking;
                         newVillage.OwnerId = ClientID;
                         SelectedHexagonTile.Objects.Add(newVillage);
                         SelectedHexagonTile.OwnerId = ClientID;
