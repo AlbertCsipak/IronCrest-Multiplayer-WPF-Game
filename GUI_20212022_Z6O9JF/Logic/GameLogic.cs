@@ -32,11 +32,9 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             else
             {
-                ;
                 foreach (var item in Players)
                 {
                     AvailableFactions.Add(item.Faction);
-                    ;
                 }
             }
             messenger.Send("FactionsAdded", "Base");

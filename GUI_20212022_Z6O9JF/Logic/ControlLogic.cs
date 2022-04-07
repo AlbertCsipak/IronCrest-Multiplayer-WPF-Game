@@ -20,22 +20,19 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                if (SelectedPolygon != null && SelectedPolygon != polygon)
+                if (SelectedPolygon != null && SelectedPolygon != polygon && gameLogic.SelectedHexagonTile.Objects.Where(t=>t.CanMove).ToList().Count>0)
                 {
-                    if (gameLogic.SelectedHexagonTile.Objects.Count > 0)
+                    if ((polygon.Tag as HexagonTile).Objects.Where(t=>t.CanMove).ToList().Count == 0)
                     {
-                        foreach (var item in gameLogic.SelectedHexagonTile.Objects.ToList())
+                        foreach (var item in gameLogic.SelectedHexagonTile.Objects.Where(t => t.CanMove).ToList())
                         {
-                            if (item.CanMove)
-                            {
-                                gameLogic.SelectedHexagonTile.Objects.Remove(item);
-                                gameLogic.SelectedHexagonTile.OwnerId = 0;
-                                item.Move((polygon.Tag as HexagonTile).Position);
-                                (polygon.Tag as HexagonTile).Objects.Add(item);
-                                SelectedPolygon.Stroke = Brushes.Transparent;
-                                SelectedPolygon = null;
-                                gameLogic.SelectedHexagonTile = null;
-                            }
+                            gameLogic.SelectedHexagonTile.Objects.Remove(item);
+                            gameLogic.SelectedHexagonTile.OwnerId = 0;
+                            item.Move((polygon.Tag as HexagonTile).Position);
+                            (polygon.Tag as HexagonTile).Objects.Add(item);
+                            SelectedPolygon.Stroke = Brushes.Transparent;
+                            SelectedPolygon = null;
+                            gameLogic.SelectedHexagonTile = null;
                         }
                     }
                 }
