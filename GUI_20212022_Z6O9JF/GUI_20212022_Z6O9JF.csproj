@@ -70,6 +70,7 @@
     <None Remove="Resources\Images\Other\exit.png" />
     <None Remove="Resources\Images\Other\icon.png" />
     <None Remove="Resources\Images\Other\muted.png" />
+    <None Remove="Resources\Images\Other\splash.png" />
     <None Remove="Resources\Images\Other\unmuted.png" />
     <None Remove="Resources\Images\Resources\gold.png" />
     <None Remove="Resources\Images\Resources\heart.png" />
@@ -357,6 +358,12 @@
     <Content Include="Resources\Images\Map\blue_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Resources\Images\Other\splash.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </SplashScreen>
   </ItemGroup>
 
 </Project>
