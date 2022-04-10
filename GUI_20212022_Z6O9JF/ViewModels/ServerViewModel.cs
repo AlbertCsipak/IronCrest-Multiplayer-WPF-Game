@@ -78,14 +78,14 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
                 if (SaveGame.Equals("NewGame"))
                 {
-                    clientLogic.StartServer(turnLength: Quest, clients: ClientNumber, map: Map, ip: IP);
+                    clientLogic.StartServer(turnLength: 120, clients: ClientNumber, map: Map, ip: IP);
                 }
                 else
                 {
                     ;
                     string save = File.ReadAllText($"Resources/Saves/{SaveGame}.txt");
                     ;
-                    clientLogic.LoadGame(save: save, turnLength: Quest, clients: ClientNumber, map: Map, ip: IP);
+                    clientLogic.LoadGame(save: save, turnLength: 120, clients: ClientNumber, map: Map, ip: IP);
                 }
             });
         }
