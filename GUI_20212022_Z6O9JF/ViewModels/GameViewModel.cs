@@ -1,8 +1,11 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,6 +19,13 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand AddUnitCommand { get; set; }
         public ICommand AddVillageCommand { get; set; }
         public bool CanSend { get { return clientLogic.CanSend; } }
+        public int Wood { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Wood).FirstOrDefault(); } }
+        public int Stone { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Stone).FirstOrDefault(); } }
+        public int Food { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Food).FirstOrDefault(); } }
+        public int Gold { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Gold).FirstOrDefault(); } }
+        public int Popularity { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Popularity).FirstOrDefault(); } }
+        public int ArmyPower { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.ArmyPower).FirstOrDefault(); } }
+        public List<Quest> Quests { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).SelectMany(t => t.Quests).ToList(); } }
         public static bool IsInDesignMode
         {
             get
@@ -57,6 +67,13 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             Messenger.Register<GameViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
                 OnPropertyChanged("CanSend");
+                OnPropertyChanged("Wood");
+                OnPropertyChanged("Food");
+                OnPropertyChanged("Stone");
+                OnPropertyChanged("Gold");
+                OnPropertyChanged("Popularity");
+                OnPropertyChanged("ArmyPower");
+                OnPropertyChanged("Quests");
             });
 
         }

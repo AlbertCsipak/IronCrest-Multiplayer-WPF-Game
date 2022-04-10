@@ -33,6 +33,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
             this.controlLogic = controlLogic;
             HexagonPoints = new double[gameLogic.GameMap.GetLength(0), gameLogic.GameMap.GetLength(1)][];
             sizeChanged = true;
+            controlLogic.grid = grid;
         }
         public void Resize(Size size)
         {
@@ -145,6 +146,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 polygon.MouseRightButtonDown += controlLogic.Polygon_MouseRightButtonDown;
 
                                 grid.Children.Add(polygon);
+                                (polygon.Tag as HexagonTile).ParentId = grid.Children.IndexOf(polygon);
                             }
 
                             foreach (var item in gameLogic.GameMap[i, j].Objects.ToList())

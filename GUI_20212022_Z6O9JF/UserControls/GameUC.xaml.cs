@@ -49,7 +49,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
-            //skip_image.Source = new BitmapImage(new Uri("Resources/Images/Menu/skip_framed_button_pressed.png", UriKind.RelativeOrAbsolute));
+            skip_image.Source = new BitmapImage(new Uri("Resources/Images/Menu/skip_framed_button_pressed.png", UriKind.RelativeOrAbsolute));
         }
     }
 }

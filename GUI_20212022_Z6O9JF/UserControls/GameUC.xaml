@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
+             xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:GameViewModel></vm:GameViewModel>
+    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -24,14 +28,14 @@
         <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" >
             <renderer:Display x:Name="display"/>
         </Grid>
-        <ComboBox ItemsSource="{Binding }" Height="60" Width="50" FontSize="30" FontFamily="Poor Richard" Grid.Column="1">
+        <ComboBox ItemsSource="{Binding Quests}" Height="60" Width="50" FontSize="30" FontFamily="Poor Richard" Grid.Column="1">
                         
         </ComboBox>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2" Margin="20">
             <Image Source="\Resources\Images\Resources\heart.png" Width="90" />
-            <TextBlock Text="2" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" TextAlignment="Center"/>
+            <Label Content="{Binding Popularity}" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             <Image Source="\Resources\Images\Resources\sword.png" Width="100"/>
-            <TextBlock Text="4" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" TextAlignment="Center"/>
+            <Label Content="{Binding ArmyPower}" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
         </StackPanel>
         <Grid Grid.Row="0" Grid.Column="2">
             <Grid.ColumnDefinitions>
@@ -40,16 +44,16 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Image Source="\Resources\Images\Resources\gold.png" Width="70" Grid.Column="0"/>
-            <TextBlock Text="100" Height="80" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Grid.Column="1"/>
-            <Image Source="{Binding Quests}" Grid.Column="2"/>
+            <Label Content="{Binding Gold}" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
+            <!--<Image Source="{Binding Faction}" Grid.Column="2"/>-->
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="20">
             <Image Source="\Resources\Images\Resources\log.png" Width="140"/>
-            <TextBlock Text="4" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" TextAlignment="Center"/>
+            <Label Content="{Binding Wood}" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             <Image Source="\Resources\Images\Resources\stone.png" Width="130"/>
-            <TextBlock Text="5" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" TextAlignment="Center"/>
+            <Label Content="{Binding Stone}" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             <Image Source="\Resources\Images\Resources\wheat.png" Width="110"/>
-            <TextBlock Text="2" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" TextAlignment="Center"/>
+            <Label Content="{Binding Food}" Height="70" Width="70" FontSize="70" FontFamily="Poor Richard" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
         </StackPanel>
 
         <Label Content="{Binding CanSend}" Grid.Column="1" Grid.Row="0" Foreground="Red" Width="200" Height="100" FontSize="50" Background="Transparent"></Label>
