@@ -60,6 +60,12 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 CanSend = bool.Parse(message);
                                 messenger.Send("CanSend", "Base");
+                                if (CanSend)
+                                {
+                                    ;
+                                    gameLogic.ResetMoves();
+                                }
+
                                 if (counter < 1 && message.Equals("true"))
                                 {
                                     counter++;
@@ -144,7 +150,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Moves = 2,
                         Quests = new List<Quest>(),
                         Units = new List<Unit>(),
-                        Villages = new List<Village>(),
+                        Villages = new List<Village>()
                     });
                 }
                 ChangeView("game");
@@ -164,6 +170,13 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             gameLogic.Players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(save.Split('@')[0]);
             StartServer(turnLength: turnLength, clients: gameLogic.Players.Count, map: save.Split('@')[1], ip: ip);
+        }
+        public void SkipTurn()
+        {
+            if (CanSend)
+            {
+                socketClient.Skip();
+            }
         }
     }
 }

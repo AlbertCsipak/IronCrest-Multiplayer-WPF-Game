@@ -25,24 +25,8 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 if (SelectedPolygon != null && SelectedPolygon != polygon)
                 {
-                    if ((polygon.Tag as HexagonTile).Objects.Where(t => t.CanMove).ToList().Count == 0)
-                    {
-                        var item = gameLogic.SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
-
-                        if (item != null)
-                        {
-
-                            item.Move((polygon.Tag as HexagonTile).Position);
-                            (polygon.Tag as HexagonTile).Objects.Add(item);
-
-                            gameLogic.SelectedHexagonTile.Objects.Remove(item);
-                            gameLogic.SelectedHexagonTile.OwnerId = 0;
-                            gameLogic.SelectedHexagonTile = null;
-
-                            //itt veszünk le egy moveot.
-                        }
-                        ClearSelections();
-                    }
+                    gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                    ClearSelections();
                 }
             }
         }

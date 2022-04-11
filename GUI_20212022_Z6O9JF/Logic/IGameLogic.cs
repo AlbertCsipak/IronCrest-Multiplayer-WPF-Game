@@ -15,8 +15,13 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         void AddUnit();
         void AddVillage();
+        void DecreaseMoves();
         HexagonTile[,] GameMapSetup(string path);
+        void MoveUnit(HexagonTile hexagonTile);
         void ReloadHexagonObjects();
+        void ResetMoves();
+        void ResetSelectedHexagon(IGameItem gameItem);
         void SelectableFactions();
+        void UpgradeVillage();
     }
 }

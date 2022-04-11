@@ -122,7 +122,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
                 {
                     var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-                    if (item != null)
+                    if (item != null && item.Moves != 0)
                     {
                         Unit newUnit = new Unit();
                         newUnit.FactionType = item.Faction;
@@ -134,19 +134,25 @@ namespace GUI_20212022_Z6O9JF.Logic
                         SelectedHexagonTile.OwnerId = ClientID;
 
                         item.Units.Add(newUnit);
+                        DecreaseMoves();
                     }
                 }
             }
         }
         public void AddVillage()
         {
-            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.field)
+            ;
+            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.field && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
             {
+                ;
                 if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
                 {
+                    ;
                     var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-                    if (item != null)
+                    ;
+                    if (item != null && item.Moves != 0)
                     {
+                        ;
                         Village newVillage = new Village();
 
                         newVillage.Position = SelectedHexagonTile.Position;
@@ -158,6 +164,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                         SelectedHexagonTile.OwnerId = item.PlayerID;
 
                         item.Villages.Add(newVillage);
+                        DecreaseMoves();
+                        ;
                     }
                 }
 
@@ -167,7 +175,62 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (SelectedHexagonTile != null)
             {
-                //var village = SelectedHexagonTile.Objects.Where(t=>t.)
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
+                {
+                    var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+                    var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
+                    ;
+                    if (item != null && player.Moves != 0 &&item.Level<3)
+                    {
+                        item.Level++;
+                        DecreaseMoves();
+                    }
+                }
+            }
+        }
+        public void MoveUnit(HexagonTile hexagonTile)
+        {
+            if (hexagonTile.Objects.Where(t => t.CanMove).ToList().Count == 0)
+            {
+                var item = SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
+
+                if (item != null)
+                {
+                    item.Move(hexagonTile.Position);
+                    hexagonTile.Objects.Add(item);
+
+                    ResetSelectedHexagon(item);
+
+                    DecreaseMoves();
+                }
+            }
+        }
+        public void DecreaseMoves()
+        {
+            var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            if (item != null)
+            {
+                item.Moves--;
+            }
+        }
+        public void ResetMoves()
+        {
+            var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            if (item != null)
+            {
+                item.Moves = 2;
+            }
+        }
+        public void ResetSelectedHexagon(IGameItem gameItem)
+        {
+            if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
+            {
+                SelectedHexagonTile.Objects.Remove(gameItem);
+                if (SelectedHexagonTile.Objects.Count == 0)
+                {
+                    SelectedHexagonTile.OwnerId = 0;
+                }
+                SelectedHexagonTile = null;
             }
         }
     }

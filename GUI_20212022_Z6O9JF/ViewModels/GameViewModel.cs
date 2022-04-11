@@ -18,6 +18,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IControlLogic controlLogic { get; set; }
         public ICommand AddUnitCommand { get; set; }
         public ICommand AddVillageCommand { get; set; }
+        public ICommand UpgradeVillageCommand { get; set; }
+        public ICommand SkipTurnCommand { get; set; }
+
         public bool CanSend { get { return clientLogic.CanSend; } }
         public int Wood { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Wood).FirstOrDefault(); } }
         public int Stone { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Stone).FirstOrDefault(); } }
@@ -26,6 +29,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public int Popularity { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Popularity).FirstOrDefault(); } }
         public int ArmyPower { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.ArmyPower).FirstOrDefault(); } }
         public List<Quest> Quests { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).SelectMany(t => t.Quests).ToList(); } }
+
         public static bool IsInDesignMode
         {
             get
@@ -61,7 +65,20 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     gameLogic.AddVillage();
                 }
             });
-
+            UpgradeVillageCommand = new RelayCommand(() =>
+            {
+                if (clientLogic.CanSend)
+                {
+                    gameLogic.UpgradeVillage();
+                }
+            });
+            SkipTurnCommand = new RelayCommand(() =>
+            {
+                if (clientLogic.CanSend)
+                {
+                    clientLogic.SkipTurn();
+                }
+            });
 
 
             Messenger.Register<GameViewModel, string, string>(this, "Base", (recipient, msg) =>

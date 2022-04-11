@@ -66,7 +66,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Button Content="Move" FontSize="50" Command="{Binding AddUnitCommand}" Height="100" Width="200" Grid.Row="0"/>
-            <Button Content="Produce" FontSize="50" Command="{Binding AddVillageCommand}" Height="100" Width="200" Grid.Row="2"/>
+            <Button Content="Produce" FontSize="50" Command="{Binding}" Height="100" Width="200" Grid.Row="2"/>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="2">
             <Grid.RowDefinitions>
@@ -75,10 +75,10 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Button Content="Build" FontSize="50" Command="{Binding }" Height="100" Width="200" Grid.Row="0"/>
-            <Button Content="Upgrade" FontSize="50" Command="{Binding }" Height="100" Width="200" Grid.Row="2"/>
+            <Button Content="Build" FontSize="50" Command="{Binding AddVillageCommand}" Height="100" Width="200" Grid.Row="0"/>
+            <Button Content="Upgrade" FontSize="50" Command="{Binding UpgradeVillageCommand}" Height="100" Width="200" Grid.Row="2"/>
         </Grid>
-        <Button Style="{StaticResource button_image_style}" Grid.Column="2" Grid.Row="2" Width="260" Height="170" Background="Transparent" Click="Button_Click">
+        <Button Style="{StaticResource button_image_style}" Command="{Binding SkipTurnCommand}" Grid.Column="2" Grid.Row="2" Width="260" Height="170" Background="Transparent" Click="Button_Click">
             <Image x:Name="skip_image" Source="\Resources\Images\Menu\skip_framed_button_unpressed.png" Width="260"></Image>
         </Button>
     </Grid>
