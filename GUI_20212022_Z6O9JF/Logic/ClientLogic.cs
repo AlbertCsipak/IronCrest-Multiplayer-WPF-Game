@@ -81,7 +81,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 Timer = 60;
                             }
-                            else if (!message.Contains("[]"))
+                            else if (message.Length>3)
                             {
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
                                 try
