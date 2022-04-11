@@ -18,11 +18,9 @@
 
 
 Todo:
-- button animáció (skip,back,exit)
-- mozogni csak szomszédos hexagonra lehessen
-- game UC-n bebindollni a nyersanyagokat, és a küldetéseket done
+- button animáció (skip,back,exit
 - combox lenyitásakor a szöveg legyen középen
-- random küldetések kiosztása a game elején
+- random küldetések kiosztása a game elején (jobb random megoldas)
 - harcrendszer
 - kereskedelmi pontok (iránytűk)
 - game screen brightness/saturation/hue levétele
