@@ -82,12 +82,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 Timer = 60;
                             }
-                            else if(message.Contains("Player"))
+                            else
                             {
                                 try
                                 {
+                                    ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(message);
                                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
-                                    foreach (var item in JsonConvert.DeserializeObject<ObservableCollection<Player>>(message))
+                                    foreach (var item in players)
                                     {
                                         Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
                                     }
