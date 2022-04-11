@@ -53,7 +53,7 @@ namespace Server
                             {
                                 item2.Send(Encoding.ASCII.GetBytes("timer"));
                             }
-                            System.Threading.Thread.Sleep(300);
+                            System.Threading.Thread.Sleep(250);
 
                             item.Send(Encoding.ASCII.GetBytes("true"));
                             Console.WriteLine("I've sent true to " + item.RemoteEndPoint);
@@ -98,6 +98,8 @@ namespace Server
                                         item2.Send(buffer);
                                     }
                                 }
+
+
 
                                 x += 1;
                                 Console.WriteLine(x.ToString());

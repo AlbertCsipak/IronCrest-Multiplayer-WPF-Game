@@ -105,7 +105,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                     while (socketClient.MySocket.Connected)
                     {
                         gameLogic.ReloadHexagonObjects();
-                        System.Threading.Thread.Sleep(500);
+                        messenger.Send("Message", "Base");
+                        System.Threading.Thread.Sleep(250);
                     }
                 }, TaskCreationOptions.LongRunning);
 
@@ -114,7 +115,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                     while (socketClient.MySocket.Connected)
                     {
                         Timer--;
-                        messenger.Send("Message", "Base");
                         System.Threading.Thread.Sleep(1000);
                     }
                 }, TaskCreationOptions.LongRunning);
