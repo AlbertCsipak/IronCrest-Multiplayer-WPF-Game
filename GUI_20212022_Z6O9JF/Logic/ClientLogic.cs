@@ -75,7 +75,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                         gameLogic.AvailableFactions.Sort();
                                     }
                                 }
-                                messenger.Send("Message", "Base");
+                                messenger.Send("FactionsAdded", "Base");
                             }
                             else if (message.Equals("timer"))
                             {
