@@ -47,7 +47,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (CanSend)
                         {
                             tmpTimer++;
-                            if (tmpTimer==4)
+                            if (tmpTimer == 4)
                             {
                                 Timer--;
                                 tmpTimer = 0;
@@ -86,9 +86,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                                     {
                                         gameLogic.AvailableFactions.Remove(item.Faction);
                                         gameLogic.AvailableFactions.Sort();
+                                        messenger.Send("FactionsAdded", "Base");
                                     }
                                 }
-                                messenger.Send("FactionsAdded", "Base");
+
                             }
                             else if (message.Equals("timer"))
                             {
@@ -109,8 +110,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                                         }
                                     }
                                 }
-                                catch (NullReferenceException){}
-                                catch (Exception) {}
+                                catch (NullReferenceException) { }
+                                catch (Exception) { }
                             }
                         }
                     }
@@ -187,7 +188,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 socketClient.Skip();
             }
         }
-        public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 4096)
+        public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 8192)
         {
             ProcessStartInfo server = new ProcessStartInfo();
             server.FileName = "SocketServer.exe";

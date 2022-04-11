@@ -23,7 +23,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = sender as Polygon;
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                if (SelectedPolygon != null && SelectedPolygon != polygon && (SelectedPolygon.Tag as HexagonTile).IsNeighbor(polygon.Tag as HexagonTile))
+                if (SelectedPolygon != null && SelectedPolygon != polygon)
                 {
                     gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                     ClearSelections();
@@ -32,26 +32,30 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void Polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Polygon polygon = sender as Polygon;
+            Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                ClearSelections();
-
-                SelectedPolygon = polygon;
-                gameLogic.SelectedHexagonTile = SelectedPolygon.Tag as HexagonTile;
-                PolygonBorderBrush(polygon);
-
-                if ((polygon.Tag as HexagonTile).Objects.Where(t => t.CanMove).ToList().Count != 0)
+                if ((polygon.Tag as HexagonTile).OwnerId == gameLogic.ClientID || (polygon.Tag as HexagonTile).OwnerId == 0)
                 {
-                    foreach (var item in (polygon.Tag as HexagonTile).NeighborCoords())
+                    ClearSelections();
+
+                    PolygonBorderBrush(polygon);
+
+                    if ((polygon.Tag as HexagonTile).Objects.Where(t => t.CanMove).ToList().Count != 0)
                     {
-                        Polygon thisPoly = grid.Children[gameLogic.GameMap[item.X, item.Y].ParentId] as Polygon;
-                        if (gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.water)
+                        foreach (var item in (polygon.Tag as HexagonTile).NeighborCoords())
                         {
-                            PolygonBorderBrush(thisPoly);
+                            Polygon thisPoly = grid.Children[gameLogic.GameMap[item.X, item.Y].ParentId] as Polygon;
+                            if (gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.water)
+                            {
+                                PolygonBorderBrush(thisPoly);
+                            }
                         }
                     }
+                    SelectedPolygon = polygon;
+                    gameLogic.SelectedHexagonTile = SelectedPolygon.Tag as HexagonTile;
                 }
+
             }
         }
         public void Polygon_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
@@ -85,14 +89,14 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (SelectedPolygon != null)
             {
                 SelectedPolygon.Stroke = Brushes.Transparent;
-                foreach (var item in (SelectedPolygon.Tag as HexagonTile).NeighborCoords())
+                foreach (var item in grid.Children)
                 {
-                    Polygon thisPoly = grid.Children[gameLogic.GameMap[item.X, item.Y].ParentId] as Polygon;
-                    if (gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.water)
+                    if (item is Polygon)
                     {
-                        thisPoly.Stroke = Brushes.Transparent;
+                        (item as Polygon).Stroke = Brushes.Transparent;
                     }
                 }
+                currentColor = Brushes.Transparent;
                 SelectedPolygon = null;
             }
         }

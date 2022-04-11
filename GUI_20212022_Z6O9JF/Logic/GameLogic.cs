@@ -2,6 +2,7 @@
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 
@@ -194,7 +195,11 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 if (SelectedHexagonTile.OwnerId == ClientID)
                 {
-                    if (hexagonTile.Objects.ToList().Count == 0)
+                    Point[] points = SelectedHexagonTile.NeighborCoords();
+                    Point point = new Point();
+                    point.X = hexagonTile.Position[0];
+                    point.Y = hexagonTile.Position[1];
+                    if (hexagonTile.Objects.ToList().Count == 0 && points.Contains(point))
                     {
                         var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                         var item = SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
