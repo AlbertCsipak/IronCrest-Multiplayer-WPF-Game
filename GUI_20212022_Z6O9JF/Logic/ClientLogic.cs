@@ -96,10 +96,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                                         }
                                     }
                                 }
-                                catch (NullReferenceException)
-                                {
-
-                                }
+                                catch (NullReferenceException){}
+                                catch (Exception) {}
                             }
                         }
                     }
