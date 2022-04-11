@@ -44,7 +44,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         if (CanSend)
                         {
-                            socketClient.DataSend(gameLogic.Players, packetSpeed: 500);
+                            socketClient.DataSend(gameLogic.Players, packetSpeed: 100);
                         }
                     }
                 }, TaskCreationOptions.LongRunning);
@@ -81,7 +81,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 Timer = 60;
                             }
-                            else if (message.Length>3)
+                            else
                             {
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
                                 try

@@ -89,11 +89,14 @@ namespace Server
                                 {
                                     break;
                                 }
-                                foreach (var item2 in Clients)
+                                if (msg.Length>30)
                                 {
-                                    if (item2 != item)
+                                    foreach (var item2 in Clients)
                                     {
-                                        item2.Send(buffer);
+                                        if (item2 != item)
+                                        {
+                                            item2.Send(buffer);
+                                        }
                                     }
                                 }
                                 x += 1;
