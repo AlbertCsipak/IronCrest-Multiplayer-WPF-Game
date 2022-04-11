@@ -9,14 +9,13 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public class GameLogic : IGameLogic
     {
+        IMessenger messenger;
         public int ClientID { get; set; }
+        public string Map { get; set; }
         public HexagonTile SelectedHexagonTile { get; set; }
         public ObservableCollection<Player> Players { get; set; }
         public List<Faction> AvailableFactions { get; set; }
-        public string Map { get; set; }
         public HexagonTile[,] GameMap { get; set; }
-        IMessenger messenger;
-
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -26,7 +25,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void SelectableFactions()
         {
-            if (Players.Count < 1)
+            if (Players.Count == 0)
             {
                 AvailableFactions.Add(Faction.Viking);
                 AvailableFactions.Add(Faction.Crusader);
@@ -42,7 +41,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             messenger.Send("FactionsAdded", "Base");
         }
-        
+
         public HexagonTile[,] GameMapSetup(string path)
         {
             string[] lines = File.ReadAllLines(path);
@@ -82,7 +81,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             return map;
         }
-        public void HexagonObjects()
+        public void ReloadHexagonObjects()
         {
             if (GameMap != null)
             {
@@ -91,7 +90,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     item.OwnerId = 0;
                     item.Objects.Clear();
                 }
-                //System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.'
+                //System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.' : fix -> ToList();
                 foreach (var player in Players.ToList())
                 {
                     if (player != null)
@@ -120,56 +119,55 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (SelectedHexagonTile != null)
             {
-                foreach (var item in Players)
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
                 {
-                    if (item.PlayerID == ClientID)
+                    var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+                    if (item != null)
                     {
                         Unit newUnit = new Unit();
-                        switch (item.Faction)
-                        {
-                            case Faction.Viking:
-                                newUnit.FactionType = Faction.Viking;
-                                break;
-                            case Faction.Crusader:
-                                newUnit.FactionType = Faction.Crusader;
-                                break;
-                            case Faction.Mongolian:
-                                newUnit.FactionType = Faction.Mongolian;
-                                break;
-                            case Faction.Arabian:
-                                newUnit.FactionType = Faction.Arabian;
-                                break;
-                            default:
-                                break;
-                        }
+                        newUnit.FactionType = item.Faction;
                         newUnit.Position = SelectedHexagonTile.Position;
                         newUnit.Name = "Barni";
-                        newUnit.OwnerId = ClientID;
+                        newUnit.OwnerId = item.PlayerID;
+
                         SelectedHexagonTile.Objects.Add(newUnit);
                         SelectedHexagonTile.OwnerId = ClientID;
+
                         item.Units.Add(newUnit);
                     }
                 }
             }
         }
-        public void AddVilage()
+        public void AddVillage()
         {
-            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType==FieldType.field)
+            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.field)
             {
-                foreach (var item in Players)
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
                 {
-                    if (item.PlayerID == ClientID)
+                    var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+                    if (item != null)
                     {
                         Village newVillage = new Village();
+
                         newVillage.Position = SelectedHexagonTile.Position;
                         newVillage.Level = 1;
-                        newVillage.FactionType = Faction.Viking;
-                        newVillage.OwnerId = ClientID;
+                        newVillage.FactionType = item.Faction;
+                        newVillage.OwnerId = item.PlayerID;
+
                         SelectedHexagonTile.Objects.Add(newVillage);
-                        SelectedHexagonTile.OwnerId = ClientID;
+                        SelectedHexagonTile.OwnerId = item.PlayerID;
+
                         item.Villages.Add(newVillage);
                     }
                 }
+
+            }
+        }
+        public void UpgradeVillage()
+        {
+            if (SelectedHexagonTile != null)
+            {
+                //var village = SelectedHexagonTile.Objects.Where(t=>t.)
             }
         }
     }

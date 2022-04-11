@@ -91,7 +91,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
                                 case FieldType.water:
-                                    if (gif<30)
+                                    if (gif < 30)
                                     {
                                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     }
@@ -174,10 +174,10 @@ namespace GUI_20212022_Z6O9JF.Renderer
                 }
                 sizeChanged = false;
             }
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_bottom.png", UriKind.RelativeOrAbsolute)), new Rect(0, size.Height - size.Height / 7, size.Width, size.Height/7));
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_up.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width, size.Height/7));
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_left.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width/9, size.Height));
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_right.png", UriKind.RelativeOrAbsolute)), new Rect(size.Width - size.Width / 9, 0, size.Width/9, size.Height));
+            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_bottom.png", UriKind.RelativeOrAbsolute)), new Rect(0, size.Height - size.Height / 7, size.Width, size.Height / 7));
+            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_up.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width, size.Height / 7));
+            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_left.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width / 9, size.Height));
+            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_right.png", UriKind.RelativeOrAbsolute)), new Rect(size.Width - size.Width / 9, 0, size.Width / 9, size.Height));
 
         }
     }

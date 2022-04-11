@@ -90,13 +90,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                     }
                 }, TaskCreationOptions.LongRunning);
 
-                Task Update = new Task(() => {
+                Task Update = new Task(() =>
+                {
                     while (socketClient.MySocket.Connected)
                     {
-                        gameLogic.HexagonObjects();
+                        gameLogic.ReloadHexagonObjects();
                         System.Threading.Thread.Sleep(500);
                     }
-                },TaskCreationOptions.LongRunning);
+                }, TaskCreationOptions.LongRunning);
 
                 Send.Start();
                 Receive.Start();

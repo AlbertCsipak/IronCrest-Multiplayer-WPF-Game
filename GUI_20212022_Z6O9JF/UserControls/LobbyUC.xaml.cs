@@ -15,7 +15,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             InitializeComponent();
             this.DataContext = new LobbyViewModel();
-            
+
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)

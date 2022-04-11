@@ -6,7 +6,7 @@
         public string Name { get; set; }
         public int[] Position { get; set; }
         public int Level { get; set; }
-        public bool CanMove { get ; set; }
+        public bool CanMove { get; set; }
         public Faction FactionType { get; set; }
 
         public Village()

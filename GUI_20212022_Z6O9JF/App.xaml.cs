@@ -2,8 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
-using System.Diagnostics;
-using System.Threading;
 using System.Windows;
 
 namespace GUI_20212022_Z6O9JF

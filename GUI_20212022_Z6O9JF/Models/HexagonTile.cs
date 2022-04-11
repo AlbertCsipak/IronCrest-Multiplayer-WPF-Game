@@ -54,15 +54,15 @@ namespace GUI_20212022_Z6O9JF.Models
             }
             return false;
         }
-        public Point[] NeighborCoords() 
+        public Point[] NeighborCoords()
         {
             Point[] coords = new Point[6];
-            coords[0] = new Point(this.Position[0], this.Position[1]-1);
-            coords[1] = new Point(this.Position[0], this.Position[1]+1);
-            coords[2] = new Point(this.Position[0]-1, this.Position[1]);
-            coords[3] = new Point(this.Position[0]+1, this.Position[1]-1);
-            coords[4] = new Point(this.Position[0]+1, this.Position[1]);
-            coords[5] = new Point(this.Position[0]+1, this.Position[1]+1);
+            coords[0] = new Point(this.Position[0], this.Position[1] - 1);
+            coords[1] = new Point(this.Position[0], this.Position[1] + 1);
+            coords[2] = new Point(this.Position[0] - 1, this.Position[1]);
+            coords[3] = new Point(this.Position[0] + 1, this.Position[1] - 1);
+            coords[4] = new Point(this.Position[0] + 1, this.Position[1]);
+            coords[5] = new Point(this.Position[0] + 1, this.Position[1] + 1);
             return coords;
         }
 
