@@ -83,18 +83,21 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                             else
                             {
-                                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
-                                try
+                                var Helper = JsonConvert.DeserializeObject<ObservableCollection<Player>>(message);
+                                for (int i = 0; i < Helper.Count; i++)
                                 {
-                                    foreach (var item in JsonConvert.DeserializeObject<ObservableCollection<Player>>(message))
-                                    {
-                                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
-                                    }
+                                    gameLogic.Players[i] = Helper[i];
                                 }
-                                catch (Exception)
-                                {
+                                                   
+                                //Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
+                                //try
+                                //{
+                                    
+                                //}
+                                //catch (Exception)
+                                //{
 
-                                }
+                                //}
                             }
                         }
                     }
