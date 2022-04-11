@@ -75,10 +75,11 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <Label Content="{Binding Timer}" Grid.Row="1" Foreground="Red"></Label>
+            
             <Button Content="Build" FontSize="50" Command="{Binding AddVillageCommand}" Height="100" Width="200" Grid.Row="0"/>
             <Button Content="Upgrade" FontSize="50" Command="{Binding UpgradeVillageCommand}" Height="100" Width="200" Grid.Row="2"/>
         </Grid>
+        <Label Grid.Column="1" Grid.Row="2" Width="100" HorizontalAlignment="Right" FontSize="70" Content="{Binding Timer}" Foreground="Red"></Label>
         <Button Style="{StaticResource button_image_style}" Command="{Binding SkipTurnCommand}" Grid.Column="2" Grid.Row="2" Width="260" Height="170" Background="Transparent" Click="Button_Click">
             <Image x:Name="skip_image" Source="\Resources\Images\Menu\skip_framed_button_unpressed.png" Width="260"></Image>
         </Button>
