@@ -81,7 +81,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 Timer = 60;
                             }
-                            else
+                            else if (message.Length>3)
                             {
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
                                 try
@@ -170,7 +170,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
                 ChangeView("game");
-                System.Threading.Thread.Sleep(750);
+                System.Threading.Thread.Sleep(1000);
                 SkipTurn();
             }
         }
