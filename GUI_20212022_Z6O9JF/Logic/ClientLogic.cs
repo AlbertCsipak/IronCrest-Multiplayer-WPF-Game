@@ -170,7 +170,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
                 ChangeView("game");
-                //System.Threading.Thread.Sleep(750);
+                System.Threading.Thread.Sleep(750);
                 SkipTurn();
             }
         }
