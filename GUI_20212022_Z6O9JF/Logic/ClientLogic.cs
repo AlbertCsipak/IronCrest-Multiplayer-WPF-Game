@@ -44,7 +44,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         if (CanSend)
                         {
-                            socketClient.DataSend(gameLogic.Players, packetSpeed: 100);
+                            socketClient.DataSend(gameLogic.Players, packetSpeed: 250);
                         }
                     }
                 }, TaskCreationOptions.LongRunning);
@@ -85,26 +85,16 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 try
                                 {
-                                    var Helper = JsonConvert.DeserializeObject<ObservableCollection<Player>>(message);
-                                    for (int i = 0; i < Helper.Count; i++)
+                                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
+                                    foreach (var item in JsonConvert.DeserializeObject<ObservableCollection<Player>>(message))
                                     {
-                                        gameLogic.Players[i] = Helper[i];
+                                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
                                     }
                                 }
                                 catch (Exception)
                                 {
+
                                 }
-
-                                                   
-                                //Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
-                                //try
-                                //{
-                                    
-                                //}
-                                //catch (Exception)
-                                //{
-
-                                //}
                             }
                         }
                     }
@@ -180,7 +170,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
                 ChangeView("game");
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(500);
                 SkipTurn();
             }
         }
