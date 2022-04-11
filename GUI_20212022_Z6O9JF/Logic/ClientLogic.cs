@@ -83,11 +83,18 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                             else
                             {
-                                var Helper = JsonConvert.DeserializeObject<ObservableCollection<Player>>(message);
-                                for (int i = 0; i < Helper.Count; i++)
+                                try
                                 {
-                                    gameLogic.Players[i] = Helper[i];
+                                    var Helper = JsonConvert.DeserializeObject<ObservableCollection<Player>>(message);
+                                    for (int i = 0; i < Helper.Count; i++)
+                                    {
+                                        gameLogic.Players[i] = Helper[i];
+                                    }
                                 }
+                                catch (Exception)
+                                {
+                                }
+
                                                    
                                 //Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
                                 //try
