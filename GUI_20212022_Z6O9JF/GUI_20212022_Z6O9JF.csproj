@@ -60,8 +60,7 @@
     <None Remove="Resources\Images\Menu\main_background.gif" />
     <None Remove="Resources\Images\Menu\ocean.png" />
     <None Remove="Resources\Images\Menu\scroll.png" />
-    <None Remove="Resources\Images\Menu\skip_framed_button_pressed.png" />
-    <None Remove="Resources\Images\Menu\skip_framed_button_unpressed.png" />
+    <None Remove="Resources\Images\Menu\skip_button_unpressed.png" />
     <None Remove="Resources\Images\Menu\water.png" />
     <None Remove="Resources\Images\Menu\yellow_icon_mongolian.png" />
     <None Remove="Resources\Images\Other\back.png" />
@@ -193,10 +192,7 @@
     <Content Include="Resources\Images\Menu\scroll.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Menu\skip_framed_button_pressed.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Menu\skip_framed_button_unpressed.png">
+    <Content Include="Resources\Images\Menu\skip_button_unpressed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

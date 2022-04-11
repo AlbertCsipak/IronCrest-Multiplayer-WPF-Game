@@ -19,7 +19,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IGameLogic gameLogic;
         IControlLogic controlLogic;
         public MediaPlayer button_click = new MediaPlayer();
-        private int currentIndex = 1;
         DispatcherTimer dt;
         public GameUC()
         {
@@ -31,27 +30,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(100);
-            dt.Tick += new EventHandler(this.updateImageTimer_Tick);
             dt.Tick += (sender, eventargs) =>
             {
                 display.InvalidateVisual();
             };
             dt.Start();
-        }
-
-        private void updateImageTimer_Tick(object sender, EventArgs e)
-        {
-            if (currentIndex == 1)
-            {
-                skip_image.Source = new BitmapImage(new Uri("Resources/Image/Menu/skip_framed_button_pressed.png", UriKind.Relative));
-                currentIndex++;
-            }
-            else if (currentIndex == 2)
-            {
-                skip_image.Source = new BitmapImage(new Uri("Resources/Image/Menu/skip_framed_button_unpressed.png", UriKind.Relative));
-                currentIndex--;
-            }
-
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -68,19 +51,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
-            //skip_image_pressed.Visibility = Visibility.Visible;
-            //skip_image_unpressed.Visibility = Visibility.Hidden;
-            //skip_image_unpressed.Visibility = Visibility.Visible;
-            //skip_image_unpressed.Visibility = Visibility.Visible;
-            //skip_image_unpressed.Source = new BitmapImage(new Uri("Resources/Images/Menu/skip_framed_button_pressed.png", UriKind.RelativeOrAbsolute));
-            //skip_image.Source = new BitmapImage(new Uri("Resources/Images/Menu/skip_framed_button_unpressed.png", UriKind.RelativeOrAbsolute));
         }
-
-        //private void Button_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        //{
-        //    Thread.Sleep(5000);
-        //    skip_image_unpressed.Visibility = Visibility.Visible;
-        //    skip_image_pressed.Visibility = Visibility.Hidden;
-        //}
     }
 }
