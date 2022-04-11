@@ -75,6 +75,7 @@
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
+            <Label Content="{Binding Timer}" Grid.Row="1" Foreground="Red"></Label>
             <Button Content="Build" FontSize="50" Command="{Binding AddVillageCommand}" Height="100" Width="200" Grid.Row="0"/>
             <Button Content="Upgrade" FontSize="50" Command="{Binding UpgradeVillageCommand}" Height="100" Width="200" Grid.Row="2"/>
         </Grid>

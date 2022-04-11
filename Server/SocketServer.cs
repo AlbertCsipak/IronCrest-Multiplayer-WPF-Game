@@ -52,6 +52,12 @@ namespace Server
                             item.Send(Encoding.ASCII.GetBytes("true"));
                             Console.WriteLine("I've sent true to " + item.RemoteEndPoint);
 
+                            System.Threading.Thread.Sleep(200);
+                            foreach (var item2 in Clients)
+                            {
+                                item2.Send(Encoding.ASCII.GetBytes("timer"));
+                            }
+
                             string msg = "";
                             int x = 0;
                             byte[] buffer = new byte[bufferSize];
