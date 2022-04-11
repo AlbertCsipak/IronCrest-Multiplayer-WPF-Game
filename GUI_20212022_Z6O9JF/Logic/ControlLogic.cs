@@ -39,7 +39,6 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                 SelectedPolygon = polygon;
                 gameLogic.SelectedHexagonTile = (SelectedPolygon.Tag as HexagonTile);
-
                 PolygonBorderBrush(polygon);
 
                 if ((polygon.Tag as HexagonTile).Objects.Where(t => t.CanMove).ToList().Count != 0)

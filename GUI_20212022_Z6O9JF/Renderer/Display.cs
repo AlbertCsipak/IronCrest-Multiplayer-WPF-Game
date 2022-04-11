@@ -118,6 +118,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 default:
                                     break;
                             }
+                            drawingContext.DrawText(new FormattedText(gameLogic.GameMap[i,j].Position[0].ToString()+","+ gameLogic.GameMap[i, j].Position[1].ToString(), System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"),12, Brushes.Black), new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1));
 
                             if (sizeChanged)
                             {
@@ -147,12 +148,30 @@ namespace GUI_20212022_Z6O9JF.Renderer
 
                                 grid.Children.Add(polygon);
                                 (polygon.Tag as HexagonTile).ParentId = grid.Children.IndexOf(polygon);
+
                             }
 
                             foreach (var item in gameLogic.GameMap[i, j].Objects.ToList())
                             {
                                 if (item is Village)
                                 {
+                                    switch (item.FactionType)
+                                    {
+                                        case Faction.Viking:
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/blue_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                            break;
+                                        case Faction.Crusader:
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/black_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                            break;
+                                        case Faction.Mongolian:
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/yellow_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                            break;
+                                        case Faction.Arabian:
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/red_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/blue_village_lvl1.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                 }
                             }
