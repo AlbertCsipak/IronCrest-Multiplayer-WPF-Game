@@ -20,6 +20,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public object View { get; set; }
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
+        public int Timer { get; set; }
         SocketClient.SocketClient socketClient;
         public ClientLogic(IMessenger messenger, IGameLogic gameLogic)
         {
@@ -54,15 +55,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                     while (socketClient.MySocket.Connected)
                     {
                         string message = socketClient.DataReceive();
+                        ;
                         if (message != null)
                         {
                             if (message.Equals("false") || message.Equals("true"))
                             {
                                 CanSend = bool.Parse(message);
-                                messenger.Send("CanSend", "Base");
+                                Notify();
                                 if (CanSend)
                                 {
-                                    ;
                                     gameLogic.ResetMoves();
                                 }
 
@@ -73,9 +74,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                                     {
                                         gameLogic.AvailableFactions.Remove(item.Faction);
                                         gameLogic.AvailableFactions.Sort();
-                                        messenger.Send("FactionRemoved", "Base");
+                                        Notify();
                                     }
                                 }
+                            }
+                            else if (message.Equals("timer"))
+                            {
+                                Timer = 60;
                             }
                             else
                             {
@@ -86,6 +91,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                     {
                                         Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
                                     }
+                                    Notify();
                                 }
                                 catch (Exception)
                                 {
@@ -105,9 +111,21 @@ namespace GUI_20212022_Z6O9JF.Logic
                     }
                 }, TaskCreationOptions.LongRunning);
 
+                Task Clock = new Task(() =>
+                {
+                    while (socketClient.MySocket.Connected)
+                    {
+                        
+                        Timer--;
+                        Notify();
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                }, TaskCreationOptions.LongRunning);
+
                 Send.Start();
                 Receive.Start();
                 Update.Start();
+                Clock.Start();
                 ChangeView("lobby");
             }
         }
@@ -129,7 +147,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 View = new LobbyUC();
             }
-            messenger.Send("ViewChanged", "Base");
+            Notify();
         }
         public void ChampSelect(Faction faction, string name)
         {
@@ -155,8 +173,19 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 ChangeView("game");
                 System.Threading.Thread.Sleep(1000);
+                SkipTurn();
+            }
+        }
+        public void SkipTurn()
+        {
+            if (CanSend)
+            {
                 socketClient.Skip();
             }
+        }
+        public void Notify()
+        {
+            messenger.Send("Message", "Base");
         }
         public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 4096)
         {
@@ -170,13 +199,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             gameLogic.Players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(save.Split('@')[0]);
             StartServer(turnLength: turnLength, clients: gameLogic.Players.Count, map: save.Split('@')[1], ip: ip);
-        }
-        public void SkipTurn()
-        {
-            if (CanSend)
-            {
-                socketClient.Skip();
-            }
         }
     }
 }

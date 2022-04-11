@@ -21,6 +21,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand UpgradeVillageCommand { get; set; }
         public ICommand SkipTurnCommand { get; set; }
 
+        public int Timer { get { return clientLogic.Timer; } }
         public bool CanSend { get { return clientLogic.CanSend; } }
         public int Wood { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Wood).FirstOrDefault(); } }
         public int Stone { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Stone).FirstOrDefault(); } }
@@ -91,6 +92,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("Popularity");
                 OnPropertyChanged("ArmyPower");
                 OnPropertyChanged("Quests");
+                OnPropertyChanged("Timer");
             });
 
         }
