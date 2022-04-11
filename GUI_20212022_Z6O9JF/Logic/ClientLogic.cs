@@ -15,6 +15,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public class ClientLogic : IClientLogic
     {
+        public static Random r = new Random();
         IGameLogic gameLogic;
         IMessenger messenger;
         public object View { get; set; }

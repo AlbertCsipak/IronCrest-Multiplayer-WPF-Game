@@ -23,7 +23,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = sender as Polygon;
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
             {
-                if (SelectedPolygon != null && SelectedPolygon != polygon)
+                if (SelectedPolygon != null && SelectedPolygon != polygon && (SelectedPolygon.Tag as HexagonTile).IsNeighbor(polygon.Tag as HexagonTile))
                 {
                     gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                     ClearSelections();

@@ -181,6 +181,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     ;
                     if (item != null && player.Moves != 0 && item.Level < 3)
                     {
+                        SelectedHexagonTile.Objects.Remove(item);
                         item.Level++;
                         DecreaseMoves();
                     }
