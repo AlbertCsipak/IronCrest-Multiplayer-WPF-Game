@@ -172,7 +172,6 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                         default:
                                             break;
                                     }
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/blue_village_lvl1.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                 }
                             }
 
