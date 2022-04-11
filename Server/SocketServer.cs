@@ -49,21 +49,21 @@ namespace Server
                     {
                         try
                         {
-                            item.Send(Encoding.ASCII.GetBytes("true"));
-                            Console.WriteLine("I've sent true to " + item.RemoteEndPoint);
-
-                            System.Threading.Thread.Sleep(200);
                             foreach (var item2 in Clients)
                             {
                                 item2.Send(Encoding.ASCII.GetBytes("timer"));
                             }
+                            System.Threading.Thread.Sleep(250);
+
+                            item.Send(Encoding.ASCII.GetBytes("true"));
+                            Console.WriteLine("I've sent true to " + item.RemoteEndPoint);
 
                             string msg = "";
                             int x = 0;
-                            byte[] buffer = new byte[bufferSize];
 
                             while (x < turnLength)
                             {
+                                byte[] buffer = new byte[bufferSize];
                                 item.Receive(buffer);
 
                                 msg = Encoding.ASCII.GetString(buffer);
@@ -89,16 +89,16 @@ namespace Server
                                 {
                                     break;
                                 }
-                                if (msg.Length>30)
+
+                                foreach (var item2 in Clients)
                                 {
-                                    foreach (var item2 in Clients)
+                                    if (item2 != item)
                                     {
-                                        if (item2 != item)
-                                        {
-                                            item2.Send(buffer);
-                                        }
+                                        ;
+                                        item2.Send(buffer);
                                     }
                                 }
+
                                 x += 1;
                                 Console.WriteLine(x.ToString());
                             }
@@ -116,7 +116,10 @@ namespace Server
             }, TaskCreationOptions.LongRunning);
             core.Start();
 
-            Console.ReadLine();
+            while (Clients.Count == clients)
+            {
+                //:)
+            }
 
             ServerSocket.Close();
             ServerSocket.Dispose();

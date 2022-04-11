@@ -60,7 +60,6 @@ namespace SocketClient
             }
             catch (Exception)
             {
-                Disconnect();
                 return null;
             }
 

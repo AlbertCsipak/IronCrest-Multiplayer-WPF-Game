@@ -1,5 +1,5 @@
 ﻿Bugs:
-- Rálépsz egy enemy village re és kifagy
+- Rálépsz egy enemy village re és kifagy done
 - a faction selector folyton visszaugrik a vikingre, (1 játékosnál) fixed
 - ChampSelect eltűnnek a karakterek
 
