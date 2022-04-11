@@ -92,7 +92,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                         Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
                                     }
                                 }
-                                catch (Exception)
+                                catch (NullReferenceException)
                                 {
 
                                 }
