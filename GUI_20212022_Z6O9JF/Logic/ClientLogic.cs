@@ -22,6 +22,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
         public int Timer { get; set; }
+        int tmpTimer;
         SocketClient.SocketClient socketClient;
         public ClientLogic(IMessenger messenger, IGameLogic gameLogic)
         {
@@ -45,6 +46,12 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         if (CanSend)
                         {
+                            tmpTimer++;
+                            if (tmpTimer==4)
+                            {
+                                Timer--;
+                                tmpTimer = 0;
+                            }
                             socketClient.DataSend(gameLogic.Players, packetSpeed: 250);
                         }
                     }
@@ -55,8 +62,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                     int counter = 0;
                     while (socketClient.MySocket.Connected)
                     {
+                        tmpTimer++;
+                        if (tmpTimer == 4)
+                        {
+                            Timer--;
+                            tmpTimer = 0;
+                        }
                         string message = socketClient.DataReceive();
-                        ;
                         if (message != null)
                         {
                             if (message.Equals("false") || message.Equals("true"))
@@ -80,6 +92,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                             else if (message.Equals("timer"))
                             {
+                                tmpTimer = 0;
                                 Timer = 60;
                             }
                             else
@@ -113,19 +126,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                     }
                 }, TaskCreationOptions.LongRunning);
 
-                Task Clock = new Task(() =>
-                {
-                    while (socketClient.MySocket.Connected)
-                    {
-                        Timer--;
-                        System.Threading.Thread.Sleep(1000);
-                    }
-                }, TaskCreationOptions.LongRunning);
-
                 Send.Start();
                 Receive.Start();
                 Update.Start();
-                Clock.Start();
                 ChangeView("lobby");
             }
         }
