@@ -87,10 +87,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 try
                                 {
                                     ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(message);
-                                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
-                                    foreach (var item in players)
+                                    if (players != null)
                                     {
-                                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
+                                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
+                                        foreach (var item in players)
+                                        {
+                                            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
+                                        }
                                     }
                                 }
                                 catch (NullReferenceException)
