@@ -99,8 +99,6 @@ namespace Server
                                     }
                                 }
 
-
-
                                 x += 1;
                                 Console.WriteLine(x.ToString());
                             }
@@ -118,7 +116,10 @@ namespace Server
             }, TaskCreationOptions.LongRunning);
             core.Start();
 
-            Console.ReadLine();
+            while (Clients.Count == clients)
+            {
+                //:)
+            }
 
             ServerSocket.Close();
             ServerSocket.Dispose();
