@@ -59,7 +59,21 @@
         <Button Style="{DynamicResource button_image_style}" Background="Transparent"
                 Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}"
                 BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Opacity="0.7" Click="Button_Click">
-            <Image Source="\Resources\Images\Other\back.png" ></Image>
+            <Image Source="\Resources\Images\Other\back.png" >
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="#B3C8B7" Opacity="1" BlurRadius="30"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
         </Button>
     </Grid>
 </UserControl>
