@@ -43,6 +43,7 @@
             <ComboBox ItemsSource="{Binding Quests}" Height="60" Width="50" FontSize="30" FontFamily="Poor Richard" Grid.Column="1">
                 
             </ComboBox>
+            <Label Content="{Binding CanSend}" Grid.Column="1" Grid.Row="0" Foreground="Red" Width="200" Height="100" FontSize="50" Background="Transparent"></Label>
         </StackPanel>
         <Grid Grid.Row="0" Grid.Column="2">
             <Grid.ColumnDefinitions>
@@ -58,7 +59,7 @@
             
         </StackPanel>
 
-        <Label Content="{Binding CanSend}" Grid.Column="1" Grid.Row="0" Foreground="Red" Width="200" Height="100" FontSize="50" Background="Transparent"></Label>
+        
 
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>

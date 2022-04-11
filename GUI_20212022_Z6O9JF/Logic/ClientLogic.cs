@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,6 +17,7 @@ namespace GUI_20212022_Z6O9JF.Logic
     public class ClientLogic : IClientLogic
     {
         public static Random r = new Random();
+        public List<Quest> quests;
         IGameLogic gameLogic;
         IMessenger messenger;
         public object View { get; set; }
@@ -169,7 +171,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Name = name,
                         Faction = faction,
                         Moves = 2,
-                        Quests = new List<Quest>(),
+                        Quests = RandomQuestSelector(3),
                         Units = new List<Unit>(),
                         Villages = new List<Village>()
                     });
@@ -179,6 +181,34 @@ namespace GUI_20212022_Z6O9JF.Logic
                 System.Threading.Thread.Sleep(500);
                 SkipTurn();
             }
+        }
+        public void ReadQuests()
+        {
+            var file = File.ReadAllLines("Resources/Maps/Quests.txt");
+            quests = new List<Quest>();
+            foreach (var item in file)
+            {
+                string[] line = item.Split(';');
+                quests.Add(new Quest(line[0], line[1] == "false" ? false : true));
+            }
+        }
+        public List<Quest> RandomQuestSelector(int n)
+        {
+            ReadQuests();
+            List<Quest> curr_quests = new List<Quest>();
+            List<int> indexes=new List<int>();
+            int db = 0;
+            while (db!=n)
+            {
+                int ind = r.Next(quests.Count);
+                if (!indexes.Contains(ind))
+                {
+                    indexes.Add(ind);
+                    db++;
+                    curr_quests.Add(quests.ElementAt(ind));
+                }
+            }
+            return curr_quests;
         }
         public void SkipTurn()
         {

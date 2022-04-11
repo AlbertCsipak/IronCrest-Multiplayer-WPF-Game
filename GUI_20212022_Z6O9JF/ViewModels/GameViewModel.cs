@@ -29,7 +29,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public int Gold { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Gold).FirstOrDefault(); } }
         public int Popularity { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Popularity).FirstOrDefault(); } }
         public int ArmyPower { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.ArmyPower).FirstOrDefault(); } }
-        public List<Quest> Quests { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).SelectMany(t => t.Quests).ToList(); } }
+        public List<string> Quests { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).SelectMany(t => t.Quests).Select(x=>x.Name).ToList(); } }
 
         public static bool IsInDesignMode
         {

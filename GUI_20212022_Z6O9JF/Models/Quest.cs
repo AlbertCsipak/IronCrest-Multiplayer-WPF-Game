@@ -4,9 +4,10 @@
     {
         public string Name { get; set; }
         public bool Done { get; set; }
-        public Quest(int crit)
+        public Quest(string Name, bool Done)
         {
-
+            this.Name = Name;
+            this.Done = Done;
         }
         public bool QuestDone(int count, int crit)
         {
