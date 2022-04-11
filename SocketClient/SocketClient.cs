@@ -51,7 +51,7 @@ namespace SocketClient
             MySocket.Send(Encoding.ASCII.GetBytes(json));
             System.Threading.Thread.Sleep(packetSpeed);//10packets/sec
         }
-        public string DataReceive(int bufferSize = 4096)
+        public string DataReceive(int bufferSize = 8192)
         {
             byte[] buffer = new byte[bufferSize];
             try
