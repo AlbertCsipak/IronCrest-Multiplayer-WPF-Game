@@ -82,7 +82,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 Timer = 60;
                             }
-                            else if(!message.Equals(""))
+                            else if(message.Contains("Player"))
                             {
                                 try
                                 {
