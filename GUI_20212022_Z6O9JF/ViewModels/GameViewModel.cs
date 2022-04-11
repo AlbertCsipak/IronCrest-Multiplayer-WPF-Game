@@ -50,37 +50,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
 
-            gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
-
-            AddUnitCommand = new RelayCommand(() =>
-            {
-                if (clientLogic.CanSend)
-                {
-                    gameLogic.AddUnit();
-                }
-            });
-            AddVillageCommand = new RelayCommand(() =>
-            {
-                if (clientLogic.CanSend)
-                {
-                    gameLogic.AddVillage();
-                }
-            });
-            UpgradeVillageCommand = new RelayCommand(() =>
-            {
-                if (clientLogic.CanSend)
-                {
-                    gameLogic.UpgradeVillage();
-                }
-            });
-            SkipTurnCommand = new RelayCommand(() =>
-            {
-                if (clientLogic.CanSend)
-                {
-                    clientLogic.SkipTurn();
-                }
-            });
-
+            AddUnitCommand = new RelayCommand(() => gameLogic.AddUnit());
+            AddVillageCommand = new RelayCommand(() => gameLogic.AddVillage());
+            UpgradeVillageCommand = new RelayCommand(() => gameLogic.UpgradeVillage());
+            SkipTurnCommand = new RelayCommand(() => clientLogic.SkipTurn());
 
             Messenger.Register<GameViewModel, string, string>(this, "Base", (recipient, msg) =>
             {

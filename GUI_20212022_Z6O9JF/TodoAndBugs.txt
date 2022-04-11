@@ -27,6 +27,7 @@ Todo:
 - kereskedelmi pontok (iránytűk)
 - game screen brightness/saturation/hue levétele
 - splash screen (EXTRA FEATURE, majd a végén) done
+- ugráló champselect
 
 
 

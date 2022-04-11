@@ -61,7 +61,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if (message.Equals("false") || message.Equals("true"))
                             {
                                 CanSend = bool.Parse(message);
-                                Notify();
                                 if (CanSend)
                                 {
                                     gameLogic.ResetMoves();
@@ -74,9 +73,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                                     {
                                         gameLogic.AvailableFactions.Remove(item.Faction);
                                         gameLogic.AvailableFactions.Sort();
-                                        Notify();
                                     }
                                 }
+                                messenger.Send("Message", "Base");
                             }
                             else if (message.Equals("timer"))
                             {
@@ -91,7 +90,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                                     {
                                         Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
                                     }
-                                    Notify();
                                 }
                                 catch (Exception)
                                 {
@@ -115,9 +113,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     while (socketClient.MySocket.Connected)
                     {
-                        
                         Timer--;
-                        Notify();
+                        messenger.Send("Message", "Base");
                         System.Threading.Thread.Sleep(1000);
                     }
                 }, TaskCreationOptions.LongRunning);
@@ -147,7 +144,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 View = new LobbyUC();
             }
-            Notify();
+            messenger.Send("Message", "Base");
         }
         public void ChampSelect(Faction faction, string name)
         {
@@ -171,8 +168,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Villages = new List<Village>()
                     });
                 }
+                gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
                 ChangeView("game");
-                System.Threading.Thread.Sleep(1000);
+                //System.Threading.Thread.Sleep(750);
                 SkipTurn();
             }
         }
@@ -182,10 +180,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 socketClient.Skip();
             }
-        }
-        public void Notify()
-        {
-            messenger.Send("Message", "Base");
         }
         public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 4096)
         {

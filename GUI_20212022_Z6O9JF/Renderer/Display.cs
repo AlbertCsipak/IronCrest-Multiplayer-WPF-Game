@@ -118,7 +118,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 default:
                                     break;
                             }
-                            drawingContext.DrawText(new FormattedText(gameLogic.GameMap[i,j].Position[0].ToString()+","+ gameLogic.GameMap[i, j].Position[1].ToString(), System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"),12, Brushes.Black), new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1));
+                            drawingContext.DrawText(new FormattedText(gameLogic.GameMap[i, j].Position[0].ToString() + "," + gameLogic.GameMap[i, j].Position[1].ToString(), System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black), new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1));
 
                             if (sizeChanged)
                             {

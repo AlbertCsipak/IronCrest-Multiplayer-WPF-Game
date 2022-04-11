@@ -90,7 +90,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                     item.OwnerId = 0;
                     item.Objects.Clear();
                 }
-                //System.InvalidOperationException: 'Collection was modified; enumeration operation may not execute.' : fix -> ToList();
                 foreach (var player in Players.ToList())
                 {
                     if (player != null)
@@ -180,7 +179,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
                     ;
-                    if (item != null && player.Moves != 0 &&item.Level<3)
+                    if (item != null && player.Moves != 0 && item.Level < 3)
                     {
                         item.Level++;
                         DecreaseMoves();
@@ -190,20 +189,33 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void MoveUnit(HexagonTile hexagonTile)
         {
-            if (hexagonTile.Objects.Where(t => t.CanMove).ToList().Count == 0)
+            if (SelectedHexagonTile != null)
             {
-                var item = SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
-
-                if (item != null)
+                if (SelectedHexagonTile.OwnerId == ClientID)
                 {
-                    item.Move(hexagonTile.Position);
-                    hexagonTile.Objects.Add(item);
+                    if (hexagonTile.Objects.ToList().Count == 0)
+                    {
+                        var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+                        var item = SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
 
-                    ResetSelectedHexagon(item);
+                        if (item != null && player.Moves != 0)
+                        {
+                            item.Move(hexagonTile.Position);
+                            hexagonTile.Objects.Add(item);
 
-                    DecreaseMoves();
+                            SelectedHexagonTile.Objects.Remove(item);
+                            if (SelectedHexagonTile.Objects.Count == 0)
+                            {
+                                SelectedHexagonTile.OwnerId = 0;
+                            }
+                            SelectedHexagonTile = null;
+
+                            DecreaseMoves();
+                        }
+                    }
                 }
             }
+
         }
         public void DecreaseMoves()
         {
@@ -219,18 +231,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (item != null)
             {
                 item.Moves = 2;
-            }
-        }
-        public void ResetSelectedHexagon(IGameItem gameItem)
-        {
-            if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
-            {
-                SelectedHexagonTile.Objects.Remove(gameItem);
-                if (SelectedHexagonTile.Objects.Count == 0)
-                {
-                    SelectedHexagonTile.OwnerId = 0;
-                }
-                SelectedHexagonTile = null;
             }
         }
     }
