@@ -61,23 +61,26 @@ namespace GUI_20212022_Z6O9JF.Logic
                     map[i, j].Position[1] = j;
                     switch (lines[i + 2][j])
                     {
-                        case 'm':
-                            map[i, j].FieldType = FieldType.field;
+                        case 'g':
+                            map[i, j].FieldType = FieldType.grass;
                             break;
-                        case 'v':
-                            map[i, j].FieldType = FieldType.water;
+                        case 'l':
+                            map[i, j].FieldType = FieldType.lake;
                             break;
-                        case 'e':
+                        case 'f':
                             map[i, j].FieldType = FieldType.forest;
                             break;
-                        case 'h':
-                            map[i, j].FieldType = FieldType.hill;
+                        case 'm':
+                            map[i, j].FieldType = FieldType.mountain;
                             break;
-                        case 'b':
+                        case 'w':
                             map[i, j].FieldType = FieldType.wheat;
                             break;
-                        case 'A':
+                        case 'G':
                             map[i, j].FieldType = FieldType.goldMine;
+                            break;
+                        case 'o':
+                            map[i, j].FieldType = FieldType.ocean;
                             break;
                         default:
                             break;
@@ -173,7 +176,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void AddVillage()
         {
-            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.field
+            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
                 && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
             {
                 if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)

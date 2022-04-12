@@ -87,10 +87,10 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             random = new Random();
                             switch (gameLogic.GameMap[i, j].FieldType)
                             {
-                                case FieldType.field:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/field.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                case FieldType.grass:
+                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/grass.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
-                                case FieldType.water:
+                                case FieldType.ocean:
                                     if (gif < 30)
                                     {
                                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
@@ -100,20 +100,27 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water2.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     }
                                     break;
-                                case FieldType.village:
-                                    drawingContext.DrawRectangle(Brushes.Green, new Pen(Brushes.Black, 1), rect);
+                                case FieldType.lake:
+                                    if (gif < 30)
+                                    {
+                                        drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                    }
+                                    else
+                                    {
+                                        drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water2.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                    }
                                     break;
-                                case FieldType.hill:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/mountain_water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                case FieldType.mountain:
+                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/mountain.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
                                 case FieldType.forest:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/wood.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/forest.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
                                 case FieldType.wheat:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/food.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/wheat.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
                                 case FieldType.goldMine:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/gold_mine.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
+                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/goldMine.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
                                 default:
                                     break;

@@ -36,23 +36,20 @@
     <None Remove="Resources\Images\Map\Crusader_village_lvl1.png" />
     <None Remove="Resources\Images\Map\Crusader_village_lvl2.png" />
     <None Remove="Resources\Images\Map\Crusader_village_lvl3.png" />
-    <None Remove="Resources\Images\Map\field.png" />
-    <None Remove="Resources\Images\Map\food.png" />
-    <None Remove="Resources\Images\Map\gold_mine.png" />
+    <None Remove="Resources\Images\Map\forest.png" />
+    <None Remove="Resources\Images\Map\goldMine.png" />
+    <None Remove="Resources\Images\Map\grass.png" />
     <None Remove="Resources\Images\Map\Mongolian_village_lvl1.png" />
     <None Remove="Resources\Images\Map\Mongolian_village_lvl2.png" />
     <None Remove="Resources\Images\Map\Mongolian_village_lvl3.png" />
     <None Remove="Resources\Images\Map\mountain.png" />
-    <None Remove="Resources\Images\Map\mountain_brown.png" />
-    <None Remove="Resources\Images\Map\mountain_water.png" />
     <None Remove="Resources\Images\Map\tom and jerry images %281%29.png" />
     <None Remove="Resources\Images\Map\Viking_village_lvl1.png" />
     <None Remove="Resources\Images\Map\Viking_village_lvl2.png" />
     <None Remove="Resources\Images\Map\Viking_village_lvl3.png" />
-    <None Remove="Resources\Images\Map\water.gif" />
     <None Remove="Resources\Images\Map\water.png" />
     <None Remove="Resources\Images\Map\water2.png" />
-    <None Remove="Resources\Images\Map\wood.png" />
+    <None Remove="Resources\Images\Map\wheat.png" />
     <None Remove="Resources\Images\Menu\arrow_left.png" />
     <None Remove="Resources\Images\Menu\arrow_right.png" />
     <None Remove="Resources\Images\Menu\board.png" />
@@ -140,22 +137,16 @@
     <Content Include="Resources\Images\Map\cloud_up.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\field.png">
+    <Content Include="Resources\Images\Map\grass.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\food.png">
+    <Content Include="Resources\Images\Map\wheat.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\gold_mine.png">
+    <Content Include="Resources\Images\Map\goldMine.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\mountain.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Map\mountain_brown.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Map\mountain_water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\Arabian_village_lvl1.png">
@@ -167,16 +158,13 @@
     <Content Include="Resources\Images\Map\Arabian_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\water.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Images\Map\water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\water2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\wood.png">
+    <Content Include="Resources\Images\Map\forest.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\Mongolian_village_lvl1.png">
