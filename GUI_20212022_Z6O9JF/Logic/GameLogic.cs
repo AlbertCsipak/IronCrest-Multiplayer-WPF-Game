@@ -20,7 +20,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
         public List<Quest> quests;
-        public List<Trade> trades;
+        
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -51,7 +51,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             string[] lines = File.ReadAllLines(path);
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
-
+            Queue<Trade> trades = LoadTrades();
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
@@ -82,21 +82,59 @@ namespace GUI_20212022_Z6O9JF.Logic
                         case 'o':
                             map[i, j].FieldType = FieldType.ocean;
                             break;
+                        case 'c':
+                            map[i, j].FieldType = FieldType.compassField;
+                            break;
                         default:
                             break;
                     }
                 }
             }
+            while (trades.Count!=0)
+            {
+                int randomI = RandomNumber.RandomNumberGenerator(0, map.GetLength(0)-1);
+                int randomJ = RandomNumber.RandomNumberGenerator(0, map.GetLength(1)-1);
+                if (map[randomI,randomJ].FieldType==FieldType.compassField && map[randomI, randomJ].Objects.Count() == 0)
+                {
+                    map[randomI, randomJ].Objects.Add(trades.Dequeue());
+                }
+            }
             return map;
         }
-        public void LoadTrades()
+        //Fisher–Yates shuffle
+        public static void Shuffle(List<Trade> list)
         {
-            trades = new List<Trade>()
+            int n = list.Count;
+            while (n > 1)
             {
-                new Trade(new Offer[3]{ new Offer("You get 3 gold.", 0 , new Dictionary<string, int>() { { "Gold", 3 } }), new Offer("You get 2 logs and 1 wheat for 2 gold.", 2, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 3 stones and 3 logs for 4 gold.", 4, new Dictionary<string, int>() { { "Stone", 3 }, { "Wood", 3 } })}),
-                new Trade(new Offer[3]{ new Offer("You get 3 gold.", 0 , new Dictionary<string, int>() { { "Gold", 3 } }), new Offer("You get 2 logs and 1 wheat for 2 gold.", 2, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 3 stones and 3 logs for 4 gold.", 4, new Dictionary<string, int>() { { "Stone", 3 }, { "Wood", 3 } })}),
-                new Trade(new Offer[3]{ new Offer("You get 3 gold.", 0 , new Dictionary<string, int>() { { "Gold", 3 } }), new Offer("You get 2 logs and 1 wheat for 2 gold.", 2, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 3 stones and 3 logs for 4 gold.", 4, new Dictionary<string, int>() { { "Stone", 3 }, { "Wood", 3 } })})
+                n--;
+                int k = RandomNumber.RandomNumberGenerator(0,n);
+                Trade value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
+        public Queue<Trade> LoadTrades()
+        {
+            List<Trade> trades = new List<Trade>()
+            {
+                new Trade(new Offer[3]{ new Offer("You get 3 gold.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 3 } }), new Offer("You get 2 logs and 1 wheat for 2 gold.", new Dictionary<string, int>() { { "Gold", 2 } }, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 3 stones and 3 logs for 4 gold and 1 popularity.", new Dictionary<string, int>() { { "Gold", 4 }, {"Popularity",1 } }, new Dictionary<string, int>() { { "Stone", 3 }, { "Wood", 3 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 4 logs.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Wood", 4 } }), new Offer("You get 3 stones for 1 gold and 1 army power.", new Dictionary<string, int>() { { "Gold", 1 },{"ArmyPower",1 } }, new Dictionary<string, int>() { { "Stone", 3 } }), new Offer("You get 2 wheats, 2 logs and a popularity for 4 gold.", new Dictionary<string, int>() { { "Gold", 4 } }, new Dictionary<string, int>() { { "Wheat", 2 }, { "Wood", 2 }, {"Popularity",1 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 2 gold and a popularity.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 2 },{"Popularity",1 } }), new Offer("You get 2 logs and 2 army power for 3 gold.", new Dictionary<string, int>() { { "Gold", 3 }}, new Dictionary<string, int>() { { "Wood", 2 }, { "ArmyPower", 2 } }), new Offer("You get 3 logs, 2 wheat and 2 popularity for 3 gold and 2 stones.", new Dictionary<string, int>() { { "Gold", 3 },{"Stone",2 } }, new Dictionary<string, int>() { { "Wood", 3 }, { "Wheat", 2 },{"Popularity",2 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 4 stones.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Stone", 4 } }), new Offer("You get 2 wheats and 1 popularity for 2 gold.", new Dictionary<string, int>() { { "Gold", 2 } }, new Dictionary<string, int>() { { "Wheat", 2 }, { "Popularity", 1 } }), new Offer("You get 2 stones, 2 logs and 2 wheats for 3 gold and 2 army power.", new Dictionary<string, int>() { { "Gold", 3 },{"ArmyPower",2 } }, new Dictionary<string, int>() { { "Stone", 2 }, { "Wood", 2 }, { "Wheat", 2 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 2 gold and a stone.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 2 },{"Stone",1 } }), new Offer("You get 2 logs and 2 army power for 3 gold.", new Dictionary<string, int>() { { "Gold", 3 } }, new Dictionary<string, int>() { { "Wood", 2 }, { "ArmyPower", 2 } }), new Offer("You get 4 wheats and 2 stones for 3 gold and a log.", new Dictionary<string, int>() { { "Gold", 3 },{"Wood",1 } }, new Dictionary<string, int>() { { "Wheat", 4 }, { "Stone", 2 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 3 gold and a popularity.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 3 },{"Popularity",1 } }), new Offer("You get 3 stones and 1 popularity for 2 gold and a wheat.", new Dictionary<string, int>() { { "Gold", 2 },{"Wheat",1 } }, new Dictionary<string, int>() { { "Stone", 3 }, { "Popularity", 1 } }), new Offer("You get 3 army power, 2 logs and 1 popularity for 4 gold.", new Dictionary<string, int>() { { "Gold", 4 } }, new Dictionary<string, int>() { { "ArmyPower", 3 }, { "Wood", 2 },{"Popularity",1 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 2 gold and 2 logs.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 2 },{"Wood",2 } }), new Offer("You get 2 wheats, 1 log and 1 army power for 2 gold and a popularity.", new Dictionary<string, int>() { { "Gold", 2 },{"Popularity",1} }, new Dictionary<string, int>() { { "Wheat", 2 }, { "Wood", 1 },{"ArmyPower",1 } }), new Offer("You get 5 stones and a wheat for 3 gold and 2 army power.", new Dictionary<string, int>() { { "Gold", 3 },{"ArmyPower",2 } }, new Dictionary<string, int>() { { "Stone", 5 }, { "Wheat", 1 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 4 gold.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 4 } }), new Offer("You get 2 wheats and 2 army power for 3 gold.", new Dictionary<string, int>() { { "Gold", 3 } }, new Dictionary<string, int>() { { "Wheat", 2 }, { "ArmyPower", 2 } }), new Offer("You get 3 logs, 2 stones and 2 popularity for 5 gold.", new Dictionary<string, int>() { { "Gold", 5 } }, new Dictionary<string, int>() { { "Wood", 3 }, { "Stone", 2 },{"Popularity",2 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 1 gold, 1 army power and 1 popularity.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 1 }, { "ArmyPower", 1 }, { "Popularity", 1 } }), new Offer("You get 3 logs and 2 army power for 2 gold and 1 popularity.", new Dictionary<string, int>() { { "Gold", 2 },{"Popularity",1 } }, new Dictionary<string, int>() { { "Wood", 3 }, { "ArmyPower", 2 } }), new Offer("You get 3 popularity and 3 wheats for 3 gold and 1 log.", new Dictionary<string, int>() { { "Gold", 3 },{"Wood",1 } }, new Dictionary<string, int>() { { "Popularity", 3 }, { "Wheat", 3 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 2 gold, 1 stone, and a wheat.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 2 },{"Stone",1 },{"Wheat",1 } }), new Offer("You get 3 logs and 1 army power for 2 gold and a popularity.", new Dictionary<string, int>() { { "Gold", 2 },{"Popularity",1 } }, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 4 logs and 2 wheats for 3 gold and 1 army power.", new Dictionary<string, int>() { { "Gold", 3 },{"ArmyPower",1 } }, new Dictionary<string, int>() { { "Wood", 4 }, { "Wheat", 2 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 3 gold and a wheat.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 3 },{"Wheat",1 } }), new Offer("You get 3 logs and 1 stone for 1 gold and 2 popularity.", new Dictionary<string, int>() { { "Gold", 1 },{"Popularity",2 } }, new Dictionary<string, int>() { { "Wood", 3 }, { "Stone", 1 } }), new Offer("You get 3 stones, 2 logs, and 2 army power for 3 gold and 2 wheat.", new Dictionary<string, int>() { { "Gold", 3 },{"Wheat",2 } }, new Dictionary<string, int>() { { "Stone", 3 }, { "ArmyPower", 2 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 1 gold and 2 army power.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 1 },{"ArmyPower",2 } }), new Offer("You get 3 logs and 1 popularity for 2 gold.", new Dictionary<string, int>() { { "Gold", 2 } }, new Dictionary<string, int>() { { "Wood", 3 }, { "Popularity", 1 } }), new Offer("You get 2 stones, 2 logs, 1 popularity and 1 army power for 4 gold.", new Dictionary<string, int>() { { "Gold", 4 } }, new Dictionary<string, int>() { { "Stone", 2 }, { "Wood", 2 },{"Popularity",1 },{"ArmyPower",1 } })})
             };
+            Shuffle(trades);
+            Queue<Trade> tradeQueue = new Queue<Trade>();
+            trades.ForEach(x => tradeQueue.Enqueue(x));
+            return tradeQueue;
         }
         public void ReloadHexagonObjects()
         {
@@ -105,7 +143,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 foreach (var item in GameMap)
                 {
                     item.OwnerId = 0;
-                    item.Objects.Clear();
+                    //item.Objects.Clear();
                 }
                 foreach (var player in Players.ToList())
                 {
