@@ -1,4 +1,5 @@
-﻿using GUI_20212022_Z6O9JF.Models;
+﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using GUI_20212022_Z6O9JF.UserControls;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
@@ -8,15 +9,42 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
+    public static class RandomNumber
+    {
+        private static readonly RNGCryptoServiceProvider _generator = new RNGCryptoServiceProvider();
+
+        public static int RandomNumberGenerator(int minimumValue, int maximumValue)
+        {
+            byte[] randomNumber = new byte[1];
+
+            _generator.GetBytes(randomNumber);
+
+            double asciiValueOfRandomCharacter = Convert.ToDouble(randomNumber[0]);
+
+            // We are using Math.Max, and substracting 0.00000000001, 
+            // to ensure "multiplier" will always be between 0.0 and .99999999999
+            // Otherwise, it's possible for it to be "1", which causes problems in our rounding.
+            double multiplier = Math.Max(0, (asciiValueOfRandomCharacter / 255d) - 0.00000000001d);
+
+            // We need to add one to the range, to allow for the rounding done with Math.Floor
+            int range = maximumValue - minimumValue + 1;
+
+            double randomValueInRange = Math.Floor(multiplier * range);
+
+            return (int)(minimumValue + randomValueInRange);
+        }
+    }
+
     public class ClientLogic : IClientLogic
     {
-        public static Random r = new Random();
+        //public static Random r = new Random();
         public List<Quest> quests;
         IGameLogic gameLogic;
         IMessenger messenger;
@@ -166,16 +194,19 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 else
                 {
-                    gameLogic.Players.Add(new Player()
-                    {
-                        PlayerID = ClientId,
-                        Name = name,
-                        Faction = faction,
-                        Moves = 2,
-                        Quests = RandomQuestSelector(3),
-                        Units = new List<Unit>(),
-                        Villages = new List<Village>()
-                    });
+                gameLogic.Players.Add(new Player()
+                {
+                    PlayerID = ClientId,
+                    Name = name,
+                    Faction = faction,
+                    Moves = 2,
+                    Quests = RandomQuestSelector(3),
+                    Units = new List<Unit>(),
+                    Villages = new List<Village>(),
+                    Gold = RandomNumber.RandomNumberGenerator(0, 5),
+                    Popularity = RandomNumber.RandomNumberGenerator(0, 3),
+                    ArmyPower = RandomNumber.RandomNumberGenerator(0, 3)
+                });
                 }
                 gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
                 ChangeView("game");
@@ -183,6 +214,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 SkipTurn();
             }
         }
+
         public void ReadQuests()
         {
             var file = File.ReadAllLines("Resources/Maps/Quests.txt");
@@ -201,7 +233,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             int db = 0;
             while (db!=n)
             {
-                int ind = r.Next(quests.Count);
+            int ind = RandomNumber.RandomNumberGenerator(0, quests.Count - 1);
                 if (!indexes.Contains(ind))
                 {
                     indexes.Add(ind);
