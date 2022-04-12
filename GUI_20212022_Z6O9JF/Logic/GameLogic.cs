@@ -143,7 +143,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 foreach (var item in GameMap)
                 {
                     item.OwnerId = 0;
-                    //item.Objects.Clear();
+                    item.Objects.Clear();
                 }
                 foreach (var player in Players.ToList())
                 {
@@ -286,6 +286,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             item.Move(hexagonTile.Position);
                             hexagonTile.Objects.Add(item);
+                            hexagonTile.OwnerId = item.OwnerId;
 
                             SelectedHexagonTile.Objects.Remove(item);
                             if (SelectedHexagonTile.Objects.Count == 0)
@@ -305,23 +306,28 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                                 if (player.ArmyPower * (item as Unit).Level >= enemy.Level * enemyPlayer.ArmyPower)
                                 {
-
-                                    enemy.Position[0] = 3;
-                                    enemy.Position[1] = 3;
-                                    //enemy.move
-
                                     hexagonTile.Objects.Remove(enemy);
+
+                                    if (hexagonTile.Objects.Count == 0)
+                                    {
+                                        hexagonTile.OwnerId = 0;
+                                    }
+
+                                    enemy.Move(enemyPlayer.Villages.FirstOrDefault().Position);
+                                    GameMap[enemy.Position[0], enemy.Position[1]].Objects.Add(enemy);
 
                                     item.Move(hexagonTile.Position);
                                     hexagonTile.Objects.Add(item);
+                                    hexagonTile.OwnerId = item.OwnerId;
                                 }
                                 else
                                 {
-                                    item.Position[0] = 6;
-                                    item.Position[1] = 6;
-                                    GameMap[6, 6].Objects.Add(item);
+                                    item.Move(player.Villages.FirstOrDefault().Position);
+                                    GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                                 }
+
                                 SelectedHexagonTile.Objects.Remove(item);
+
                                 if (SelectedHexagonTile.Objects.Count == 0)
                                 {
                                     SelectedHexagonTile.OwnerId = 0;
