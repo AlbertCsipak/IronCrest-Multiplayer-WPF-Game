@@ -25,5 +25,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         void ResetMoves();
         void SelectableFactions();
         void UpgradeVillage();
+        void ChooseOffer();
     }
 }

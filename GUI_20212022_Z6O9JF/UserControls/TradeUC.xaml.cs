@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GUI_20212022_Z6O9JF
+namespace GUI_20212022_Z6O9JF.UserControls
 {
     /// <summary>
-    /// Interaction logic for TradeWindow.xaml
+    /// Interaction logic for TradeUC.xaml
     /// </summary>
-    public partial class TradeWindow : UserControl
+    public partial class TradeUC : UserControl
     {
-        public TradeWindow()
+        public TradeUC()
         {
             InitializeComponent();
-        }
-
-        private void check1_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
