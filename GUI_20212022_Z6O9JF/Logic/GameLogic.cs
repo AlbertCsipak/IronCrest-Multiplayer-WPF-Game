@@ -20,6 +20,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
         public List<Quest> quests;
+        public List<Trade> trades;
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -88,6 +89,16 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             return map;
         }
+        public void LoadTrades()
+        {
+            trades = new List<Trade>()
+            {
+                new Trade(new Offer[3]{ new Offer("You get 3 gold.", 0 , new Dictionary<string, int>() { { "Gold", 3 } }), new Offer("You get 2 logs and 1 wheat for 2 gold.", 2, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 3 stones and 3 logs for 4 gold.", 4, new Dictionary<string, int>() { { "Stone", 3 }, { "Wood", 3 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 3 gold.", 0 , new Dictionary<string, int>() { { "Gold", 3 } }), new Offer("You get 2 logs and 1 wheat for 2 gold.", 2, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 3 stones and 3 logs for 4 gold.", 4, new Dictionary<string, int>() { { "Stone", 3 }, { "Wood", 3 } })}),
+                new Trade(new Offer[3]{ new Offer("You get 3 gold.", 0 , new Dictionary<string, int>() { { "Gold", 3 } }), new Offer("You get 2 logs and 1 wheat for 2 gold.", 2, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 3 stones and 3 logs for 4 gold.", 4, new Dictionary<string, int>() { { "Stone", 3 }, { "Wood", 3 } })})
+            };
+        }
+
         public void ReloadHexagonObjects()
         {
             if (GameMap != null)
