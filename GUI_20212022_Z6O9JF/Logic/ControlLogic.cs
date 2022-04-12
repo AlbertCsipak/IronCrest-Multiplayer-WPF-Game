@@ -21,17 +21,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Polygon polygon = sender as Polygon;
-            if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
             {
-                if (SelectedPolygon != null && SelectedPolygon != polygon)
-                {
-                    gameLogic.MoveUnit(polygon.Tag as HexagonTile);
-                    ClearSelections();
-                }
-            }
-            else
-            {
-                if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
+                if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
@@ -39,38 +31,27 @@ namespace GUI_20212022_Z6O9JF.Logic
                         ClearSelections();
                     }
                 }
+                else
+                {
+                    if ((polygon.Tag as HexagonTile).FieldType != FieldType.lake)
+                    {
+                        if (SelectedPolygon != null && SelectedPolygon != polygon)
+                        {
+                            gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                            ClearSelections();
+                        }
+                    }
+                }
             }
+
 
         }
         public void Polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Polygon polygon = (sender as Polygon);
-            if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
             {
-                if ((polygon.Tag as HexagonTile).OwnerId == gameLogic.ClientID || (polygon.Tag as HexagonTile).OwnerId == 0)
-                {
-                    ClearSelections();
-
-                    PolygonBorderBrush(polygon);
-
-                    if ((polygon.Tag as HexagonTile).Objects.Where(t => t.CanMove).ToList().Count != 0)
-                    {
-                        foreach (var item in (polygon.Tag as HexagonTile).NeighborCoords())
-                        {
-                            Polygon thisPoly = grid.Children[gameLogic.GameMap[item.X, item.Y].ParentId] as Polygon;
-                            if (gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.water)
-                            {
-                                PolygonBorderBrush(thisPoly);
-                            }
-                        }
-                    }
-                    SelectedPolygon = polygon;
-                    gameLogic.SelectedHexagonTile = SelectedPolygon.Tag as HexagonTile;
-                }
-            }
-            else
-            {
-                if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
+                if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if ((polygon.Tag as HexagonTile).OwnerId == gameLogic.ClientID || (polygon.Tag as HexagonTile).OwnerId == 0)
                     {
@@ -83,7 +64,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             foreach (var item in (polygon.Tag as HexagonTile).NeighborCoords())
                             {
                                 Polygon thisPoly = grid.Children[gameLogic.GameMap[item.X, item.Y].ParentId] as Polygon;
-                                if (gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.water)
+                                if (gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.ocean)
                                 {
                                     PolygonBorderBrush(thisPoly);
                                 }
@@ -93,28 +74,59 @@ namespace GUI_20212022_Z6O9JF.Logic
                         gameLogic.SelectedHexagonTile = SelectedPolygon.Tag as HexagonTile;
                     }
                 }
+                else
+                {
+                    if ((polygon.Tag as HexagonTile).FieldType != FieldType.lake)
+                    {
+                        if ((polygon.Tag as HexagonTile).OwnerId == gameLogic.ClientID || (polygon.Tag as HexagonTile).OwnerId == 0)
+                        {
+                            ClearSelections();
+
+                            PolygonBorderBrush(polygon);
+
+                            if ((polygon.Tag as HexagonTile).Objects.Where(t => t.CanMove).ToList().Count != 0)
+                            {
+                                foreach (var item in (polygon.Tag as HexagonTile).NeighborCoords())
+                                {
+                                    Polygon thisPoly = grid.Children[gameLogic.GameMap[item.X, item.Y].ParentId] as Polygon;
+                                    if (gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.lake && gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.ocean)
+                                    {
+                                        PolygonBorderBrush(thisPoly);
+                                    }
+                                }
+                            }
+                            SelectedPolygon = polygon;
+                            gameLogic.SelectedHexagonTile = SelectedPolygon.Tag as HexagonTile;
+                        }
+                    }
+                }
             }
+
         }
         public void Polygon_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             Polygon polygon = sender as Polygon;
-            if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
             {
-                if (SelectedPolygon != polygon)
-                {
-                    polygon.Stroke = currentColor;
-                }
-            }
-            else
-            {
-                if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
+                if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if (SelectedPolygon != polygon)
                     {
                         polygon.Stroke = currentColor;
                     }
                 }
+                else
+                {
+                    if ((polygon.Tag as HexagonTile).FieldType != FieldType.lake)
+                    {
+                        if (SelectedPolygon != polygon)
+                        {
+                            polygon.Stroke = currentColor;
+                        }
+                    }
+                }
             }
+
 
         }
 
@@ -122,17 +134,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void Polygon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             Polygon polygon = sender as Polygon;
-            if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
             {
-                if (SelectedPolygon != polygon)
-                {
-                    currentColor = polygon.Stroke;
-                    polygon.Stroke = Brushes.White;
-                }
-            }
-            else
-            {
-                if ((polygon.Tag as HexagonTile).FieldType != FieldType.water)
+                if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if (SelectedPolygon != polygon)
                     {
@@ -140,7 +144,19 @@ namespace GUI_20212022_Z6O9JF.Logic
                         polygon.Stroke = Brushes.White;
                     }
                 }
+                else
+                {
+                    if ((polygon.Tag as HexagonTile).FieldType != FieldType.lake)
+                    {
+                        if (SelectedPolygon != polygon)
+                        {
+                            currentColor = polygon.Stroke;
+                            polygon.Stroke = Brushes.White;
+                        }
+                    }
+                }
             }
+
 
         }
         void ClearSelections()
