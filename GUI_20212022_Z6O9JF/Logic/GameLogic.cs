@@ -141,18 +141,14 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void AddVillage()
         {
-            ;
-            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.field && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
+            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.field 
+                && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
             {
-                ;
                 if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
                 {
-                    ;
                     var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-                    ;
                     if (item != null && item.Moves != 0)
                     {
-                        ;
                         Village newVillage = new Village();
 
                         newVillage.Position = SelectedHexagonTile.Position;
@@ -165,7 +161,6 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                         item.Villages.Add(newVillage);
                         DecreaseMoves();
-                        ;
                     }
                 }
 
@@ -199,15 +194,27 @@ namespace GUI_20212022_Z6O9JF.Logic
                     Point point = new Point();
                     point.X = hexagonTile.Position[0];
                     point.Y = hexagonTile.Position[1];
-                    if (hexagonTile.Objects.ToList().Count == 0 && points.Contains(point))
+
+                    if (points.Contains(point))
                     {
                         var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                         var item = SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
 
                         if (item != null && player.Moves != 0)
                         {
-                            item.Move(hexagonTile.Position);
-                            hexagonTile.Objects.Add(item);
+                            if (hexagonTile.Objects.ToList().Count == 0)
+                            {
+                                item.Move(hexagonTile.Position);
+                                hexagonTile.Objects.Add(item);
+                            }
+                            else
+                            {
+                                if (hexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault().FactionType!=player.Faction)
+                                {
+                                    //attack
+                                }
+                            }
+
 
                             SelectedHexagonTile.Objects.Remove(item);
                             if (SelectedHexagonTile.Objects.Count == 0)
