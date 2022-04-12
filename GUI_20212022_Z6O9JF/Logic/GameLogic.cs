@@ -269,6 +269,19 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
 
         }
+        public void GetResources()
+        {
+            if (SelectedHexagonTile != null)
+            {
+                var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+                var item = SelectedHexagonTile.Objects.Where(t => t.CanMove && t.OwnerId == player.PlayerID).FirstOrDefault();
+                if (player != null && item != null)
+                {
+                    SelectedHexagonTile.GiveResources(player);
+                    DecreaseMoves();
+                }
+            }
+        }
         public void DecreaseMoves()
         {
             var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();

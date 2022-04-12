@@ -1,5 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using GUI_20212022_Z6O9JF.Logic;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
+using System.Linq;
 
 namespace GUI_20212022_Z6O9JF.Models
 {
@@ -41,6 +45,32 @@ namespace GUI_20212022_Z6O9JF.Models
             }
 
             return coords;
+        }
+        public void GiveResources(Player player) {
+            switch (FieldType)
+            {
+                case FieldType.mountain:
+                    player.Stone++;
+                    break;
+                case FieldType.forest:
+                    player.Wood++;
+                    break;
+                case FieldType.wheat:
+                    player.Food++;
+                    break;
+                case FieldType.goldMine:
+                    if (player.Faction == Faction.Mongolian)
+                    {
+                        player.Gold += 3;
+                    }
+                    else
+                    {
+                        player.Gold += 2;
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
     }
