@@ -142,24 +142,86 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void MysteryBoxEvent()
         {
-            int rnd = RandomNumber.RandomNumberGenerator(1, 21);
-            if (rnd == 1)//5% chance
+            if (SelectedHexagonTile != null)
             {
-                //Dequeue
-                MysteryEvent mysteryEvent = MysteryEvents.Dequeue();
-                mysteryEvent = MysteryEvents.Dequeue();
+                //If: Forst, Mountain, WheatField
+                if (SelectedHexagonTile.FieldType == FieldType.forest ||
+                    SelectedHexagonTile.FieldType == FieldType.mountain || 
+                    SelectedHexagonTile.FieldType == FieldType.wheat)
+                {
+                    int rnd = RandomNumber.RandomNumberGenerator(1, 21);
+                    if (true)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    {
+                        //Dequeue
+                        MysteryEvent mysteryEvent = MysteryEvents.Dequeue();
+                        var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
 
+                        switch (mysteryEvent.Resource)
+                        {
+                            case "Gold":
+                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += mysteryEvent.Number;
+                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold < 0)//cannot be negative! -> 0 default
+                                {
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold = 0;
+                                }
+                                break;
+                            case "Wood":
+                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += mysteryEvent.Number;
+                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood < 0)
+                                {
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood = 0;
+                                }
+                                break;
+                            case "Stone":
+                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone += mysteryEvent.Number;
+                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone < 0)
+                                {
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone = 0;
+                                }
+                                break;
+                            case "Popularity":
+                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity += mysteryEvent.Number;
+                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity < 0)
+                                {
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity = 0;
+                                }
+                                break;
+                            case "ArmyPower":
+                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower += mysteryEvent.Number;
+                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower < 0)
+                                {
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower = 0;
+                                }
+                                break;
+                            case "Food":
+                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food += mysteryEvent.Number;
+                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food < 0)
+                                {
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food = 0;
+                                }
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                    }
+                }
             }
+            
         }
         public Queue<MysteryEvent> LoadMysteryEvents()
         {
             Queue<MysteryEvent> mysteryEvents = new Queue<MysteryEvent>();
             List<MysteryEvent> mysteryEventslist = new List<MysteryEvent>();
             //beolvasás
-
-
-
-
+            var file = File.ReadAllLines("Resources/Maps/MysteryEvents.txt");
+            mysteryEventslist = new List<MysteryEvent>();
+            foreach (var item in file)
+            {
+                string[] line = item.Split(';');
+                mysteryEventslist.Add(new MysteryEvent(line[0], int.Parse(line[1]), line[2]));
+            }
 
             Shuffle(mysteryEventslist);
             mysteryEventslist.ForEach(x => mysteryEvents.Enqueue(x));
