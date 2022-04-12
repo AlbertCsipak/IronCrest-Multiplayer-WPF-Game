@@ -1,6 +1,7 @@
 ﻿Bugs:
 - Rálépsz saját karakterre és elveszzik egy move
-
+-ha a falubol ellépünk egy hőssel, akk duplázódik a hős, ez azért van mert a gamecontrolban kikommenteztem a ReloadHexagonObjects() metódusban az "item.Objects.Clear();" sort,
+mert igy nem jelentek meg a compassok
 
 
 
@@ -11,6 +12,7 @@ Todo:
 - kereskedelmi pontok (iránytűk)
 - game screen brightness/saturation/hue levétele
 - champselect teljes fix
+- number of quest beállítása a logicba (n random quest)
 
 
 Features:
