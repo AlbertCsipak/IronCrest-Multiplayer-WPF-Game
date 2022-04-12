@@ -173,7 +173,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Quests = gameLogic.RandomQuestSelector(3),
                         Units = new List<Unit>(),
                         Villages = new List<Village>(),
-                        Gold = RandomNumber.RandomNumberGenerator(0, 5),
+                        Wood=10,
+                        Stone=10,
+                        Gold=10,
+                        Food=10,
+                        //Gold = RandomNumber.RandomNumberGenerator(2, 5),
                         Popularity = RandomNumber.RandomNumberGenerator(0, 3),
                         ArmyPower = RandomNumber.RandomNumberGenerator(0, 3)
                     });

@@ -19,7 +19,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public ObservableCollection<Player> Players { get; set; }
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
-        public static Random r = new Random();
+        //public static Random r = new Random();
         public List<Quest> quests;
         public GameLogic(IMessenger messenger)
         {
@@ -179,7 +179,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
                 && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && Players.Where(t => t.PlayerID == ClientID).Select(x=>x.Wood).FirstOrDefault()>=3 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Stone).FirstOrDefault() >= 2)
                 {
                     var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     if (item != null && item.Moves != 0)
@@ -192,6 +192,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                         newVillage.OwnerId = item.PlayerID;
 
                         SelectedHexagonTile.Objects.Add(newVillage);
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood -= 3;
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone -= 2;
                         SelectedHexagonTile.OwnerId = item.PlayerID;
 
                         item.Villages.Add(newVillage);
@@ -205,7 +207,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (SelectedHexagonTile != null)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Gold).FirstOrDefault() >= 3 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Wood).FirstOrDefault() >= 2)
                 {
                     var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
@@ -214,6 +216,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         SelectedHexagonTile.Objects.Remove(item);
                         item.Level++;
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold -= 3;
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food -= 2;
                         DecreaseMoves();
                     }
                 }
