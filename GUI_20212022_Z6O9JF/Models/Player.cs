@@ -23,5 +23,6 @@ namespace GUI_20212022_Z6O9JF.Models
         public List<Village> Villages { get; set; }
         public List<Unit> Units { get; set; }
         public Hero Hero { get; set; }
+        public List<Trade> Trade { get; set; }
     }
 }

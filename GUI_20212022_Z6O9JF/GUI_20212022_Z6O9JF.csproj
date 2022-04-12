@@ -80,6 +80,7 @@
     <None Remove="Resources\Maps\map1.txt" />
     <None Remove="Resources\Maps\map2.txt" />
     <None Remove="Resources\Maps\map3.txt" />
+    <None Remove="Resources\Maps\MysteryEvents.txt" />
     <None Remove="Resources\Maps\Quests.txt" />
     <None Remove="Resources\Music\ambient.mp3" />
     <None Remove="Resources\Music\battle_music.mp3" />
@@ -183,6 +184,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\skip_button_unpressed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Maps\MysteryEvents.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Maps\Quests.txt">

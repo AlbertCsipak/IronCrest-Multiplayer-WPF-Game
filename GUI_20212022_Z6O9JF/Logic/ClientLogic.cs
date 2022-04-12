@@ -173,6 +173,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Quests = gameLogic.RandomQuestSelector(3),
                         Units = new List<Unit>(),
                         Villages = new List<Village>(),
+                        Trade=new List<Trade>(),
                         Wood=10,
                         Stone=10,
                         Gold=10,

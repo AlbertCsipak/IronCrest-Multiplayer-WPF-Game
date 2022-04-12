@@ -19,21 +19,17 @@ namespace GUI_20212022_Z6O9JF.Models
             this.Gain = Gain;
         }
     }
-    public class Trade : IGameItem
+    public class Trade
     {
         public Offer[] Offers { get; set; }
         public int[] SelectedOfferIndex { get; set; }
-        public int OwnerId { get ; set ; }
-        public Faction FactionType { get; set; }
-        public int[] Position { get; set ; }
-        public bool CanMove { get; set; }
-        public int Level { get; set; }
-
+        public int[] Position { get; set; }
+        public int OwnerId { get; set; }
         public Trade(Offer[] Offers)
         {
             this.Offers = Offers;
             SelectedOfferIndex = new int[2];
-            CanMove = false;
+            Position = new int[2];
         }
 
         public void Move(int[] pos)

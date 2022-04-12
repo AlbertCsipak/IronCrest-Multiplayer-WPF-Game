@@ -52,6 +52,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             string[] lines = File.ReadAllLines(path);
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
             Queue<Trade> trades = LoadTrades();
+            Queue<MysteryEvent> mysteryEvents = LoadMysteryEvents();
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
@@ -94,22 +95,22 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 int randomI = RandomNumber.RandomNumberGenerator(0, map.GetLength(0)-1);
                 int randomJ = RandomNumber.RandomNumberGenerator(0, map.GetLength(1)-1);
-                if (map[randomI,randomJ].FieldType==FieldType.compassField && map[randomI, randomJ].Objects.Count() == 0)
+                if (map[randomI,randomJ].FieldType==FieldType.compassField && map[randomI, randomJ].Compasses.Count() == 0)
                 {
-                    map[randomI, randomJ].Objects.Add(trades.Dequeue());
+                    map[randomI, randomJ].Compasses.Add(trades.Dequeue());
                 }
             }
             return map;
         }
         //Fisher–Yates shuffle
-        public static void Shuffle(List<Trade> list)
+        public static void Shuffle<T>(List<T> list)
         {
             int n = list.Count;
             while (n > 1)
             {
                 n--;
                 int k = RandomNumber.RandomNumberGenerator(0,n);
-                Trade value = list[k];
+                T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
             }
@@ -136,6 +137,21 @@ namespace GUI_20212022_Z6O9JF.Logic
             trades.ForEach(x => tradeQueue.Enqueue(x));
             return tradeQueue;
         }
+        public Queue<MysteryEvent> LoadMysteryEvents()
+        {
+            Queue<MysteryEvent> mysteryEvents = new Queue<MysteryEvent>();
+            List<MysteryEvent> mysteryEventslist = new List<MysteryEvent>();
+            //beolvasás
+
+
+
+
+
+            Shuffle(mysteryEventslist);
+            mysteryEventslist.ForEach(x => mysteryEvents.Enqueue(x));
+            return mysteryEvents;
+        }
+
         public void ReloadHexagonObjects()
         {
             if (GameMap != null)
@@ -157,6 +173,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                         foreach (var item in player.Villages.ToList())
                         {
                             GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                            GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
+                        }
+                        foreach (var item in player.Trade.ToList())
+                        {
+                            GameMap[item.Position[0], item.Position[1]].Compasses.Add(item);
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
                     }
