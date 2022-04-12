@@ -121,12 +121,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                             GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
-                        if (player.Hero != null)
-                        {
-                            var item = player.Hero;
-                            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
-                            GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
-                        }
                     }
                 }
             }
