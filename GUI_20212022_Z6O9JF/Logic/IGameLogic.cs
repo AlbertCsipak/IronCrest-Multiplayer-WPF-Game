@@ -17,6 +17,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         void AddVillage();
         void DecreaseMoves();
         HexagonTile[,] GameMapSetup(string path);
+        void GetResources();
         void MoveUnit(HexagonTile hexagonTile);
         List<Quest> RandomQuestSelector(int n);
         void ReadQuests();
