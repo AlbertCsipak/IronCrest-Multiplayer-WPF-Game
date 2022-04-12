@@ -419,6 +419,12 @@ namespace GUI_20212022_Z6O9JF.Logic
                 item.Moves = 2;
             }
         }
+
+        public void ChooseOffer()
+        {
+            
+            throw new NotImplementedException();
+        }
     }
     public static class RandomNumber
     {
