@@ -8,7 +8,7 @@ using System.Linq;
 namespace GUI_20212022_Z6O9JF.Models
 {
 
-    public enum FieldType { grass, lake, mountain, forest, wheat, goldMine,ocean }
+    public enum FieldType { grass, lake, mountain, forest, wheat, goldMine,ocean,compassField }
     public class HexagonTile
     {
         public int ParentId { get; set; }

@@ -20,7 +20,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
         public List<Quest> quests;
-        public List<Trade> trades;
+        
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -51,7 +51,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             string[] lines = File.ReadAllLines(path);
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
-
+            Queue<Trade> trades = LoadTrades();
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
@@ -82,9 +82,21 @@ namespace GUI_20212022_Z6O9JF.Logic
                         case 'o':
                             map[i, j].FieldType = FieldType.ocean;
                             break;
+                        case 'c':
+                            map[i, j].FieldType = FieldType.compassField;
+                            break;
                         default:
                             break;
                     }
+                }
+            }
+            while (trades.Count!=0)
+            {
+                int randomI = RandomNumber.RandomNumberGenerator(0, map.GetLength(0)-1);
+                int randomJ = RandomNumber.RandomNumberGenerator(0, map.GetLength(1)-1);
+                if (map[randomI,randomJ].FieldType==FieldType.compassField && map[randomI, randomJ].Objects.Count() == 0)
+                {
+                    map[randomI, randomJ].Objects.Add(trades.Dequeue());
                 }
             }
             return map;
@@ -102,9 +114,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                 list[n] = value;
             }
         }
-        public void LoadTrades()
+        public Queue<Trade> LoadTrades()
         {
-            trades = new List<Trade>()
+            List<Trade> trades = new List<Trade>()
             {
                 new Trade(new Offer[3]{ new Offer("You get 3 gold.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 3 } }), new Offer("You get 2 logs and 1 wheat for 2 gold.", new Dictionary<string, int>() { { "Gold", 2 } }, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 3 stones and 3 logs for 4 gold and 1 popularity.", new Dictionary<string, int>() { { "Gold", 4 }, {"Popularity",1 } }, new Dictionary<string, int>() { { "Stone", 3 }, { "Wood", 3 } })}),
                 new Trade(new Offer[3]{ new Offer("You get 4 logs.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Wood", 4 } }), new Offer("You get 3 stones for 1 gold and 1 army power.", new Dictionary<string, int>() { { "Gold", 1 },{"ArmyPower",1 } }, new Dictionary<string, int>() { { "Stone", 3 } }), new Offer("You get 2 wheats, 2 logs and a popularity for 4 gold.", new Dictionary<string, int>() { { "Gold", 4 } }, new Dictionary<string, int>() { { "Wheat", 2 }, { "Wood", 2 }, {"Popularity",1 } })}),
@@ -120,6 +132,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                 new Trade(new Offer[3]{ new Offer("You get 1 gold and 2 army power.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 1 },{"ArmyPower",2 } }), new Offer("You get 3 logs and 1 popularity for 2 gold.", new Dictionary<string, int>() { { "Gold", 2 } }, new Dictionary<string, int>() { { "Wood", 3 }, { "Popularity", 1 } }), new Offer("You get 2 stones, 2 logs, 1 popularity and 1 army power for 4 gold.", new Dictionary<string, int>() { { "Gold", 4 } }, new Dictionary<string, int>() { { "Stone", 2 }, { "Wood", 2 },{"Popularity",1 },{"ArmyPower",1 } })})
             };
             Shuffle(trades);
+            Queue<Trade> tradeQueue = new Queue<Trade>();
+            trades.ForEach(x => tradeQueue.Enqueue(x));
+            return tradeQueue;
         }
         public void ReloadHexagonObjects()
         {
@@ -128,7 +143,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 foreach (var item in GameMap)
                 {
                     item.OwnerId = 0;
-                    item.Objects.Clear();
+                    //item.Objects.Clear();
                 }
                 foreach (var player in Players.ToList())
                 {
