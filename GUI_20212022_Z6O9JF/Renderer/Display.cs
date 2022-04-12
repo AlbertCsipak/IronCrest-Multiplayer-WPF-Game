@@ -182,16 +182,19 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                     switch (item.FactionType)
                                     {
                                         case Faction.Viking:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_viking.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.8) / 2, HexagonPoints[i, j][0] - height / 2 * 1.1 + height * 0.6 / 2), new Size(width * 0.7, height * 0.7)));
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_viking.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
                                             break;
                                         case Faction.Crusader:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_crusader.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1), new Size(width * 1.3, height * 1.1)));
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_crusader.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
+                                            break;
                                             break;
                                         case Faction.Mongolian:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_mongolian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1), new Size(width * 1.3, height * 1.1)));
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_mongolian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 ), new Size(width * 0.7, height * 1)));
+                                            break;
                                             break;
                                         case Faction.Arabian:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_arabian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1), new Size(width * 1.3, height * 1.1)));
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_arabian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
+                                            break;
                                             break;
                                         default:
                                             break;

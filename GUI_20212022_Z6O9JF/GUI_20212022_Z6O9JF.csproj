@@ -11,6 +11,7 @@
     <None Remove="Resources\Augusta.ttf" />
     <None Remove="Resources\blurite_sword.cur" />
     <None Remove="Resources\Images\Characters\bjorn.png" />
+    <None Remove="Resources\Images\Characters\crusader_head.png" />
     <None Remove="Resources\Images\Characters\dark_night.png" />
     <None Remove="Resources\Images\Characters\genghis_khan.png" />
     <None Remove="Resources\Images\Characters\jhin.png" />
@@ -103,6 +104,9 @@
     <Content Include="Resources\blurite_sword.cur">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Characters\crusader_head.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Map\black_village_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -119,9 +123,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\blue_village_lvl3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Map\brown_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\cloud2.png">
@@ -266,12 +267,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\ocean.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Menu\water.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Menu\yellow_icon_mongolian.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Other\back.png">
