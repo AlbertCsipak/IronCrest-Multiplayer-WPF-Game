@@ -7,4 +7,4 @@ Have 20 gold.;false
 Have at least one lvl 3 village.;false
 Have 7 units.;false
 Enter the gold mine.;false
-Make 3 trades.
+Make 3 trades.;false
