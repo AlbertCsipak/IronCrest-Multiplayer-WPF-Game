@@ -26,5 +26,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         void SelectableFactions();
         void UpgradeVillage();
         void ChooseOffer();
+
+        public void MysteryBoxEvent();
     }
 }

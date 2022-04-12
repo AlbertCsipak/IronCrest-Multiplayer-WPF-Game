@@ -147,7 +147,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 //Dequeue
                 MysteryEvent mysteryEvent = MysteryEvents.Dequeue();
-
+                mysteryEvent = MysteryEvents.Dequeue();
 
             }
         }
