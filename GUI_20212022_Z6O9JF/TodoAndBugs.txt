@@ -1,5 +1,5 @@
 ﻿Bugs:
-
+- Rálépsz saját karakterre és elveszzik egy move
 
 
 

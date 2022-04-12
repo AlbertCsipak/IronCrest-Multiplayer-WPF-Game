@@ -98,7 +98,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                 new Trade(new Offer[3]{ new Offer("You get 3 gold.", 0 , new Dictionary<string, int>() { { "Gold", 3 } }), new Offer("You get 2 logs and 1 wheat for 2 gold.", 2, new Dictionary<string, int>() { { "Wood", 2 }, { "Wheat", 1 } }), new Offer("You get 3 stones and 3 logs for 4 gold.", 4, new Dictionary<string, int>() { { "Stone", 3 }, { "Wood", 3 } })})
             };
         }
-
         public void ReloadHexagonObjects()
         {
             if (GameMap != null)
@@ -217,7 +216,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (SelectedHexagonTile != null)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Gold).FirstOrDefault() >= 3 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Wood).FirstOrDefault() >= 2)
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 
+                    && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Gold).FirstOrDefault() >= 3 
+                    && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Wood).FirstOrDefault() >= 2)
                 {
                     var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
@@ -255,24 +256,53 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 item.Move(hexagonTile.Position);
                                 hexagonTile.Objects.Add(item);
+
+                                SelectedHexagonTile.Objects.Remove(item);
+                                if (SelectedHexagonTile.Objects.Count == 0)
+                                {
+                                    SelectedHexagonTile.OwnerId = 0;
+                                }
+                                SelectedHexagonTile = null;
+
+                                DecreaseMoves();
                             }
                             else
                             {
-                                if (hexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault().FactionType != player.Faction)
+                                var enemy = hexagonTile.Objects.Where(t => t.CanMove&& t.FactionType != player.Faction).FirstOrDefault();
+                                if (enemy!= null)
                                 {
-                                    //attack
+                                    var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
+
+                                    if (player.ArmyPower * (item as Unit).Level > enemy.Level*enemyPlayer.ArmyPower)
+                                    {
+
+                                        enemy.Position[0] = 3;
+                                        enemy.Position[1] = 3;
+                                        //enemy.move
+
+                                        hexagonTile.Objects.Remove(enemy);
+
+                                        item.Move(hexagonTile.Position);
+                                        hexagonTile.Objects.Add(item);
+
+
+                                    }
+                                    else
+                                    {
+                                        item.Position[0] = 6;
+                                        item.Position[1] = 6;
+                                        GameMap[6, 6].Objects.Add(item);
+                                    }
+                                    SelectedHexagonTile.Objects.Remove(item);
+                                    if (SelectedHexagonTile.Objects.Count == 0)
+                                    {
+                                        SelectedHexagonTile.OwnerId = 0;
+                                    }
+                                    SelectedHexagonTile = null;
+
+                                    DecreaseMoves();
                                 }
                             }
-
-
-                            SelectedHexagonTile.Objects.Remove(item);
-                            if (SelectedHexagonTile.Objects.Count == 0)
-                            {
-                                SelectedHexagonTile.OwnerId = 0;
-                            }
-                            SelectedHexagonTile = null;
-
-                            DecreaseMoves();
                         }
                     }
                 }
@@ -329,21 +359,11 @@ namespace GUI_20212022_Z6O9JF.Logic
         public static int RandomNumberGenerator(int minimumValue, int maximumValue)
         {
             byte[] randomNumber = new byte[1];
-
             _generator.GetBytes(randomNumber);
-
             double asciiValueOfRandomCharacter = Convert.ToDouble(randomNumber[0]);
-
-            // We are using Math.Max, and substracting 0.00000000001, 
-            // to ensure "multiplier" will always be between 0.0 and .99999999999
-            // Otherwise, it's possible for it to be "1", which causes problems in our rounding.
             double multiplier = Math.Max(0, (asciiValueOfRandomCharacter / 255d) - 0.00000000001d);
-
-            // We need to add one to the range, to allow for the rounding done with Math.Floor
             int range = maximumValue - minimumValue + 1;
-
             double randomValueInRange = Math.Floor(multiplier * range);
-
             return (int)(minimumValue + randomValueInRange);
         }
     }

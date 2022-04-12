@@ -6,6 +6,7 @@
         Faction FactionType { get; set; }
         public int[] Position { get; set; }
         public bool CanMove { get; set; }
+        public int Level { get; set; }
         public void Move(int[] pos);
     }
 }
