@@ -11,6 +11,7 @@
     <None Remove="Resources\Augusta.ttf" />
     <None Remove="Resources\blurite_sword.cur" />
     <None Remove="Resources\Images\Characters\bjorn.png" />
+    <None Remove="Resources\Images\Characters\crusader_head.png" />
     <None Remove="Resources\Images\Characters\dark_night.png" />
     <None Remove="Resources\Images\Characters\genghis_khan.png" />
     <None Remove="Resources\Images\Characters\jhin.png" />
@@ -101,6 +102,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\blurite_sword.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\crusader_head.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\black_village_lvl1.png">
