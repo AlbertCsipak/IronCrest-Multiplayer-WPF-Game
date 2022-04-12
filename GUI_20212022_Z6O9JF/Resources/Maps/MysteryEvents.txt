@@ -1,3 +1,3 @@
 Az erdőben banditák támadták meg az osztagodat, ezért veszítesz 2 aranyat.;-2;Gold
 A rossz termés miatt veszítesz 1 búzát.;-1;Food
-Kedvesen bántál az embereiddel, ezért 1-el növekszik a népszerűséged.;-1;Popularity
+Kedvesen bántál az embereiddel, ezért 1-el növekszik a népszerűséged.;1;Popularity

@@ -142,9 +142,10 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void MysteryBoxEvent()
         {
+            ;
             if (SelectedHexagonTile != null)
             {
-                //If: Forst, Mountain, WheatField
+                //If: Forest, Mountain, WheatField
                 if (SelectedHexagonTile.FieldType == FieldType.forest ||
                     SelectedHexagonTile.FieldType == FieldType.mountain || 
                     SelectedHexagonTile.FieldType == FieldType.wheat)
@@ -212,6 +213,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public Queue<MysteryEvent> LoadMysteryEvents()
         {
+            ;
             Queue<MysteryEvent> mysteryEvents = new Queue<MysteryEvent>();
             List<MysteryEvent> mysteryEventslist = new List<MysteryEvent>();
             //beolvasás
@@ -225,6 +227,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
             Shuffle(mysteryEventslist);
             mysteryEventslist.ForEach(x => mysteryEvents.Enqueue(x));
+            ;
             return mysteryEvents;
         }
 
