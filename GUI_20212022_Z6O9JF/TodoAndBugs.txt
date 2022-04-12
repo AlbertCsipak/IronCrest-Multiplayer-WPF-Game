@@ -13,7 +13,7 @@ Todo:
 - game screen brightness/saturation/hue levétele
 - champselect teljes fix
 - number of quest beállítása a logicba (n random quest)
-
+- mukodjon a map2, és map3
 
 Features:
 - Reconnect a serverre

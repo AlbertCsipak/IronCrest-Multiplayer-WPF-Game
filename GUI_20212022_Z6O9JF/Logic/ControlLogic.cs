@@ -27,8 +27,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
-                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         gameLogic.MysteryBoxEvent();//MysteryBoxCALL
+                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
 
 
 

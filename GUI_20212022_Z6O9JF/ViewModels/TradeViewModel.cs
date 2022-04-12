@@ -19,6 +19,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand ChooseOffer { get; set; }
+        //public string[] Trades { get { return gameLogic.GameMap.; } }
         public static bool IsInDesignMode
         {
             get
@@ -40,17 +41,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
             ChooseOffer = new RelayCommand(() => gameLogic.ChooseOffer());
 
-            Messenger.Register<GameViewModel, string, string>(this, "Base", (recipient, msg) =>
+            Messenger.Register<TradeViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
                 OnPropertyChanged("CanSend");
-                OnPropertyChanged("Wood");
-                OnPropertyChanged("Food");
-                OnPropertyChanged("Stone");
-                OnPropertyChanged("Gold");
-                OnPropertyChanged("Popularity");
-                OnPropertyChanged("ArmyPower");
-                OnPropertyChanged("Quests");
-                OnPropertyChanged("Timer");
             });
         }
     }

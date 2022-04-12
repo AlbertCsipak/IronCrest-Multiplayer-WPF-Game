@@ -142,7 +142,6 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void MysteryBoxEvent()
         {
-            ;
             if (SelectedHexagonTile != null)
             {
                 //If: Forest, Mountain, WheatField
@@ -153,59 +152,64 @@ namespace GUI_20212022_Z6O9JF.Logic
                     int rnd = RandomNumber.RandomNumberGenerator(1, 21);
                     if (true)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
+                        //MysteryUC meghívása!
                         //Dequeue
-                        MysteryEvent mysteryEvent = MysteryEvents.Dequeue();
-                        var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-
-                        switch (mysteryEvent.Resource)
+                        if (MysteryEvents.Count() != 0)
                         {
-                            case "Gold":
-                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += mysteryEvent.Number;
-                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold < 0)//cannot be negative! -> 0 default
-                                {
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold = 0;
-                                }
-                                break;
-                            case "Wood":
-                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += mysteryEvent.Number;
-                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood < 0)
-                                {
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood = 0;
-                                }
-                                break;
-                            case "Stone":
-                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone += mysteryEvent.Number;
-                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone < 0)
-                                {
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone = 0;
-                                }
-                                break;
-                            case "Popularity":
-                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity += mysteryEvent.Number;
-                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity < 0)
-                                {
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity = 0;
-                                }
-                                break;
-                            case "ArmyPower":
-                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower += mysteryEvent.Number;
-                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower < 0)
-                                {
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower = 0;
-                                }
-                                break;
-                            case "Food":
-                                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food += mysteryEvent.Number;
-                                if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food < 0)
-                                {
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food = 0;
-                                }
-                                break;
+                            MysteryEvent mysteryEvent = MysteryEvents.Dequeue();
+                            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
 
-                            default:
-                                break;
+                            switch (mysteryEvent.Resource)
+                            {
+                                case "Gold":
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += mysteryEvent.Number;
+                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold < 0)//cannot be negative! -> 0 default
+                                    {
+                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold = 0;
+                                    }
+                                    break;
+                                case "Wood":
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += mysteryEvent.Number;
+                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood < 0)
+                                    {
+                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood = 0;
+                                    }
+                                    break;
+                                case "Stone":
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone += mysteryEvent.Number;
+                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone < 0)
+                                    {
+                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone = 0;
+                                    }
+                                    break;
+                                case "Popularity":
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity += mysteryEvent.Number;
+                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity < 0)
+                                    {
+                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity = 0;
+                                    }
+                                    break;
+                                case "ArmyPower":
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower += mysteryEvent.Number;
+                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower < 0)
+                                    {
+                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower = 0;
+                                    }
+                                    break;
+                                case "Wheat":
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food += mysteryEvent.Number;
+                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food < 0)
+                                    {
+                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food = 0;
+                                    }
+                                    break;
+                                case "Moves":
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Moves += mysteryEvent.Number;
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
-
                     }
                 }
             }
@@ -213,7 +217,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public Queue<MysteryEvent> LoadMysteryEvents()
         {
-            ;
             Queue<MysteryEvent> mysteryEvents = new Queue<MysteryEvent>();
             List<MysteryEvent> mysteryEventslist = new List<MysteryEvent>();
             //beolvasás
@@ -227,7 +230,6 @@ namespace GUI_20212022_Z6O9JF.Logic
 
             Shuffle(mysteryEventslist);
             mysteryEventslist.ForEach(x => mysteryEvents.Enqueue(x));
-            ;
             return mysteryEvents;
         }
 
