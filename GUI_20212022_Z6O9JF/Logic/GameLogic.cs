@@ -19,7 +19,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         public ObservableCollection<Player> Players { get; set; }
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
-        //public static Random r = new Random();
         public List<Quest> quests;
         public GameLogic(IMessenger messenger)
         {
@@ -154,7 +153,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (SelectedHexagonTile != null)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
+                if (SelectedHexagonTile.OwnerId == ClientID && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count > 0)
                 {
                     var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     if (item != null && item.Moves != 0)
@@ -162,7 +161,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Unit newUnit = new Unit();
                         newUnit.FactionType = item.Faction;
                         newUnit.Position = SelectedHexagonTile.Position;
-                        newUnit.Name = "Barni";
+                        newUnit.Name = item.Faction.ToString();
                         newUnit.OwnerId = item.PlayerID;
 
                         SelectedHexagonTile.Objects.Add(newUnit);
@@ -271,14 +270,27 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void GetResources()
         {
-            if (SelectedHexagonTile != null)
+            bool success = false;
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            if (player != null &&player.Moves!= 0)
             {
-                var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-                var item = SelectedHexagonTile.Objects.Where(t => t.CanMove && t.OwnerId == player.PlayerID).FirstOrDefault();
-                if (player != null && item != null)
+                foreach (var tile in GameMap)
                 {
-                    SelectedHexagonTile.GiveResources(player);
-                    DecreaseMoves();
+                    if (tile.OwnerId == ClientID)
+                    {
+                        foreach (var item2 in tile.Objects)
+                        {
+                            if (item2.CanMove)
+                            {
+                                tile.GiveResources(player);
+                                if (success is false)
+                                {
+                                    success = true;
+                                    DecreaseMoves();
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
