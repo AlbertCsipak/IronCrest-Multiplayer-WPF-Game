@@ -20,7 +20,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
         public List<Quest> quests;
-        
+
+        public Queue<MysteryEvent> MysteryEvents { get; set; }
+
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -52,7 +54,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             string[] lines = File.ReadAllLines(path);
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
             Queue<Trade> trades = LoadTrades();
-            Queue<MysteryEvent> mysteryEvents = LoadMysteryEvents();
+            MysteryEvents = LoadMysteryEvents();
             for (int i = 0; i < map.GetLength(0); i++)
             {
                 for (int j = 0; j < map.GetLength(1); j++)
@@ -136,6 +138,18 @@ namespace GUI_20212022_Z6O9JF.Logic
             Queue<Trade> tradeQueue = new Queue<Trade>();
             trades.ForEach(x => tradeQueue.Enqueue(x));
             return tradeQueue;
+        }
+
+        public void MysteryBoxEvent()
+        {
+            int rnd = RandomNumber.RandomNumberGenerator(1, 21);
+            if (rnd == 1)//5% chance
+            {
+                //Dequeue
+                MysteryEvent mysteryEvent = MysteryEvents.Dequeue();
+
+
+            }
         }
         public Queue<MysteryEvent> LoadMysteryEvents()
         {
