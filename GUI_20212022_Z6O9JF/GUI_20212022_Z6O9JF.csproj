@@ -23,36 +23,36 @@
     <None Remove="Resources\Images\Characters\standing_mongolian.png" />
     <None Remove="Resources\Images\Characters\standing_viking.png" />
     <None Remove="Resources\Images\Characters\white_knight.png" />
-    <None Remove="Resources\Images\Map\black_village_lvl1.png" />
-    <None Remove="Resources\Images\Map\black_village_lvl2.png" />
-    <None Remove="Resources\Images\Map\black_village_lvl3.png" />
+    <None Remove="Resources\Images\Map\Arabian_village_lvl1.png" />
+    <None Remove="Resources\Images\Map\Arabian_village_lvl2.png" />
+    <None Remove="Resources\Images\Map\Arabian_village_lvl3.png" />
     <None Remove="Resources\Images\Map\blue_background.png" />
-    <None Remove="Resources\Images\Map\blue_village_lvl1.png" />
-    <None Remove="Resources\Images\Map\blue_village_lvl2.png" />
-    <None Remove="Resources\Images\Map\blue_village_lvl3.png" />
     <None Remove="Resources\Images\Map\brown_background.png" />
     <None Remove="Resources\Images\Map\cloud2.png" />
     <None Remove="Resources\Images\Map\cloud_bottom.png" />
     <None Remove="Resources\Images\Map\cloud_left.png" />
     <None Remove="Resources\Images\Map\cloud_right.png" />
     <None Remove="Resources\Images\Map\cloud_up.png" />
+    <None Remove="Resources\Images\Map\Crusader_village_lvl1.png" />
+    <None Remove="Resources\Images\Map\Crusader_village_lvl2.png" />
+    <None Remove="Resources\Images\Map\Crusader_village_lvl3.png" />
     <None Remove="Resources\Images\Map\field.png" />
     <None Remove="Resources\Images\Map\food.png" />
     <None Remove="Resources\Images\Map\gold_mine.png" />
+    <None Remove="Resources\Images\Map\Mongolian_village_lvl1.png" />
+    <None Remove="Resources\Images\Map\Mongolian_village_lvl2.png" />
+    <None Remove="Resources\Images\Map\Mongolian_village_lvl3.png" />
     <None Remove="Resources\Images\Map\mountain.png" />
     <None Remove="Resources\Images\Map\mountain_brown.png" />
     <None Remove="Resources\Images\Map\mountain_water.png" />
-    <None Remove="Resources\Images\Map\red_village_lvl1.png" />
-    <None Remove="Resources\Images\Map\red_village_lvl2.png" />
-    <None Remove="Resources\Images\Map\red_village_lvl3.png" />
     <None Remove="Resources\Images\Map\tom and jerry images %281%29.png" />
+    <None Remove="Resources\Images\Map\Viking_village_lvl1.png" />
+    <None Remove="Resources\Images\Map\Viking_village_lvl2.png" />
+    <None Remove="Resources\Images\Map\Viking_village_lvl3.png" />
     <None Remove="Resources\Images\Map\water.gif" />
     <None Remove="Resources\Images\Map\water.png" />
     <None Remove="Resources\Images\Map\water2.png" />
     <None Remove="Resources\Images\Map\wood.png" />
-    <None Remove="Resources\Images\Map\yellow_village_lvl1.png" />
-    <None Remove="Resources\Images\Map\yellow_village_lvl2.png" />
-    <None Remove="Resources\Images\Map\yellow_village_lvl3.png" />
     <None Remove="Resources\Images\Menu\arrow_left.png" />
     <None Remove="Resources\Images\Menu\arrow_right.png" />
     <None Remove="Resources\Images\Menu\board.png" />
@@ -107,22 +107,22 @@
     <Content Include="Resources\Images\Characters\crusader_head.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\black_village_lvl1.png">
+    <Content Include="Resources\Images\Map\Crusader_village_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\black_village_lvl2.png">
+    <Content Include="Resources\Images\Map\Crusader_village_lvl2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\black_village_lvl3.png">
+    <Content Include="Resources\Images\Map\Crusader_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\blue_village_lvl1.png">
+    <Content Include="Resources\Images\Map\Viking_village_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\blue_village_lvl2.png">
+    <Content Include="Resources\Images\Map\Viking_village_lvl2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\blue_village_lvl3.png">
+    <Content Include="Resources\Images\Map\Viking_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\cloud2.png">
@@ -158,13 +158,13 @@
     <Content Include="Resources\Images\Map\mountain_water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\red_village_lvl1.png">
+    <Content Include="Resources\Images\Map\Arabian_village_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\red_village_lvl2.png">
+    <Content Include="Resources\Images\Map\Arabian_village_lvl2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\red_village_lvl3.png">
+    <Content Include="Resources\Images\Map\Arabian_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\water.gif">
@@ -179,13 +179,13 @@
     <Content Include="Resources\Images\Map\wood.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\yellow_village_lvl1.png">
+    <Content Include="Resources\Images\Map\Mongolian_village_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\yellow_village_lvl2.png">
+    <Content Include="Resources\Images\Map\Mongolian_village_lvl2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Map\yellow_village_lvl3.png">
+    <Content Include="Resources\Images\Map\Mongolian_village_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\board.png">
@@ -236,16 +236,16 @@
     <Content Include="Resources\Images\Characters\sigurd.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Characters\standing_arabian.png">
+    <Content Include="Resources\Images\Characters\standing_Arabian.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Characters\standing_crusader.png">
+    <Content Include="Resources\Images\Characters\standing_Crusader.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Characters\standing_mongolian.png">
+    <Content Include="Resources\Images\Characters\standing_Mongolian.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Characters\standing_viking.png">
+    <Content Include="Resources\Images\Characters\standing_Viking.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\white_knight.png">

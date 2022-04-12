@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
@@ -136,7 +137,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             int db = 0;
             while (db != n)
             {
-                int ind = r.Next(quests.Count);
+                int ind = RandomNumber.RandomNumberGenerator(0, quests.Count - 1);
                 if (!indexes.Contains(ind))
                 {
                     indexes.Add(ind);
@@ -276,6 +277,31 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 item.Moves = 2;
             }
+        }
+    }
+    public static class RandomNumber
+    {
+        private static readonly RNGCryptoServiceProvider _generator = new RNGCryptoServiceProvider();
+
+        public static int RandomNumberGenerator(int minimumValue, int maximumValue)
+        {
+            byte[] randomNumber = new byte[1];
+
+            _generator.GetBytes(randomNumber);
+
+            double asciiValueOfRandomCharacter = Convert.ToDouble(randomNumber[0]);
+
+            // We are using Math.Max, and substracting 0.00000000001, 
+            // to ensure "multiplier" will always be between 0.0 and .99999999999
+            // Otherwise, it's possible for it to be "1", which causes problems in our rounding.
+            double multiplier = Math.Max(0, (asciiValueOfRandomCharacter / 255d) - 0.00000000001d);
+
+            // We need to add one to the range, to allow for the rounding done with Math.Floor
+            int range = maximumValue - minimumValue + 1;
+
+            double randomValueInRange = Math.Floor(multiplier * range);
+
+            return (int)(minimumValue + randomValueInRange);
         }
     }
 }

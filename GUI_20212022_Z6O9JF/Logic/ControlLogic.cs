@@ -21,7 +21,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Polygon polygon = sender as Polygon;
-            if (gameLogic.Players.Where(t=>t.PlayerID==gameLogic.ClientID).FirstOrDefault().Faction==Faction.Viking)
+            if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
             {
                 if (SelectedPolygon != null && SelectedPolygon != polygon)
                 {

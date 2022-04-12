@@ -118,7 +118,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 default:
                                     break;
                             }
-                            drawingContext.DrawText(new FormattedText(gameLogic.GameMap[i, j].Position[0].ToString() + "," + gameLogic.GameMap[i, j].Position[1].ToString(), System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black), new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1));
+                            //drawingContext.DrawText(new FormattedText(gameLogic.GameMap[i, j].Position[0].ToString() + "," + gameLogic.GameMap[i, j].Position[1].ToString(), System.Globalization.CultureInfo.CurrentCulture, FlowDirection.LeftToRight, new Typeface("Verdana"), 12, Brushes.Black), new Point(HexagonPoints[i, j][1] - width / 2 * 1.3, HexagonPoints[i, j][0] - height / 2 * 1.1));
 
                             if (sizeChanged)
                             {
@@ -150,28 +150,11 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 (polygon.Tag as HexagonTile).ParentId = grid.Children.IndexOf(polygon);
 
                             }
-
                             foreach (var item in gameLogic.GameMap[i, j].Objects.ToList())
                             {
                                 if (item is Village)
                                 {
-                                    switch (item.FactionType)
-                                    {
-                                        case Faction.Viking:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/blue_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
-                                            break;
-                                        case Faction.Crusader:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/black_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
-                                            break;
-                                        case Faction.Mongolian:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/yellow_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
-                                            break;
-                                        case Faction.Arabian:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/red_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
-                                            break;
-                                        default:
-                                            break;
-                                    }
+                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/{item.FactionType}_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                 }
                             }
 
@@ -179,27 +162,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             {
                                 if (item is Unit)
                                 {
-                                    switch (item.FactionType)
-                                    {
-                                        case Faction.Viking:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_viking.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
-                                            break;
-                                        case Faction.Crusader:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_crusader.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
-                                            break;
-                                            break;
-                                        case Faction.Mongolian:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_mongolian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 ), new Size(width * 0.7, height * 1)));
-                                            break;
-                                            break;
-                                        case Faction.Arabian:
-                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Characters/standing_arabian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
-                                            break;
-                                            break;
-                                        default:
-                                            break;
-                                    }
-
+                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Characters/standing_{item.FactionType}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
                                 }
                             }
                         }
@@ -212,10 +175,10 @@ namespace GUI_20212022_Z6O9JF.Renderer
                 }
                 sizeChanged = false;
             }
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_bottom.png", UriKind.RelativeOrAbsolute)), new Rect(0, size.Height - size.Height / 7, size.Width, size.Height / 7));
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_up.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width, size.Height / 7));
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_left.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width / 9, size.Height));
-            drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_right.png", UriKind.RelativeOrAbsolute)), new Rect(size.Width - size.Width / 9, 0, size.Width / 9, size.Height));
+            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_bottom.png", UriKind.RelativeOrAbsolute)), new Rect(0, size.Height - size.Height / 7, size.Width, size.Height / 7));
+            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_up.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width, size.Height / 7));
+            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_left.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width / 9, size.Height));
+            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_right.png", UriKind.RelativeOrAbsolute)), new Rect(size.Width - size.Width / 9, 0, size.Width / 9, size.Height));
 
         }
     }
