@@ -3,6 +3,8 @@ Reach lvl 15 army power.;false
 Reach lvl 12 popularity.;false
 Win 3 battles.;false
 Own 2 heroes.;false
-Have 20 golds.;false
+Have 20 gold.;false
 Have at least one lvl 3 village.;false
 Have 7 units.;false
+Enter the gold mine.;false
+Make 3 trades.
