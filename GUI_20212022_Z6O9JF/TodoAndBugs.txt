@@ -1,34 +1,16 @@
 ﻿Bugs:
-- Rálépsz egy enemy village re és kifagy done
-- a faction selector folyton visszaugrik a vikingre, (1 játékosnál) fixed
-- ChampSelect eltűnnek a karakterek
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 
 Todo:
-- button animáció (skip,back,exit
+- button animáció (skip,back,exit()
 - combox lenyitásakor a szöveg legyen középen
-- random küldetések kiosztása a game elején (jobb random megoldas)
 - harcrendszer
 - kereskedelmi pontok (iránytűk)
 - game screen brightness/saturation/hue levétele
-- splash screen (EXTRA FEATURE, majd a végén) done
 - ugráló champselect
-
-
-
 
 
 
