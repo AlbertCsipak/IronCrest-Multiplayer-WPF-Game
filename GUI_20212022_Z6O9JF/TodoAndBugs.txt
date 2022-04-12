@@ -10,8 +10,7 @@ Todo:
 - harcrendszer
 - kereskedelmi pontok (iránytűk)
 - game screen brightness/saturation/hue levétele
-- ugráló champselect
-
+- champselect teljes fix
 
 
 Features:
