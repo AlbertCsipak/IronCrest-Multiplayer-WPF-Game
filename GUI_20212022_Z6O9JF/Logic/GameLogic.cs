@@ -230,27 +230,59 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void MoveUnit(HexagonTile hexagonTile)
         {
-            if (SelectedHexagonTile != null)
+            if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID)
+                Point[] points = SelectedHexagonTile.NeighborCoords();
+                Point point = new Point();
+                point.X = hexagonTile.Position[0];
+                point.Y = hexagonTile.Position[1];
+
+                if (points.Contains(point))
                 {
-                    Point[] points = SelectedHexagonTile.NeighborCoords();
-                    Point point = new Point();
-                    point.X = hexagonTile.Position[0];
-                    point.Y = hexagonTile.Position[1];
+                    var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+                    var item = SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
 
-                    if (points.Contains(point))
+                    if (item != null && player.Moves != 0)
                     {
-                        var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-                        var item = SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
-
-                        if (item != null && player.Moves != 0)
+                        if (hexagonTile.Objects.ToList().Count == 0)
                         {
-                            if (hexagonTile.Objects.ToList().Count == 0)
-                            {
-                                item.Move(hexagonTile.Position);
-                                hexagonTile.Objects.Add(item);
+                            item.Move(hexagonTile.Position);
+                            hexagonTile.Objects.Add(item);
 
+                            SelectedHexagonTile.Objects.Remove(item);
+                            if (SelectedHexagonTile.Objects.Count == 0)
+                            {
+                                SelectedHexagonTile.OwnerId = 0;
+                            }
+                            SelectedHexagonTile = null;
+
+                            DecreaseMoves();
+                        }
+                        else
+                        {
+                            var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
+                            if (enemy != null)
+                            {
+                                var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
+
+                                if (player.ArmyPower * (item as Unit).Level >= enemy.Level * enemyPlayer.ArmyPower)
+                                {
+
+                                    enemy.Position[0] = 3;
+                                    enemy.Position[1] = 3;
+                                    //enemy.move
+
+                                    hexagonTile.Objects.Remove(enemy);
+
+                                    item.Move(hexagonTile.Position);
+                                    hexagonTile.Objects.Add(item);
+                                }
+                                else
+                                {
+                                    item.Position[0] = 6;
+                                    item.Position[1] = 6;
+                                    GameMap[6, 6].Objects.Add(item);
+                                }
                                 SelectedHexagonTile.Objects.Remove(item);
                                 if (SelectedHexagonTile.Objects.Count == 0)
                                 {
@@ -259,43 +291,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 SelectedHexagonTile = null;
 
                                 DecreaseMoves();
-                            }
-                            else
-                            {
-                                var enemy = hexagonTile.Objects.Where(t => t.CanMove&& t.FactionType != player.Faction).FirstOrDefault();
-                                if (enemy!= null)
-                                {
-                                    var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
-
-                                    if (player.ArmyPower * (item as Unit).Level > enemy.Level*enemyPlayer.ArmyPower)
-                                    {
-
-                                        enemy.Position[0] = 3;
-                                        enemy.Position[1] = 3;
-                                        //enemy.move
-
-                                        hexagonTile.Objects.Remove(enemy);
-
-                                        item.Move(hexagonTile.Position);
-                                        hexagonTile.Objects.Add(item);
-
-
-                                    }
-                                    else
-                                    {
-                                        item.Position[0] = 6;
-                                        item.Position[1] = 6;
-                                        GameMap[6, 6].Objects.Add(item);
-                                    }
-                                    SelectedHexagonTile.Objects.Remove(item);
-                                    if (SelectedHexagonTile.Objects.Count == 0)
-                                    {
-                                        SelectedHexagonTile.OwnerId = 0;
-                                    }
-                                    SelectedHexagonTile = null;
-
-                                    DecreaseMoves();
-                                }
                             }
                         }
                     }
