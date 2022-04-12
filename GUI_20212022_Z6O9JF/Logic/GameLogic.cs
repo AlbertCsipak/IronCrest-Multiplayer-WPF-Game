@@ -1,5 +1,6 @@
 ﻿using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -17,6 +18,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         public ObservableCollection<Player> Players { get; set; }
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
+        public static Random r = new Random();
+        public List<Quest> quests;
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
@@ -115,6 +118,34 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
             }
         }
+        public void ReadQuests()
+        {
+            var file = File.ReadAllLines("Resources/Maps/Quests.txt");
+            quests = new List<Quest>();
+            foreach (var item in file)
+            {
+                string[] line = item.Split(';');
+                quests.Add(new Quest(line[0], line[1] == "false" ? false : true));
+            }
+        }
+        public List<Quest> RandomQuestSelector(int n)
+        {
+            ReadQuests();
+            List<Quest> curr_quests = new List<Quest>();
+            List<int> indexes = new List<int>();
+            int db = 0;
+            while (db != n)
+            {
+                int ind = r.Next(quests.Count);
+                if (!indexes.Contains(ind))
+                {
+                    indexes.Add(ind);
+                    db++;
+                    curr_quests.Add(quests.ElementAt(ind));
+                }
+            }
+            return curr_quests;
+        }
         public void AddUnit()
         {
             if (SelectedHexagonTile != null)
@@ -141,7 +172,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void AddVillage()
         {
-            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.field 
+            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.field
                 && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
             {
                 if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
@@ -209,7 +240,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                             else
                             {
-                                if (hexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault().FactionType!=player.Faction)
+                                if (hexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault().FactionType != player.Faction)
                                 {
                                     //attack
                                 }
