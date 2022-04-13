@@ -31,6 +31,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
             dt.Tick += (sender, eventargs) =>
             {
                 display.InvalidateVisual();
+                if (!clientLogic.CanSend)
+                {
+                    skip_image.Visibility = Visibility.Hidden;
+                }
             };
             dt.Start();
             
