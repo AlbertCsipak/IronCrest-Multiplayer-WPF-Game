@@ -18,6 +18,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         IGameLogic gameLogic;
         IMessenger messenger;
         public object View { get; set; }
+        public object TradeView { get; set; }
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
         public int Timer { get; set; }
@@ -133,6 +134,19 @@ namespace GUI_20212022_Z6O9JF.Logic
                 ChangeView("lobby");
             }
         }
+        public void TradeViewChange(string view)
+        {
+
+            if (view.Equals("trade"))
+            {
+                TradeView = new TradeUC();
+            }
+            else
+            {
+                TradeView = null;
+            }
+            messenger.Send("Message", "Base");
+        }
         public void ChangeView(string view)
         {
             if (view.Equals("game"))
@@ -173,11 +187,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Quests = gameLogic.RandomQuestSelector(3),
                         Units = new List<Unit>(),
                         Villages = new List<Village>(),
-                        Trade=new List<Trade>(),
-                        Wood=10,
-                        Stone=10,
-                        Gold=10,
-                        Food=10,
+                        Trade = new List<Trade>(),
+                        Wood = 10,
+                        Stone = 10,
+                        Gold = 10,
+                        Food = 10,
                         //Gold = RandomNumber.RandomNumberGenerator(2, 5),
                         Popularity = RandomNumber.RandomNumberGenerator(0, 3),
                         ArmyPower = RandomNumber.RandomNumberGenerator(0, 3)

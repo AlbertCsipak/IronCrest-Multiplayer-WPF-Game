@@ -29,10 +29,7 @@
         <CheckBox x:Name="check3" Grid.Row="2" Click="check1_Click">
             <TextBlock Text="Trade3" FontSize="20"></TextBlock>
         </CheckBox>
-        <Button Grid.Row="3" Width="80" Height="30" Content="Choose!"/>
-        <Grid x:Name="grid" Grid.Row="0" Grid.Column="0">
-            <renderer:Display x:Name="display"/>
-        </Grid>
+        <Button Grid.Row="3" Width="80" Height="30" Content="Choose!" Command="{Binding ChooseOffer}"/>
     </Grid>
     
 </UserControl>

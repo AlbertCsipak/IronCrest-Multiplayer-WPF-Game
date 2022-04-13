@@ -12,6 +12,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 {
     public class GameViewModel : ObservableRecipient
     {
+        public object TradeView { get { return clientLogic.TradeView; } }
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
@@ -20,6 +21,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand UpgradeVillageCommand { get; set; }
         public ICommand SkipTurnCommand { get; set; }
         public ICommand ProduceCommand { get; set; }
+        public ICommand TradeCommand { get; set; }
 
         public int Timer { get { return clientLogic.Timer; } }
         public bool CanSend { get { return clientLogic.CanSend; } }
@@ -55,6 +57,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             UpgradeVillageCommand = new RelayCommand(() => gameLogic.UpgradeVillage());
             SkipTurnCommand = new RelayCommand(() => clientLogic.SkipTurn());
             ProduceCommand = new RelayCommand(() => gameLogic.GetResources());
+            TradeCommand = new RelayCommand(() => clientLogic.TradeViewChange("trade"));
 
             Messenger.Register<GameViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
@@ -67,6 +70,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("ArmyPower");
                 OnPropertyChanged("Quests");
                 OnPropertyChanged("Timer");
+                OnPropertyChanged("TradeView");
             });
 
         }

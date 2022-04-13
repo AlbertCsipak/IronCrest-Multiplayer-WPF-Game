@@ -20,13 +20,14 @@ namespace GUI_20212022_Z6O9JF.Logic
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
         public List<Quest> quests;
-
+        public Queue<Trade> trades;
         public Queue<MysteryEvent> MysteryEvents { get; set; }
 
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
             this.Players = new ObservableCollection<Player>();
+            trades = new Queue<Trade>();
 
             AvailableFactions = new List<Faction>();
         }
@@ -53,7 +54,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             string[] lines = File.ReadAllLines(path);
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
-            Queue<Trade> trades = LoadTrades();
+            trades = LoadTrades();
             MysteryEvents = LoadMysteryEvents();
             for (int i = 0; i < map.GetLength(0); i++)
             {

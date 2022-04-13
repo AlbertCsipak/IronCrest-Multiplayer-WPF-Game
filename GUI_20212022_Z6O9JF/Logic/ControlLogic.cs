@@ -27,11 +27,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
+
                         gameLogic.MysteryBoxEvent();//MysteryBoxCALL
+                        ;
+                        if ((polygon.Tag as HexagonTile).Compasses.Count() != 0)
+                        {
+                            clientLogic.TradeViewChange("trade");
+                        }
                         gameLogic.MoveUnit(polygon.Tag as HexagonTile);
-
-
-
                         ClearSelections();
                     }
                 }

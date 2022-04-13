@@ -19,7 +19,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand ChooseOffer { get; set; }
-        //public string[] Trades { get { return gameLogic.GameMap.; } }
+        //public string[] Trades { get { return gameLogic.tra; } }
         public static bool IsInDesignMode
         {
             get
@@ -39,7 +39,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
 
-            ChooseOffer = new RelayCommand(() => gameLogic.ChooseOffer());
+            ChooseOffer = new RelayCommand(() => {
+                gameLogic.ChooseOffer();
+                clientLogic.TradeViewChange("asd");
+            });
 
             Messenger.Register<TradeViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
