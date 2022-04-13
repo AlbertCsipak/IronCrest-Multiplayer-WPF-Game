@@ -19,6 +19,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         IMessenger messenger;
         public object View { get; set; }
         public object TradeView { get; set; }
+        public object MysteryView { get; set; }
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
         public int Timer { get; set; }
@@ -144,6 +145,19 @@ namespace GUI_20212022_Z6O9JF.Logic
             else
             {
                 TradeView = null;
+            }
+            messenger.Send("Message", "Base");
+        }
+        public void MysteryViewChange(string view)
+        {
+
+            if (view.Equals("mystery"))
+            {
+                MysteryView = new TradeUC();
+            }
+            else
+            {
+                MysteryView = null;
             }
             messenger.Send("Message", "Base");
         }

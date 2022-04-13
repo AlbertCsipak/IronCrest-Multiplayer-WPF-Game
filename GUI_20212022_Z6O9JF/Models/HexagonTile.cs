@@ -16,11 +16,10 @@ namespace GUI_20212022_Z6O9JF.Models
         public FieldType FieldType { get; set; }
         public int[] Position { get; set; }
         public ObservableCollection<IGameItem> Objects { get; set; }
-        public ObservableCollection<Trade> Compasses { get; set; }
+        public Trade Compass { get; set; }
         public HexagonTile()
         {
             Objects = new ObservableCollection<IGameItem>();
-            Compasses = new ObservableCollection<Trade>();
             Position = new int[2];
             OwnerId = 0;
         }

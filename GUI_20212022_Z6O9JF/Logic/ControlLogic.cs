@@ -27,14 +27,19 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
-
-                        gameLogic.MysteryBoxEvent();//MysteryBoxCALL
-                        ;
-                        if ((polygon.Tag as HexagonTile).Compasses.Count() != 0)
+                        gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
+                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                        if (gameLogic.CurrentMystery != null)
                         {
+                            clientLogic.MysteryViewChange("mystery");
+                        }
+                        
+                        if ((polygon.Tag as HexagonTile).Compass !=null)
+                        {
+                            gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
                             clientLogic.TradeViewChange("trade");
                         }
-                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                        
                         ClearSelections();
                     }
                 }
@@ -44,7 +49,18 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         if (SelectedPolygon != null && SelectedPolygon != polygon)
                         {
+                            gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
                             gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                            if (gameLogic.CurrentMystery != null)
+                            {
+                                clientLogic.MysteryViewChange("mystery");
+                            }
+
+                            if ((polygon.Tag as HexagonTile).Compass != null)
+                            {
+                                gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
+                                clientLogic.TradeViewChange("trade");
+                            }
                             ClearSelections();
                         }
                     }

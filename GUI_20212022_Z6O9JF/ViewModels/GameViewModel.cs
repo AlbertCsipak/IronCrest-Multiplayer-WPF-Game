@@ -13,6 +13,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     public class GameViewModel : ObservableRecipient
     {
         public object TradeView { get { return clientLogic.TradeView; } }
+        public object MysteryView { get { return clientLogic.MysteryView; } }
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
@@ -71,6 +72,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("Quests");
                 OnPropertyChanged("Timer");
                 OnPropertyChanged("TradeView");
+                OnPropertyChanged("MysteryView");
             });
 
         }

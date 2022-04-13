@@ -30,11 +30,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
             dt.Interval = TimeSpan.FromMilliseconds(100);
             dt.Tick += (sender, eventargs) =>
             {
-                display.InvalidateVisual();
                 if (!clientLogic.CanSend)
                 {
                     skip_image.Visibility = Visibility.Hidden;
                 }
+                display.InvalidateVisual();
             };
             dt.Start();
             

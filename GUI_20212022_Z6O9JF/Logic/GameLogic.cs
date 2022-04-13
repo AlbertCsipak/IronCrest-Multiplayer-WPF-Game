@@ -21,13 +21,16 @@ namespace GUI_20212022_Z6O9JF.Logic
         public HexagonTile[,] GameMap { get; set; }
         public List<Quest> quests;
         public Queue<Trade> trades;
+        public Trade CurrentTrade { get; set; }
         public Queue<MysteryEvent> MysteryEvents { get; set; }
+        public MysteryEvent CurrentMystery { get; set; }
 
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
             this.Players = new ObservableCollection<Player>();
             trades = new Queue<Trade>();
+            MysteryEvents = new Queue<MysteryEvent>();
 
             AvailableFactions = new List<Faction>();
         }
@@ -94,13 +97,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                     }
                 }
             }
-            while (trades.Count!=0)
+            while (trades.Count != 0)
             {
-                int randomI = RandomNumber.RandomNumberGenerator(0, map.GetLength(0)-1);
-                int randomJ = RandomNumber.RandomNumberGenerator(0, map.GetLength(1)-1);
-                if (map[randomI,randomJ].FieldType==FieldType.compassField && map[randomI, randomJ].Compasses.Count() == 0)
+                int randomI = RandomNumber.RandomNumberGenerator(0, map.GetLength(0) - 1);
+                int randomJ = RandomNumber.RandomNumberGenerator(0, map.GetLength(1) - 1);
+                if (map[randomI, randomJ].FieldType == FieldType.compassField && map[randomI, randomJ].Compass is null)
                 {
-                    map[randomI, randomJ].Compasses.Add(trades.Dequeue());
+                    map[randomI, randomJ].Compass=trades.Dequeue();
                 }
             }
             return map;
@@ -112,7 +115,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             while (n > 1)
             {
                 n--;
-                int k = RandomNumber.RandomNumberGenerator(0,n);
+                int k = RandomNumber.RandomNumberGenerator(0, n);
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
@@ -140,24 +143,30 @@ namespace GUI_20212022_Z6O9JF.Logic
             trades.ForEach(x => tradeQueue.Enqueue(x));
             return tradeQueue;
         }
-
-        public void MysteryBoxEvent()
+        public void MysteryBoxEvent(HexagonTile hexagonTile)
         {
-            if (SelectedHexagonTile != null)
+            Point[] points = SelectedHexagonTile.NeighborCoords();
+            Point point = new Point();
+            point.X = hexagonTile.Position[0];
+            point.Y = hexagonTile.Position[1];
+
+            MysteryEvent mysteryEvent = null;
+            if (hexagonTile != null)
             {
                 //If: Forest, Mountain, WheatField
-                if (SelectedHexagonTile.FieldType == FieldType.forest ||
-                    SelectedHexagonTile.FieldType == FieldType.mountain || 
-                    SelectedHexagonTile.FieldType == FieldType.wheat)
+                if (hexagonTile.FieldType == FieldType.forest ||
+                    hexagonTile.FieldType == FieldType.mountain ||
+                    hexagonTile.FieldType == FieldType.wheat)
                 {
                     int rnd = RandomNumber.RandomNumberGenerator(1, 21);
-                    if (true)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (true && Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Moves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         //MysteryUC meghívása!
                         //Dequeue
                         if (MysteryEvents.Count() != 0)
                         {
-                            MysteryEvent mysteryEvent = MysteryEvents.Dequeue();
+                            mysteryEvent = MysteryEvents.Dequeue();
+
                             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
 
                             switch (mysteryEvent.Resource)
@@ -214,7 +223,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     }
                 }
             }
-            
+            CurrentMystery = mysteryEvent;
         }
         public Queue<MysteryEvent> LoadMysteryEvents()
         {
@@ -259,7 +268,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         }
                         foreach (var item in player.Trade.ToList())
                         {
-                            GameMap[item.Position[0], item.Position[1]].Compasses.Add(item);
+                            GameMap[item.Position[0], item.Position[1]].Compass=item;
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
                     }
@@ -323,7 +332,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
                 && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && Players.Where(t => t.PlayerID == ClientID).Select(x=>x.Wood).FirstOrDefault()>=3 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Stone).FirstOrDefault() >= 2)
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Wood).FirstOrDefault() >= 3 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Stone).FirstOrDefault() >= 2)
                 {
                     var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     if (item != null && item.Moves != 0)
@@ -351,8 +360,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (SelectedHexagonTile != null)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 
-                    && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Gold).FirstOrDefault() >= 3 
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0
+                    && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Gold).FirstOrDefault() >= 3
                     && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Wood).FirstOrDefault() >= 2)
                 {
                     var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
@@ -449,7 +458,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             bool success = false;
             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            if (player != null &&player.Moves!= 0)
+            if (player != null && player.Moves != 0)
             {
                 foreach (var tile in GameMap)
                 {
@@ -490,7 +499,11 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void ChooseOffer()
         {
-            
+
+            throw new NotImplementedException();
+        }
+        public void MysteryButtonOK()
+        {
             throw new NotImplementedException();
         }
     }

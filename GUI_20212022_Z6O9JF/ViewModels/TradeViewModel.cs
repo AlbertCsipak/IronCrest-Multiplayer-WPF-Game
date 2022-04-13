@@ -19,7 +19,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand ChooseOffer { get; set; }
-        //public string[] Trades { get { return gameLogic.tra; } }
+        public string Option1 { get { return gameLogic.CurrentTrade.Offers[0].Text; } }
+        public string Option2 { get { return gameLogic.CurrentTrade.Offers[1].Text; } }
+        public string Option3 { get { return gameLogic.CurrentTrade.Offers[2].Text; } }
         public static bool IsInDesignMode
         {
             get

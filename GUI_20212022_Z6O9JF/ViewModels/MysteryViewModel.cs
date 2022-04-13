@@ -18,8 +18,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
-        public ICommand ChooseOffer { get; set; }
-        //public string[] Trades { get { return gameLogic.GameMap.; } }
+        public ICommand OKButtonCommand { get; set; }
+        public string MysteryEventDescription { get { return gameLogic.CurrentMystery.Description; } }
         public static bool IsInDesignMode
         {
             get
@@ -39,7 +39,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
 
-            ChooseOffer = new RelayCommand(() => gameLogic.ChooseOffer());
+            OKButtonCommand = new RelayCommand(() => {
+                gameLogic.MysteryButtonOK();
+                clientLogic.TradeViewChange("asd");
+            });
 
             Messenger.Register<MysteryViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
