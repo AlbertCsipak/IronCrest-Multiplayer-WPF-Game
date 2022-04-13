@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -19,9 +20,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand ChooseOffer { get; set; }
-        public string Option1 { get { return gameLogic.CurrentTrade.Offers[0].Text; } }
-        public string Option2 { get { return gameLogic.CurrentTrade.Offers[1].Text; } }
-        public string Option3 { get { return gameLogic.CurrentTrade.Offers[2].Text; } }
+        public Offer Option1 { get { return gameLogic.CurrentTrade.Offers[0]; } }
+        public Offer Option2 { get { return gameLogic.CurrentTrade.Offers[1]; } }
+        public Offer Option3 { get { return gameLogic.CurrentTrade.Offers[2]; } }
         public static bool IsInDesignMode
         {
             get
@@ -42,7 +43,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.clientLogic = clientLogic;
 
             ChooseOffer = new RelayCommand(() => {
-                gameLogic.ChooseOffer();
+                clientLogic.ChooseOffer();
                 clientLogic.TradeViewChange("asd");
             });
 
