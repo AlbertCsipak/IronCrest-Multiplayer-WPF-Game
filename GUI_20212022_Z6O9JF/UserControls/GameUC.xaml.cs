@@ -1,6 +1,10 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using GUI_20212022_Z6O9JF.ViewModels;
 using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,6 +22,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IControlLogic controlLogic;
         public MediaPlayer button_click = new MediaPlayer();
         DispatcherTimer dt;
+        bool IsResourceChanged;
+        Player player;
         public GameUC()
         {
             InitializeComponent();
@@ -26,18 +32,125 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
             this.controlLogic = (this.DataContext as GameViewModel).controlLogic;
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
+            player = gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
+            player.ResourceChanges.CollectionChanged += ResourceChanges_CollectionChanged;
+            PopChange.Opacity = 0;
+            ArmyPowerChange.Opacity = 0;
+            WoodChange.Opacity = 0;
+            StoneChange.Opacity = 0;
+            FoodChange.Opacity = 0;
             dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(100);
+            dt.Interval = TimeSpan.FromMilliseconds(33);
+
+
+
             dt.Tick += (sender, eventargs) =>
             {
-                if (!clientLogic.CanSend)
-                {
-                    skip_image.Visibility = Visibility.Hidden;
-                }
+                ResourceChanging();
+                OpacityDefault();
+
                 display.InvalidateVisual();
             };
             dt.Start();
             
+        }
+
+        private void OpacityDefault()
+        {
+            if (PopChange.Opacity >= 0)
+            {
+                PopChange.Opacity -= 0.05;
+            }
+            if (ArmyPowerChange.Opacity >= 0)
+            {
+                ArmyPowerChange.Opacity -= 0.05;
+            }
+            if (WoodChange.Opacity >= 0)
+            {
+                WoodChange.Opacity -= 0.05;
+            }
+            if (StoneChange.Opacity >= 0)
+            {
+                StoneChange.Opacity -= 0.05;
+            }
+            if (FoodChange.Opacity >= 0)
+            {
+                FoodChange.Opacity -= 0.05;
+            }
+        }
+
+        private void ResourceChanging()
+        {
+            
+            if (IsResourceChanged)
+            {
+                
+
+                if (player.ResourceChanges[0] != 0)
+                {
+                    //POP
+                    ;
+                    PopChange.Opacity = 1;
+                    string s = player.ResourceChanges[0] > 0 ? "+" : "";
+                    PopChangeLabel.Content =  s + player.ResourceChanges[0];
+                    player.ResourceChanges[0] = 0;
+                }
+                if (player.ResourceChanges[1] != 0)
+                {
+                    //ArmyPower
+                    ArmyPowerChange.Opacity = 1;
+                    string s = player.ResourceChanges[1] > 0 ? "+" : "";
+                    ArmyPowerChangeLabel.Content = s + player.ResourceChanges[1];
+                    player.ResourceChanges[1] = 0;
+                }
+                if (player.ResourceChanges[2] != 0)
+                {
+                    //Wood
+                    WoodChange.Opacity = 1;
+                    string s = player.ResourceChanges[2] > 0 ? "+" : "";
+                    WoodChangeLabel.Content = s + player.ResourceChanges[2];
+                    player.ResourceChanges[2] = 0;
+                }
+                if (player.ResourceChanges[3] != 0)
+                {
+                    //Stone
+                    StoneChange.Opacity = 1;
+                    string s = player.ResourceChanges[3] > 0 ? "+" : "";
+                    StoneChangeLabel.Content = s + player.ResourceChanges[3];
+                    player.ResourceChanges[3] = 0;
+                }
+                if (player.ResourceChanges[4] != 0)
+                {
+                    //Food
+                    FoodChange.Opacity = 1;
+                    string s = player.ResourceChanges[4] > 0 ? "+" : "";
+                    FoodChangeLabel.Content = s + player.ResourceChanges[4];
+                    player.ResourceChanges[4] = 0;
+                }
+
+            }
+            //if (PopChange.Opacity <= 0)
+            //{
+            //    IsResourceChanged = false;
+            //    PopChange.Opacity = 1;
+            //}
+
+            
+
+            //if (!clientLogic.CanSend)
+            //{
+            //    skip_image.Visibility = Visibility.Hidden;
+            //}
+        }
+
+        private void ResourceChanges_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            IsResourceChanged = true;
+        }
+
+        public void ResourceChanged()
+        {
+
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -55,5 +168,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
         }
+
     }
 }
