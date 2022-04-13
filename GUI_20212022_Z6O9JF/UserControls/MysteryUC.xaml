@@ -7,20 +7,17 @@
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="370">
+             d:DesignHeight="120" d:DesignWidth="320" Background="{StaticResource greenish_blue}">
     <UserControl.DataContext>
         <vm:MysteryViewModel></vm:MysteryViewModel>
     </UserControl.DataContext>
     <Grid>
-
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="3" Width="80" Height="30" Content="Choose!"/>
+        <Label Grid.Row="0" x:Name="mystery_description" FontSize="80" FontFamily="Poor Richard" Content="{Binding MysteryEventDescription}"/>
+        <Button Grid.Row="1" Width="80" Height="30" Content="OK!"/>
     </Grid>
 
 </UserControl>

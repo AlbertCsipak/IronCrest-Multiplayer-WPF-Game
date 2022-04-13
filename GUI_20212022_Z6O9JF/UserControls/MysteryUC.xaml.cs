@@ -29,7 +29,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public MysteryUC()
         {
             InitializeComponent();
-            this.DataContext = new TradeViewModel();
+            this.DataContext = new MysteryViewModel();
             this.gameLogic = (this.DataContext as MysteryViewModel).gameLogic;
             this.clientLogic = (this.DataContext as MysteryViewModel).clientLogic;
             this.controlLogic = (this.DataContext as MysteryViewModel).controlLogic;
