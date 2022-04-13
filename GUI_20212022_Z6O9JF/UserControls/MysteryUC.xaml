@@ -21,9 +21,6 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Button Grid.Row="3" Width="80" Height="30" Content="Choose!"/>
-        <Grid x:Name="grid" Grid.Row="0" Grid.Column="0">
-            <renderer:Display x:Name="display"/>
-        </Grid>
     </Grid>
 
 </UserControl>
