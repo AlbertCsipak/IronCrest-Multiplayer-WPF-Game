@@ -461,7 +461,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     if (tile.OwnerId == ClientID)
                     {
-                        foreach (var item2 in tile.Objects)
+                        foreach (var item2 in tile.Objects.ToList())
                         {
                             if (item2.CanMove)
                             {
@@ -501,7 +501,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void MysteryButtonOK()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
     public static class RandomNumber
