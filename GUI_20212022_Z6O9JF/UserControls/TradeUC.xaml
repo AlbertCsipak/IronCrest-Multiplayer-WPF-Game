@@ -8,31 +8,44 @@
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
-             d:DesignHeight="170" d:DesignWidth="250">
+             d:DesignHeight="200" d:DesignWidth="350">
     <UserControl.DataContext>
         <vm:TradeViewModel></vm:TradeViewModel>
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Image gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\trade_background.gif" Grid.RowSpan="5" Stretch="Fill"/>
-        <Label Content="Trading point" FontSize="20" Grid.Row="0" HorizontalContentAlignment="Center"/>
-        <CheckBox x:Name="check1" Grid.Row="1" Click="check1_Click">
-            <TextBlock Text="{Binding Option1}" FontSize="50"></TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Image gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\trade_background.gif" Grid.RowSpan="6" Grid.ColumnSpan="3" Stretch="Fill"/>
+        <Image Source="\Resources\Images\Menu\frame.png" Grid.RowSpan="6" Grid.ColumnSpan="3" Stretch="Fill"/>
+        <Image Source="\Resources\Images\Menu\button_board.png" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
+        <Image Source="\Resources\Images\Menu\board.png" Grid.Column="1" Grid.Row="1"/>
+        
+        <Label Content="Trading point" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image x:Name="flag1_img" Source="\Resources\Images\Menu\flag_darken.png" Grid.Column="1" Grid.Row="2" Stretch="Fill"/>
+        <CheckBox x:Name="check1" Grid.Row="2" Grid.Column="1" Margin="10" Click="check1_Click" VerticalContentAlignment="Center">
+            <TextBlock Padding="20" Text="{Binding Option1}" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)"></TextBlock>
         </CheckBox>
-        <CheckBox x:Name="check2" Grid.Row="2" Click="check1_Click">
-            <TextBlock Text="{Binding Option2}" FontSize="50"></TextBlock>
+        <Image x:Name="flag2_img" Source="\Resources\Images\Menu\flag_darken.png" Grid.Column="1" Grid.Row="3" Stretch="Fill"/>
+        <CheckBox x:Name="check2" Grid.Row="3" Grid.Column="1" Margin="10" FontFamily="\Resources\#8-bit Limit (BRK)" Click="check1_Click" VerticalContentAlignment="Center">
+            <TextBlock Padding="20" Text="{Binding Option2}" FontSize="30"></TextBlock>
         </CheckBox>
-        <CheckBox x:Name="check3" Grid.Row="3" Click="check1_Click">
-            <TextBlock Text="{Binding Option3}" FontSize="50"></TextBlock>
+        <Image x:Name="flag3_img" Source="\Resources\Images\Menu\flag_darken.png" Grid.Column="1" Grid.Row="4" Stretch="Fill"/>
+        <CheckBox x:Name="check3" Grid.Row="4" Grid.Column="1" Margin="10" FontFamily="\Resources\#8-bit Limit (BRK)" Click="check1_Click" VerticalContentAlignment="Center">
+            <TextBlock Padding="20" Text="{Binding Option3}" FontSize="30"></TextBlock>
         </CheckBox>
-        <Button Style="{StaticResource button_image_style}" Grid.Row="4" Width="50" Height="20" Command="{Binding ChooseOffer}">
-            <Image Source="\Resources\Images\Menu\choose_button.png" Width="50" Height="20"/>
+        <Button Style="{StaticResource button_image_style}" Grid.Row="5" Grid.Column="1" Width="140" Height="40" Command="{Binding ChooseOffer}" Content="Choose!" FontSize="40" FontFamily="\Resources\#8-bit Limit (BRK)">
+
         </Button>
     </Grid>
     

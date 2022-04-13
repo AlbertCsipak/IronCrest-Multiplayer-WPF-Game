@@ -265,7 +265,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         }
                         foreach (var item in player.Trade.ToList())
                         {
-                            GameMap[item.Position[0], item.Position[1]].Compass=item;
+                            GameMap[item.Position[0], item.Position[1]].Compass = item;
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
                     }

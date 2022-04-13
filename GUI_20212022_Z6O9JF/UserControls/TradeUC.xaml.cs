@@ -35,6 +35,42 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void check1_Click(object sender, RoutedEventArgs e)
         {
+            if ((bool)(sender as CheckBox).IsChecked)
+            {
+                var uriSource = new Uri(@"\Resources\Images\Menu\flag.png", UriKind.Relative);
+                switch ((sender as CheckBox).Name)
+                {
+                    case "check1":
+                        flag1_img.Source = new BitmapImage(uriSource);
+                        break;
+                    case "check2":
+                        flag2_img.Source = new BitmapImage(uriSource);
+                        break;
+                    case "check3":
+                        flag3_img.Source = new BitmapImage(uriSource);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                var uriSource = new Uri(@"\Resources\Images\Menu\flag_darken.png", UriKind.Relative);
+                switch ((sender as CheckBox).Name)
+                {
+                    case "check1":
+                        flag1_img.Source = new BitmapImage(uriSource);
+                        break;
+                    case "check2":
+                        flag2_img.Source = new BitmapImage(uriSource);
+                        break;
+                    case "check3":
+                        flag3_img.Source = new BitmapImage(uriSource);
+                        break;
+                    default:
+                        break;
+                }
+            }
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
         }

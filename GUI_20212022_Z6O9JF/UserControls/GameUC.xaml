@@ -14,7 +14,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -49,11 +49,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Image Source="\Resources\Images\Resources\gold.png" Width="70" Grid.Column="0"/>
             <Label Content="{Binding Gold}" Grid.Column="1" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-            <Image Source="{Binding Faction}" Grid.Column="2"/>
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="20">
             

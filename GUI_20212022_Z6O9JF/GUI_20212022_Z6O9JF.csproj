@@ -51,10 +51,15 @@
     <None Remove="Resources\Images\Menu\arrow_left.png" />
     <None Remove="Resources\Images\Menu\arrow_right.png" />
     <None Remove="Resources\Images\Menu\board.png" />
+    <None Remove="Resources\Images\Menu\button_board.png" />
     <None Remove="Resources\Images\Menu\choose_button.png" />
+    <None Remove="Resources\Images\Menu\flag.png" />
+    <None Remove="Resources\Images\Menu\flag_darken.png" />
+    <None Remove="Resources\Images\Menu\frame.png" />
     <None Remove="Resources\Images\Menu\frame_trans_1.png" />
     <None Remove="Resources\Images\Menu\goldmine_background.png" />
     <None Remove="Resources\Images\Menu\main_background.gif" />
+    <None Remove="Resources\Images\Menu\mystery_background.gif" />
     <None Remove="Resources\Images\Menu\ocean.png" />
     <None Remove="Resources\Images\Menu\scroll.png" />
     <None Remove="Resources\Images\Menu\skip_button_unpressed.png" />
@@ -223,7 +228,19 @@
     <Content Include="Resources\Images\Menu\board.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\button_board.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\choose_button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\mystery_background.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Images\Menu\flag.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Resources\Images\Menu\frame.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\frame_trans_1.png">
@@ -241,6 +258,9 @@
     <Content Include="Resources\Images\Menu\scroll.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Images\Menu\flag_darken.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Resources\Images\Menu\skip_button_unpressed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

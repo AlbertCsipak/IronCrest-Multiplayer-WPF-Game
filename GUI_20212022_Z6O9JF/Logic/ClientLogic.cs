@@ -193,7 +193,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 else
                 {
                     int defaultMove = 0;
-                    if (faction==Faction.Mongolian)
+                    if (faction == Faction.Mongolian)
                     {
                         defaultMove = 3;
                     }

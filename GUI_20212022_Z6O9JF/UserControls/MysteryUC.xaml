@@ -6,18 +6,26 @@
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
-             d:DesignHeight="120" d:DesignWidth="320" Background="{StaticResource greenish_blue}">
+             d:DesignHeight="120" d:DesignWidth="320">
     <UserControl.DataContext>
         <vm:MysteryViewModel></vm:MysteryViewModel>
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" x:Name="mystery_description" FontSize="80" FontFamily="Poor Richard" Content="{Binding MysteryEventDescription}"/>
-        <Button Grid.Row="1" Width="80" Height="30" Content="OK!" Command="{Binding OKButtonCommand}"/>
+        <Image gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\mystery_background.gif" Stretch="Fill" Grid.RowSpan="3"/>
+        <Image Source="\Resources\Images\Menu\frame.png" Grid.RowSpan="6" Grid.ColumnSpan="3" Stretch="Fill"/>
+        <Label Grid.Row="0"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Mystery Event" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="{DynamicResource greenish_blue}"/>
+        
+        <Label Grid.Row="1" x:Name="mystery_description"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
+            <TextBlock Text="{Binding MysteryEventDescription}" TextWrapping="Wrap" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="{DynamicResource greenish_blue}"/>
+        </Label>
+        <Button Style="{StaticResource button_image_style}" Grid.Row="2" Width="80" Height="30" Content="OK!" Command="{Binding OKButtonCommand}"/>
     </Grid>
 
 </UserControl>
