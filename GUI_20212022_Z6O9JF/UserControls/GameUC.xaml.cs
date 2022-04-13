@@ -33,6 +33,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 display.InvalidateVisual();
             };
             dt.Start();
+            
         }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
