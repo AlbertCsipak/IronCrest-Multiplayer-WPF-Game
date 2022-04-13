@@ -19,7 +19,19 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand ChooseOffer { get; set; }
-        public string Option1 { get { return gameLogic.CurrentTrade.Offers[0].Text; } }
+        //itt vmiért nem jön át a gamelogic.CurrentTrade, null értéke lesz
+        public string Option1 { get {
+                if (gameLogic.CurrentTrade.Offers != null)
+                {
+                    return gameLogic.CurrentTrade.Offers[0].Text;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+        }
+                
         public string Option2 { get { return gameLogic.CurrentTrade.Offers[1].Text; } }
         public string Option3 { get { return gameLogic.CurrentTrade.Offers[2].Text; } }
         public static bool IsInDesignMode
