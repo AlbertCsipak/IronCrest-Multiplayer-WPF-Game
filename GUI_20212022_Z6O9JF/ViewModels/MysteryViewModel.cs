@@ -40,7 +40,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.clientLogic = clientLogic;
 
             OKButtonCommand = new RelayCommand(() => {
-                gameLogic.MysteryButtonOK();
+                clientLogic.MysteryButtonOK();
                 clientLogic.TradeViewChange("asd");
             });
 

@@ -18,7 +18,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         void AddUnit();
         void AddVillage();
-        void ChooseOffer();
+        void ClearCompass(HexagonTile hexagon);
         void DecreaseMoves();
         HexagonTile[,] GameMapSetup(string path);
         void GetResources();
@@ -26,7 +26,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         Queue<Trade> LoadTrades();
         void MoveUnit(HexagonTile hexagonTile);
         void MysteryBoxEvent(HexagonTile hexagonTile);
-        void MysteryButtonOK();
         List<Quest> RandomQuestSelector(int n);
         void ReadQuests();
         void ReloadHexagonObjects();

@@ -135,6 +135,16 @@ namespace GUI_20212022_Z6O9JF.Logic
                 ChangeView("lobby");
             }
         }
+        public void ChooseOffer()
+        {
+            //el kell tárolni a választott offert, és megkapni a nyersanyagokat, ez a metódus még nincs megirva
+            //gameLogic.MakeTrade();
+            TradeViewChange("");
+        }
+        public void MysteryButtonOK()
+        {
+            MysteryViewChange("");
+        }
         public void TradeViewChange(string view)
         {
 

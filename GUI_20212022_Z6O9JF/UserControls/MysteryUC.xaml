@@ -14,18 +14,25 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Image gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\mystery_background.gif" Stretch="Fill" Grid.RowSpan="3"/>
-        <Image Source="\Resources\Images\Menu\frame.png" Grid.RowSpan="6" Grid.ColumnSpan="3" Stretch="Fill"/>
-        <Label Grid.Row="0"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Mystery Event" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="{DynamicResource greenish_blue}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Image gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\mystery_background.gif" Stretch="Fill" Grid.RowSpan="5" Grid.ColumnSpan="3"/>
+        <Image Source="\Resources\Images\Menu\frame.png" Grid.RowSpan="5" Grid.ColumnSpan="3" Stretch="Fill"/>
+        <Label Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Mystery Event" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="{DynamicResource greenish_blue}"/>
         
-        <Label Grid.Row="1" x:Name="mystery_description"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
+        <Label Grid.Row="2" Grid.Column="1" x:Name="mystery_description"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
             <TextBlock Text="{Binding MysteryEventDescription}" TextWrapping="Wrap" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="{DynamicResource greenish_blue}"/>
         </Label>
-        <Button Style="{StaticResource button_image_style}" Grid.Row="2" Width="80" Height="30" Content="OK!" Command="{Binding OKButtonCommand}"/>
+        <Button Style="{StaticResource button_image_style}" Grid.Row="3" Grid.Column="1" Width="80" Height="20" Content="OK!" FontSize="50" FontFamily="\Resources\#8-bit Limit (BRK)"  Command="{Binding OKButtonCommand}"/>
     </Grid>
 
 </UserControl>

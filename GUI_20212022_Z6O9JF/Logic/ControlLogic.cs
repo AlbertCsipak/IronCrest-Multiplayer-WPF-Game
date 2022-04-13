@@ -37,6 +37,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if ((polygon.Tag as HexagonTile).Compass !=null)
                         {
                             gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
+                            gameLogic.ClearCompass(polygon.Tag as HexagonTile);
                             clientLogic.TradeViewChange("trade");
                         }
                         gameLogic.MoveUnit(polygon.Tag as HexagonTile);
@@ -59,6 +60,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if ((polygon.Tag as HexagonTile).Compass != null)
                             {
                                 gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
+                                gameLogic.ClearCompass(polygon.Tag as HexagonTile);
                                 clientLogic.TradeViewChange("trade");
                             }
                             ClearSelections();
