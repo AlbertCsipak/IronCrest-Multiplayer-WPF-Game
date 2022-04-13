@@ -4,7 +4,7 @@ You have been nice to your people, you gain 1 popularity.;1;Popularity
 Your unit have found 3 logs on their way.;3;Wood
 Your unit's exercise was effective, you gain 2 army power.;2;ArmyPower
 Your neighbor gave you a little present, you get 1 stone.;1;Stone
-Your decided to increase the taxes, but your people dislike the decision, you lose 3 popularity.;-3;Popularity
+You decided to increase the taxes, but your people dislike the decision, you lose 3 popularity.;-3;Popularity
 Your units have chopped down some ill trees, you get 3 logs;2;Wood
 Your units are exhaused from the hard work, you lose 2 popularity;-2;Popularity
 A new weapon have been invented, you gain 4 army power.;4;ArmyPower
