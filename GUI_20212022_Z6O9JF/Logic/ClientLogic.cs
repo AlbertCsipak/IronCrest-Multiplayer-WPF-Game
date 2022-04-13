@@ -153,7 +153,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
             if (view.Equals("mystery"))
             {
-                MysteryView = new TradeUC();
+                MysteryView = new MysteryUC();
             }
             else
             {
@@ -192,12 +192,22 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 else
                 {
+                    int defaultMove = 0;
+                    if (faction==Faction.Mongolian)
+                    {
+                        defaultMove = 3;
+                    }
+                    else
+                    {
+                        defaultMove = 2;
+                    }
                     gameLogic.Players.Add(new Player()
                     {
                         PlayerID = ClientId,
                         Name = name,
                         Faction = faction,
-                        Moves = 2,
+                        DefaultNumOfMoves = defaultMove,
+                        RemainingMoves = defaultMove,
                         Quests = gameLogic.RandomQuestSelector(3),
                         Units = new List<Unit>(),
                         Villages = new List<Village>(),

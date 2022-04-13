@@ -10,4 +10,4 @@ Your units are exhaused from the hard work, you lose 2 popularity;-2;Popularity
 A new weapon have been invented, you gain 4 army power.;4;ArmyPower
 A new virus is spreading among your units, you lose 3 army power.;-3;ArmyPower
 Your friend have borrowed 2 gold from you, but he does not plan to pay back;-2;Gold
-Your faction's technology has improved, from now you can move with one more units.;1;Moves
+Your faction's technology has improved, from now on you can move with one more units.;1;Moves

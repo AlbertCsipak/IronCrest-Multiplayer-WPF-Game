@@ -22,14 +22,14 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             ;
             Polygon polygon = sender as Polygon;
-            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves!=0))
             {
                 if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
                         gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
-                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                        
                         if (gameLogic.CurrentMystery != null)
                         {
                             clientLogic.MysteryViewChange("mystery");
@@ -40,7 +40,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
                             clientLogic.TradeViewChange("trade");
                         }
-                        
+                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         ClearSelections();
                     }
                 }
