@@ -137,6 +137,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             trades.ForEach(x => tradeQueue.Enqueue(x));
             return tradeQueue;
         }
+        public void ClearCompass(HexagonTile hexagon)
+        {
+            hexagon.Compass = null;
+        }
         public void MysteryBoxEvent(HexagonTile hexagonTile)
         {
             Point[] points = SelectedHexagonTile.NeighborCoords();
@@ -494,15 +498,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
         }
 
-        public void ChooseOffer()
-        {
 
-            throw new NotImplementedException();
-        }
-        public void MysteryButtonOK()
-        {
-            //throw new NotImplementedException();
-        }
     }
     public static class RandomNumber
     {
