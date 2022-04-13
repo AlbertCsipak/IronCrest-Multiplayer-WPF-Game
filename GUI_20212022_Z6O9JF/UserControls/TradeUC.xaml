@@ -6,30 +6,34 @@
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="370" Background="{StaticResource greenish_blue}">
+             d:DesignHeight="170" d:DesignWidth="250">
     <UserControl.DataContext>
         <vm:TradeViewModel></vm:TradeViewModel>
     </UserControl.DataContext>
     <Grid>
-        
-        
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <CheckBox x:Name="check1" Grid.Row="0" Click="check1_Click">
-            <TextBlock Text="{Binding Option1}" FontSize="70"></TextBlock>
+        <Image gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\trade_background.gif" Grid.RowSpan="5" Stretch="Fill"/>
+        <Label Content="Trading point" FontSize="20" Grid.Row="0" HorizontalContentAlignment="Center"/>
+        <CheckBox x:Name="check1" Grid.Row="1" Click="check1_Click">
+            <TextBlock Text="{Binding Option1}" FontSize="50"></TextBlock>
         </CheckBox>
-        <CheckBox x:Name="check2" Grid.Row="1" Click="check1_Click">
-            <TextBlock Text="{Binding Option2}" FontSize="70"></TextBlock>
+        <CheckBox x:Name="check2" Grid.Row="2" Click="check1_Click">
+            <TextBlock Text="{Binding Option2}" FontSize="50"></TextBlock>
         </CheckBox>
-        <CheckBox x:Name="check3" Grid.Row="2" Click="check1_Click">
-            <TextBlock Text="{Binding Option3}" FontSize="70"></TextBlock>
+        <CheckBox x:Name="check3" Grid.Row="3" Click="check1_Click">
+            <TextBlock Text="{Binding Option3}" FontSize="50"></TextBlock>
         </CheckBox>
-        <Button Grid.Row="3" Width="80" Height="30" Content="Choose!" Command="{Binding ChooseOffer}"/>
+        <Button Style="{StaticResource button_image_style}" Grid.Row="4" Width="50" Height="20" Command="{Binding ChooseOffer}">
+            <Image Source="\Resources\Images\Menu\choose_button.png" Width="50" Height="20"/>
+        </Button>
     </Grid>
     
 </UserControl>

@@ -51,12 +51,14 @@
     <None Remove="Resources\Images\Menu\arrow_left.png" />
     <None Remove="Resources\Images\Menu\arrow_right.png" />
     <None Remove="Resources\Images\Menu\board.png" />
+    <None Remove="Resources\Images\Menu\choose_button.png" />
     <None Remove="Resources\Images\Menu\frame_trans_1.png" />
     <None Remove="Resources\Images\Menu\goldmine_background.png" />
     <None Remove="Resources\Images\Menu\main_background.gif" />
     <None Remove="Resources\Images\Menu\ocean.png" />
     <None Remove="Resources\Images\Menu\scroll.png" />
     <None Remove="Resources\Images\Menu\skip_button_unpressed.png" />
+    <None Remove="Resources\Images\Menu\trade_background.gif" />
     <None Remove="Resources\Images\Other\back.png" />
     <None Remove="Resources\Images\Other\compass.png" />
     <None Remove="Resources\Images\Other\crest_icon.png" />
@@ -221,6 +223,9 @@
     <Content Include="Resources\Images\Menu\board.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\choose_button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\frame_trans_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -237,6 +242,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\skip_button_unpressed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\trade_background.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Other\back.png">

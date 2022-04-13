@@ -139,7 +139,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void MysteryBoxEvent(HexagonTile hexagonTile)
         {
-            ;
             Point[] points = SelectedHexagonTile.NeighborCoords();
             Point point = new Point();
             point.X = hexagonTile.Position[0];
