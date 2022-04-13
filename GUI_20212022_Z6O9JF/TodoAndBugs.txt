@@ -1,8 +1,7 @@
 ﻿Bugs:
 - Rálépsz saját karakterre és elveszzik egy move
--ha a falubol ellépünk egy hőssel, akk duplázódik a hős, ez azért van mert a gamecontrolban kikommenteztem a ReloadHexagonObjects() metódusban az "item.Objects.Clear();" sort,
-mert igy nem jelentek meg a compassok
-
+- gold be tud menni minuszba
+- mystery event meg tud jelenni, ha jobb klikkel kattintunk egy hexagonra, nem nézi h a játékossal léptünk-e rá
 
 
 Todo:
@@ -15,6 +14,12 @@ Todo:
 - number of quest beállítása a logicba (n random quest)
 - mukodjon a map2, és map3
 - minden UC minden képe/szövege legyen responsive
+- game UC-n a questeket tartalmazo combobox designolása
+- trade offer választásánál az arabok tudjanak 2 opciót választani
+- metódus ami minden kör végén megnézi hogy teljesült-e a játékos valamely küldetése
+- átvezető jelenet a harchoz, és az aranybányába való belépéshez
+- legyen letiltva a build/upgrade gomb, ha nincs elég nyersanyagunk hozzá
+- ha felugrott egy mystery event vagy trade ablak legyen letiltva a game UC összes lehetséges interakciója (ne lehessen a háttérben lépkeni)
 
 Features:
 - Reconnect a serverre
