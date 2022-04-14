@@ -42,6 +42,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             WoodChange.Opacity = 0;
             StoneChange.Opacity = 0;
             FoodChange.Opacity = 0;
+            GoldChange.Opacity = 0;
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(33);
 
@@ -87,6 +88,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
             if (FoodChange.Opacity >= 0)
             {
                 FoodChange.Opacity -= 0.05;
+            }
+            if (GoldChange.Opacity >= 0)
+            {
+                GoldChange.Opacity -= 0.05;
             }
         }
 
