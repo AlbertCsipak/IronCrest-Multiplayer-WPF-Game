@@ -22,8 +22,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         void DecreaseMoves();
         HexagonTile[,] GameMapSetup(string path);
         void GetResources();
+        bool HasSufficientResources(int offerindex);
         Queue<MysteryEvent> LoadMysteryEvents();
         Queue<Trade> LoadTrades();
+        void MakeTrade();
         void MoveUnit(HexagonTile hexagonTile);
         void MysteryBoxEvent(HexagonTile hexagonTile);
         List<Quest> RandomQuestSelector(int n);

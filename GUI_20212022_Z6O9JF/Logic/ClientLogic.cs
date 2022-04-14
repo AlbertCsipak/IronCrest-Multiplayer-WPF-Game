@@ -138,61 +138,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void ChooseOffer()
         {
-            foreach (var selectedoffer in gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Trade.SelectedOfferIndexes)
-            {
-                foreach (var cost in gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Trade.Offers[selectedoffer].Cost)
-                {
-                    switch (cost.Key)
-                    {
-                        case "Gold":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Gold -= cost.Value;
-                            break;
-                        case "ArmyPower":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().ArmyPower -= cost.Value;
-                            break;
-                        case "Popularity":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Popularity -= cost.Value;
-                            break;
-                        case "Stone":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Stone -= cost.Value;
-                            break;
-                        case "Wood":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Wood -= cost.Value;
-                            break;
-                        case "Wheat":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Wheat -= cost.Value;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                foreach (var gain in gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Trade.Offers[selectedoffer].Gain)
-                {
-                    switch (gain.Key)
-                    {
-                        case "Gold":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Gold += gain.Value;
-                            break;
-                        case "ArmyPower":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().ArmyPower += gain.Value;
-                            break;
-                        case "Popularity":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Popularity += gain.Value;
-                            break;
-                        case "Stone":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Stone += gain.Value;
-                            break;
-                        case "Wood":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Wood += gain.Value;
-                            break;
-                        case "Wheat":
-                            gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault().Wheat += gain.Value;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
+            gameLogic.MakeTrade();
             //Thread.Sleep(1000);
             TradeViewChange("");
         }

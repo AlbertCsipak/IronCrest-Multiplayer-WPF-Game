@@ -32,6 +32,18 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.clientLogic = (this.DataContext as TradeViewModel).clientLogic;
             this.controlLogic = (this.DataContext as TradeViewModel).controlLogic;
             var trade = gameLogic.Players.Where(t => t.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade;
+            if (!gameLogic.HasSufficientResources(0))
+            {
+                check1.IsEnabled = false;
+            }
+            if (!gameLogic.HasSufficientResources(1))
+            {
+                check2.IsEnabled = false;
+            }
+            if (!gameLogic.HasSufficientResources(2))
+            {
+                check3.IsEnabled = false;
+            }
             count = 0;
         }
 

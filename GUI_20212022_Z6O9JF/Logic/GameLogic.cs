@@ -137,9 +137,119 @@ namespace GUI_20212022_Z6O9JF.Logic
             trades.ForEach(x => tradeQueue.Enqueue(x));
             return tradeQueue;
         }
+        public bool HasSufficientResources(int offerindex)
+        {
+            bool HasEnoughResources = true;
+            int counter = 0;
+            while (counter < Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.Offers[offerindex].Cost.Count && HasEnoughResources)
+            {
+                var cost = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.Offers[offerindex].Cost.ElementAt(counter);
+                switch (cost.Key)
+                {
+                    case "Gold":
+                        if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold < cost.Value)
+                        {
+                            HasEnoughResources = false;
+                        }
+                        break;
+                    case "ArmyPower":
+                        if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower < cost.Value)
+                        {
+                            HasEnoughResources = false;
+                        }
+                        break;
+                    case "Popularity":
+                        if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity < cost.Value)
+                        {
+                            HasEnoughResources = false;
+                        }
+                        break;
+                    case "Stone":
+                        if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone < cost.Value)
+                        {
+                            HasEnoughResources = false;
+                        }
+                        break;
+                    case "Wood":
+                        if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood < cost.Value)
+                        {
+                            HasEnoughResources = false;
+                        }
+                        break;
+                    case "Wheat":
+                        if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat < cost.Value)
+                        {
+                            HasEnoughResources = false;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                counter++;
+            }
+            return HasEnoughResources;
+        }
+        public void MakeTrade()
+        {
+            foreach (var selectedoffer in Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.SelectedOfferIndexes)
+            {
+                foreach (var cost in Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.Offers[selectedoffer].Cost)
+                {
+                    switch (cost.Key)
+                    {
+                        case "Gold":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold -= cost.Value;
+                            break;
+                        case "ArmyPower":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower -= cost.Value;
+                            break;
+                        case "Popularity":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity -= cost.Value;
+                            break;
+                        case "Stone":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone -= cost.Value;
+                            break;
+                        case "Wood":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood -= cost.Value;
+                            break;
+                        case "Wheat":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat -= cost.Value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                foreach (var gain in Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.Offers[selectedoffer].Gain)
+                {
+                    switch (gain.Key)
+                    {
+                        case "Gold":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += gain.Value;
+                            break;
+                        case "ArmyPower":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower += gain.Value;
+                            break;
+                        case "Popularity":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity += gain.Value;
+                            break;
+                        case "Stone":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone += gain.Value;
+                            break;
+                        case "Wood":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += gain.Value;
+                            break;
+                        case "Wheat":
+                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat += gain.Value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
         public void ClearCompass(HexagonTile hexagon)
         {
-            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade=hexagon.Compass;
+            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade = hexagon.Compass;
             hexagon.Compass = null;
         }
         public void MysteryBoxEvent(HexagonTile hexagonTile)
