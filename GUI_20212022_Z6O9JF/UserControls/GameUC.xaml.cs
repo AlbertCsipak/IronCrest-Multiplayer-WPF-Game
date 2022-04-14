@@ -138,6 +138,14 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     FoodChangeLabel.Content = s + player.ResourceChanges[4];
                     player.ResourceChanges[4] = 0;
                 }
+                if (player.ResourceChanges[5] != 0)
+                {
+                    //Food
+                    GoldChange.Opacity = 1;
+                    string s = player.ResourceChanges[5] > 0 ? "+" : "";
+                    GoldChangeLabel.Content = s + player.ResourceChanges[5];
+                    player.ResourceChanges[5] = 0;
+                }
 
             }
             //if (PopChange.Opacity <= 0)
