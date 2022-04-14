@@ -1,5 +1,4 @@
 ﻿Bugs:
-- Rálépsz saját karakterre és elveszzik egy move
 - gold be tud menni minuszba
 - mystery event meg tud jelenni, ha jobb klikkel kattintunk egy hexagonra, nem nézi h a játékossal léptünk-e rá
 
@@ -20,6 +19,7 @@ Todo:
 - átvezető jelenet a harchoz, és az aranybányába való belépéshez
 - legyen letiltva a build/upgrade gomb, ha nincs elég nyersanyagunk hozzá
 - ha felugrott egy mystery event vagy trade ablak legyen letiltva a game UC összes lehetséges interakciója (ne lehessen a háttérben lépkeni)
+- lehessena a textnek outline-t rajzolni, nincs beépített funkciója nekem meg nincs kedvem ehhez
 
 Features:
 - Reconnect a serverre

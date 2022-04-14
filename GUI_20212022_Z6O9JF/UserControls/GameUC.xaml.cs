@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using WpfAnimatedGif;
 
 namespace GUI_20212022_Z6O9JF.UserControls
 {
@@ -48,7 +51,15 @@ namespace GUI_20212022_Z6O9JF.UserControls
             {
                 ResourceChanging();
                 OpacityDefault();
-
+                if (clientLogic.Timer==60)
+                {
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.UriSource = new Uri(@"\Resources\Images\Menu\hourglassgif.gif", UriKind.Relative);
+                    image.EndInit();
+                    ImageBehavior.SetAnimatedSource(hourglass_gif, image);
+                    ImageBehavior.SetRepeatBehavior(hourglass_gif, new RepeatBehavior(1));
+                }
                 display.InvalidateVisual();
             };
             dt.Start();
