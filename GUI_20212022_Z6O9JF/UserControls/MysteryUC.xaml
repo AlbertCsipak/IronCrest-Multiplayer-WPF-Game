@@ -32,7 +32,7 @@
         <Label Grid.Row="2" Grid.Column="1" x:Name="mystery_description"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
             <TextBlock Text="{Binding MysteryEventDescription}" TextWrapping="Wrap" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="{DynamicResource greenish_blue}"/>
         </Label>
-        <Button Style="{StaticResource button_image_style}" Grid.Row="3" Grid.Column="1" Width="80" Height="30" VerticalContentAlignment="Center" Content="OK!" FontSize="50" FontFamily="\Resources\#8-bit Limit (BRK)"  Command="{Binding OKButtonCommand}"/>
+        <Button Style="{StaticResource button_image_style}" Grid.Row="3" Grid.Column="1" Width="80" Height="30" VerticalContentAlignment="Center" Content="OK!" FontSize="50" FontFamily="\Resources\#8-bit Limit (BRK)"  Command="{Binding OKButtonCommand}" Click="Button_Click_1"/>
     </Grid>
 
 </UserControl>

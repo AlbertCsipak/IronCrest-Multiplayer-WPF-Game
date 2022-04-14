@@ -58,6 +58,7 @@
     <None Remove="Resources\Images\Menu\choose_button.png" />
     <None Remove="Resources\Images\Menu\flag.png" />
     <None Remove="Resources\Images\Menu\flag_darken.png" />
+    <None Remove="Resources\Images\Menu\flag_disabled.png" />
     <None Remove="Resources\Images\Menu\frame.png" />
     <None Remove="Resources\Images\Menu\frame_trans_1.png" />
     <None Remove="Resources\Images\Menu\goldmine_background.png" />
@@ -69,6 +70,7 @@
     <None Remove="Resources\Images\Menu\produce_background.png" />
     <None Remove="Resources\Images\Menu\scroll.png" />
     <None Remove="Resources\Images\Menu\skip_button_unpressed.png" />
+    <None Remove="Resources\Images\Menu\small_board.png" />
     <None Remove="Resources\Images\Menu\trade_background.gif" />
     <None Remove="Resources\Images\Menu\upgrade_background.png" />
     <None Remove="Resources\Images\Other\back.png" />
@@ -244,6 +246,9 @@
     <Content Include="Resources\Images\Menu\button_board.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\flag_disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\move_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -251,6 +256,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\produce_background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\small_board.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\upgrade_background.png">
