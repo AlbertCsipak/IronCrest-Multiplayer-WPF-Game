@@ -23,7 +23,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IGameLogic gameLogic;
         IControlLogic controlLogic;
         public MediaPlayer button_click = new MediaPlayer();
-        int count;
+        public int lastlySelectedOffer;
+        public int offerCount=0;
+        Uri uriSourceflag;
+        Uri uriSourcedarkened_flag;
         public TradeUC()
         {
             InitializeComponent();
@@ -32,6 +35,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.clientLogic = (this.DataContext as TradeViewModel).clientLogic;
             this.controlLogic = (this.DataContext as TradeViewModel).controlLogic;
             var trade = gameLogic.Players.Where(t => t.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade;
+            uriSourceflag = new Uri(@"\Resources\Images\Menu\flag.png", UriKind.Relative);
+            uriSourcedarkened_flag = new Uri(@"\Resources\Images\Menu\flag_darken.png", UriKind.Relative);
             if (!gameLogic.HasSufficientResources(0))
             {
                 check1.IsEnabled = false;
@@ -47,13 +52,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 check3.IsEnabled = false;
                 flag3_img.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\flag_disabled.png",UriKind.RelativeOrAbsolute));
             }
-            count = 0;
         }
 
         private void check1_Click(object sender, RoutedEventArgs e)
         {
-            var uriSourceflag = new Uri(@"\Resources\Images\Menu\flag.png", UriKind.Relative);
-            var uriSourcedarkened_flag = new Uri(@"\Resources\Images\Menu\flag_darken.png", UriKind.Relative);
+            
             if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction != Models.Faction.Arabian)
             {
                 if ((bool)(sender as CheckBox).IsChecked)
@@ -122,38 +125,120 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     }
                 }
             }
-            else
+            else //arabian 
             {
+                ;
                 if ((bool)(sender as CheckBox).IsChecked)
                 {
+                    //offerCount++;
                     switch ((sender as CheckBox).Name)
                     {
                         case "check1":
                             flag1_img.Source = new BitmapImage(uriSourceflag);
+                            lastlySelectedOffer = 1;
+                            if (offerCount<2)
+                            {
+                                offerCount++;   
+                            }
+                            else
+                            {
+                                SetLastlySelected();
+                            }
+                            
                             break;
                         case "check2":
                             flag2_img.Source = new BitmapImage(uriSourceflag);
+                            lastlySelectedOffer = 2;
+                            if (offerCount < 2)
+                            {
+                                offerCount++;
+                            }
+                            else
+                            {
+                                SetLastlySelected();
+                            }
                             break;
                         case "check3":
                             flag3_img.Source = new BitmapImage(uriSourceflag);
-                            break;
-                        default:
+                            lastlySelectedOffer = 3;
+                            if (offerCount < 2)
+                            {
+                                offerCount++;
+                            }
+                            else
+                            {
+                                SetLastlySelected();
+                            }
                             break;
                     }
                 }
-                else
+                else if(!(bool)(sender as CheckBox).IsChecked)
                 {
                     var uriSource = new Uri(@"\Resources\Images\Menu\flag_darken.png", UriKind.Relative);
                     switch ((sender as CheckBox).Name)
                     {
                         case "check1":
                             flag1_img.Source = new BitmapImage(uriSource);
+                            offerCount--;
+                            switch (lastlySelectedOffer)
+                            {
+                                case 1:
+                                    flag1_img.Source = new BitmapImage(uriSource);
+                                    check1.IsChecked = true;
+                                    break;
+                                case 2:
+                                    flag1_img.Source = new BitmapImage(uriSource);
+                                    check1.IsChecked = true;
+                                    break;
+                                case 3:
+                                    flag1_img.Source = new BitmapImage(uriSource);
+                                    check1.IsChecked = true;
+                                    break;
+                                default:
+                                    break;
+                            }
                             break;
                         case "check2":
                             flag2_img.Source = new BitmapImage(uriSource);
+                            offerCount--;
+                            switch (lastlySelectedOffer)
+                            {
+                                case 1:
+                                    flag1_img.Source = new BitmapImage(uriSource);
+                                    check1.IsChecked = true;
+                                    break;
+                                case 2:
+                                    flag1_img.Source = new BitmapImage(uriSource);
+                                    check1.IsChecked = true;
+                                    break;
+                                case 3:
+                                    flag1_img.Source = new BitmapImage(uriSource);
+                                    check1.IsChecked = true;
+                                    break;
+                                default:
+                                    break;
+                            }
                             break;
                         case "check3":
                             flag3_img.Source = new BitmapImage(uriSource);
+                            offerCount--;
+                            switch (lastlySelectedOffer)
+                            {
+                                case 1:
+                                    flag1_img.Source = new BitmapImage(uriSource);
+                                    check1.IsChecked = true;
+                                    break;
+                                case 2:
+                                    flag1_img.Source = new BitmapImage(uriSource);
+                                    check1.IsChecked = true;
+                                    break;
+                                case 3:
+                                    flag1_img.Source = new BitmapImage(uriSource);
+                                    check1.IsChecked = true;
+                                    break;
+                                default:
+                                    break;
+                            }
                             break;
                         default:
                             break;
@@ -163,7 +248,24 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
         }
-
+        private void SetLastlySelected()
+        {
+            switch (lastlySelectedOffer)
+            {
+                case 1:
+                    flag1_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                    check1.IsChecked = false;
+                    break;
+                case 2:
+                    flag2_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                    check2.IsChecked = false;
+                    break;
+                case 3:
+                    flag3_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                    check3.IsChecked = false;
+                    break;
+            }
+        }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction==Models.Faction.Arabian)//arab faction 2 offert fogadhat el
