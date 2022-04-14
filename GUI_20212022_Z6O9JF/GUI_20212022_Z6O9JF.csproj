@@ -51,6 +51,7 @@
     <None Remove="Resources\Images\Menu\arrow_left.png" />
     <None Remove="Resources\Images\Menu\arrow_right.png" />
     <None Remove="Resources\Images\Menu\board.png" />
+    <None Remove="Resources\Images\Menu\border.png" />
     <None Remove="Resources\Images\Menu\button_board.png" />
     <None Remove="Resources\Images\Menu\choose_button.png" />
     <None Remove="Resources\Images\Menu\flag.png" />
@@ -226,6 +227,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\board.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\border.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\button_board.png">
