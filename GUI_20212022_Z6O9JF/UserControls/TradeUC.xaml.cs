@@ -35,14 +35,17 @@ namespace GUI_20212022_Z6O9JF.UserControls
             if (!gameLogic.HasSufficientResources(0))
             {
                 check1.IsEnabled = false;
+                flag1_img.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\flag_disabled.png", UriKind.RelativeOrAbsolute));
             }
             if (!gameLogic.HasSufficientResources(1))
             {
                 check2.IsEnabled = false;
+                flag2_img.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\flag_disabled.png", UriKind.RelativeOrAbsolute));
             }
             if (!gameLogic.HasSufficientResources(2))
             {
                 check3.IsEnabled = false;
+                flag3_img.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\flag_disabled.png",UriKind.RelativeOrAbsolute));
             }
             count = 0;
         }
@@ -59,24 +62,42 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     {
                         case "check1":
                             flag1_img.Source = new BitmapImage(uriSourceflag);
-                            check2.IsChecked = false;
-                            check3.IsChecked = false;
-                            flag2_img.Source = new BitmapImage(uriSourcedarkened_flag);
-                            flag3_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                            if (check2.IsEnabled)
+                            {
+                                check2.IsChecked = false;
+                                flag2_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                            }
+                            if (check3.IsEnabled)
+                            {
+                                check3.IsChecked = false;
+                                flag3_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                            }
                             break;
                         case "check2":
                             flag2_img.Source = new BitmapImage(uriSourceflag);
-                            check1.IsChecked = false;
-                            check3.IsChecked = false;
-                            flag1_img.Source = new BitmapImage(uriSourcedarkened_flag);
-                            flag3_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                            if (check1.IsEnabled)
+                            {
+                                check1.IsChecked = false;
+                                flag1_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                            }
+                            if (check3.IsEnabled)
+                            {
+                                check3.IsChecked = false;
+                                flag3_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                            }
                             break;
                         case "check3":
                             flag3_img.Source = new BitmapImage(uriSourceflag);
-                            check1.IsChecked = false;
-                            check2.IsChecked = false;
-                            flag1_img.Source = new BitmapImage(uriSourcedarkened_flag);
-                            flag2_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                            if (check1.IsEnabled)
+                            {
+                                check1.IsChecked = false;
+                                flag1_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                            }
+                            if (check2.IsEnabled)
+                            {
+                                check2.IsChecked = false;
+                                flag2_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                            }
                             break;
                         default:
                             break;

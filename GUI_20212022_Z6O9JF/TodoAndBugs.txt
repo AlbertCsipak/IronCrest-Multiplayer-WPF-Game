@@ -1,7 +1,7 @@
 ﻿Bugs:
 - gold be tud menni minuszba
 - mystery event meg tud jelenni, ha jobb klikkel kattintunk egy hexagonra, nem nézi h a játékossal léptünk-e rá
-
+- ha egy compassos mezőről lekerül a compass át kell alakitani a hexagon grass FieldType-ra, mert különben nem enged falut építeni rá 
 
 Todo:
 - button animáció (skip,back,exit()
@@ -21,7 +21,8 @@ Todo:
 - ha felugrott egy mystery event vagy trade ablak legyen letiltva a game UC összes lehetséges interakciója (ne lehessen a háttérben lépkeni)
 - lehessena a textnek outline-t rajzolni, nincs beépített funkciója nekem meg nincs kedvem ehhez
 
+
 Features:
 - Reconnect a serverre
-
+-ESC gomb nyomásra options menü, ahol lehet állitani a hangerőt és ki lehet lépni
 
