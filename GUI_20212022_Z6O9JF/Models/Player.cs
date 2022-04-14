@@ -75,7 +75,7 @@ namespace GUI_20212022_Z6O9JF.Models
         }//MysteryResource
 
         private int food;
-        public int Food { 
+        public int Wheat { 
             get{return food;}
             set {if (food > value) ResourceChanges[4] = (food - value)*(-1);
                 else ResourceChanges[4] = value - food;
@@ -88,7 +88,7 @@ namespace GUI_20212022_Z6O9JF.Models
         public List<Village> Villages { get; set; }
         public List<Unit> Units { get; set; }
         public Hero Hero { get; set; }
-        public List<Trade> Trade { get; set; }
+        public Trade Trade { get; set; }
 
         public Player()
         {

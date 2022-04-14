@@ -22,13 +22,13 @@ namespace GUI_20212022_Z6O9JF.Models
     public class Trade
     {
         public Offer[] Offers { get; set; }
-        public int[] SelectedOfferIndex { get; set; }
+        public List<int> SelectedOfferIndexes { get; set; }
         public int[] Position { get; set; }
         public int OwnerId { get; set; }
         public Trade(Offer[] Offers)
         {
             this.Offers = Offers;
-            SelectedOfferIndex = new int[2];
+            SelectedOfferIndexes = new List<int>();
             Position = new int[2];
         }
 

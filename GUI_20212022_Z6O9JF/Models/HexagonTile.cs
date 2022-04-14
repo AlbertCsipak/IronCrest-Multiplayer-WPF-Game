@@ -57,7 +57,7 @@ namespace GUI_20212022_Z6O9JF.Models
                     player.Wood++;
                     break;
                 case FieldType.wheat:
-                    player.Food++;
+                    player.Wheat++;
                     break;
                 case FieldType.goldMine:
                     if (player.Faction == Faction.Mongolian)

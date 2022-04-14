@@ -139,6 +139,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void ClearCompass(HexagonTile hexagon)
         {
+            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade=hexagon.Compass;
             hexagon.Compass = null;
         }
         public void MysteryBoxEvent(HexagonTile hexagonTile)
@@ -159,7 +160,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                     int rnd = RandomNumber.RandomNumberGenerator(1, 21);
                     if (true && Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
-                        //MysteryUC meghívása!
                         //Dequeue
                         if (MysteryEvents.Count() != 0)
                         {
@@ -205,18 +205,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                                     }
                                     break;
                                 case "Wheat":
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food += mysteryEvent.Number;
-                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food < 0)
+                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat += mysteryEvent.Number;
+                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat < 0)
                                     {
-                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food = 0;
+                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat = 0;
                                     }
                                     break;
                                 case "Moves":
                                     Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().DefaultNumOfMoves += mysteryEvent.Number;
                                     break;
-                                //case "Moves":
-                                //    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Moves += mysteryEvent.Number;
-                                //    break;
                                 default:
                                     break;
                             }
@@ -267,11 +264,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                             GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
-                        foreach (var item in player.Trade.ToList())
-                        {
-                            GameMap[item.Position[0], item.Position[1]].Compass = item;
-                            GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
-                        }
+                        //foreach (var item in player.Trade.ToList())
+                        //{
+                        //    GameMap[item.Position[0], item.Position[1]].Compass = item;
+                        //    GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
+                        //}
                     }
                 }
             }
@@ -373,7 +370,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         SelectedHexagonTile.Objects.Remove(item);
                         item.Level++;
                         Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold -= 3;
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Food -= 2;
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat -= 2;
                         DecreaseMoves();
                     }
                 }
