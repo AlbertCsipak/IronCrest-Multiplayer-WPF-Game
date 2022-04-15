@@ -229,15 +229,42 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Wheat = 10,
                         //Gold = RandomNumber.RandomNumberGenerator(2, 5),
                         Popularity = RandomNumber.RandomNumberGenerator(0, 3),
-                        ArmyPower = RandomNumber.RandomNumberGenerator(0, 3)
+                        ArmyPower = RandomNumber.RandomNumberGenerator(0, 3),
+                        HasEnteredGoldMine = false
                     });
                 }
+                Village village = null;
+                Unit unit = null;
+                if (gameLogic.Players.Count==1)
+                {
+                    village = new Village() { Position = new int[] { 2, 2 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
+                    unit = new Unit() { CanMove = true, FactionType = faction, OwnerId= gameLogic.ClientID, Position = new int[] { 2, 2 } };
+
+                }
+                else if (gameLogic.Players.Count == 2)
+                {
+                    village = new Village() { Position = new int[] { 8, 18 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
+                    unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 8, 18 } };
+                }
+                else if (gameLogic.Players.Count == 3)
+                {
+                    village = new Village() { Position = new int[] { 2, 18 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
+                    unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 2, 18 } };
+                }
+                else if (gameLogic.Players.Count == 4)
+                {
+                    village = new Village() { Position = new int[] { 8, 2 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
+                    unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 8, 2 } };
+                }
+                gameLogic.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Villages.Add(village);
+                gameLogic.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Units.Add(unit);
                 gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
                 ChangeView("game");
                 System.Threading.Thread.Sleep(500);
                 SkipTurn();
             }
         }
+
         public void SkipTurn()
         {
             if (CanSend)

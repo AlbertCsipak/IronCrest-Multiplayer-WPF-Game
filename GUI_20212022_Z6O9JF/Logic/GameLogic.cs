@@ -100,6 +100,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     }
                 }
             }
+            
             return map;
         }
         //Fisher–Yates shuffle
@@ -136,6 +137,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             Queue<Trade> tradeQueue = new Queue<Trade>();
             trades.ForEach(x => tradeQueue.Enqueue(x));
             return tradeQueue;
+        }
+        public void EnterGoldMine()
+        {
+
         }
         public bool HasSufficientResources(int offerindex)
         {

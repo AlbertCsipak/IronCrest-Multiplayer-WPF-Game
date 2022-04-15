@@ -12,6 +12,7 @@ namespace GUI_20212022_Z6O9JF.Models
         public Faction Faction { get; set; }
         public Activity Activity { get; set; }
         public bool GoldMine { get; set; }
+        public bool HasEnteredGoldMine { get; set; }
         public int DefaultNumOfMoves { get; set; }
         public int RemainingMoves { get; set; }
 

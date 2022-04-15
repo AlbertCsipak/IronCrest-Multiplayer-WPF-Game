@@ -23,6 +23,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = sender as Polygon;
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves!=0))
             {
+                if ((polygon.Tag as HexagonTile).FieldType==FieldType.goldMine && !gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
+                {
+                    gameLogic.EnterGoldMine();
+                }
                 if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)

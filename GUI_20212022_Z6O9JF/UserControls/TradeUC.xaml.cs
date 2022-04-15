@@ -257,21 +257,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
         }
-        //private void GetFirstSelectedOffer()
-        //{
-        //    if ((bool)check1.IsChecked && !(bool)check2.IsChecked && !(bool)check3.IsChecked)
-        //    {
-        //        firstlySelectedOffer = 1;
-        //    }
-        //    else if (!(bool)check1.IsChecked && (bool)check2.IsChecked && !(bool)check3.IsChecked)
-        //    {
-        //        firstlySelectedOffer = 2;
-        //    }
-        //    else if(!(bool)check1.IsChecked && !(bool)check2.IsChecked && (bool)check3.IsChecked)
-        //    {
-        //        firstlySelectedOffer = 3;
-        //    }
-        //}
         private void DisableThirdOffer()
         {
             if ((bool)check1.IsChecked && (bool)check2.IsChecked)
