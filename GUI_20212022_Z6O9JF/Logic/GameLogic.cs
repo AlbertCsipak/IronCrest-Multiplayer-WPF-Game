@@ -140,7 +140,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void EnterGoldMine()
         {
-
+            //goldmineUC meghivasa
         }
         public bool HasSufficientResources(int offerindex)
         {
@@ -191,6 +191,50 @@ namespace GUI_20212022_Z6O9JF.Logic
                         break;
                 }
                 counter++;
+            }
+            return HasEnoughResources;
+        }
+        public bool HasSufficientResources(string resource, int cost)
+        {
+            bool HasEnoughResources = true;
+            switch (resource)
+            {
+                case "Gold":
+                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold < cost)
+                    {
+                        HasEnoughResources = false;
+                    }
+                    break;
+                case "ArmyPower":
+                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower < cost)
+                    {
+                        HasEnoughResources = false;
+                    }
+                    break;
+                case "Popularity":
+                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity < cost)
+                    {
+                        HasEnoughResources = false;
+                    }
+                    break;
+                case "Stone":
+                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone < cost)
+                    {
+                        HasEnoughResources = false;
+                    }
+                    break;
+                case "Wood":
+                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood < cost)
+                    {
+                        HasEnoughResources = false;
+                    }
+                    break;
+                case "Wheat":
+                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat < cost)
+                    {
+                        HasEnoughResources = false;
+                    }
+                    break;
             }
             return HasEnoughResources;
         }
@@ -473,9 +517,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (SelectedHexagonTile != null)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0
-                    && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Gold).FirstOrDefault() >= 3
-                    && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Wood).FirstOrDefault() >= 2)
+                if ((SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
+                    && Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold >= 3
+                    && Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat >= 2)
                 {
                     var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;

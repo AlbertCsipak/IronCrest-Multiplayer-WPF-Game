@@ -26,3 +26,6 @@ Features:
 - Reconnect a serverre
 -ESC gomb nyomásra options menü, ahol lehet állitani a hangerőt és ki lehet lépni
 
+STEVE TO DO: 
+- bugfix, elején minden resource-ot kiir, mint változás
+- ha egy nyersanyagbol nincs elég, pl village upgradelesnel akk irja ki h "Insufficient resources!"
