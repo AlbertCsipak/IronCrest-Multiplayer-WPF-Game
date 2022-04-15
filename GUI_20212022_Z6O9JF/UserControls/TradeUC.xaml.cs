@@ -23,7 +23,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IGameLogic gameLogic;
         IControlLogic controlLogic;
         public MediaPlayer button_click = new MediaPlayer();
-        public int lastlySelectedOffer;
+        public int firstlySelectedOffer;
         public int offerCount=0;
         Uri uriSourceflag;
         Uri uriSourcedarkened_flag;
@@ -130,46 +130,40 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 ;
                 if ((bool)(sender as CheckBox).IsChecked)
                 {
-                    //offerCount++;
                     switch ((sender as CheckBox).Name)
                     {
                         case "check1":
                             flag1_img.Source = new BitmapImage(uriSourceflag);
-                            lastlySelectedOffer = 1;
+                            
                             if (offerCount<2)
                             {
                                 offerCount++;   
                             }
-                            else
-                            {
-                                SetLastlySelected();
-                            }
+                            
                             
                             break;
                         case "check2":
                             flag2_img.Source = new BitmapImage(uriSourceflag);
-                            lastlySelectedOffer = 2;
+
                             if (offerCount < 2)
                             {
                                 offerCount++;
                             }
-                            else
-                            {
-                                SetLastlySelected();
-                            }
+                            
                             break;
                         case "check3":
                             flag3_img.Source = new BitmapImage(uriSourceflag);
-                            lastlySelectedOffer = 3;
+                           
                             if (offerCount < 2)
                             {
                                 offerCount++;
                             }
-                            else
-                            {
-                                SetLastlySelected();
-                            }
+                            
                             break;
+                    }
+                    if (offerCount==2)
+                    {
+                        DisableThirdOffer();
                     }
                 }
                 else if(!(bool)(sender as CheckBox).IsChecked)
@@ -180,19 +174,19 @@ namespace GUI_20212022_Z6O9JF.UserControls
                         case "check1":
                             flag1_img.Source = new BitmapImage(uriSource);
                             offerCount--;
-                            switch (lastlySelectedOffer)
+                            switch (firstlySelectedOffer)
                             {
                                 case 1:
                                     flag1_img.Source = new BitmapImage(uriSource);
-                                    check1.IsChecked = true;
+                                    check1.IsChecked = false;
                                     break;
                                 case 2:
                                     flag1_img.Source = new BitmapImage(uriSource);
-                                    check1.IsChecked = true;
+                                    check1.IsChecked = false;
                                     break;
                                 case 3:
                                     flag1_img.Source = new BitmapImage(uriSource);
-                                    check1.IsChecked = true;
+                                    check1.IsChecked = false;
                                     break;
                                 default:
                                     break;
@@ -201,19 +195,19 @@ namespace GUI_20212022_Z6O9JF.UserControls
                         case "check2":
                             flag2_img.Source = new BitmapImage(uriSource);
                             offerCount--;
-                            switch (lastlySelectedOffer)
+                            switch (firstlySelectedOffer)
                             {
                                 case 1:
                                     flag1_img.Source = new BitmapImage(uriSource);
-                                    check1.IsChecked = true;
+                                    check1.IsChecked = false;
                                     break;
                                 case 2:
                                     flag1_img.Source = new BitmapImage(uriSource);
-                                    check1.IsChecked = true;
+                                    check1.IsChecked = false;
                                     break;
                                 case 3:
                                     flag1_img.Source = new BitmapImage(uriSource);
-                                    check1.IsChecked = true;
+                                    check1.IsChecked = false;
                                     break;
                                 default:
                                     break;
@@ -222,19 +216,19 @@ namespace GUI_20212022_Z6O9JF.UserControls
                         case "check3":
                             flag3_img.Source = new BitmapImage(uriSource);
                             offerCount--;
-                            switch (lastlySelectedOffer)
+                            switch (firstlySelectedOffer)
                             {
                                 case 1:
                                     flag1_img.Source = new BitmapImage(uriSource);
-                                    check1.IsChecked = true;
+                                    check1.IsChecked = false;
                                     break;
                                 case 2:
                                     flag1_img.Source = new BitmapImage(uriSource);
-                                    check1.IsChecked = true;
+                                    check1.IsChecked = false;
                                     break;
                                 case 3:
                                     flag1_img.Source = new BitmapImage(uriSource);
-                                    check1.IsChecked = true;
+                                    check1.IsChecked = false;
                                     break;
                                 default:
                                     break;
@@ -243,27 +237,57 @@ namespace GUI_20212022_Z6O9JF.UserControls
                         default:
                             break;
                     }
+                    if (offerCount<2)
+                    {
+                        if (gameLogic.HasSufficientResources(0))
+                        {
+                            check1.IsEnabled = true;
+                        }
+                        if (gameLogic.HasSufficientResources(1))
+                        {
+                            check2.IsEnabled = true;
+                        }
+                        if (gameLogic.HasSufficientResources(2))
+                        {
+                            check3.IsEnabled = true;
+                        }
+                    }
                 }
             }
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
         }
-        private void SetLastlySelected()
+        //private void GetFirstSelectedOffer()
+        //{
+        //    if ((bool)check1.IsChecked && !(bool)check2.IsChecked && !(bool)check3.IsChecked)
+        //    {
+        //        firstlySelectedOffer = 1;
+        //    }
+        //    else if (!(bool)check1.IsChecked && (bool)check2.IsChecked && !(bool)check3.IsChecked)
+        //    {
+        //        firstlySelectedOffer = 2;
+        //    }
+        //    else if(!(bool)check1.IsChecked && !(bool)check2.IsChecked && (bool)check3.IsChecked)
+        //    {
+        //        firstlySelectedOffer = 3;
+        //    }
+        //}
+        private void DisableThirdOffer()
         {
-            switch (lastlySelectedOffer)
+            if ((bool)check1.IsChecked && (bool)check2.IsChecked)
             {
-                case 1:
-                    flag1_img.Source = new BitmapImage(uriSourcedarkened_flag);
-                    check1.IsChecked = false;
-                    break;
-                case 2:
-                    flag2_img.Source = new BitmapImage(uriSourcedarkened_flag);
-                    check2.IsChecked = false;
-                    break;
-                case 3:
-                    flag3_img.Source = new BitmapImage(uriSourcedarkened_flag);
-                    check3.IsChecked = false;
-                    break;
+                flag3_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                check3.IsEnabled = false;
+            }
+            else if ((bool)check1.IsChecked && (bool)check3.IsChecked)
+            {
+                flag2_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                check2.IsEnabled = false;
+            }
+            else if ((bool)check2.IsChecked && (bool)check3.IsChecked)
+            {
+                flag1_img.Source = new BitmapImage(uriSourcedarkened_flag);
+                check1.IsEnabled = false;
             }
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
