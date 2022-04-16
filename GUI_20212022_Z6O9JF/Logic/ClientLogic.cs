@@ -139,11 +139,11 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void ChooseOffer()
         {
             gameLogic.MakeTrade();
-            //Thread.Sleep(1000);
             TradeViewChange("");
         }
         public void MysteryButtonOK()
         {
+            gameLogic.GetResourcesFromMysteryEvent();
             MysteryViewChange("");
         }
         public void TradeViewChange(string view)

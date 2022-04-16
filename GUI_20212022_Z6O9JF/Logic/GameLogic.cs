@@ -100,7 +100,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     }
                 }
             }
-            
+
             return map;
         }
         //Fisher–Yates shuffle
@@ -237,6 +237,76 @@ namespace GUI_20212022_Z6O9JF.Logic
                     break;
             }
             return HasEnoughResources;
+        }
+        public void GetResourcesFromMysteryEvent()
+        {
+            switch (CurrentMystery.Resource)
+            {
+                case "Gold":
+                    if (HasSufficientResources("Gold", Math.Abs(CurrentMystery.Number)))
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += CurrentMystery.Number;
+                    }
+                    else
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold = 0;
+                    }
+                    break;
+                case "ArmyPower":
+                    if (HasSufficientResources("ArmyPower", Math.Abs(CurrentMystery.Number)))
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower += CurrentMystery.Number;
+                    }
+                    else
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower = 0;
+                    }
+                    break;
+                case "Popularity":
+                    if (HasSufficientResources("Popularity", Math.Abs(CurrentMystery.Number)))
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity += CurrentMystery.Number;
+                    }
+                    else
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity = 0;
+                    }
+                    break;
+                case "Stone":
+                    if (HasSufficientResources("Stone", Math.Abs(CurrentMystery.Number)))
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone += CurrentMystery.Number;
+                    }
+                    else
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone = 0;
+                    }
+                    break;
+                case "Wood":
+                    if (HasSufficientResources("Wood", Math.Abs(CurrentMystery.Number)))
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += CurrentMystery.Number;
+                    }
+                    else
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood = 0;
+                    }
+                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += CurrentMystery.Number;
+                    break;
+                case "Wheat":
+                    if (HasSufficientResources("Wheat", Math.Abs(CurrentMystery.Number)))
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat += CurrentMystery.Number;
+                    }
+                    else
+                    {
+                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat = 0;
+                    }
+                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat += CurrentMystery.Number;
+                    break;
+                default:
+                    break;
+            }
         }
         public void MakeTrade()
         {

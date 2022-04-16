@@ -23,7 +23,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         void EnterGoldMine();
         HexagonTile[,] GameMapSetup(string path);
         void GetResources();
+        void GetResourcesFromMysteryEvent();
         bool HasSufficientResources(int offerindex);
+        bool HasSufficientResources(string resource, int cost);
         Queue<MysteryEvent> LoadMysteryEvents();
         Queue<Trade> LoadTrades();
         void MakeTrade();
