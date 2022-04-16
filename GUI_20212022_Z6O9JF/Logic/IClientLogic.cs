@@ -6,6 +6,7 @@ namespace GUI_20212022_Z6O9JF.Logic
     {
         bool CanSend { get; set; }
         int ClientId { get; set; }
+        object GoldMineView { get; set; }
         object MysteryView { get; set; }
         int Timer { get; set; }
         object TradeView { get; set; }
@@ -15,6 +16,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         void ChangeView(string view);
         void ChooseOffer();
         void ClientConnect(string ip);
+        void EnterGoldMine();
+        void GoldMineViewChange(string view);
         void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1");
         void MysteryButtonOK();
         void MysteryViewChange(string view);

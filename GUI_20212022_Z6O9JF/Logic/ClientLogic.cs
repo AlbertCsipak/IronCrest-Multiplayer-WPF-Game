@@ -21,6 +21,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public object View { get; set; }
         public object TradeView { get; set; }
         public object MysteryView { get; set; }
+        public object GoldMineView { get; set; }
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
         public int Timer { get; set; }
@@ -172,6 +173,18 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             messenger.Send("Message", "Base");
         }
+        public void GoldMineViewChange(string view)
+        {
+            if (view.Equals("goldmine"))
+            {
+                GoldMineView = new GoldMineUC();
+            }
+            else
+            {
+                GoldMineView = null;
+            }
+            messenger.Send("Message", "Base");
+        }
         public void ChangeView(string view)
         {
             if (view.Equals("game"))
@@ -186,11 +199,19 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 View = new ServerUC();
             }
+            else if (view.Equals("goldmine"))
+            {
+                View = new GoldMineUC();
+            }
             else if (view.Equals("lobby") && socketClient.ClientId != 0)
             {
                 View = new LobbyUC();
             }
             messenger.Send("Message", "Base");
+        }
+        public void EnterGoldMine()
+        {
+            GoldMineViewChange("goldmine");
         }
         public void ChampSelect(Faction faction, string name)
         {
@@ -235,10 +256,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 Village village = null;
                 Unit unit = null;
-                if (gameLogic.Players.Count==1)
+                if (gameLogic.Players.Count == 1)
                 {
                     village = new Village() { Position = new int[] { 2, 2 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
-                    unit = new Unit() { CanMove = true, FactionType = faction, OwnerId= gameLogic.ClientID, Position = new int[] { 2, 2 } };
+                    unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 2, 2 } };
 
                 }
                 else if (gameLogic.Players.Count == 2)

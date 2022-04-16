@@ -25,8 +25,10 @@
         </Grid.RowDefinitions>
         
         <Image x:Name="background" Grid.RowSpan="3" Grid.ColumnSpan="3" Source="\Resources\Images\Map\blue_background.png" Stretch="Fill"/>
-        
-       
+
+        <ContentControl x:Name="goldmine_control" Grid.ColumnSpan="3" Grid.RowSpan="3" Content="{Binding GoldMineView}">
+
+        </ContentControl>
         <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" >
             <renderer:Display x:Name="display"/>
         </Grid>
@@ -194,6 +196,7 @@
             <ContentControl x:Name="mystery_control" Grid.Column="1" Grid.Row="1" Content="{Binding MysteryView}">
 
             </ContentControl>
+            
 
         </Grid>
     </Grid>

@@ -5,12 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
+             xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:GoldMineViewModel></vm:GoldMineViewModel>
     </UserControl.DataContext>
     <Grid>
-        <Image Source="\Resources\Images\Menu\goldmine_background.png"/>
+        <Image Source="\Resources\Images\Menu\goldmine_background.png" Stretch="Fill"/>
+        <Grid x:Name="grid">
+            <renderer:GoldMineDisplay x:Name="goldmineDisplay"/>
+        </Grid>
     </Grid>
 </UserControl>

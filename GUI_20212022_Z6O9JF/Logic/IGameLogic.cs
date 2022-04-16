@@ -20,7 +20,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         void AddVillage();
         void ClearCompass(HexagonTile hexagon);
         void DecreaseMoves();
-        void EnterGoldMine();
         HexagonTile[,] GameMapSetup(string path);
         void GetResources();
         void GetResourcesFromMysteryEvent();

@@ -138,10 +138,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             trades.ForEach(x => tradeQueue.Enqueue(x));
             return tradeQueue;
         }
-        public void EnterGoldMine()
-        {
-            //goldmineUC meghivasa
-        }
+
         public bool HasSufficientResources(int offerindex)
         {
             bool HasEnoughResources = true;

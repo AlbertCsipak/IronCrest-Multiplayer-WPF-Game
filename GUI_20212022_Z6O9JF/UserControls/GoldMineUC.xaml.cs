@@ -27,14 +27,24 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IGameLogic gameLogic;
         IControlLogic controlLogic;
         DispatcherTimer dt;
+
         public GoldMineUC()
         {
+            InitializeComponent();
             this.DataContext = new GoldMineViewModel();
             this.gameLogic = (this.DataContext as GoldMineViewModel).gameLogic;
-            this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
-            this.controlLogic = (this.DataContext as GameViewModel).controlLogic;
+            this.clientLogic = (this.DataContext as GoldMineViewModel).clientLogic;
+            this.controlLogic = (this.DataContext as GoldMineViewModel).controlLogic;
+            goldmineDisplay.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
             dt = new DispatcherTimer();
-            InitializeComponent();
+            dt.Interval = TimeSpan.FromMilliseconds(33);
+            dt.Tick += (sender, eventargs) =>
+            {
+                goldmineDisplay.InvalidateVisual();
+            };
+            dt.Start();
+            goldmineDisplay.InvalidateVisual();
+
         }
     }
 }

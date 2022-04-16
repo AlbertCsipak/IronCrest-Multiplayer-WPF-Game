@@ -20,12 +20,13 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Polygon polygon = sender as Polygon;
+            ;
+            Polygon polygon = sender as Polygon;   
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves!=0))
             {
                 if ((polygon.Tag as HexagonTile).FieldType==FieldType.goldMine && !gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
                 {
-                    gameLogic.EnterGoldMine();
+                    clientLogic.ChangeView("goldmine");
                 }
                 if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
