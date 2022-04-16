@@ -26,10 +26,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IClientLogic clientLogic;
         IGameLogic gameLogic;
         IControlLogic controlLogic;
+       
         DispatcherTimer dt;
 
         public GoldMineUC()
         {
+            ;
             InitializeComponent();
             this.DataContext = new GoldMineViewModel();
             this.gameLogic = (this.DataContext as GoldMineViewModel).gameLogic;
@@ -37,14 +39,22 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.controlLogic = (this.DataContext as GoldMineViewModel).controlLogic;
             goldmineDisplay.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
             dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(33);
+            dt.Interval = TimeSpan.FromMilliseconds(60);
             dt.Tick += (sender, eventargs) =>
             {
                 goldmineDisplay.InvalidateVisual();
             };
             dt.Start();
             goldmineDisplay.InvalidateVisual();
+        }
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            goldmineDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+        }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            goldmineDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
         }
     }
 }
