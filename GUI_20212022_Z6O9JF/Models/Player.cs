@@ -17,6 +17,11 @@ namespace GUI_20212022_Z6O9JF.Models
         public int RemainingMoves { get; set; }
 
         private int popularity;
+
+        public void SetupPopulatiry(int num)
+        {
+            popularity = num;
+        }
         public int Popularity
         {
             get { return popularity; }
@@ -29,6 +34,10 @@ namespace GUI_20212022_Z6O9JF.Models
         }//MysteryResource
 
         private int armyPower;
+        public void SetupArmyPower(int num)
+        {
+            armyPower = num;
+        }
         public int ArmyPower
         {
             get { return armyPower; }
@@ -41,6 +50,10 @@ namespace GUI_20212022_Z6O9JF.Models
         }//MysteryResource
 
         private int gold;
+        public void SetupGold(int num)
+        {
+            gold = num;
+        }
         public int Gold
         {
             get { return gold; }
@@ -52,6 +65,11 @@ namespace GUI_20212022_Z6O9JF.Models
             }
         }//MysteryResource
         private int wood;
+
+        public void SetupWood(int num)
+        {
+            wood = num;
+        }
         public int Wood
         {
             get { return wood; }
@@ -64,6 +82,11 @@ namespace GUI_20212022_Z6O9JF.Models
         }//MysteryResource
 
         private int stone;
+
+        public void SetupStone(int num)
+        {
+            stone = num;
+        }
         public int Stone
         {
             get { return stone; }
@@ -75,12 +98,16 @@ namespace GUI_20212022_Z6O9JF.Models
             }
         }//MysteryResource
 
-        private int food;
+        private int wheat;
+        public void SetupWheat(int num)
+        {
+            wheat = num;
+        }
         public int Wheat { 
-            get{return food;}
-            set {if (food > value) ResourceChanges[4] = (food - value)*(-1);
-                else ResourceChanges[4] = value - food;
-                food = value;} 
+            get{return wheat; }
+            set {if (wheat > value) ResourceChanges[4] = (wheat - value)*(-1);
+                else ResourceChanges[4] = value - wheat;
+                wheat = value;} 
         }//MysteryResource
 
         public ObservableCollection<int> ResourceChanges { get; set; }
