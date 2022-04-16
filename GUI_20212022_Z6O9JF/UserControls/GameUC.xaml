@@ -8,7 +8,7 @@
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded">
+             d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded" KeyDown="UserControl_KeyDown">
     <UserControl.DataContext>
         <vm:GameViewModel></vm:GameViewModel>
     </UserControl.DataContext>
