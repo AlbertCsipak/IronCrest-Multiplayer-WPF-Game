@@ -116,32 +116,32 @@ namespace GUI_20212022_Z6O9JF.UserControls
             if (MissingPop.Opacity >= 0)
             {
                 MissingPop.Opacity -= OpacityChanging;
-                if (MissingPop.Opacity == 0)  MissingResourceHeight = MissingPop.Height;
+                if (MissingPop.Opacity == 0)  MissingResourceHeight = 0;
             }
             if (MissingPower.Opacity >= 0)
             {
                 MissingPower.Opacity -= OpacityChanging;
-                if (MissingPower.Opacity == 0)  MissingResourceHeight = MissingPower.Height;
+                if (MissingPower.Opacity == 0)  MissingResourceHeight = 0;
             }
             if (MissingWood.Opacity >= 0)
             {
                 MissingWood.Opacity -= OpacityChanging;
-                if (MissingWood.Opacity == 0)  MissingResourceHeight = MissingWood.Height;
+                if (MissingWood.Opacity == 0)  MissingResourceHeight = 0;
             }
             if (MissingStone.Opacity >= 0)
             {
                 MissingStone.Opacity -= OpacityChanging;
-                if (MissingStone.Opacity == 0)  MissingResourceHeight = MissingStone.Height;
+                if (MissingStone.Opacity == 0)  MissingResourceHeight = 0;
             }
             if (MissingFood.Opacity >= 0)
             {
                 MissingFood.Opacity -= OpacityChanging;
-                if (MissingFood.Opacity == 0)  MissingResourceHeight = MissingFood.Height;
+                if (MissingFood.Opacity == 0)  MissingResourceHeight = 0;
             }
             if (MissingGold.Opacity >= 0)
             {
                 MissingGold.Opacity -= OpacityChanging;
-                if(MissingGold.Opacity == 0) MissingResourceHeight = MissingGold.Height;
+                if(MissingGold.Opacity == 0) MissingResourceHeight = 0;
             }
         }
 
