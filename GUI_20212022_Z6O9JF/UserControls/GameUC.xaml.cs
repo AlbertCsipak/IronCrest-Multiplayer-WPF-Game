@@ -209,7 +209,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     MissingPop.Opacity = 1;
                     MissingPop.Height = MissingResource_Grid.Height - MissingResourceHeight;
                     MissingResourceHeight += 60;
-                    MissingPop.Content = player.MissingResources[5];
+                    MissingPop.Content = player.MissingResources[0];
                     player.MissingResources[0] = 0;
                 }
                 if (player.MissingResources[1] != 0)
@@ -218,7 +218,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     MissingPower.Opacity = 1;
                     MissingPower.Height = MissingResource_Grid.Height - MissingResourceHeight;
                     MissingResourceHeight += 60;
-                    MissingPower.Content = player.MissingResources[5];
+                    MissingPower.Content = player.MissingResources[1];
                     player.MissingResources[1] = 0;
                 }
                 if (player.MissingResources[2] != 0)
@@ -227,7 +227,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     MissingWood.Opacity = 1;
                     MissingWood.Height = MissingResource_Grid.Height - MissingResourceHeight;
                     MissingResourceHeight += 60;
-                    MissingWood.Content = player.MissingResources[5];
+                    MissingWood.Content = player.MissingResources[2];
                     player.MissingResources[2] = 0;
                 }
                 if (player.MissingResources[3] != 0)
@@ -236,7 +236,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     MissingStone.Opacity = 1;
                     MissingStone.Height = MissingResource_Grid.Height - MissingResourceHeight;
                     MissingResourceHeight += 60;
-                    MissingStone.Content = player.MissingResources[5];
+                    MissingStone.Content = player.MissingResources[3];
                     player.MissingResources[3] = 0;
                 }
                 if (player.MissingResources[4] != 0)
@@ -245,7 +245,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     MissingFood.Opacity = 1;
                     MissingFood.Height = MissingResource_Grid.Height - MissingResourceHeight;
                     MissingResourceHeight += 60;
-                    MissingFood.Content = player.MissingResources[5];
+                    MissingFood.Content = player.MissingResources[4];
                     player.MissingResources[4] = 0;
                 }
                 if (player.MissingResources[5] != 0)
