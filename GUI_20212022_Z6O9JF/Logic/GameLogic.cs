@@ -161,30 +161,35 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (player.ArmyPower < cost.Value)
                         {
                             HasEnoughResources = false;
+                            player.MissingResources[1] = cost.Value - player.Gold;
                         }
                         break;
                     case "Popularity":
                         if (player.Popularity < cost.Value)
                         {
                             HasEnoughResources = false;
+                            player.MissingResources[0] = cost.Value - player.Gold;
                         }
                         break;
                     case "Stone":
                         if (player.Stone < cost.Value)
                         {
                             HasEnoughResources = false;
+                            player.MissingResources[3] = cost.Value - player.Gold;
                         }
                         break;
                     case "Wood":
                         if (player.Wood < cost.Value)
                         {
                             HasEnoughResources = false;
+                            player.MissingResources[2] = cost.Value - player.Gold;
                         }
                         break;
                     case "Wheat":
                         if (player.Wheat < cost.Value)
                         {
                             HasEnoughResources = false;
+                            player.MissingResources[4] = cost.Value - player.Gold;
                         }
                         break;
                     default:

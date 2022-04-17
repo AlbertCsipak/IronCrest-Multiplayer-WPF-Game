@@ -108,14 +108,15 @@
                     <Label x:Name="FoodChangeLabel" Grid.Column="1" Height="63" Width="100" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 </Grid>
 
-                <StackPanel Grid.Column="5" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-                    <Label Content="You need 5 more Gold" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 2 more Wood" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 1 more Populary" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 5 more Stone" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 6 more Wheat" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                <Grid x:Name="MissingResource_Grid" Grid.Column="5" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                    <Label Height="0" x:Name="MissingPop" Content="2" ContentStringFormat="You need {0} more Popularity" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Height="0"  x:Name="MissingPower" Content="2" ContentStringFormat="You need {0} more Armypower" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Height="0"  x:Name="MissingWood" Content="2" ContentStringFormat="You need {0} more Wood" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Height="0"  x:Name="MissingStone" Content="2" ContentStringFormat="You need {0} more Stone" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Height="0"  x:Name="MissingFood" Content="2" ContentStringFormat="You need {0} more Food" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label x:Name="MissingGold" Content="2" ContentStringFormat="You need {0} more Gold" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
                     
-                </StackPanel>
+                </Grid>
                 
                 
             </Grid>
