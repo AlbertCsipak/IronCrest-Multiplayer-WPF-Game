@@ -44,7 +44,21 @@ namespace GUI_20212022_Z6O9JF.Renderer
                 switch (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction)
                 {
                     case Models.Faction.Viking:
-                        drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "standing_viking.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10*6.2), new Size(size.Width / 14, size.Height / 9)));
+                        switch (XPos%3)
+                        {
+                            case 0:
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "standing_viking.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 6.2), new Size(size.Width / 14, size.Height / 9)));
+                                break;
+                            case 1:
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "standing_viking.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 6.2), new Size(size.Width / 14, size.Height / 9)));
+                                break;
+                            case 2:
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "standing_viking.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 6.2), new Size(size.Width / 14, size.Height / 9)));
+                                break;
+                            default:
+                                break;
+                        }
+                        
                         break;
                     case Models.Faction.Crusader:
                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(@"\Resources/Images/Characters/standing_crusader.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(10, grid.Height / 5), size));
@@ -60,7 +74,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                 }
                 if (num <= size.Width)
                 {
-                    XPos+=2;
+                    XPos++;
                 }
                 else
                 {

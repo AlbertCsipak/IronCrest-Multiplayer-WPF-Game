@@ -200,6 +200,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold < cost)
                     {
                         HasEnoughResources = false;
+                        //NotEnoughResource event meghivasa
                     }
                     break;
                 case "ArmyPower":
@@ -556,7 +557,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
                 && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Wood).FirstOrDefault() >= 3 && Players.Where(t => t.PlayerID == ClientID).Select(x => x.Stone).FirstOrDefault() >= 2)
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && HasSufficientResources("Wood",3) && HasSufficientResources("Stone",2))
                 {
                     var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     if (item != null && item.RemainingMoves != 0)
@@ -585,12 +586,11 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (SelectedHexagonTile != null)
             {
                 if ((SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
-                    && Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold >= 3
-                    && Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat >= 2)
+                    && HasSufficientResources("Gold",3)
+                    && HasSufficientResources("Wheat",2))
                 {
                     var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
-                    ;
                     if (item != null && player.RemainingMoves != 0 && item.Level < 3)
                     {
                         SelectedHexagonTile.Objects.Remove(item);
