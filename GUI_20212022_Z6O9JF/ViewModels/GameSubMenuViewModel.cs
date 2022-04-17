@@ -2,6 +2,7 @@
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -14,7 +15,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     {
         public IClientLogic clientLogic { get; set; }
 
-        //public ICommand vmi { get; set; }
+        public ICommand ExitCommand { get; set; }
         public static bool IsInDesignMode
         {
             get
@@ -31,7 +32,14 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public GameSubMenuViewModel(IClientLogic clientLogic)
         {
             this.clientLogic = clientLogic;
+            ExitCommand = new RelayCommand(() => {
+                clientLogic.ESCChange("");
+            });
 
+            Messenger.Register<GameSubMenuViewModel, string, string>(this, "Base", (recipient, msg) =>
+            {
+                OnPropertyChanged("CanSend");
+            });
         }
     }
 }

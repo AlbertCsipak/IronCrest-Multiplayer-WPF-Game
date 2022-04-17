@@ -15,6 +15,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public object TradeView { get { return clientLogic.TradeView; } }
         public object MysteryView { get { return clientLogic.MysteryView; } }
         public object GoldMineView { get { return clientLogic.GoldMineView; } }
+        public object ESCView { get { return clientLogic.ESCView; } }
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }

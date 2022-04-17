@@ -29,3 +29,6 @@ Features:
 STEVE TO DO: 
 - bugfix, elején minden resource-ot kiir, mint változás
 - ha egy nyersanyagbol nincs elég, pl village upgradelesnel akk irja ki h "Insufficient resources!"
+
+LILI TO DO: 
+- app.xaml-be kerüljön át az összes a globális resource (zene,cursor,kép)

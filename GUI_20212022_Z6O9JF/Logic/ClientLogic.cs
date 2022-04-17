@@ -22,6 +22,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public object TradeView { get; set; }
         public object MysteryView { get; set; }
         public object GoldMineView { get; set; }
+        public object ESCView { get; set; }
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
         public int Timer { get; set; }
@@ -160,6 +161,19 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             messenger.Send("Message", "Base");
         }
+        public void ESCChange(string view)
+        {
+
+            if (view.Equals("ESC"))
+            {
+                ESCView = new GameSubMenuUC();
+            }
+            else
+            {
+                ESCView = null;
+            }
+            messenger.Send("Message", "Base");
+        }
         public void MysteryViewChange(string view)
         {
 
@@ -233,7 +247,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         defaultMove = 2;
                     }
-                    gameLogic.Players.Add(new Player()
+                    Player player = new Player()
                     {
                         PlayerID = ClientId,
                         Name = name,
@@ -244,15 +258,17 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Units = new List<Unit>(),
                         Villages = new List<Village>(),
                         Trade = null,
-                        Wood = 10,
-                        Stone = 10,
-                        Gold = 10,
-                        Wheat = 10,
-                        //Gold = RandomNumber.RandomNumberGenerator(2, 5),
-                        Popularity = RandomNumber.RandomNumberGenerator(0, 3),
-                        ArmyPower = RandomNumber.RandomNumberGenerator(0, 3),
                         HasEnteredGoldMine = false
-                    });
+                    };
+                    player.SetupGold(10);
+                    //player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
+                    player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
+                    player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
+                    player.SetupStone(10);
+                    player.SetupWood(10);
+                    player.SetupWheat(10);
+                    gameLogic.Players.Add(player);
+
                 }
                 Village village = null;
                 Unit unit = null;

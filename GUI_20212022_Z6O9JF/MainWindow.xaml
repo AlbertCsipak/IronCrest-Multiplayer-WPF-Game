@@ -10,7 +10,7 @@
         WindowState="Maximized"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterOwner"
-        Title="IronCrest" Height="1080" Width="1920" Icon="Resources\Images\Other\icon.png" Closing="Window_Closing">
+        Title="IronCrest" Height="1080" Width="1920" Icon="Resources\Images\Other\icon.png" Closing="Window_Closing" KeyDown="UserControl_KeyDown">
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -22,11 +22,7 @@
         </Grid.RowDefinitions>
         <Image gif:ImageBehavior.AnimatedSource="Resources\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
         <Label Grid.Row="1" Grid.Column="1" Background="#2C2E46"></Label>
-        <!--<ContentControl Content="{Binding View}" Grid.RowSpan="2" Grid.ColumnSpan="3" ></ContentControl>-->
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-            <Image x:Name="img_mute" Grid.Column="0" Grid.Row="1" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,10"></Image>
-            <Slider Style="{DynamicResource SliderStyle1}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,10" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="150" Value="50" Minimum="0" Maximum="100" TickFrequency="10" IsSnapToTickEnabled="True" Cursor="Hand" SmallChange="10" Height="18"/>
-        </StackPanel>
+        <ContentControl Content="{Binding View}" Grid.RowSpan="2" Grid.ColumnSpan="3" ></ContentControl>
     </Grid>
     
 </Window>

@@ -196,6 +196,9 @@
             <ContentControl x:Name="mystery_control" Grid.Column="1" Grid.Row="1" Content="{Binding MysteryView}">
 
             </ContentControl>
+            <ContentControl x:Name="ESC_control" Grid.Column="1" Grid.Row="1" Content="{Binding ESCView}">
+
+            </ContentControl>
             
 
         </Grid>

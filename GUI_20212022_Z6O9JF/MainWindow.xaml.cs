@@ -16,10 +16,9 @@ namespace GUI_20212022_Z6O9JF
     public partial class MainWindow : Window
     {
         IGameLogic gameLogic;
+        IClientLogic clientLogic;
         MediaPlayer background_music = new MediaPlayer();
         MediaPlayer background_ambient = new MediaPlayer();
-        Uri unmutedUri = new Uri("Resources/Images/Other/unmuted.png", UriKind.RelativeOrAbsolute);
-        Uri mutedUri = new Uri("Resources/Images/Other/muted.png", UriKind.RelativeOrAbsolute);
         Cursor c1;
 
         public MainWindow()
@@ -27,12 +26,10 @@ namespace GUI_20212022_Z6O9JF
             InitializeComponent();
             this.DataContext = new MainViewModel();
             gameLogic = (this.DataContext as MainViewModel).gameLogic;
+            clientLogic = (this.DataContext as MainViewModel).clientLogic;
 
             c1 = new Cursor("Resources/blurite_sword.cur");
             grid.Cursor = c1;
-
-            img_mute.Source = new BitmapImage(unmutedUri);
-
 
             background_ambient.Open(new Uri("Resources/Music/ambient.mp3", UriKind.RelativeOrAbsolute));
             background_ambient.Volume = 0.025;
@@ -55,21 +52,7 @@ namespace GUI_20212022_Z6O9JF
             background_music.Play();
         }
 
-        private void volume_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            double volume = volume_slider.Value;
-            background_music.Volume = volume / 1000;
-            if (volume == 0.0)
-            {
-                background_music.IsMuted = true;
-                img_mute.Source = new BitmapImage(mutedUri);
-            }
-            else
-            {
-                background_music.IsMuted = false;
-                img_mute.Source = new BitmapImage(unmutedUri);
-            }
-        }
+        
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -82,6 +65,14 @@ namespace GUI_20212022_Z6O9JF
                 File.AppendAllText($"Resources/Saves/{DateTime.Now.Month}-{DateTime.Now.Day}-{DateTime.Now.Hour}-{DateTime.Now.Minute}_players-{gameLogic.Players.Count}_map-{gameLogic.Map}.txt", save);
             }
 
+        }
+
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                clientLogic.ChangeView("ESC");
+            }
         }
     }
 }

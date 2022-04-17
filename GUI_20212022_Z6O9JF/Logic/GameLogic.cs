@@ -602,6 +602,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
             }
         }
+
         public void MoveUnit(HexagonTile hexagonTile)
         {
             if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
@@ -618,6 +619,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                     if (item != null && player.RemainingMoves != 0)
                     {
+                        
                         if (hexagonTile.Objects.ToList().Count == 0)
                         {
                             item.Move(hexagonTile.Position);
@@ -629,8 +631,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 SelectedHexagonTile.OwnerId = 0;
                             }
+                            //MysteryBoxEvent(hexagonTile);
                             SelectedHexagonTile = null;
-
+                            
                             DecreaseMoves();
                         }
                         else

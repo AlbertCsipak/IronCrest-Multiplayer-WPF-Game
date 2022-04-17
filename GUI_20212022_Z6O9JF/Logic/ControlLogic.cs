@@ -27,12 +27,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                 if ((polygon.Tag as HexagonTile).FieldType==FieldType.goldMine && !gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
                 {
                     clientLogic.ChangeView("goldmine");
+                    gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine = true;
                 }
                 if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
-                        gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
+                        
                         
                         if (gameLogic.CurrentMystery != null)
                         {
@@ -46,6 +47,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             clientLogic.TradeViewChange("trade");
                         }
                         gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                        gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
                         ClearSelections();
                     }
                 }
@@ -55,8 +57,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         if (SelectedPolygon != null && SelectedPolygon != polygon)
                         {
-                            gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
                             gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                            gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
                             if (gameLogic.CurrentMystery != null)
                             {
                                 clientLogic.MysteryViewChange("mystery");

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="GUI_20212022_Z6O9JF.UserControls.GameSubMenu"
+﻿<UserControl x:Class="GUI_20212022_Z6O9JF.UserControls.GameSubMenuUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920">
+             d:DesignHeight="1080" d:DesignWidth="1920" KeyDown="UserControl_KeyDown">
     <UserControl.DataContext>
         <vm:GameSubMenuViewModel/>
     </UserControl.DataContext>
@@ -26,10 +26,11 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Opacity="0.75">
+        <StackPanel Grid.Row="1" Grid.Column="1" Opacity="0.75" Background="SaddleBrown">
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1" Background="SaddleBrown" Opacity="0.75">
-            <ContentControl Content="{Binding View}" Grid.RowSpan="2" Grid.ColumnSpan="3" ></ContentControl>
+            <Image x:Name="img_mute" Grid.Column="0" Grid.Row="1" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
+            <Slider Style="{DynamicResource SliderStyle1}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="500" Value="50" Minimum="0" Maximum="100" TickFrequency="10" IsSnapToTickEnabled="True" Cursor="Hand" SmallChange="10" Height="30"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Grid.Column="1" Background="SaddleBrown" Opacity="0.75"> 
             <Button Content="Options" Height="90" Width="300" FontSize="40" 
@@ -37,8 +38,7 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.Column="1" Background="SaddleBrown" Opacity="0.75">
-            <Button Content="Exit" Height="90" Width="300" FontSize="40" 
-                      FontFamily="Poor Richard">
+            <Button Content="Exit" Height="90" Width="300" FontSize="40" FontFamily="Poor Richard" Command="{Binding ExitCommand}">
             </Button>
             
         </StackPanel>
