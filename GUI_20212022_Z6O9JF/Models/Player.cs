@@ -112,7 +112,6 @@ namespace GUI_20212022_Z6O9JF.Models
         }//MysteryResource
 
         public ObservableCollection<int> ResourceChanges { get; set; }
-        public ObservableCollection<int> MissingResources { get; set; }
         public int BattlesWon { get; set; }
         public List<Quest> Quests { get; set; }
         public List<Village> Villages { get; set; }
@@ -124,8 +123,6 @@ namespace GUI_20212022_Z6O9JF.Models
         {
             ResourceChanges = new ObservableCollection<int>();
             for (int i = 0; i < 6 ; i++) ResourceChanges.Add(0);
-            MissingResources = new ObservableCollection<int>();
-            for (int i = 0; i < 6 ; i++) MissingResources.Add(0);
 
         }
     }

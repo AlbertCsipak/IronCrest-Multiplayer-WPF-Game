@@ -28,7 +28,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public MediaPlayer button_click = new MediaPlayer();
         DispatcherTimer dt;
         bool IsResourceChanged;
-        bool IsMissingResourceChanged;
         Player player;
         public GameUC()
         {
@@ -40,27 +39,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
             player = gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
             player.ResourceChanges.CollectionChanged += ResourceChanges_CollectionChanged;
-            player.MissingResources.CollectionChanged += MissingResources_CollectionChanged;
             PopChange.Opacity = 0;
             ArmyPowerChange.Opacity = 0;
             WoodChange.Opacity = 0;
             StoneChange.Opacity = 0;
             FoodChange.Opacity = 0;
             GoldChange.Opacity = 0;
-
-            MissingPop.IsEnabled = false;
-            MissingPower.IsEnabled = false;
-            MissingWood.IsEnabled = false;
-            MissingStone.IsEnabled = false;
-            MissingFood.IsEnabled = false;
-            MissingGold.IsEnabled = false;
-
-            MissingPop.Opacity = 0;
-            MissingPower.Opacity = 0;
-            MissingWood.Opacity = 0;
-            MissingStone.Opacity = 0;
-            MissingFood.Opacity = 0;
-            MissingGold.Opacity = 0;
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(33);
 
@@ -84,11 +68,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             
         }
 
-        private void MissingResources_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            IsMissingResourceChanged = true;
-            ;
-        }
 
         private void OpacityDefault()
         {
@@ -120,41 +99,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
             }
             //MissingResource Changes
 
-            if (MissingPop.Opacity >= 0)
-            {
-                MissingPop.Opacity -= OpacityChanging;
-                if (MissingPop.Opacity == 0)  MissingPop.IsEnabled = false;
-            }
-            if (MissingPower.Opacity >= 0)
-            {
-                MissingPower.Opacity -= OpacityChanging;
-                if (MissingPower.Opacity == 0) MissingPower.IsEnabled = false;
-            }
-            if (MissingWood.Opacity >= 0)
-            {
-                MissingWood.Opacity -= OpacityChanging;
-                if (MissingWood.Opacity == 0) MissingWood.IsEnabled = false;
-            }
-            if (MissingStone.Opacity >= 0)
-            {
-                MissingStone.Opacity -= OpacityChanging;
-                if (MissingStone.Opacity == 0) MissingStone.IsEnabled = false;
-            }
-            if (MissingFood.Opacity >= 0)
-            {
-                MissingFood.Opacity -= OpacityChanging;
-                if (MissingFood.Opacity == 0) MissingFood.IsEnabled = false;
-            }
-            if (MissingGold.Opacity >= 0)
-            {
-                MissingGold.Opacity -= OpacityChanging;
-                if(MissingGold.Opacity == 0) MissingGold.IsEnabled = false;
-            }
         }
 
         private void ResourceChanging()
         {
-            
             if (IsResourceChanged)
             {
                 if (player.ResourceChanges[0] != 0)
@@ -163,7 +111,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     ;
                     PopChange.Opacity = 1;
                     string s = player.ResourceChanges[0] > 0 ? "+" : "";
-                    PopChangeLabel.Content =  s + player.ResourceChanges[0];
+                    PopChangeLabel.Content = s + player.ResourceChanges[0];
                     player.ResourceChanges[0] = 0;
                 }
                 if (player.ResourceChanges[1] != 0)
@@ -215,59 +163,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 }
 
             }
-            if (IsMissingResourceChanged)
-            {
-                ;
-                if (player.MissingResources[0] != 0)
-                {
-                    //POP 0
-                    MissingPop.Opacity = 1;
-                    MissingPop.IsEnabled = true;
-                    MissingPop.Content = player.MissingResources[0];
-                    player.MissingResources[0] = 0;
-                }
-                if (player.MissingResources[1] != 0)
-                {
-                    //ArmyPower 1
-                    MissingPower.Opacity = 1;
-                    MissingPower.IsEnabled = true;
-                    MissingPower.Content = player.MissingResources[1];
-                    player.MissingResources[1] = 0;
-                }
-                if (player.MissingResources[2] != 0)
-                {
-                    //Wood 2
-                    MissingWood.Opacity = 1;
-                    MissingWood.IsEnabled = true;
-                    MissingWood.Content = player.MissingResources[2];
-                    player.MissingResources[2] = 0;
-                }
-                if (player.MissingResources[3] != 0)
-                {
-                    //Stone 3
-                    MissingStone.Opacity = 1;
-                    MissingStone.IsEnabled = true;
-                    MissingStone.Content = player.MissingResources[3];
-                    player.MissingResources[3] = 0;
-                }
-                if (player.MissingResources[4] != 0)
-                {
-                    //Food 4
-                    MissingFood.Opacity = 1;
-                    MissingFood.IsEnabled = true;
-                    MissingFood.Content = player.MissingResources[4];
-                    player.MissingResources[4] = 0;
-                }
-                if (player.MissingResources[5] != 0)
-                {
-                    //Gold 5
-                    MissingGold.Opacity = 1;
-                    MissingGold.IsEnabled = true;
-                    MissingGold.Content = player.MissingResources[5];
-                    player.MissingResources[5] = 0;
-                }
 
-            }
+            
             //if (PopChange.Opacity <= 0)
             //{
             //    IsResourceChanged = false;
