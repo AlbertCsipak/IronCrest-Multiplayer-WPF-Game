@@ -207,7 +207,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //POP 0
                     MissingPop.Opacity = 1;
-                    MissingPop.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingPop.Height = MissingResource_Grid.Height - 60*1;
                     MissingResourceHeight += 60;
                     MissingPop.Content = player.MissingResources[0];
                     player.MissingResources[0] = 0;
@@ -216,7 +216,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //ArmyPower 1
                     MissingPower.Opacity = 1;
-                    MissingPower.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingPower.Height = MissingResource_Grid.Height - 60 * 2;
                     MissingResourceHeight += 60;
                     MissingPower.Content = player.MissingResources[1];
                     player.MissingResources[1] = 0;
@@ -225,7 +225,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Wood 2
                     MissingWood.Opacity = 1;
-                    MissingWood.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingWood.Height = MissingResource_Grid.Height - 60 * 3;
                     MissingResourceHeight += 60;
                     MissingWood.Content = player.MissingResources[2];
                     player.MissingResources[2] = 0;
@@ -234,7 +234,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Stone 3
                     MissingStone.Opacity = 1;
-                    MissingStone.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingStone.Height = MissingResource_Grid.Height - 60 * 4;
                     MissingResourceHeight += 60;
                     MissingStone.Content = player.MissingResources[3];
                     player.MissingResources[3] = 0;
@@ -243,7 +243,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Food 4
                     MissingFood.Opacity = 1;
-                    MissingFood.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingFood.Height = MissingResource_Grid.Height - 60 * 5;
                     MissingResourceHeight += 60;
                     MissingFood.Content = player.MissingResources[4];
                     player.MissingResources[4] = 0;
@@ -252,7 +252,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Gold 5
                     MissingGold.Opacity = 1;
-                    MissingGold.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingGold.Height = MissingResource_Grid.Height - 60 * 6;
                     MissingResourceHeight += 60;
                     MissingGold.Content = player.MissingResources[5];
                     player.MissingResources[5] = 0;
