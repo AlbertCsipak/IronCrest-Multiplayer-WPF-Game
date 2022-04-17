@@ -46,8 +46,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                             gameLogic.ClearCompass(polygon.Tag as HexagonTile);
                             clientLogic.TradeViewChange("trade");
                         }
-                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
+                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         ClearSelections();
                     }
                 }
@@ -57,8 +57,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         if (SelectedPolygon != null && SelectedPolygon != polygon)
                         {
-                            gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                             gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
+                            gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                             if (gameLogic.CurrentMystery != null)
                             {
                                 clientLogic.MysteryViewChange("mystery");
