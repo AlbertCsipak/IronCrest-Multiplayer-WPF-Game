@@ -203,50 +203,54 @@ namespace GUI_20212022_Z6O9JF.UserControls
             }
             if (IsMissingResourceChanged)
             {
-                //if (player.ResourceChanges[0] != 0)
-                //{
-                //    //POP
-                //    ;
-                //    PopChange.Opacity = 1;
-                //    string s = player.ResourceChanges[0] > 0 ? "+" : "";
-                //    PopChangeLabel.Content = s + player.ResourceChanges[0];
-                //    player.ResourceChanges[0] = 0;
-                //}
-                //if (player.ResourceChanges[1] != 0)
-                //{
-                //    //ArmyPower
-                //    ArmyPowerChange.Opacity = 1;
-                //    string s = player.ResourceChanges[1] > 0 ? "+" : "";
-                //    ArmyPowerChangeLabel.Content = s + player.ResourceChanges[1];
-                //    player.ResourceChanges[1] = 0;
-                //}
-                //if (player.ResourceChanges[2] != 0)
-                //{
-                //    //Wood
-                //    WoodChange.Opacity = 1;
-                //    string s = player.ResourceChanges[2] > 0 ? "+" : "";
-                //    WoodChangeLabel.Content = s + player.ResourceChanges[2];
-                //    player.ResourceChanges[2] = 0;
-                //}
-                //if (player.ResourceChanges[3] != 0)
-                //{
-                //    //Stone
-                //    StoneChange.Opacity = 1;
-                //    string s = player.ResourceChanges[3] > 0 ? "+" : "";
-                //    StoneChangeLabel.Content = s + player.ResourceChanges[3];
-                //    player.ResourceChanges[3] = 0;
-                //}
-                //if (player.ResourceChanges[4] != 0)
-                //{
-                //    //Food
-                //    FoodChange.Opacity = 1;
-                //    string s = player.ResourceChanges[4] > 0 ? "+" : "";
-                //    FoodChangeLabel.Content = s + player.ResourceChanges[4];
-                //    player.ResourceChanges[4] = 0;
-                //}
+                if (player.MissingResources[0] != 0)
+                {
+                    //POP 0
+                    MissingPop.Opacity = 1;
+                    MissingPop.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingResourceHeight += 60;
+                    MissingPop.Content = player.MissingResources[5];
+                    player.MissingResources[0] = 0;
+                }
+                if (player.MissingResources[1] != 0)
+                {
+                    //ArmyPower 1
+                    MissingPower.Opacity = 1;
+                    MissingPower.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingResourceHeight += 60;
+                    MissingPower.Content = player.MissingResources[5];
+                    player.MissingResources[1] = 0;
+                }
+                if (player.MissingResources[2] != 0)
+                {
+                    //Wood 2
+                    MissingWood.Opacity = 1;
+                    MissingWood.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingResourceHeight += 60;
+                    MissingWood.Content = player.MissingResources[5];
+                    player.MissingResources[2] = 0;
+                }
+                if (player.MissingResources[3] != 0)
+                {
+                    //Stone 3
+                    MissingStone.Opacity = 1;
+                    MissingStone.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingResourceHeight += 60;
+                    MissingStone.Content = player.MissingResources[5];
+                    player.MissingResources[3] = 0;
+                }
+                if (player.MissingResources[4] != 0)
+                {
+                    //Food 4
+                    MissingFood.Opacity = 1;
+                    MissingFood.Height = MissingResource_Grid.Height - MissingResourceHeight;
+                    MissingResourceHeight += 60;
+                    MissingFood.Content = player.MissingResources[5];
+                    player.MissingResources[4] = 0;
+                }
                 if (player.MissingResources[5] != 0)
                 {
-                    //Gold
+                    //Gold 5
                     MissingGold.Opacity = 1;
                     MissingGold.Height = MissingResource_Grid.Height - MissingResourceHeight;
                     MissingResourceHeight += 60;
