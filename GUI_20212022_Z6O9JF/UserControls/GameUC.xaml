@@ -107,11 +107,11 @@
                 </Grid>
 
                 <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5">
-                    <Label Content="You need 5 more Gold" FontSize="33" Foreground="DarkRed" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 2 more Wood" FontSize="33" Foreground="DarkRed" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 1 more Populary" FontSize="33" Foreground="DarkRed" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 5 more Stone" FontSize="33" Foreground="DarkRed" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 6 more Wheat" FontSize="33" Foreground="DarkRed" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Content="You need 5 more Gold" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Content="You need 2 more Wood" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Content="You need 1 more Populary" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Content="You need 5 more Stone" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Content="You need 6 more Wheat" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
                     
                 </StackPanel>
                 
