@@ -75,6 +75,7 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return wood; }
             set
             {
+                ;
                 if (wood > value) ResourceChanges[2] = (wood - value) * (-1);
                 else ResourceChanges[2] = value - wood;
                 wood = value;
@@ -111,6 +112,7 @@ namespace GUI_20212022_Z6O9JF.Models
         }//MysteryResource
 
         public ObservableCollection<int> ResourceChanges { get; set; }
+        public ObservableCollection<int> MissingResources { get; set; }
         public int BattlesWon { get; set; }
         public List<Quest> Quests { get; set; }
         public List<Village> Villages { get; set; }
@@ -121,12 +123,9 @@ namespace GUI_20212022_Z6O9JF.Models
         public Player()
         {
             ResourceChanges = new ObservableCollection<int>();
-            ResourceChanges.Add(0);
-            ResourceChanges.Add(0);
-            ResourceChanges.Add(0);
-            ResourceChanges.Add(0);
-            ResourceChanges.Add(0);
-            ResourceChanges.Add(0);
+            for (int i = 0; i < 6 ; i++) ResourceChanges.Add(0);
+            MissingResources = new ObservableCollection<int>();
+            for (int i = 0; i < 6 ; i++) MissingResources.Add(0);
 
         }
     }

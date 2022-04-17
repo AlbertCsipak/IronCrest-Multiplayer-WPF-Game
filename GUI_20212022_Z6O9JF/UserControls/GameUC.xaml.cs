@@ -38,6 +38,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
             player = gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
             player.ResourceChanges.CollectionChanged += ResourceChanges_CollectionChanged;
+            player.MissingResources.CollectionChanged += MissingResources_CollectionChanged;
             PopChange.Opacity = 0;
             ArmyPowerChange.Opacity = 0;
             WoodChange.Opacity = 0;
@@ -66,6 +67,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
             };
             dt.Start();
             
+        }
+
+        private void MissingResources_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void OpacityDefault()
