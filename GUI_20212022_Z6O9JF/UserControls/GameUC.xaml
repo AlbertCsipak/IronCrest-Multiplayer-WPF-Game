@@ -59,6 +59,8 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
@@ -106,12 +108,12 @@
                     <Label x:Name="FoodChangeLabel" Grid.Column="1" Height="63" Width="100" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" HorizontalContentAlignment="Left"/>
                 </Grid>
 
-                <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5">
-                    <Label Content="You need 5 more Gold" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 2 more Wood" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 1 more Populary" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 5 more Stone" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
-                    <Label Content="You need 6 more Wheat" FontSize="40" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                <StackPanel Grid.Column="5" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                    <Label Content="You need 5 more Gold" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Content="You need 2 more Wood" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Content="You need 1 more Populary" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Content="You need 5 more Stone" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    <Label Content="You need 6 more Wheat" FontSize="35" Foreground="Black" FontFamily="\Resources\#8-bit Limit (BRK)"/>
                     
                 </StackPanel>
                 
