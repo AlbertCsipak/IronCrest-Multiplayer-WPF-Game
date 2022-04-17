@@ -28,7 +28,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
         DispatcherTimer dt;
         bool IsResourceChanged;
         bool IsMissingResourceChanged;
-        double MissingResourceHeight;
         Player player;
         public GameUC()
         {
@@ -48,7 +47,13 @@ namespace GUI_20212022_Z6O9JF.UserControls
             FoodChange.Opacity = 0;
             GoldChange.Opacity = 0;
 
-            MissingResourceHeight = 0;
+            MissingPop.IsEnabled = false;
+            MissingPower.IsEnabled = false;
+            MissingWood.IsEnabled = false;
+            MissingStone.IsEnabled = false;
+            MissingFood.IsEnabled = false;
+            MissingGold.IsEnabled = false;
+
             MissingPop.Opacity = 0;
             MissingPower.Opacity = 0;
             MissingWood.Opacity = 0;
@@ -117,27 +122,27 @@ namespace GUI_20212022_Z6O9JF.UserControls
             if (MissingPop.Opacity >= 0)
             {
                 MissingPop.Opacity -= OpacityChanging;
-                if (MissingPop.Opacity == 0)  MissingResourceHeight = 0;
+                if (MissingPop.Opacity == 0)  MissingPop.IsEnabled = false;
             }
             if (MissingPower.Opacity >= 0)
             {
                 MissingPower.Opacity -= OpacityChanging;
-                if (MissingPower.Opacity == 0)  MissingResourceHeight = 0;
+                if (MissingPower.Opacity == 0) MissingPower.IsEnabled = false;
             }
             if (MissingWood.Opacity >= 0)
             {
                 MissingWood.Opacity -= OpacityChanging;
-                if (MissingWood.Opacity == 0)  MissingResourceHeight = 0;
+                if (MissingWood.Opacity == 0) MissingWood.IsEnabled = false;
             }
             if (MissingStone.Opacity >= 0)
             {
                 MissingStone.Opacity -= OpacityChanging;
-                if (MissingStone.Opacity == 0)  MissingResourceHeight = 0;
+                if (MissingStone.Opacity == 0) MissingStone.IsEnabled = false;
             }
             if (MissingFood.Opacity >= 0)
             {
                 MissingFood.Opacity -= OpacityChanging;
-                if (MissingFood.Opacity == 0)  MissingResourceHeight = 0;
+                if (MissingFood.Opacity == 0) MissingFood.IsEnabled = false;
             }
             if (MissingGold.Opacity >= 0)
             {
@@ -209,8 +214,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //POP 0
                     MissingPop.Opacity = 1;
-                    MissingPop.Height = MissingResource_Grid.ActualHeight - MissingResourceHeight;
-                    MissingResourceHeight += 60;
+                    MissingPop.IsEnabled = true;
                     MissingPop.Content = player.MissingResources[0];
                     player.MissingResources[0] = 0;
                 }
@@ -218,8 +222,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //ArmyPower 1
                     MissingPower.Opacity = 1;
-                    MissingPower.Height = MissingResource_Grid.ActualHeight - MissingResourceHeight;
-                    MissingResourceHeight += 60;
+                    MissingPower.IsEnabled = true;
                     MissingPower.Content = player.MissingResources[1];
                     player.MissingResources[1] = 0;
                 }
@@ -227,8 +230,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Wood 2
                     MissingWood.Opacity = 1;
-                    MissingWood.Height = MissingResource_Grid.ActualHeight - MissingResourceHeight;
-                    MissingResourceHeight += 60;
+                    MissingWood.IsEnabled = true;
                     MissingWood.Content = player.MissingResources[2];
                     player.MissingResources[2] = 0;
                 }
@@ -236,8 +238,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Stone 3
                     MissingStone.Opacity = 1;
-                    MissingStone.Height = MissingResource_Grid.ActualHeight - MissingResourceHeight;
-                    MissingResourceHeight += 60;
+                    MissingStone.IsEnabled = true;
                     MissingStone.Content = player.MissingResources[3];
                     player.MissingResources[3] = 0;
                 }
@@ -245,8 +246,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Food 4
                     MissingFood.Opacity = 1;
-                    MissingFood.Height = MissingResource_Grid.ActualHeight - MissingResourceHeight;
-                    MissingResourceHeight += 60;
+                    MissingFood.IsEnabled = true;
                     MissingFood.Content = player.MissingResources[4];
                     player.MissingResources[4] = 0;
                 }
@@ -254,8 +254,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Gold 5
                     MissingGold.Opacity = 1;
-                    MissingGold.Height = MissingResource_Grid.ActualHeight - MissingResourceHeight;
-                    MissingResourceHeight += 60;
+                    MissingGold.IsEnabled = true;
                     MissingGold.Content = player.MissingResources[5];
                     player.MissingResources[5] = 0;
                 }
