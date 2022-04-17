@@ -2,10 +2,12 @@
 {
     public class Quest
     {
+        public int Id { get; }
         public string Name { get; set; }
         public bool Done { get; set; }
         public Quest(string Name, bool Done)
         {
+            Id++;
             this.Name = Name;
             this.Done = Done;
         }

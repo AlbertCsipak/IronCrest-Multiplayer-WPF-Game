@@ -20,7 +20,7 @@ Todo:
 - legyen letiltva a build/upgrade gomb, ha nincs elég nyersanyagunk hozzá
 - ha felugrott egy mystery event vagy trade ablak legyen letiltva a game UC összes lehetséges interakciója (ne lehessen a háttérben lépkeni)
 - lehessena a textnek outline-t rajzolni, nincs beépített funkciója nekem meg nincs kedvem ehhez
-
+- YourTurn converter irása, ne True/False legyen kiirva
 
 Features:
 - Reconnect a serverre

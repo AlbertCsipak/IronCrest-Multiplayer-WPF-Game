@@ -81,6 +81,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         private void MissingResources_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             IsMissingResourceChanged = true;
+            ;
         }
 
         private void OpacityDefault()
