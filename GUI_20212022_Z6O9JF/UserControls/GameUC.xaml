@@ -40,7 +40,7 @@
             <Label Content="{Binding ArmyPower}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             <Image Source="\Resources\Images\Resources\log.png" Width="140"/>
             <Label Content="{Binding Wood}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-            <Image Source="\Resources\Images\Resources\stone.png" Width="130"/>
+            <Image x:Name="stone" Source="\Resources\Images\Resources\stone.png" Width="130"/>
             <Label Content="{Binding Stone}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             <Image Source="\Resources\Images\Resources\wheat.png" Width="110"/>
             <Label Content="{Binding Food}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>

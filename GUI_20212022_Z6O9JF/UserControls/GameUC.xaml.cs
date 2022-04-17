@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using WpfAnimatedGif;
@@ -147,7 +148,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             if (MissingGold.Opacity >= 0)
             {
                 MissingGold.Opacity -= OpacityChanging;
-                if(MissingGold.Opacity == 0) MissingResourceHeight = 0;
+                if(MissingGold.Opacity == 0) MissingGold.IsEnabled = false;
             }
         }
 
@@ -184,6 +185,13 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 if (player.ResourceChanges[3] != 0)
                 {
                     //Stone
+                    stone.Effect = new DropShadowEffect
+                    {
+                        Color = new Color { A = 255, R = 255, G = 255, B = 0 },
+                        Direction = 320,
+                        ShadowDepth = 1,
+                        Opacity = 1
+                    };
                     StoneChange.Opacity = 1;
                     string s = player.ResourceChanges[3] > 0 ? "+" : "";
                     StoneChangeLabel.Content = s + player.ResourceChanges[3];

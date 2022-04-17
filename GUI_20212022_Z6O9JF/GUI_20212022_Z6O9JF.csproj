@@ -22,6 +22,9 @@
     <None Remove="Resources\Images\Characters\standing_crusader.png" />
     <None Remove="Resources\Images\Characters\standing_mongolian.png" />
     <None Remove="Resources\Images\Characters\standing_viking.png" />
+    <None Remove="Resources\Images\Characters\walking_arabian1.png" />
+    <None Remove="Resources\Images\Characters\walking_arabian2.png" />
+    <None Remove="Resources\Images\Characters\walking_arabian3.png" />
     <None Remove="Resources\Images\Characters\walking_crusader1.png" />
     <None Remove="Resources\Images\Characters\walking_crusader2.png" />
     <None Remove="Resources\Images\Characters\walking_crusader3.png" />
@@ -152,6 +155,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\standing_viking.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_arabian1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_arabian2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_arabian3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\walking_crusader1.png">

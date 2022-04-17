@@ -75,6 +75,18 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(@"\Resources/Images/Characters/standing_mongolian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(10, grid.Height / 5), size));
                         break;
                     case Models.Faction.Arabian:
+                        switch (XPos % 3)
+                        {
+                            case 0:
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian1.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 15, size.Height / 9)));
+                                break;
+                            case 1:
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian2.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 15, size.Height / 9)));
+                                break;
+                            case 2:
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian3.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 15, size.Height / 9)));
+                                break;
+                        }
                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(@"\Resources/Images/Characters/standing_arabian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(10, grid.Height / 5), size));
                         break;
                     default:
