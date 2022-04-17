@@ -202,43 +202,50 @@ namespace GUI_20212022_Z6O9JF.Logic
         public bool HasSufficientResources(string resource, int cost)
         {
             bool HasEnoughResources = true;
+            Player player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             switch (resource)
             {
                 case "Gold":
-                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold < cost)
+                    if (player.Gold < cost)
                     {
                         HasEnoughResources = false;
+                        player.MissingResources[5] = cost - player.Gold;
                         //NotEnoughResource event meghivasa
                     }
                     break;
                 case "ArmyPower":
-                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower < cost)
+                    if (player.ArmyPower < cost)
                     {
                         HasEnoughResources = false;
+                        player.MissingResources[1] = cost - player.ArmyPower;
                     }
                     break;
                 case "Popularity":
-                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity < cost)
+                    if (player.Popularity < cost)
                     {
                         HasEnoughResources = false;
+                        player.MissingResources[0] = cost - player.Popularity;
                     }
                     break;
                 case "Stone":
-                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone < cost)
+                    if (player.Stone < cost)
                     {
                         HasEnoughResources = false;
+                        player.MissingResources[3] = cost - player.Stone;
                     }
                     break;
                 case "Wood":
-                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood < cost)
+                    if (player.Wood < cost)
                     {
                         HasEnoughResources = false;
+                        player.MissingResources[2] = cost - player.Wood;
                     }
                     break;
                 case "Wheat":
-                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat < cost)
+                    if (player.Wheat < cost)
                     {
                         HasEnoughResources = false;
+                        player.MissingResources[4] = cost - player.Wheat;
                     }
                     break;
             }
