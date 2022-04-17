@@ -80,7 +80,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void MissingResources_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            IsMissingResourceChanged = true;
         }
 
         private void OpacityDefault()
@@ -274,10 +274,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             IsResourceChanged = true;
         }
 
-        public void ResourceChanged()
-        {
-            IsMissingResourceChanged = true;
-        }
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
