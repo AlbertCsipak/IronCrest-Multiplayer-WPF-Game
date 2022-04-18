@@ -364,6 +364,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             break;
                     }
                 }
+                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().NumOfTradesMade++;
             }
         }
         public void ClearCompass(HexagonTile hexagon)
@@ -505,11 +506,13 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void ReadQuests()
         {
             var file = File.ReadAllLines("Resources/Maps/Quests.txt");
+            int counter = 1;
             Quests = new List<Quest>();
             foreach (var item in file)
             {
                 string[] line = item.Split(';');
-                Quests.Add(new Quest(line[0], line[1] == "false" ? false : true));
+                Quests.Add(new Quest(counter,line[0], line[1] == "false" ? false : true));
+                counter++;
             }
         }
         public List<Quest> RandomQuestSelector(int n)
@@ -529,6 +532,75 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
             }
             return curr_quests;
+        }
+        public void IsQuestDone()
+        {
+            foreach (var item in Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests)
+            {
+                switch (item.Id)
+                {
+                    case 1:
+                        if (!Quests.Where(x => x.Id == 1).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Villages.Count >= 3)
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 1).FirstOrDefault().Done = true;
+                        }
+                        break;
+                    case 2:
+                        if (!Quests.Where(x => x.Id == 2).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().ArmyPower == 15)
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 2).FirstOrDefault().Done = true;
+                        }
+                        break;
+                    case 3:
+                        if (!Quests.Where(x => x.Id == 3).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Popularity == 12)
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 3).FirstOrDefault().Done = true;
+                        }
+                        break;
+                    case 4:
+                        if (!Quests.Where(x => x.Id == 4).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().BattlesWon >= 3)
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 4).FirstOrDefault().Done = true;
+                        }
+                        break;
+                    case 5:
+                        if (!Quests.Where(x => x.Id == 5).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Heroes.Count == 2)
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 5).FirstOrDefault().Done = true;
+                        }
+                        break;
+                    case 6:
+                        if (!Quests.Where(x => x.Id == 6).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Gold >= 20)
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 6).FirstOrDefault().Done = true;
+                        }
+                        break;
+                    case 7:
+                        if (!Quests.Where(x => x.Id == 7).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Villages.Any(x => x.Level == 3))
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 7).FirstOrDefault().Done = true;
+                        }
+                        break;
+                    case 8:
+                        if (!Quests.Where(x => x.Id == 8).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Units.Count >= 7)
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 8).FirstOrDefault().Done = true;
+                        }
+                        break;
+                    case 9:
+                        if (!Quests.Where(x => x.Id == 9).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().HasEnteredGoldMine)
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 9).FirstOrDefault().Done = true;
+                        }
+                        break;
+                    case 10:
+                        if (!Quests.Where(x => x.Id == 10).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().NumOfTradesMade >= 3)
+                        {
+                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 10).FirstOrDefault().Done = true;
+                        }
+                        break;
+                }
+            }
         }
         public void AddUnit()
         {
@@ -559,7 +631,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
                 && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
             {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && HasSufficientResources("Wood",3) && HasSufficientResources("Stone",2))
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && HasSufficientResources("Wood", 3) && HasSufficientResources("Stone", 2))
                 {
                     var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     if (item != null && item.RemainingMoves != 0)
@@ -577,7 +649,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                         SelectedHexagonTile.OwnerId = item.PlayerID;
 
                         item.Villages.Add(newVillage);
-                        DecreaseMoves();
                     }
                 }
 
@@ -588,8 +659,8 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (SelectedHexagonTile != null)
             {
                 if ((SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
-                    && HasSufficientResources("Gold",3)
-                    && HasSufficientResources("Wheat",2))
+                    && HasSufficientResources("Gold", 3)
+                    && HasSufficientResources("Wheat", 2))
                 {
                     var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
@@ -621,7 +692,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                     if (item != null && player.RemainingMoves != 0)
                     {
-                        
+
                         if (hexagonTile.Objects.ToList().Count == 0)
                         {
                             item.Move(hexagonTile.Position);
@@ -635,7 +706,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                             //MysteryBoxEvent(hexagonTile);
                             SelectedHexagonTile = null;
-                            
+
                             DecreaseMoves();
                         }
                         else

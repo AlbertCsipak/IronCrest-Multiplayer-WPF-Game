@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -25,6 +26,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand SkipTurnCommand { get; set; }
         public ICommand ProduceCommand { get; set; }
         public ICommand TradeCommand { get; set; }
+        public Faction SelectedFaction { get { return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
 
         public int Timer { get { return clientLogic.Timer; } }
         public bool CanSend { get { return clientLogic.CanSend; } }

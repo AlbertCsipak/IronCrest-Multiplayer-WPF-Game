@@ -1,14 +1,8 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
@@ -35,7 +29,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.controlLogic = controlLogic;
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
-            
+
 
             Messenger.Register<GoldMineViewModel, string, string>(this, "Base", (recipient, msg) =>
             {

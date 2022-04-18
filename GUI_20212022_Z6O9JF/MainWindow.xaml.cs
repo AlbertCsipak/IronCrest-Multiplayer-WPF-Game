@@ -6,7 +6,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace GUI_20212022_Z6O9JF
 {
@@ -52,7 +51,7 @@ namespace GUI_20212022_Z6O9JF
             background_music.Play();
         }
 
-        
+
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

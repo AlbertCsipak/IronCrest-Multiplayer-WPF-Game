@@ -1,19 +1,11 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using GUI_20212022_Z6O9JF.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GUI_20212022_Z6O9JF.UserControls
 {
@@ -24,7 +16,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IControlLogic controlLogic;
         public MediaPlayer button_click = new MediaPlayer();
         public int firstlySelectedOffer;
-        public int offerCount=0;
+        public int offerCount = 0;
         Uri uriSourceflag;
         Uri uriSourcedarkened_flag;
         public TradeUC()
@@ -50,13 +42,13 @@ namespace GUI_20212022_Z6O9JF.UserControls
             if (!gameLogic.HasSufficientResources(2))
             {
                 check3.IsEnabled = false;
-                flag3_img.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\flag_disabled.png",UriKind.RelativeOrAbsolute));
+                flag3_img.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\flag_disabled.png", UriKind.RelativeOrAbsolute));
             }
         }
 
         private void check1_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction != Models.Faction.Arabian)
             {
                 if ((bool)(sender as CheckBox).IsChecked)
@@ -134,13 +126,13 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     {
                         case "check1":
                             flag1_img.Source = new BitmapImage(uriSourceflag);
-                            
-                            if (offerCount<2)
+
+                            if (offerCount < 2)
                             {
-                                offerCount++;   
+                                offerCount++;
                             }
-                            
-                            
+
+
                             break;
                         case "check2":
                             flag2_img.Source = new BitmapImage(uriSourceflag);
@@ -149,24 +141,24 @@ namespace GUI_20212022_Z6O9JF.UserControls
                             {
                                 offerCount++;
                             }
-                            
+
                             break;
                         case "check3":
                             flag3_img.Source = new BitmapImage(uriSourceflag);
-                           
+
                             if (offerCount < 2)
                             {
                                 offerCount++;
                             }
-                            
+
                             break;
                     }
-                    if (offerCount==2)
+                    if (offerCount == 2)
                     {
                         DisableThirdOffer();
                     }
                 }
-                else if(!(bool)(sender as CheckBox).IsChecked)
+                else if (!(bool)(sender as CheckBox).IsChecked)
                 {
                     var uriSource = new Uri(@"\Resources\Images\Menu\flag_darken.png", UriKind.Relative);
                     switch ((sender as CheckBox).Name)
@@ -237,7 +229,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                         default:
                             break;
                     }
-                    if (offerCount<2)
+                    if (offerCount < 2)
                     {
                         if (gameLogic.HasSufficientResources(0))
                         {
@@ -277,9 +269,9 @@ namespace GUI_20212022_Z6O9JF.UserControls
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction==Models.Faction.Arabian)//arab faction 2 offert fogadhat el
+            if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction == Models.Faction.Arabian)//arab faction 2 offert fogadhat el
             {
-                
+
                 if ((bool)check1.IsChecked && (bool)check2.IsChecked)
                 {
                     gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(0);

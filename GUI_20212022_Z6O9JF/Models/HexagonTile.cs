@@ -1,14 +1,10 @@
-﻿using GUI_20212022_Z6O9JF.Logic;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Drawing;
-using System.Linq;
 
 namespace GUI_20212022_Z6O9JF.Models
 {
 
-    public enum FieldType { grass, lake, mountain, forest, wheat, goldMine,ocean,compassField }
+    public enum FieldType { grass, lake, mountain, forest, wheat, goldMine, ocean, compassField }
     public class HexagonTile
     {
         public int ParentId { get; set; }
@@ -47,7 +43,8 @@ namespace GUI_20212022_Z6O9JF.Models
 
             return coords;
         }
-        public void GiveResources(Player player) {
+        public void GiveResources(Player player)
+        {
             switch (FieldType)
             {
                 case FieldType.mountain:

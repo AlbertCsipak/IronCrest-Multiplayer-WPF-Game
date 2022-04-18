@@ -25,6 +25,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         void GetResourcesFromMysteryEvent();
         bool HasSufficientResources(int offerindex);
         bool HasSufficientResources(string resource, int cost);
+        void IsQuestDone();
         Queue<MysteryEvent> LoadMysteryEvents();
         Queue<Trade> LoadTrades();
         void MakeTrade();

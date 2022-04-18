@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
+             xmlns:converter="clr-namespace:GUI_20212022_Z6O9JF.Converters"
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
@@ -12,6 +13,9 @@
     <UserControl.DataContext>
         <vm:GameViewModel></vm:GameViewModel>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <converter:HeroSelectorConverter x:Key="converter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -138,23 +142,37 @@
         </StackPanel>
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="379*"/>
+                <ColumnDefinition Width="32*"/>
+                <ColumnDefinition Width="347*"/>
+                <ColumnDefinition Width="379*"/>
+                <ColumnDefinition Width="379*"/>
             </Grid.ColumnDefinitions>
-            <Image  Grid.Column="0" Source="\Resources\Images\Menu\move_background.png" />
-            <Button Style="{StaticResource button_image_style}" Command="{Binding AddUnitCommand}" Height="100" Width="230" Grid.Column="0" BorderThickness="1,1,1,1">
-                <TextBlock Text="Move" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
-                    <TextBlock.Effect>
-                        <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
-                    </TextBlock.Effect>
-                </TextBlock>
-            </Button>
+            <Grid Grid.Column="0" Margin="0,0,32,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Image  Grid.ColumnSpan="5" Source="\Resources\Images\Menu\move_background.png" Stretch="Fill"/>
+                <Button HorizontalAlignment="Left" Style="{StaticResource button_image_style}" Command="{Binding AddUnitCommand}" Height="80" Width="120" Grid.Column="0" Margin="10,0,0,0" Grid.ColumnSpan="2">
+                    <TextBlock Text="Move" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="50" Foreground="{StaticResource greenish_blue}" >
+                        <TextBlock.Effect>
+                            <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
+                        </TextBlock.Effect>
+                    </TextBlock>
+                </Button>
+                <Image  x:Name="move1" Grid.Column="1" Height="120" />
+                <Image  x:Name="move2" Grid.Column="2" Height="120" />
+                <Image  x:Name="move3" Grid.Column="3" Height="120" />
+                <Image  x:Name="move4" Grid.Column="4" Height="120" />
+            </Grid>
 
-            <Image  Grid.Column="1" Source="\Resources\Images\Menu\produce_background.png">
-            </Image>
-            <Button Style="{StaticResource button_image_style}"  Command="{Binding ProduceCommand}" Height="100" Width="230" Grid.Column="1" BorderThickness="1,1,1,1">
+
+            <Image  Grid.Column="1" Source="\Resources\Images\Menu\produce_background.png" Stretch="Fill" Grid.ColumnSpan="2"/>
+            <Button Style="{StaticResource button_image_style}" Click="Button_Click" Command="{Binding ProduceCommand}" Height="80" Width="220" Grid.Column="2" BorderThickness="1,1,1,1" Margin="47,37,80,37">
                 <TextBlock Text="Harvest" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
@@ -162,8 +180,8 @@
                 </TextBlock>
             </Button>
 
-            <Image  Grid.Column="2" Source="\Resources\Images\Menu\build_background.png" />
-            <Button Style="{StaticResource button_image_style}" Command="{Binding AddVillageCommand}" Height="100" Width="230" Grid.Column="2">
+            <Image  Grid.Column="3" Source="\Resources\Images\Menu\build_background.png" Stretch="Fill"/>
+            <Button x:Name="btn_build" Style="{StaticResource button_image_style}" Command="{Binding AddVillageCommand}" Height="80" Width="130" Click="Build_Button_Click" Grid.Column="3" HorizontalAlignment="Left" Margin="40,40,0,34">
                 <TextBlock Text="Build" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
@@ -171,8 +189,10 @@
                 </TextBlock>
             </Button>
 
-            <Image  Grid.Column="3" Source="\Resources\Images\Menu\upgrade_background.png" />
-            <Button Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Height="100" Width="230" Grid.Column="3">
+            <Image  Grid.Column="4" Source="\Resources\Images\Menu\upgrade_background.png" Stretch="Fill" />
+            <Image  Grid.Column="4" Source="{Binding Faction}" HorizontalAlignment="Left" Margin="379,0,0,0"/>
+            <Image  Grid.Column="4" Source="{Binding Faction}" Stretch="Fill" Margin="10,0,10,0"/>
+            <Button Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Height="100" Width="210" Grid.Column="4" HorizontalAlignment="Left" Margin="30,30,0,24">
                 <TextBlock Text="Upgrade" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>

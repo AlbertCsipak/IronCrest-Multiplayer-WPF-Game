@@ -21,10 +21,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ;
-            Polygon polygon = sender as Polygon;   
-            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves!=0))
+            Polygon polygon = sender as Polygon;
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves != 0))
             {
-                if ((polygon.Tag as HexagonTile).FieldType==FieldType.goldMine && !gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
+                if ((polygon.Tag as HexagonTile).FieldType == FieldType.goldMine && !gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
                 {
                     clientLogic.ChangeView("goldmine");
                     gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine = true;
@@ -33,14 +33,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
-                        
-                        
+
+
                         if (gameLogic.CurrentMystery != null)
                         {
                             clientLogic.MysteryViewChange("mystery");
                         }
-                        
-                        if ((polygon.Tag as HexagonTile).Compass !=null)
+
+                        if ((polygon.Tag as HexagonTile).Compass != null)
                         {
                             gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
                             gameLogic.ClearCompass(polygon.Tag as HexagonTile);

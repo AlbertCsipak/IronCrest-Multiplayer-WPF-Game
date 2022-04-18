@@ -2,15 +2,14 @@
 using GUI_20212022_Z6O9JF.Models;
 using GUI_20212022_Z6O9JF.ViewModels;
 using System;
+using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using WpfAnimatedGif;
@@ -51,10 +50,13 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
             dt.Tick += (sender, eventargs) =>
             {
+                SetMovePictures();
+                gameLogic.IsQuestDone();
                 ResourceChanging();
                 OpacityDefault();
-                if (clientLogic.Timer==60)
+                if (clientLogic.Timer == 60)
                 {
+                    btn_build.IsEnabled = true;
                     var image = new BitmapImage();
                     image.BeginInit();
                     image.UriSource = new Uri(@"\Resources\Images\Menu\hourglassgif.gif", UriKind.Relative);
@@ -62,13 +64,101 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     ImageBehavior.SetAnimatedSource(hourglass_gif, image);
                     ImageBehavior.SetRepeatBehavior(hourglass_gif, new RepeatBehavior(1));
                 }
+                
                 display.InvalidateVisual();
             };
             dt.Start();
-            
+
         }
-
-
+        public void SetMovePictures()
+        {
+            if (player.DefaultNumOfMoves==2)
+            {
+                switch (player.RemainingMoves)
+                {
+                    case 0:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    case 1:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    case 2:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (player.DefaultNumOfMoves == 3)
+            {
+                switch (player.RemainingMoves)
+                {
+                    case 0:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move3.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    case 1:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move3.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    case 2:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move3.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    case 3:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move3.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (player.DefaultNumOfMoves == 4)
+            {
+                switch (player.RemainingMoves)
+                {
+                    case 0:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move3.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move4.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    case 1:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move3.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move4.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    case 2:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move3.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move4.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    case 3:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move3.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move4.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\disabled_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    case 4:
+                        move1.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move2.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move3.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        move4.Source = new BitmapImage(new Uri(Path.Combine(@$"\Resources\Images\Characters\standing_{player.Faction}.png"), UriKind.RelativeOrAbsolute));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
         private void OpacityDefault()
         {
             //ResourceChanges
@@ -157,7 +247,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
             }
 
-            
+
             //if (PopChange.Opacity <= 0)
             //{
             //    IsResourceChanged = false;
@@ -200,6 +290,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
             {
                 clientLogic.ChangeView("ESC");
             }
+        }
+
+        private void Build_Button_Click(object sender, RoutedEventArgs e)
+        {
+            btn_build.IsEnabled = false;
         }
     }
 }

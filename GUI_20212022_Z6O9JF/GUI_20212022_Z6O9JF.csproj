@@ -13,6 +13,10 @@
     <None Remove="Resources\Images\Characters\bjorn.png" />
     <None Remove="Resources\Images\Characters\crusader_head.png" />
     <None Remove="Resources\Images\Characters\dark_night.png" />
+    <None Remove="Resources\Images\Characters\disabled_arabian.png" />
+    <None Remove="Resources\Images\Characters\disabled_crusader.png" />
+    <None Remove="Resources\Images\Characters\disabled_mongolian.png" />
+    <None Remove="Resources\Images\Characters\disabled_viking.png" />
     <None Remove="Resources\Images\Characters\genghis_khan.png" />
     <None Remove="Resources\Images\Characters\jhin.png" />
     <None Remove="Resources\Images\Characters\mongolian_mouse.png" />
@@ -134,6 +138,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\dark_night.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\disabled_arabian.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\disabled_crusader.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\disabled_mongolian.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\disabled_viking.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\genghis_khan.png">

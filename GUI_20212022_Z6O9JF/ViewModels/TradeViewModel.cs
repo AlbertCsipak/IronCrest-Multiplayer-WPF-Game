@@ -3,12 +3,7 @@ using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -42,7 +37,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
 
-            ChooseOffer = new RelayCommand(() => {
+            ChooseOffer = new RelayCommand(() =>
+            {
                 clientLogic.ChooseOffer();
                 clientLogic.TradeViewChange("asd");
             });

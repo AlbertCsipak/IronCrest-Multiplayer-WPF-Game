@@ -1,19 +1,10 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using GUI_20212022_Z6O9JF.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Threading;
 
 namespace GUI_20212022_Z6O9JF.UserControls
@@ -26,7 +17,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IClientLogic clientLogic;
         IGameLogic gameLogic;
         IControlLogic controlLogic;
-       
+
         DispatcherTimer dt;
         MediaPlayer music = new MediaPlayer();
         public GoldMineUC()
@@ -38,7 +29,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.clientLogic = (this.DataContext as GoldMineViewModel).clientLogic;
             this.controlLogic = (this.DataContext as GoldMineViewModel).controlLogic;
             goldmineDisplay.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
-            music.Open(new Uri(Path.Combine("Resources","Music","money_money_money.mp3"), UriKind.RelativeOrAbsolute));
+            music.Open(new Uri(Path.Combine("Resources", "Music", "money_money_money.mp3"), UriKind.RelativeOrAbsolute));
             music.Volume = 0.3;
             music.Play();
             dt = new DispatcherTimer();

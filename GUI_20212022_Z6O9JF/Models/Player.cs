@@ -15,8 +15,15 @@ namespace GUI_20212022_Z6O9JF.Models
         public bool HasEnteredGoldMine { get; set; }
         public int DefaultNumOfMoves { get; set; }
         public int RemainingMoves { get; set; }
-
         private int popularity;
+        public ObservableCollection<int> ResourceChanges { get; set; }
+        public int BattlesWon { get; set; }
+        public List<Quest> Quests { get; set; }
+        public List<Village> Villages { get; set; }
+        public List<Unit> Units { get; set; }
+        public List<Hero> Heroes { get; set; }
+        public Trade Trade { get; set; }
+        public int NumOfTradesMade { get; set; }
 
         public void SetupPopulatiry(int num)
         {
@@ -104,25 +111,28 @@ namespace GUI_20212022_Z6O9JF.Models
         {
             wheat = num;
         }
-        public int Wheat { 
-            get{return wheat; }
-            set {if (wheat > value) ResourceChanges[4] = (wheat - value)*(-1);
+        public int Wheat
+        {
+            get { return wheat; }
+            set
+            {
+                if (wheat > value) ResourceChanges[4] = (wheat - value) * (-1);
                 else ResourceChanges[4] = value - wheat;
-                wheat = value;} 
+                wheat = value;
+            }
         }//MysteryResource
 
-        public ObservableCollection<int> ResourceChanges { get; set; }
-        public int BattlesWon { get; set; }
-        public List<Quest> Quests { get; set; }
-        public List<Village> Villages { get; set; }
-        public List<Unit> Units { get; set; }
-        public Hero Hero { get; set; }
-        public Trade Trade { get; set; }
+
 
         public Player()
         {
+            NumOfTradesMade = 0;
+            Units = new List<Unit>();
+            Heroes = new List<Hero>();
+            Quests = new List<Quest>();
+            Villages = new List<Village>();
             ResourceChanges = new ObservableCollection<int>();
-            for (int i = 0; i < 6 ; i++) ResourceChanges.Add(0);
+            for (int i = 0; i < 6; i++) ResourceChanges.Add(0);
 
         }
     }

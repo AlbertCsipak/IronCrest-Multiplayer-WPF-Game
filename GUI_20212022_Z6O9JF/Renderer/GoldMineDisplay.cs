@@ -1,10 +1,7 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -38,13 +35,13 @@ namespace GUI_20212022_Z6O9JF.Renderer
         protected override void OnRender(DrawingContext drawingContext)
         {
             ;
-            if (size.Width!=0 && size.Height!= 0)
+            if (size.Width != 0 && size.Height != 0)
             {
                 double num = size.Width / 100 * XPos;
                 switch (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction)
                 {
                     case Models.Faction.Viking:
-                        switch (XPos%3)
+                        switch (XPos % 3)
                         {
                             case 0:
                                 drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_viking1.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
@@ -111,7 +108,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     clientLogic.ChangeView("game");
                 }
             }
-            
+
             sizeChanged = false;
         }
     }

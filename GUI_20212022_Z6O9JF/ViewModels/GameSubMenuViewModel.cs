@@ -2,10 +2,7 @@
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
-using Microsoft.Toolkit.Mvvm.Messaging;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Windows;
 using System.Windows.Input;
 
@@ -32,7 +29,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public GameSubMenuViewModel(IClientLogic clientLogic)
         {
             this.clientLogic = clientLogic;
-            ExitCommand = new RelayCommand(() => {
+            ExitCommand = new RelayCommand(() =>
+            {
                 clientLogic.ESCChange("");
             });
 
