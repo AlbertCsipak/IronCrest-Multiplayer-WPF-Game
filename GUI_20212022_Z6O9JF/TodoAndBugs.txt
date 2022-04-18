@@ -7,7 +7,6 @@ Todo:
 - button animáció (skip,back,exit()
 - combox lenyitásakor a szöveg legyen középen
 - harcrendszer
-- kereskedelmi pontok (iránytűk)
 - game screen brightness/saturation/hue levétele
 - champselect teljes fix
 - number of quest beállítása a logicba (n random quest)
@@ -27,8 +26,6 @@ Features:
 -ESC gomb nyomásra options menü, ahol lehet állitani a hangerőt és ki lehet lépni
 
 STEVE TO DO: 
-- bugfix, elején minden resource-ot kiir, mint változás - OK
-- ha egy nyersanyagbol nincs elég, pl village upgradelesnel akk irja ki h "Insufficient resources!"
 
 LILI TO DO: 
 - app.xaml-be kerüljön át az összes a globális resource (zene,cursor,kép)

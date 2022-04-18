@@ -47,13 +47,13 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         switch (XPos%3)
                         {
                             case 0:
-                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "standing_viking.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 6.2), new Size(size.Width / 15, size.Height / 9)));
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_viking1.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
                                 break;
                             case 1:
-                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "standing_viking.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 6.2), new Size(size.Width / 15, size.Height / 9)));
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_viking2.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
                                 break;
                             case 2:
-                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "standing_viking.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 6.2), new Size(size.Width / 15, size.Height / 9)));
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_viking3.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
                                 break;
                         }
                         break;
@@ -72,22 +72,32 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         }
                         break;
                     case Models.Faction.Mongolian:
-                        drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(@"\Resources/Images/Characters/standing_mongolian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(10, grid.Height / 5), size));
+                        switch (XPos % 3)
+                        {
+                            case 0:
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_mongolian1.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.6), new Size(size.Width / 16, size.Height / 6)));
+                                break;
+                            case 1:
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_mongolian2.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.6), new Size(size.Width / 16, size.Height / 6)));
+                                break;
+                            case 2:
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_mongolian3.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.6), new Size(size.Width / 16, size.Height / 6)));
+                                break;
+                        }
                         break;
                     case Models.Faction.Arabian:
                         switch (XPos % 3)
                         {
                             case 0:
-                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian1.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 15, size.Height / 9)));
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian1.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
                                 break;
                             case 1:
-                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian2.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 15, size.Height / 9)));
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian2.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
                                 break;
                             case 2:
-                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian3.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 15, size.Height / 9)));
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian3.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(num, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
                                 break;
                         }
-                        drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(@"\Resources/Images/Characters/standing_arabian.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(10, grid.Height / 5), size));
                         break;
                     default:
                         break;

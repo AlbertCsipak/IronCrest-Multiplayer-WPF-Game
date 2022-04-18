@@ -28,6 +28,12 @@
     <None Remove="Resources\Images\Characters\walking_crusader1.png" />
     <None Remove="Resources\Images\Characters\walking_crusader2.png" />
     <None Remove="Resources\Images\Characters\walking_crusader3.png" />
+    <None Remove="Resources\Images\Characters\walking_mongolian1.png" />
+    <None Remove="Resources\Images\Characters\walking_mongolian2.png" />
+    <None Remove="Resources\Images\Characters\walking_mongolian3.png" />
+    <None Remove="Resources\Images\Characters\walking_viking1.png" />
+    <None Remove="Resources\Images\Characters\walking_viking2.png" />
+    <None Remove="Resources\Images\Characters\walking_viking3.png" />
     <None Remove="Resources\Images\Characters\white_knight.png" />
     <None Remove="Resources\Images\Map\Arabian_village_lvl1.png" />
     <None Remove="Resources\Images\Map\Arabian_village_lvl2.png" />
@@ -173,6 +179,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\walking_crusader3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_mongolian1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_mongolian2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_mongolian3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_viking1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_viking2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_viking3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\white_knight.png">

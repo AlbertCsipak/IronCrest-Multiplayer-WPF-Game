@@ -133,13 +133,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 if (player.ResourceChanges[3] != 0)
                 {
                     //Stone
-                    stone.Effect = new DropShadowEffect
-                    {
-                        Color = new Color { A = 255, R = 255, G = 255, B = 0 },
-                        Direction = 320,
-                        ShadowDepth = 1,
-                        Opacity = 1
-                    };
                     StoneChange.Opacity = 1;
                     string s = player.ResourceChanges[3] > 0 ? "+" : "";
                     StoneChangeLabel.Content = s + player.ResourceChanges[3];

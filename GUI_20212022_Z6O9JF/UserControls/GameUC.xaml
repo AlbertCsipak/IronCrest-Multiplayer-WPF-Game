@@ -44,7 +44,7 @@
             <Label Content="{Binding Stone}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             <Image Source="\Resources\Images\Resources\wheat.png" Width="110"/>
             <Label Content="{Binding Food}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-            <ComboBox ItemsSource="{Binding Quests}" Height="60" Width="50" Text="Quests" FontSize="30" FontFamily="Poor Richard" Grid.Column="1">
+            <ComboBox ItemsSource="{Binding Quests}" Height="60" Width="100" Text="Quests" FontSize="30" FontFamily="Poor Richard" Grid.Column="1">
 
             </ComboBox>
             <Label Content="{Binding CanSend}" Grid.Column="1" Grid.Row="0" Foreground="Red" Width="200" Height="100" FontSize="50" Background="Transparent"></Label>
@@ -144,17 +144,41 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Image  Grid.Column="0" Source="\Resources\Images\Menu\move_background.png" />
-            <Button Style="{StaticResource button_image_style}" Content="Move" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" Command="{Binding AddUnitCommand}" Height="100" Width="230" Grid.Column="0" BorderThickness="1,1,1,1">
+            <Button Style="{StaticResource button_image_style}" Command="{Binding AddUnitCommand}" Height="100" Width="230" Grid.Column="0" BorderThickness="1,1,1,1">
+                <TextBlock Text="Move" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
+                    </TextBlock.Effect>
+                </TextBlock>
             </Button>
 
-            <Image  Grid.Column="1" Source="\Resources\Images\Menu\produce_background.png" />
-            <Button Style="{StaticResource button_image_style}" Content="Harvest" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" Command="{Binding ProduceCommand}" Height="100" Width="230" Grid.Column="1" BorderThickness="1,1,1,1"/>
+            <Image  Grid.Column="1" Source="\Resources\Images\Menu\produce_background.png">
+            </Image>
+            <Button Style="{StaticResource button_image_style}"  Command="{Binding ProduceCommand}" Height="100" Width="230" Grid.Column="1" BorderThickness="1,1,1,1">
+                <TextBlock Text="Harvest" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button>
 
             <Image  Grid.Column="2" Source="\Resources\Images\Menu\build_background.png" />
-            <Button Style="{StaticResource button_image_style}" Content="Build" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="{StaticResource greenish_blue}" Command="{Binding AddVillageCommand}" Height="100" Width="230" Grid.Column="2"/>
+            <Button Style="{StaticResource button_image_style}" Command="{Binding AddVillageCommand}" Height="100" Width="230" Grid.Column="2">
+                <TextBlock Text="Build" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button>
 
             <Image  Grid.Column="3" Source="\Resources\Images\Menu\upgrade_background.png" />
-            <Button Style="{StaticResource button_image_style}" Content="Upgrade" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)"  Foreground="{StaticResource greenish_blue}" Command="{Binding UpgradeVillageCommand}" Height="100" Width="230" Grid.Column="3"/>
+            <Button Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Height="100" Width="230" Grid.Column="3">
+                <TextBlock Text="Upgrade" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button>
         </Grid>
         <Grid Grid.Row="2" Grid.Column="0">
             <Grid.ColumnDefinitions>
