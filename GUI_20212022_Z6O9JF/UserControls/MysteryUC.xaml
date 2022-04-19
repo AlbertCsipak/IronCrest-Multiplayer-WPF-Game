@@ -6,9 +6,13 @@
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
+              xmlns:converter="clr-namespace:GUI_20212022_Z6O9JF.Converters"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
-             d:DesignHeight="120" d:DesignWidth="320">
+             d:DesignHeight="120" d:DesignWidth="220">
+    <UserControl.Resources>
+        <converter:FieldTypeToImgConverter x:Key="fieldconverter"/>
+    </UserControl.Resources>
     <UserControl.DataContext>
         <vm:MysteryViewModel></vm:MysteryViewModel>
     </UserControl.DataContext>
@@ -25,14 +29,37 @@
             <ColumnDefinition Width="12*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Image gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\mystery_background.gif" Stretch="Fill" Grid.RowSpan="5" Grid.ColumnSpan="3"/>
+        <Image x:Name="background" gif:ImageBehavior.AnimatedSource="{Binding Background, Converter={StaticResource fieldconverter}}" Stretch="Fill" Grid.RowSpan="5" Grid.ColumnSpan="3"/>
+        <Viewbox Grid.RowSpan="4" Grid.Column="1">
+            <Image Source="\Resources\Images\Menu\button_board.png" Width="600"/>
+        </Viewbox>
         <Image Source="\Resources\Images\Menu\frame.png" Grid.RowSpan="5" Grid.ColumnSpan="3" Stretch="Fill"/>
-        <Label Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Mystery Event" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="{DynamicResource greenish_blue}"/>
+        <Viewbox Grid.Row="1" Grid.Column="1">
+            <Image Source="\Resources\Images\Menu\board_long.png"/>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="1">
+            <Label  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Mystery Event" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="WhiteSmoke"/>
+        </Viewbox>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.ColumnSpan="3">
+                <Image Source="\Resources\Images\Menu\flag.png" Height="400"/>
+            </Viewbox>
+            <Viewbox Grid.Column="1">
+                <Label x:Name="mystery_description" Margin="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
+                    <TextBlock Text="{Binding MysteryEventDescription}" TextWrapping="Wrap" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="Black"/>
+                </Label>
+            </Viewbox>
+        </Grid>
         
-        <Label Grid.Row="2" Grid.Column="1" x:Name="mystery_description"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
-            <TextBlock Text="{Binding MysteryEventDescription}" TextWrapping="Wrap" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="{DynamicResource greenish_blue}"/>
-        </Label>
-        <Button Style="{StaticResource button_image_style}" Grid.Row="3" Grid.Column="1" Width="80" Height="30" VerticalContentAlignment="Center" Content="OK!" FontSize="50" FontFamily="\Resources\#8-bit Limit (BRK)"  Command="{Binding OKButtonCommand}" Click="Button_Click_1"/>
+        
+        <Viewbox Grid.Row="3" Grid.Column="1">
+            <Button Style="{StaticResource button_image_style}" Width="80" Height="30" VerticalContentAlignment="Center" Content="OK!" FontSize="20" Foreground="WhiteSmoke" FontFamily="\Resources\#8-bit Limit (BRK)"  Command="{Binding OKButtonCommand}" Click="Button_Click_1"/>
+        </Viewbox>
     </Grid>
 
 </UserControl>

@@ -59,27 +59,27 @@
             <Image Source="\Resources\Images\Menu\brick.jpg" Grid.ColumnSpan="2" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Menu\border.png" Grid.ColumnSpan="2" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Resources\gold.png" Width="70" Grid.Column="0"/>
-            <Label Content="{Binding Gold}" Grid.Column="1" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
+            <Label Content="{Binding Gold}" Grid.Column="1" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             <Image Source="\Resources\Images\Menu\brick.jpg" Grid.ColumnSpan="2" Grid.Column="2" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Menu\border.png" Grid.Column="2" Grid.ColumnSpan="2" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Resources\heart.png" Width="70" Grid.Column="2"/>
-            <Label Content="{Binding Popularity}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="3"/>
+            <Label Content="{Binding Popularity}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="3"/>
             <Image Source="\Resources\Images\Menu\brick.jpg" Grid.ColumnSpan="2" Grid.Column="4" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Menu\border.png" Grid.Column="4" Grid.ColumnSpan="2" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Resources\sword.png" Width="60" Height="90" Grid.Column="4"/>
-            <Label Content="{Binding ArmyPower}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="5"/>
+            <Label Content="{Binding ArmyPower}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="5"/>
             <Image Source="\Resources\Images\Menu\brick.jpg" Grid.ColumnSpan="2" Grid.Column="6" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Menu\border.png" Grid.Column="6" Grid.ColumnSpan="2" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Resources\log.png" Width="80" Grid.Column="6"/>
-            <Label Content="{Binding Wood}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="7"/>
+            <Label Content="{Binding Wood}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="7"/>
             <Image Source="\Resources\Images\Menu\brick.jpg" Grid.ColumnSpan="2" Grid.Column="8" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Menu\border.png" Grid.Column="8" Grid.ColumnSpan="2" Stretch="Fill" Margin="10"/>
             <Image x:Name="stone" Source="\Resources\Images\Resources\stone.png" Width="80" Grid.Column="8"/>
-            <Label Content="{Binding Stone}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="9"/>
+            <Label Content="{Binding Stone}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="9"/>
             <Image Source="\Resources\Images\Menu\brick.jpg" Grid.ColumnSpan="2" Grid.Column="10" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Menu\border.png" Grid.Column="10" Grid.ColumnSpan="2" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Resources\wheat.png" Width="70" Grid.Column="10"/>
-            <Label Content="{Binding Food}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="11"/>
+            <Label Content="{Binding Food}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="11"/>
 
             <ScrollViewer Width="400" Height="500" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" Grid.RowSpan="2" Grid.Column="12">
                 <StackPanel Grid.RowSpan="2" x:Name="Menu" Margin="10"/>
@@ -103,7 +103,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="0.8*"/>
                 <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Image x:Name="GoldChange" Source="\Resources\Images\Resources\gold.png" Width="50" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <Label x:Name="GoldChangeLabel" Grid.Column="1" Height="100" Width="70" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
@@ -135,7 +135,7 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Image  Grid.ColumnSpan="5" Source="\Resources\Images\Menu\move_background.png" Stretch="Fill"/>
+                <Image  Grid.ColumnSpan="5" Source="\Resources\Images\Menu\move_background.png" Stretch="Fill" Margin="10,0,10,0"/>
                 <Button HorizontalAlignment="Left" Style="{StaticResource button_image_style}" Command="{Binding AddUnitCommand}" Height="80" Width="130" Grid.Column="0" Margin="20,0,0,0" Grid.ColumnSpan="2">
                     <TextBlock x:Name="txt_move" Text="Move" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                         <TextBlock.Effect>
@@ -150,7 +150,7 @@
             </Grid>
 
 
-            <Image  Grid.Column="1" Source="\Resources\Images\Menu\produce_background.png" Stretch="Fill"/>
+            <Image  Grid.Column="1" Source="\Resources\Images\Menu\produce_background.png" Stretch="Fill" Margin="10,0,10,0"/>
             <Button x:Name="btn_harvest" Style="{StaticResource button_image_style}" Click="Harvest_Button_Click" Command="{Binding ProduceCommand}" Height="80" Width="220" Grid.Column="1">
                 <TextBlock x:Name="txt_harvest" Text="Harvest" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
@@ -159,7 +159,7 @@
                 </TextBlock>
             </Button>
 
-            <Image  Grid.Column="2" Source="\Resources\Images\Menu\build_background.png" Stretch="Fill"/>
+            <Image  Grid.Column="2" Source="\Resources\Images\Menu\build_background.png" Stretch="Fill" Margin="10,0,10,0"/>
             <Button x:Name="btn_build" Style="{StaticResource button_image_style}" Command="{Binding AddVillageCommand}" Height="80" Width="130" Click="Build_Button_Click" Grid.Column="2" HorizontalAlignment="Left" Margin="40,0,0,0">
                 <TextBlock x:Name="txt_build" Text="Build" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
@@ -168,7 +168,7 @@
                 </TextBlock>
             </Button>
 
-            <Image  Grid.Column="3" Source="\Resources\Images\Menu\upgrade_background.png" Stretch="Fill" />
+            <Image  Grid.Column="3" Source="\Resources\Images\Menu\upgrade_background.png" Stretch="Fill" Margin="10,0,10,0"/>
             <Image  Grid.Column="3"  HorizontalAlignment="Left"/>
             <Image  Grid.Column="3" Stretch="Fill"/>
             <Button Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Height="100" Width="210" Grid.Column="4" HorizontalAlignment="Left" Margin="30,0,0,0">

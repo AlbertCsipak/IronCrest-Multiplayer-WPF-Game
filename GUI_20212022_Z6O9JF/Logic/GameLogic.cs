@@ -379,14 +379,14 @@ namespace GUI_20212022_Z6O9JF.Logic
             Point point = new Point();
             point.X = hexagonTile.Position[0];
             point.Y = hexagonTile.Position[1];
-
             MysteryEvent mysteryEvent = null;
-            if (hexagonTile != null)
+            if (hexagonTile != null && points.Contains(point))
             {
                 //If: Forest, Mountain, WheatField
                 if (hexagonTile.FieldType == FieldType.forest ||
                     hexagonTile.FieldType == FieldType.mountain ||
-                    hexagonTile.FieldType == FieldType.wheat)
+                    hexagonTile.FieldType == FieldType.wheat ||
+                    hexagonTile.FieldType == FieldType.grass)
                 {
                     int rnd = RandomNumber.RandomNumberGenerator(1, 21);
                     if (true && Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
@@ -395,6 +395,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (MysteryEvents.Count() != 0)
                         {
                             mysteryEvent = MysteryEvents.Dequeue();
+                            mysteryEvent.FieldType = hexagonTile.FieldType;
 
                             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
 
@@ -464,7 +465,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             foreach (var item in file)
             {
                 string[] line = item.Split(';');
-                mysteryEventslist.Add(new MysteryEvent(line[0], int.Parse(line[1]), line[2]));
+                mysteryEventslist.Add(new MysteryEvent(line[0], int.Parse(line[1]), line[2], FieldType.grass));
             }
 
             Shuffle(mysteryEventslist);

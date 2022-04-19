@@ -72,6 +72,7 @@
     <None Remove="Resources\Images\Menu\arrow_right.png" />
     <None Remove="Resources\Images\Menu\battlebackground.png" />
     <None Remove="Resources\Images\Menu\board.png" />
+    <None Remove="Resources\Images\Menu\board_long.png" />
     <None Remove="Resources\Images\Menu\border.png" />
     <None Remove="Resources\Images\Menu\brick.jpg" />
     <None Remove="Resources\Images\Menu\brown.jpg" />
@@ -84,12 +85,15 @@
     <None Remove="Resources\Images\Menu\flag.png" />
     <None Remove="Resources\Images\Menu\flag_darken.png" />
     <None Remove="Resources\Images\Menu\flag_disabled.png" />
+    <None Remove="Resources\Images\Menu\forest_background.gif" />
     <None Remove="Resources\Images\Menu\frame.png" />
     <None Remove="Resources\Images\Menu\frame_trans_1.png" />
     <None Remove="Resources\Images\Menu\goldmine_background.png" />
     <None Remove="Resources\Images\Menu\gold_frame.png" />
+    <None Remove="Resources\Images\Menu\grass_background.png" />
     <None Remove="Resources\Images\Menu\hourglassgif.gif" />
     <None Remove="Resources\Images\Menu\main_background.gif" />
+    <None Remove="Resources\Images\Menu\mountain_background.gif" />
     <None Remove="Resources\Images\Menu\move_background.png" />
     <None Remove="Resources\Images\Menu\mystery_background.gif" />
     <None Remove="Resources\Images\Menu\ocean.png" />
@@ -100,6 +104,7 @@
     <None Remove="Resources\Images\Menu\small_board.png" />
     <None Remove="Resources\Images\Menu\trade_background.gif" />
     <None Remove="Resources\Images\Menu\upgrade_background.png" />
+    <None Remove="Resources\Images\Menu\wheat_background.gif" />
     <None Remove="Resources\Images\Other\back.png" />
     <None Remove="Resources\Images\Other\compass.png" />
     <None Remove="Resources\Images\Other\crest_icon.png" />
@@ -328,6 +333,9 @@
     <Content Include="Resources\Images\Menu\board.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\board_long.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\border.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -346,7 +354,16 @@
     <Content Include="Resources\Images\Menu\flag_disabled.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\forest_background.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\gold_frame.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\grass_background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\mountain_background.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\move_background.png">
@@ -365,6 +382,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\upgrade_background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\wheat_background.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Music\money_money_money.mp3">

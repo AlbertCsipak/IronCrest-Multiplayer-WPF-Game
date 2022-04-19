@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -15,6 +16,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IControlLogic controlLogic { get; set; }
         public ICommand OKButtonCommand { get; set; }
         public string MysteryEventDescription { get { return gameLogic.CurrentMystery.Description; } }
+        public FieldType Background { get { return gameLogic.CurrentMystery.FieldType; } }
         public static bool IsInDesignMode
         {
             get
