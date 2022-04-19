@@ -82,9 +82,9 @@
             <Image Source="\Resources\Images\Resources\wheat.png" Width="70" Grid.Column="10"/>
             <Label Content="{Binding Food}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="11"/>
 
-            <StackPanel Width="400" Grid.Column="11" Grid.ColumnSpan="3" Margin="97,0,208,-300">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
-                    <StackPanel Grid.Row="4" Grid.RowSpan="1" x:Name="Menu" Margin="0"/>
+            <StackPanel Background="Purple" Width="400" Grid.Column="12" Grid.ColumnSpan="1" Margin="0,0,0,-300">
+                <ScrollViewer HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="380" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+                    <StackPanel HorizontalAlignment="Left"  x:Name="Menu" Margin="0"/>
                 </ScrollViewer>
             </StackPanel>
             <Image Source="\Resources\Images\Menu\brick.jpg" Grid.ColumnSpan="2" Grid.Column="13" Stretch="Fill" Margin="10"/>
