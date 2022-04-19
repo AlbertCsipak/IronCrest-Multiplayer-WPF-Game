@@ -66,6 +66,7 @@
     <None Remove="Resources\Images\Map\wheat.png" />
     <None Remove="Resources\Images\Menu\arrow_left.png" />
     <None Remove="Resources\Images\Menu\arrow_right.png" />
+    <None Remove="Resources\Images\Menu\battlebackground.png" />
     <None Remove="Resources\Images\Menu\board.png" />
     <None Remove="Resources\Images\Menu\border.png" />
     <None Remove="Resources\Images\Menu\build_background.jpg" />
@@ -297,6 +298,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\arrow_right.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\battlebackground.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\board.png">
