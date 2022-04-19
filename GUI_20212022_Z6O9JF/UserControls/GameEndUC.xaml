@@ -11,6 +11,6 @@
         <vm:GameEndViewModel></vm:GameEndViewModel>
     </UserControl.DataContext>
     <Grid>
-        <Image Source="\Resources\Images\Menu\ending_background.png"></Image>
+        <Image Source="\Resources\Images\Menu\ending_background.png" Stretch="Fill"></Image>
     </Grid>
 </UserControl>

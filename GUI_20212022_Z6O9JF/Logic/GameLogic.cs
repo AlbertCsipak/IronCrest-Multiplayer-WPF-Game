@@ -534,9 +534,9 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             return curr_quests;
         }
-        public void IsQuestDone()
+        public bool IsQuestDone()
         {
-            ;
+            bool IsQuestDone = false;
             foreach (var item in Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests)
             {
                 switch (item.Id)
@@ -545,36 +545,42 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (!Quests.Where(x => x.Id == 1).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Villages.Count >= 3)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 1).FirstOrDefault().Done = true;
+                            IsQuestDone = true;
                         }
                         break;
                     case 2:
                         if (!Quests.Where(x => x.Id == 2).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().ArmyPower >= 15)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 2).FirstOrDefault().Done = true;
+                            IsQuestDone = true;
                         }
                         break;
                     case 3:
                         if (!Quests.Where(x => x.Id == 3).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Popularity >= 12)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 3).FirstOrDefault().Done = true;
+                            IsQuestDone = true;
                         }
                         break;
                     case 4:
                         if (!Quests.Where(x => x.Id == 4).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().BattlesWon >= 3)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 4).FirstOrDefault().Done = true;
+                            IsQuestDone = true;
                         }
                         break;
                     case 5:
                         if (!Quests.Where(x => x.Id == 5).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Heroes.Count == 2)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 5).FirstOrDefault().Done = true;
+                            IsQuestDone = true;
                         }
                         break;
                     case 6:
                         if (!Quests.Where(x => x.Id == 6).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Gold >= 20)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 6).FirstOrDefault().Done = true;
+                            IsQuestDone = true;
                         }
                         break;
                     case 7:
@@ -585,6 +591,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 if (village.Level==3)
                                 {
                                     Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 7).FirstOrDefault().Done = true;
+                                    IsQuestDone = true;
                                 }
                             }
                         }
@@ -593,22 +600,26 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (!Quests.Where(x => x.Id == 8).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Units.Count >= 7)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 8).FirstOrDefault().Done = true;
+                            IsQuestDone = true;
                         }
                         break;
                     case 9:
                         if (!Quests.Where(x => x.Id == 9).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().HasEnteredGoldMine)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 9).FirstOrDefault().Done = true;
+                            IsQuestDone = true;
                         }
                         break;
                     case 10:
                         if (!Quests.Where(x => x.Id == 10).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().NumOfTradesMade >= 3)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 10).FirstOrDefault().Done = true;
+                            IsQuestDone = true;
                         }
                         break;
                 }
             }
+            return IsQuestDone;
         }
 
         public void AddUnit()
