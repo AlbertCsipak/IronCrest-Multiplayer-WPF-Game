@@ -8,11 +8,11 @@
              mc:Ignorable="d">
     <Grid>
     <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" Padding="37 14" FontSize="15" Foreground="White" />
-        <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" IsExpanded="False" Width="350" HorizontalAlignment="Right" Background="#FF2C2E46" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="30" Foreground="White">
+        <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" IsExpanded="False" Width="350" HorizontalAlignment="Right" Background="#FF2C2E46" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="40" Foreground="White">
             <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Background="#FF2C2E46" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
         <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="quest_desc" Text="{Binding Path=Element.Name}" Background="Transparent" Foreground="White" FontSize="30" Padding="10 5">
+                        <TextBlock x:Name="quest_desc" Text="{Binding Path=Element.Name}" Background="Transparent" Foreground="White" FontSize="40" Padding="10 5">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Style.Triggers>

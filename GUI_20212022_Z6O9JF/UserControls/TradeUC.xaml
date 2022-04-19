@@ -23,30 +23,47 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="12*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Image gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\trade_background.gif" Grid.RowSpan="6" Grid.ColumnSpan="3" Stretch="Fill"/>
         <Image Source="\Resources\Images\Menu\frame.png" Grid.RowSpan="6" Grid.ColumnSpan="3" Stretch="Fill"/>
-        <Image Source="\Resources\Images\Menu\button_board.png" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5"/>
-        <Image Source="\Resources\Images\Menu\board.png" Grid.Column="1" Grid.Row="1"/>
-        
-        <Label Content="Trading point" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Image x:Name="flag1_img" Source="\Resources\Images\Menu\flag_darken.png" Grid.Column="1" Grid.Row="2" Stretch="Fill"/>
-        <CheckBox x:Name="check1" Grid.Row="2" Grid.Column="1" Margin="10" Click="check1_Click" VerticalContentAlignment="Center">
-            <TextBlock Padding="20" Text="{Binding Option1.Text}" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)"></TextBlock>
-        </CheckBox>
-        <Image x:Name="flag2_img" Source="\Resources\Images\Menu\flag_darken.png" Grid.Column="1" Grid.Row="3" Stretch="Fill"/>
-        <CheckBox x:Name="check2" Grid.Row="3" Grid.Column="1" Margin="10" FontFamily="\Resources\#8-bit Limit (BRK)" Click="check1_Click" VerticalContentAlignment="Center">
-            <TextBlock Padding="20" Text="{Binding Option2.Text}" FontSize="30"></TextBlock>
-        </CheckBox>
-        <Image x:Name="flag3_img" Source="\Resources\Images\Menu\flag_darken.png" Grid.Column="1" Grid.Row="4" Stretch="Fill"/>
-        <CheckBox x:Name="check3" Grid.Row="4" Grid.Column="1" Margin="10" FontFamily="\Resources\#8-bit Limit (BRK)" Click="check1_Click" VerticalContentAlignment="Center">
-            <TextBlock Padding="20" Text="{Binding Option3.Text}" FontSize="30"></TextBlock>
-        </CheckBox>
-        <Button Style="{StaticResource button_image_style}" Grid.Row="5" Grid.Column="1" Width="140" Height="40" Command="{Binding ChooseOffer}" Click="Button_Click_1" Content="Choose!" FontSize="40" FontFamily="\Resources\#8-bit Limit (BRK)">
-
-        </Button>
+        <Viewbox Grid.Column="1" Grid.RowSpan="6">
+            <Image Source="\Resources\Images\Menu\button_board.png"  Grid.RowSpan="5"/>
+        </Viewbox>
+        <Viewbox  Grid.Column="1" Grid.Row="1">
+            <Image Source="\Resources\Images\Menu\board.png"/>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="1">
+            <Label Content="Trading point" FontSize="12" FontFamily="\Resources\#8-bit Limit (BRK)"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="2">
+            <Image x:Name="flag1_img" Source="\Resources\Images\Menu\flag_darken.png" Stretch="Fill" Width="700"/>
+        </Viewbox>
+        <Viewbox Grid.Row="2" Grid.Column="1">
+            <CheckBox x:Name="check1" Margin="10" Click="check1_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                <TextBlock Padding="20" Text="{Binding Option1.Text}" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" TextWrapping="Wrap"></TextBlock>
+            </CheckBox>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="3">
+            <Image x:Name="flag2_img" Source="\Resources\Images\Menu\flag_darken.png" Stretch="Fill"/>
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="1">
+            <CheckBox x:Name="check2" Margin="10" Click="check1_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                <TextBlock Padding="20" Text="{Binding Option2.Text}" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" TextWrapping="Wrap"></TextBlock>
+            </CheckBox>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="4">
+            <Image x:Name="flag3_img" Source="\Resources\Images\Menu\flag_darken.png" Stretch="Fill"/>
+        </Viewbox>
+        <Viewbox Grid.Row="4" Grid.Column="1">
+            <CheckBox x:Name="check3" Margin="10" Click="check1_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+                <TextBlock Padding="20" Text="{Binding Option3.Text}" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" TextWrapping="Wrap"></TextBlock>
+            </CheckBox>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="1">
+            <Button Style="{StaticResource button_image_style}"  Width="140" Height="40" Command="{Binding ChooseOffer}" Click="Button_Click_1" Content="Choose!" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+        </Viewbox>
     </Grid>
     
 </UserControl>

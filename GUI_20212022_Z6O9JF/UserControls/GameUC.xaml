@@ -81,12 +81,12 @@
             <Image Source="\Resources\Images\Menu\border.png" Grid.Column="10" Grid.ColumnSpan="2" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Resources\wheat.png" Width="70" Grid.Column="10"/>
             <Label Content="{Binding Food}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="11"/>
-
-            <StackPanel Width="400" Grid.Column="11" Grid.ColumnSpan="3" Margin="97,0,208,-300">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+            <Viewbox Grid.Column="12">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" MinWidth="690">
                     <StackPanel Grid.Row="4" Grid.RowSpan="1" x:Name="Menu" Margin="0"/>
                 </ScrollViewer>
-            </StackPanel>
+            </Viewbox>
+            
             <Image Source="\Resources\Images\Menu\brick.jpg" Grid.ColumnSpan="2" Grid.Column="13" Stretch="Fill" Margin="10"/>
             <Image Source="\Resources\Images\Menu\border.png" Grid.Column="13" Grid.ColumnSpan="2" Stretch="Fill" Margin="10"/>
             <TextBlock Text="{Binding CanSend, Converter={StaticResource turnconverter}}" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="13" Grid.Row="0" TextWrapping="Wrap" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="#EE4B2B" Width="200" Height="100" FontSize="50" Background="Transparent"></TextBlock>

@@ -742,6 +742,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         }
                         else
                         {
+                            //battle
                             var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
                             if (enemy != null)
                             {
