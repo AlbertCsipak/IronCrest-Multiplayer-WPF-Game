@@ -38,12 +38,18 @@ namespace GUI_20212022_Z6O9JF.UserControls
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
             player = gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
             player.ResourceChanges.CollectionChanged += ResourceChanges_CollectionChanged;
-            PopChange.Opacity = 0;
+            HeartChange.Opacity = 0;
+            HeartChangeLabel.Opacity = 0;
             ArmyPowerChange.Opacity = 0;
+            ArmyPowerChangeLabel.Opacity = 0;
             WoodChange.Opacity = 0;
+            WoodChangeLabel.Opacity = 0;
             StoneChange.Opacity = 0;
+            StoneChangeLabel.Opacity = 0;
             FoodChange.Opacity = 0;
+            FoodChangeLabel.Opacity = 0;
             GoldChange.Opacity = 0;
+            GoldChangeLabel.Opacity = 0;
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(33);
 
@@ -167,29 +173,35 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             //ResourceChanges
             double OpacityChanging = 0.05;
-            if (PopChange.Opacity >= 0)
+            if (HeartChange.Opacity >= 0)
             {
-                PopChange.Opacity -= OpacityChanging;
+                HeartChange.Opacity -= OpacityChanging;
+                HeartChangeLabel.Opacity -= OpacityChanging;
             }
             if (ArmyPowerChange.Opacity >= 0)
             {
                 ArmyPowerChange.Opacity -= OpacityChanging;
+                ArmyPowerChangeLabel.Opacity -= OpacityChanging;
             }
             if (WoodChange.Opacity >= 0)
             {
                 WoodChange.Opacity -= OpacityChanging;
+                WoodChangeLabel.Opacity -= OpacityChanging;
             }
             if (StoneChange.Opacity >= 0)
             {
                 StoneChange.Opacity -= OpacityChanging;
+                StoneChangeLabel.Opacity -= OpacityChanging;
             }
             if (FoodChange.Opacity >= 0)
             {
                 FoodChange.Opacity -= OpacityChanging;
+                FoodChangeLabel.Opacity -= OpacityChanging;
             }
             if (GoldChange.Opacity >= 0)
             {
                 GoldChange.Opacity -= OpacityChanging;
+                GoldChangeLabel.Opacity -= OpacityChanging;
             }
             //MissingResource Changes
 
@@ -202,16 +214,17 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 if (player.ResourceChanges[0] != 0)
                 {
                     //POP
-                    ;
-                    PopChange.Opacity = 1;
+                    HeartChange.Opacity = 1;
+                    HeartChangeLabel.Opacity = 1;
                     string s = player.ResourceChanges[0] > 0 ? "+" : "";
-                    PopChangeLabel.Content = s + player.ResourceChanges[0];
+                    HeartChangeLabel.Content = s + player.ResourceChanges[0];
                     player.ResourceChanges[0] = 0;
                 }
                 if (player.ResourceChanges[1] != 0)
                 {
                     //ArmyPower
                     ArmyPowerChange.Opacity = 1;
+                    ArmyPowerChangeLabel.Opacity = 1;
                     string s = player.ResourceChanges[1] > 0 ? "+" : "";
                     ArmyPowerChangeLabel.Content = s + player.ResourceChanges[1];
                     player.ResourceChanges[1] = 0;
@@ -220,6 +233,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Wood
                     WoodChange.Opacity = 1;
+                    WoodChangeLabel.Opacity = 1;
                     string s = player.ResourceChanges[2] > 0 ? "+" : "";
                     WoodChangeLabel.Content = s + player.ResourceChanges[2];
                     player.ResourceChanges[2] = 0;
@@ -228,6 +242,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Stone
                     StoneChange.Opacity = 1;
+                    StoneChangeLabel.Opacity = 1;
                     string s = player.ResourceChanges[3] > 0 ? "+" : "";
                     StoneChangeLabel.Content = s + player.ResourceChanges[3];
                     player.ResourceChanges[3] = 0;
@@ -236,6 +251,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Food
                     FoodChange.Opacity = 1;
+                    FoodChangeLabel.Opacity = 1;
                     string s = player.ResourceChanges[4] > 0 ? "+" : "";
                     FoodChangeLabel.Content = s + player.ResourceChanges[4];
                     player.ResourceChanges[4] = 0;
@@ -244,6 +260,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     //Gold
                     GoldChange.Opacity = 1;
+                    GoldChangeLabel.Opacity = 1;
                     string s = player.ResourceChanges[5] > 0 ? "+" : "";
                     GoldChangeLabel.Content = s + player.ResourceChanges[5];
                     player.ResourceChanges[5] = 0;

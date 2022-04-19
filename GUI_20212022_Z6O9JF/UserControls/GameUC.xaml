@@ -7,6 +7,7 @@
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:converter="clr-namespace:GUI_20212022_Z6O9JF.Converters"
              xmlns:renderer="clr-namespace:GUI_20212022_Z6O9JF.Renderer"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Loaded="UserControl_Loaded" KeyDown="UserControl_KeyDown">
@@ -24,37 +25,85 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Image x:Name="background" Grid.RowSpan="3" Grid.ColumnSpan="3" Source="\Resources\Images\Map\blue_background.png" Stretch="Fill"/>
+        <Image x:Name="background" Grid.RowSpan="4" Grid.ColumnSpan="3" Source="\Resources\Images\Map\blue_background.png" Stretch="Fill"/>
 
-        <ContentControl x:Name="goldmine_control" Grid.ColumnSpan="3" Grid.RowSpan="3" Content="{Binding GoldMineView}">
+        <ContentControl x:Name="goldmine_control" Grid.ColumnSpan="3" Grid.RowSpan="4" Content="{Binding GoldMineView}">
 
         </ContentControl>
-        <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3" >
+        <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" >
             <renderer:Display x:Name="display"/>
         </Grid>
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="\Resources\Images\Resources\gold.png" Width="70" Grid.Column="0"/>
+            <Label Content="{Binding Gold}" Grid.Column="1" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
+            <Image Source="\Resources\Images\Resources\heart.png" Width="90" Grid.Column="2"/>
+            <Label Content="{Binding Popularity}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="3"/>
+            <Image Source="\Resources\Images\Resources\sword.png" Width="100" Grid.Column="4"/>
+            <Label Content="{Binding ArmyPower}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="5"/>
+            <Image Source="\Resources\Images\Resources\log.png" Width="130" Grid.Column="6"/>
+            <Label Content="{Binding Wood}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="7"/>
+            <Image x:Name="stone" Source="\Resources\Images\Resources\stone.png" Width="120" Grid.Column="8"/>
+            <Label Content="{Binding Stone}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="9"/>
+            <Image Source="\Resources\Images\Resources\wheat.png" Width="110" Grid.Column="10"/>
+            <Label Content="{Binding Food}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="11"/>
+            <ComboBox ItemsSource="{Binding Quests}" Height="60" Width="100" Text="Quests" FontSize="30" FontFamily="Poor Richard" Grid.Column="12"/>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2" Margin="20">
-            <Image Source="\Resources\Images\Resources\heart.png" Width="90" />
-            <Label Content="{Binding Popularity}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-            <Image Source="\Resources\Images\Resources\sword.png" Width="100"/>
-            <Label Content="{Binding ArmyPower}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-            <Image Source="\Resources\Images\Resources\log.png" Width="140"/>
-            <Label Content="{Binding Wood}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-            <Image x:Name="stone" Source="\Resources\Images\Resources\stone.png" Width="130"/>
-            <Label Content="{Binding Stone}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-            <Image Source="\Resources\Images\Resources\wheat.png" Width="110"/>
-            <Label Content="{Binding Food}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-            <!--<ComboBox ItemsSource="{Binding Quests}" Height="60" Width="100" Text="Quests" FontSize="30" FontFamily="Poor Richard" Grid.Column="1">-->
-
-            <Label Content="{Binding CanSend}" Grid.Column="1" Grid.Row="0" Foreground="Red" Width="200" Height="100" FontSize="50" Background="Transparent"></Label>
-        </StackPanel>
-
+            <Label Content="{Binding CanSend}" Grid.Column="13" Grid.Row="0" Foreground="Red" Width="200" Height="100" FontSize="50" Background="Transparent"></Label>
+        </Grid>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.8*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="GoldChange" Source="\Resources\Images\Resources\gold.png" Width="50" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Label x:Name="GoldChangeLabel" Grid.Column="1" Height="100" Width="70" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Image x:Name="HeartChange" Grid.Column="2" Source="\Resources\Images\Resources\heart.png" Width="65"/>
+            <Label x:Name="HeartChangeLabel" Grid.Column="3" Height="63" Width="100" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+            <Image x:Name="ArmyPowerChange" Grid.Column="4" Source="\Resources\Images\Resources\sword.png" Width="35"/>
+            <Label x:Name="ArmyPowerChangeLabel" Grid.Column="5" Height="63" Width="100" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+            <Image x:Name="WoodChange" Grid.Column="6" Source="\Resources\Images\Resources\log.png" Width="105"/>
+            <Label x:Name="WoodChangeLabel" Grid.Column="7" Height="63" Width="100" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+            <Image x:Name="StoneChange" Grid.Column="8" Source="\Resources\Images\Resources\stone.png" Width="90"/>
+            <Label x:Name="StoneChangeLabel" Grid.Column="9" Height="63" Width="100" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+            <Image x:Name="FoodChange" Grid.Column="10" Source="\Resources\Images\Resources\wheat.png" Width="69"/>
+            <Label x:Name="FoodChangeLabel" Grid.Column="11" Height="63" Width="100" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+        </Grid>
+        
         <!-- Resources changed -->
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Margin="32,0,20,20">
+        <!--<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Margin="32,154,20,20" Grid.RowSpan="3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -115,15 +164,7 @@
             </Grid>
         </StackPanel>
 
-        <Grid Grid.Row="0" Grid.Column="2" Margin="-20,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Image Source="\Resources\Images\Resources\gold.png" Width="70" Grid.Column="0"/>
-            <Label Content="{Binding Gold}" Grid.Column="1" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-        </Grid>
-        <Grid  x:Name="GoldChange" Grid.Row="1" Grid.Column="2" Margin="-20,0,20,20" MinWidth="150">
+        <Grid  x:Name="GoldChange" Grid.Column="1" Margin="1496,154,20,20" MinWidth="150" Grid.ColumnSpan="2" Grid.RowSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -134,20 +175,18 @@
             </Grid.RowDefinitions>
             <Image Source="\Resources\Images\Resources\gold.png" Width="50" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Label x:Name="GoldChangeLabel" Grid.Column="1" Height="100" Width="70" FontSize="45" FontFamily="\Resources\#8-bit Limit (BRK)" Margin="0,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        </Grid>
+        </Grid>-->
 
-        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Margin="20">
 
-        </StackPanel>
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="379*"/>
-                <ColumnDefinition Width="32*"/>
-                <ColumnDefinition Width="347*"/>
-                <ColumnDefinition Width="379*"/>
-                <ColumnDefinition Width="379*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Margin="0,0,32,0">
+            <Grid Grid.Column="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="1*"/>
@@ -170,8 +209,8 @@
             </Grid>
 
 
-            <Image  Grid.Column="1" Source="\Resources\Images\Menu\produce_background.png" Stretch="Fill" Grid.ColumnSpan="2"/>
-            <Button x:Name="btn_harvest" Style="{StaticResource button_image_style}" Click="Harvest_Button_Click" Command="{Binding ProduceCommand}" Height="80" Width="220" Grid.Column="2" BorderThickness="1,1,1,1" Margin="47,37,80,37">
+            <Image  Grid.Column="1" Source="\Resources\Images\Menu\produce_background.png" Stretch="Fill"/>
+            <Button x:Name="btn_harvest" Style="{StaticResource button_image_style}" Click="Harvest_Button_Click" Command="{Binding ProduceCommand}" Height="80" Width="220" Grid.Column="1">
                 <TextBlock x:Name="txt_harvest" Text="Harvest" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
@@ -179,8 +218,8 @@
                 </TextBlock>
             </Button>
 
-            <Image  Grid.Column="3" Source="\Resources\Images\Menu\build_background.png" Stretch="Fill"/>
-            <Button x:Name="btn_build" Style="{StaticResource button_image_style}" Command="{Binding AddVillageCommand}" Height="80" Width="130" Click="Build_Button_Click" Grid.Column="3" HorizontalAlignment="Left" Margin="40,40,0,34">
+            <Image  Grid.Column="2" Source="\Resources\Images\Menu\build_background.png" Stretch="Fill"/>
+            <Button x:Name="btn_build" Style="{StaticResource button_image_style}" Command="{Binding AddVillageCommand}" Height="80" Width="130" Click="Build_Button_Click" Grid.Column="2" HorizontalAlignment="Left" Margin="40,0,0,0">
                 <TextBlock x:Name="txt_build" Text="Build" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
@@ -188,10 +227,10 @@
                 </TextBlock>
             </Button>
 
-            <Image  Grid.Column="4" Source="\Resources\Images\Menu\upgrade_background.png" Stretch="Fill" />
-            <Image  Grid.Column="4" Source="{Binding Faction}" HorizontalAlignment="Left" Margin="379,0,0,0"/>
-            <Image  Grid.Column="4" Source="{Binding Faction}" Stretch="Fill" Margin="10,0,10,0"/>
-            <Button Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Height="100" Width="210" Grid.Column="4" HorizontalAlignment="Left" Margin="30,30,0,24">
+            <Image  Grid.Column="3" Source="\Resources\Images\Menu\upgrade_background.png" Stretch="Fill" />
+            <Image  Grid.Column="3"  HorizontalAlignment="Left"/>
+            <Image  Grid.Column="3" Stretch="Fill"/>
+            <Button Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Height="100" Width="210" Grid.Column="4" HorizontalAlignment="Left" Margin="30,0,0,0">
                 <TextBlock Text="Upgrade" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
@@ -199,7 +238,7 @@
                 </TextBlock>
             </Button>
         </Grid>
-        <Grid Grid.Row="2" Grid.Column="0">
+        <Grid Grid.Row="3" Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -207,8 +246,8 @@
             <Image x:Name="hourglass_gif" Grid.Column="0" Stretch="Fill"/>
             <Label Grid.Column="1" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="90" FontFamily="\Resources\#8-bit Limit (BRK)" Content="{Binding Timer}" Foreground="SaddleBrown"></Label>
         </Grid>
-        <Button Style="{StaticResource button_image_style}" Command="{Binding SkipTurnCommand}" Grid.Column="2" Grid.Row="2" Width="260" Height="160" Background="Transparent" Click="Button_Click" >
-            <Image x:Name="skip_image" Source="\Resources\Images\Menu\skip_button_unpressed.png" Width="220" Height="130">
+        <Button Style="{StaticResource button_image_style}" Command="{Binding SkipTurnCommand}" Grid.Column="2" Grid.Row="3" Width="140" Height="100" Background="Transparent" Click="Button_Click" >
+            <Image x:Name="skip_image" Source="\Resources\Images\Menu\skip_button_unpressed.png" Width="130" Height="100">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Style.Triggers>
@@ -224,7 +263,7 @@
                 </Image.Style>
             </Image>
         </Button>
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Grid.ColumnSpan="3" Margin="202,154,202,154" Grid.RowSpan="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="4*"/>
