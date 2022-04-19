@@ -7,25 +7,29 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <Grid>
-    <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" Padding="37 14" FontSize="15" Foreground="White" />
-        <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" IsExpanded="False" Width="350" HorizontalAlignment="Right" Background="#FF2C2E46" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="40" Foreground="White">
+        <Viewbox>
+            <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" Padding="37 14" FontSize="15" Foreground="White" />
+        </Viewbox>
+        <Viewbox>
+        <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" IsExpanded="False" Width="550" HorizontalAlignment="Right" Background="#FF2C2E46" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="40" Foreground="White">
             <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Background="#FF2C2E46" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-        <ListView.ItemTemplate>
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="quest_desc" Text="{Binding Path=Element.Name}" Background="Transparent" Foreground="White" FontSize="40" Padding="10 5">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Path=Element.Done}" Value="True">
-                                            <Setter Property="TextBlock.TextDecorations" Value="Strikethrough" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                    </DataTemplate>
+                            <TextBlock x:Name="quest_desc" Text="{Binding Path=Element.Name}" Background="Transparent" Foreground="White" FontSize="40" Padding="20 5" TextWrapping="Wrap">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Element.Done}" Value="True">
+                                                <Setter Property="TextBlock.TextDecorations" Value="Strikethrough" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
     </Expander>
-  </Grid>
+    </Viewbox>
+    </Grid>
 </UserControl>
