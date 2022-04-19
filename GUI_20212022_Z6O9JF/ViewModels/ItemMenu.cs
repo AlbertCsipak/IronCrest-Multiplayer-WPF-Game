@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using GUI_20212022_Z6O9JF.Models;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace GUI_20212022_Z6O9JF.ViewModel
 {
     public class ItemMenu
     {
-        public ItemMenu(string header, List<SubItem> subItems, PackIconKind icon)
+        public ItemMenu(string header, List<SubItem<Quest>> subItems, PackIconKind icon)
         {
             Header = header;
             SubItems = subItems;
@@ -26,7 +27,7 @@ namespace GUI_20212022_Z6O9JF.ViewModel
 
         public string Header { get; private set; }
         public PackIconKind Icon { get; private set; }
-        public List<SubItem> SubItems { get; private set; }
+        public List<SubItem<Quest>> SubItems { get; private set; }
         public UserControl Screen { get; private set; }
     }
 }

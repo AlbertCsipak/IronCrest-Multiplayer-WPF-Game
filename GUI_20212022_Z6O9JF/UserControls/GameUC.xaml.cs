@@ -31,7 +31,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         DispatcherTimer dt;
         bool IsResourceChanged;
         Player player;
-        List<SubItem> quests;
+        List<SubItem<Quest>> quests;
         public GameUC()
         {
             InitializeComponent();
@@ -56,10 +56,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
             GoldChangeLabel.Opacity = 0;
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(33);
-            quests = new List<SubItem>();
-            quests.Add(new SubItem(player.Quests.ElementAt(0).Name.ToString()));
-            quests.Add(new SubItem(player.Quests.ElementAt(1).Name.ToString()));
-            quests.Add(new SubItem(player.Quests.ElementAt(2).Name.ToString()));
+            quests = new List<SubItem<Quest>>();
+            quests.Add(new SubItem<Quest>(player.Quests.ElementAt(0)));
+            quests.Add(new SubItem<Quest>(player.Quests.ElementAt(1)));
+            quests.Add(new SubItem<Quest>(player.Quests.ElementAt(2)));
             var itemQuest = new ItemMenu("Quests", quests, PackIconKind.ViewDashboard);
             Menu.Children.Add(new UserControlMenuItem(itemQuest));
 

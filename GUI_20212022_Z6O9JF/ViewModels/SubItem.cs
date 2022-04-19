@@ -2,14 +2,15 @@
 
 namespace GUI_20212022_Z6O9JF.ViewModel
 {
-    public class SubItem
+    public class SubItem<T>
     {
-        public SubItem(string name, UserControl screen = null)
+        public SubItem(T element, UserControl screen = null)
         {
-            Name = name;
+            Element = element;
             Screen = screen;
         }
-        public string Name { get; private set; }
+
+        public T Element { get; private set; }
         public UserControl Screen { get; private set; }
     }
 }

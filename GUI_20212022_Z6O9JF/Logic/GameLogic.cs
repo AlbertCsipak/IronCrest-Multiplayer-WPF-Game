@@ -546,13 +546,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                         }
                         break;
                     case 2:
-                        if (!Quests.Where(x => x.Id == 2).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().ArmyPower == 15)
+                        if (!Quests.Where(x => x.Id == 2).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().ArmyPower >= 15)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 2).FirstOrDefault().Done = true;
                         }
                         break;
                     case 3:
-                        if (!Quests.Where(x => x.Id == 3).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Popularity == 12)
+                        if (!Quests.Where(x => x.Id == 3).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Popularity >= 12)
                         {
                             Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 3).FirstOrDefault().Done = true;
                         }

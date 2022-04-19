@@ -11,9 +11,20 @@
         <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" IsExpanded="False" Width="350" HorizontalAlignment="Right" Background="#FF2C2E46" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="30" Foreground="White">
             <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=SubItems}" Background="#FF2C2E46" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
         <ListView.ItemTemplate>
-          <DataTemplate>
-            <TextBlock Text="{Binding Path=Name}" Background="Transparent" Foreground="White" FontSize="30" Padding="10 5"/>
-          </DataTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="quest_desc" Text="{Binding Path=Element.Name}" Background="Transparent" Foreground="White" FontSize="30" Padding="10 5">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Style.Triggers>
+                                        <!-- Here is how we bind to another control's property -->
+                                        <DataTrigger Binding="{Binding Path=Element.Done}" Value="True">
+                                            <Setter Property="TextBlock.TextDecorations" Value="Strikethrough" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
     </Expander>

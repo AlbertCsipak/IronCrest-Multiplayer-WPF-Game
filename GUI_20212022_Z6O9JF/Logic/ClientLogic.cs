@@ -259,12 +259,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Trade = null,
                         HasEnteredGoldMine = false
                     };
-                    player.SetupGold(10);
+                    player.SetupGold(20);
                     //player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
-                    player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
-                    player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
-                    player.SetupStone(10);
-                    player.SetupWood(10);
+                    //player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
+                    //player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
+                    player.SetupArmyPower(20);
+                    player.SetupPopulatiry(20);
+                    player.SetupStone(30);
+                    player.SetupWood(30);
                     player.SetupWheat(10);
                     gameLogic.Players.Add(player);
 
