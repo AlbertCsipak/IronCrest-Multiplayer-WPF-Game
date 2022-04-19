@@ -4,15 +4,7 @@
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <!--<ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.LightBlue.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>-->
-        
+
         <SolidColorBrush Color="#B3C8B7" x:Key="greenish_blue"/>
         <SolidColorBrush Color="#65424b" x:Key="purple"/>
         

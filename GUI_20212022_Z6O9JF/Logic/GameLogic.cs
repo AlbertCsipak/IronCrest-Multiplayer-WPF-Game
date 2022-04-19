@@ -374,6 +374,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void MysteryBoxEvent(HexagonTile hexagonTile)
         {
+            ;
             Point[] points = SelectedHexagonTile.NeighborCoords();
             Point point = new Point();
             point.X = hexagonTile.Position[0];
@@ -535,6 +536,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void IsQuestDone()
         {
+            ;
             foreach (var item in Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests)
             {
                 switch (item.Id)
@@ -576,9 +578,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                         }
                         break;
                     case 7:
-                        if (!Quests.Where(x => x.Id == 7).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Villages.Any(x => x.Level == 3))
+                        if (!Quests.Where(x => x.Id == 7).FirstOrDefault().Done)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 7).FirstOrDefault().Done = true;
+                            foreach (var village in Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Villages)
+                            {
+                                if (village.Level==3)
+                                {
+                                    Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 7).FirstOrDefault().Done = true;
+                                }
+                            }
                         }
                         break;
                     case 8:
@@ -602,6 +610,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
             }
         }
+
         public void AddUnit()
         {
             if (SelectedHexagonTile != null)

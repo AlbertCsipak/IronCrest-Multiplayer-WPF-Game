@@ -216,6 +216,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 View = new GoldMineUC();
             }
+            else if (view.Equals("ending"))
+            {
+                View = new GameEndUC();
+            }
             else if (view.Equals("lobby") && socketClient.ClientId != 0)
             {
                 View = new LobbyUC();
@@ -225,6 +229,14 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void EnterGoldMine()
         {
             GoldMineViewChange("goldmine");
+        }
+        public void IsAllQuestsDone()
+        {
+            var player = gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault();
+            if (player.Quests.ElementAt(0).Done && player.Quests.ElementAt(1).Done && player.Quests.ElementAt(2).Done)
+            {
+                ChangeView("ending");
+            }
         }
         public void ChampSelect(Faction faction, string name)
         {
@@ -259,14 +271,12 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Trade = null,
                         HasEnteredGoldMine = false
                     };
-                    player.SetupGold(20);
+                    player.SetupGold(10);
                     //player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
-                    //player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
-                    //player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
-                    player.SetupArmyPower(20);
-                    player.SetupPopulatiry(20);
-                    player.SetupStone(30);
-                    player.SetupWood(30);
+                    player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
+                    player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
+                    player.SetupStone(10);
+                    player.SetupWood(10);
                     player.SetupWheat(10);
                     gameLogic.Players.Add(player);
 

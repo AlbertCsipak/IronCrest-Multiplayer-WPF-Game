@@ -20,6 +20,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         void EnterGoldMine();
         void ESCChange(string view);
         void GoldMineViewChange(string view);
+        void IsAllQuestsDone();
         void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1");
         void MysteryButtonOK();
         void MysteryViewChange(string view);

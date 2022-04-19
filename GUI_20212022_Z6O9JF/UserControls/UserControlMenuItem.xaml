@@ -16,7 +16,6 @@
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
                                     <Style.Triggers>
-                                        <!-- Here is how we bind to another control's property -->
                                         <DataTrigger Binding="{Binding Path=Element.Done}" Value="True">
                                             <Setter Property="TextBlock.TextDecorations" Value="Strikethrough" />
                                         </DataTrigger>

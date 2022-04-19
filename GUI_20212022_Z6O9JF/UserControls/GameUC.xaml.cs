@@ -65,8 +65,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
             dt.Tick += (sender, eventargs) =>
             {
+
                 SetMovePictures();
                 gameLogic.IsQuestDone();
+                clientLogic.IsAllQuestsDone();
                 ResourceChanging();
                 OpacityDefault();
                 if (clientLogic.Timer == 60)
@@ -276,20 +278,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 }
 
             }
-
-
-            //if (PopChange.Opacity <= 0)
-            //{
-            //    IsResourceChanged = false;
-            //    PopChange.Opacity = 1;
-            //}
-
-
-
-            //if (!clientLogic.CanSend)
-            //{
-            //    skip_image.Visibility = Visibility.Hidden;
-            //}
         }
 
         private void ResourceChanges_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
