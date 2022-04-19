@@ -48,9 +48,8 @@
             <Label Content="{Binding Stone}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             <Image Source="\Resources\Images\Resources\wheat.png" Width="110"/>
             <Label Content="{Binding Food}" Height="100" Width="70" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
-            <ComboBox ItemsSource="{Binding Quests}" Height="60" Width="100" Text="Quests" FontSize="30" FontFamily="Poor Richard" Grid.Column="1">
+            <!--<ComboBox ItemsSource="{Binding Quests}" Height="60" Width="100" Text="Quests" FontSize="30" FontFamily="Poor Richard" Grid.Column="1">-->
 
-            </ComboBox>
             <Label Content="{Binding CanSend}" Grid.Column="1" Grid.Row="0" Foreground="Red" Width="200" Height="100" FontSize="50" Background="Transparent"></Label>
         </StackPanel>
 
@@ -157,8 +156,8 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Image  Grid.ColumnSpan="5" Source="\Resources\Images\Menu\move_background.png" Stretch="Fill"/>
-                <Button HorizontalAlignment="Left" Style="{StaticResource button_image_style}" Command="{Binding AddUnitCommand}" Height="80" Width="120" Grid.Column="0" Margin="10,0,0,0" Grid.ColumnSpan="2">
-                    <TextBlock Text="Move" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="50" Foreground="{StaticResource greenish_blue}" >
+                <Button HorizontalAlignment="Left" Style="{StaticResource button_image_style}" Command="{Binding AddUnitCommand}" Height="80" Width="120" Grid.Column="0" Margin="15,0,0,0" Grid.ColumnSpan="2">
+                    <TextBlock x:Name="txt_move" Text="Move" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="50" Foreground="{StaticResource greenish_blue}" >
                         <TextBlock.Effect>
                             <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
                         </TextBlock.Effect>
@@ -172,8 +171,8 @@
 
 
             <Image  Grid.Column="1" Source="\Resources\Images\Menu\produce_background.png" Stretch="Fill" Grid.ColumnSpan="2"/>
-            <Button Style="{StaticResource button_image_style}" Click="Button_Click" Command="{Binding ProduceCommand}" Height="80" Width="220" Grid.Column="2" BorderThickness="1,1,1,1" Margin="47,37,80,37">
-                <TextBlock Text="Harvest" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
+            <Button x:Name="btn_harvest" Style="{StaticResource button_image_style}" Click="Harvest_Button_Click" Command="{Binding ProduceCommand}" Height="80" Width="220" Grid.Column="2" BorderThickness="1,1,1,1" Margin="47,37,80,37">
+                <TextBlock x:Name="txt_harvest" Text="Harvest" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
                     </TextBlock.Effect>
@@ -182,7 +181,7 @@
 
             <Image  Grid.Column="3" Source="\Resources\Images\Menu\build_background.png" Stretch="Fill"/>
             <Button x:Name="btn_build" Style="{StaticResource button_image_style}" Command="{Binding AddVillageCommand}" Height="80" Width="130" Click="Build_Button_Click" Grid.Column="3" HorizontalAlignment="Left" Margin="40,40,0,34">
-                <TextBlock Text="Build" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
+                <TextBlock x:Name="txt_build" Text="Build" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60" Foreground="{StaticResource greenish_blue}" >
                     <TextBlock.Effect>
                         <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
                     </TextBlock.Effect>

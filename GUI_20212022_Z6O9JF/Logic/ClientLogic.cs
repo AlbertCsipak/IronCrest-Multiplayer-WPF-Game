@@ -259,7 +259,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Trade = null,
                         HasEnteredGoldMine = false
                     };
-                    player.SetupGold(5);
+                    player.SetupGold(10);
                     //player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
                     player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
                     player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));

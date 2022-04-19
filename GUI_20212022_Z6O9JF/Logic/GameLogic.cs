@@ -621,7 +621,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                         SelectedHexagonTile.OwnerId = ClientID;
 
                         item.Units.Add(newUnit);
-                        DecreaseMoves();
                     }
                 }
             }
@@ -647,7 +646,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood -= 3;
                         Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone -= 2;
                         SelectedHexagonTile.OwnerId = item.PlayerID;
-
                         item.Villages.Add(newVillage);
                     }
                 }
@@ -670,7 +668,19 @@ namespace GUI_20212022_Z6O9JF.Logic
                         item.Level++;
                         Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold -= 3;
                         Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat -= 2;
-                        DecreaseMoves();
+                    }
+                    if (item.Level==3)
+                    {
+                        Unit newUnit = new Unit();
+                        newUnit.FactionType = player.Faction;
+                        newUnit.Position = SelectedHexagonTile.Position;
+                        newUnit.Name = player.Faction.ToString();
+                        newUnit.OwnerId = player.PlayerID;
+
+                        SelectedHexagonTile.Objects.Add(newUnit);
+                        SelectedHexagonTile.OwnerId = ClientID;
+
+                        player.Units.Add(newUnit);
                     }
                 }
             }
@@ -772,7 +782,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 if (success is false)
                                 {
                                     success = true;
-                                    DecreaseMoves();
                                 }
                             }
                         }

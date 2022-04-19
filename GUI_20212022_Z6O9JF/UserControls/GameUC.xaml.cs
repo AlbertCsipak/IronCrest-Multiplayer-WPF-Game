@@ -56,7 +56,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 OpacityDefault();
                 if (clientLogic.Timer == 60)
                 {
+                    var bc = new BrushConverter();
                     btn_build.IsEnabled = true;
+                    txt_build.Foreground = (Brush)bc.ConvertFrom("#B3C8B7");
+                    btn_harvest.IsEnabled = true;
+                    txt_harvest.Foreground = (Brush)bc.ConvertFrom("#B3C8B7");
                     var image = new BitmapImage();
                     image.BeginInit();
                     image.UriSource = new Uri(@"\Resources\Images\Menu\hourglassgif.gif", UriKind.Relative);
@@ -294,7 +298,18 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void Build_Button_Click(object sender, RoutedEventArgs e)
         {
+            button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
+            button_click.Play();
+            txt_build.Foreground = Brushes.Gray;
             btn_build.IsEnabled = false;
+        }
+
+        private void Harvest_Button_Click(object sender, RoutedEventArgs e)
+        {
+            button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
+            button_click.Play();
+            txt_harvest.Foreground = Brushes.Gray;
+            btn_harvest.IsEnabled = false;
         }
     }
 }
