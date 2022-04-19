@@ -73,6 +73,9 @@
     <None Remove="Resources\Images\Menu\battlebackground.png" />
     <None Remove="Resources\Images\Menu\board.png" />
     <None Remove="Resources\Images\Menu\border.png" />
+    <None Remove="Resources\Images\Menu\brick.jpg" />
+    <None Remove="Resources\Images\Menu\brown.jpg" />
+    <None Remove="Resources\Images\Menu\brown_backgound.png" />
     <None Remove="Resources\Images\Menu\build_background.jpg" />
     <None Remove="Resources\Images\Menu\build_background.png" />
     <None Remove="Resources\Images\Menu\button_board.png" />
@@ -83,6 +86,7 @@
     <None Remove="Resources\Images\Menu\frame.png" />
     <None Remove="Resources\Images\Menu\frame_trans_1.png" />
     <None Remove="Resources\Images\Menu\goldmine_background.png" />
+    <None Remove="Resources\Images\Menu\gold_frame.png" />
     <None Remove="Resources\Images\Menu\hourglassgif.gif" />
     <None Remove="Resources\Images\Menu\main_background.gif" />
     <None Remove="Resources\Images\Menu\move_background.png" />
@@ -325,6 +329,9 @@
     <Content Include="Resources\Images\Menu\border.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\brick.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\build_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -332,6 +339,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\flag_disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\gold_frame.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\move_background.png">
