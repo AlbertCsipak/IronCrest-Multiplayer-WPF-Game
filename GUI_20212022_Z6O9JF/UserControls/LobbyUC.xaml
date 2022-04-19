@@ -22,10 +22,13 @@
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="1" Content="SELECT A FACTION" FontSize="120"
+        <Viewbox Grid.Row="0" Grid.Column="1">
+            <Label Content="SELECT A FACTION" FontSize="120"
                FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
                BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
-        </Label>
+            </Label>
+        </Viewbox>
+        
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -37,26 +40,40 @@
                 <RowDefinition Height="8*"/>
                 <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Column="1" Grid.Row="1" Style="{DynamicResource button_image_style}" Height="200" Width="200" Command="{Binding NextFaction}" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Left">
-                <Image Source="\Resources\Images\Menu\arrow_left.png"></Image>
-            </Button>
-            <Image x:Name="scroll" Grid.Column="1" Source="\Resources\Images\Menu\scroll.png" Grid.RowSpan="3"/>
-            <Image x:Name="hero_selector" Grid.Column="1" Grid.Row="1" Source="{Binding SelectedFaction, Converter={StaticResource converter}}" Width="220" Height="320"/>
-            <TextBlock Text="{Binding SelectedFaction}" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="78" FontSize="80" HorizontalAlignment="Center" FontFamily="Poor Richard" FontWeight="Bold"/>
-            <Button Grid.Column="1" Grid.Row="1" Style="{DynamicResource button_image_style}" Height="200" Width="200" Command="{Binding PreviousFaction}" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Image Source="\Resources\Images\Menu\arrow_right.png"></Image>
-            </Button>
+            <Viewbox Grid.Column="0" Grid.Row="1">
+                <Button Style="{DynamicResource button_image_style}" Height="20" Width="20" Command="{Binding NextFaction}" Click="Button_Click" VerticalAlignment="Center" >
+                    <Image Source="\Resources\Images\Menu\arrow_left.png"></Image>
+                </Button>
+            </Viewbox>
+            <Viewbox Grid.Column="1" Grid.RowSpan="3">
+                <Image x:Name="scroll"  Source="\Resources\Images\Menu\scroll.png"/>
+            </Viewbox>
+            <Viewbox Grid.Column="1" Grid.Row="1">
+                <Image x:Name="hero_selector" Source="{Binding SelectedFaction, Converter={StaticResource converter}}" Width="3" Height="5"/>
+            </Viewbox>
+            <Viewbox Grid.Column="1" Grid.Row="2" >
+                <TextBlock Text="{Binding SelectedFaction}" VerticalAlignment="Center" Height="78" FontSize="80" HorizontalAlignment="Center" FontFamily="Poor Richard" FontWeight="Bold"/>
+            </Viewbox>
+            <Viewbox Grid.Column="3" Grid.Row="1">
+                <Button  Style="{DynamicResource button_image_style}" Height="20" Width="20" Command="{Binding PreviousFaction}" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Image Source="\Resources\Images\Menu\arrow_right.png"></Image>
+                </Button>
+            </Viewbox>
+            
         </Grid>
-        <StackPanel Grid.Row="2" Grid.Column="1">
+        <Viewbox Grid.Row="2" Grid.Column="1">
+        <StackPanel>
             <Label Content="NAME" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="50" FontFamily="Poor Richard"></Label>
             <TextBox Text="{Binding Name}" Height="50" Width="200" FontSize="40" Background="Transparent" BorderBrush="#B3C8B7" BorderThickness="3"
                      FontFamily="Poor Richard"  HorizontalContentAlignment="Center"
                      Foreground="#B3C8B7" VerticalContentAlignment="Center"></TextBox>
         </StackPanel>
-
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="1">
         <Button Style="{DynamicResource button_image_style}" Content="LOCK IN" Foreground="#B3C8B7" Padding="30" Background="Transparent"
-                Grid.Row="3" Grid.Column="1" FontSize="50" FontFamily="Poor Richard" Command="{Binding GameCommand}"
+                FontSize="50" FontFamily="Poor Richard" Command="{Binding GameCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
         </Button>
+        </Viewbox>
     </Grid>
 </UserControl>

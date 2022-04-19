@@ -22,43 +22,70 @@
             <ColumnDefinition Width="6*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="1" Content="GAME CREATOR" FontSize="120"
+        <Viewbox Grid.Row="0" Grid.Column="1">
+        <Label Content="GAME CREATOR" FontSize="120"
                FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
                BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
         </Label>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <Label Content="Number of quests to win" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
-            <ComboBox ItemsSource="{Binding NumberOfQuests}" SelectedItem="{Binding Quest}"  Height="50" Width="300" FontSize="30" 
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="1">
+        <StackPanel>
+                <Viewbox>
+                    <Label Content="Number of quests to win" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
+                </Viewbox>
+                <ComboBox ItemsSource="{Binding NumberOfQuests}" SelectedItem="{Binding Quest}"  Height="50" Width="300" FontSize="30" 
                       FontFamily="Poor Richard">
             </ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <Label Content="Map" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
-            <ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding Map}" Height="50" Width="300" FontSize="30" 
+        </Viewbox>
+        <Viewbox Grid.Row="2" Grid.Column="1">
+        <StackPanel>
+                <Viewbox>
+                    <Label Content="Map" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
+                </Viewbox>
+                <ComboBox ItemsSource="{Binding Maps}" SelectedItem="{Binding Map}" Height="50" Width="300" FontSize="30" 
                       FontFamily="Poor Richard"></ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1">
-            <Label Content="Players" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
-            <ComboBox ItemsSource="{Binding Clients}" SelectedItem="{Binding ClientNumber}" Height="50" Width="300" FontSize="30" 
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="1">
+        <StackPanel>
+                <Viewbox>
+                    <Label Content="Players" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
+                </Viewbox>
+                <ComboBox ItemsSource="{Binding Clients}" SelectedItem="{Binding ClientNumber}" Height="50" Width="300" FontSize="30" 
                       FontFamily="Poor Richard"></ComboBox>
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="1">
-            <Label Content="IP" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
-            <TextBox Text="{Binding IP}" Height="50" Width="300" FontSize="30"  Background="#65424b" Foreground="White"
+        </Viewbox>
+        <Viewbox Grid.Row="4" Grid.Column="1">
+        <StackPanel>
+                <Viewbox>
+                    <Label Content="IP" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
+                </Viewbox>
+                <TextBox Text="{Binding IP}" Height="50" Width="300" FontSize="30"  Background="#65424b" Foreground="White"
                      FontFamily="Poor Richard"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="1">
-            <Label Content="SavedGames" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
-            <ComboBox ItemsSource="{Binding SaveGames}" SelectedItem="{Binding SaveGame}" Height="50" Width="300" FontSize="30" 
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="1">
+        <StackPanel>
+                <Viewbox>
+                    <Label Content="SavedGames" Foreground="White" HorizontalContentAlignment="Center" FontSize="30" FontFamily="Poor Richard"></Label>
+                </Viewbox>
+                <ComboBox ItemsSource="{Binding SaveGames}" SelectedItem="{Binding SaveGame}" Height="50" Width="300" FontSize="30" 
                       FontFamily="Poor Richard"></ComboBox>
         </StackPanel>
+        </Viewbox>
 
+        <Viewbox Grid.Column="1" Grid.Row="6">
         <Button x:Name="btn_create_game" Style="{DynamicResource button_text_style}" Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
-                 Grid.Column="1" Grid.Row="6" FontSize="50" FontFamily="Poor Richard" Command="{Binding StartCommand}"
+                 FontSize="50" FontFamily="Poor Richard" Command="{Binding StartCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
-        <Image Source="\Resources\Images\Menu\small_board.png" Grid.Row="6" Grid.Column="2"></Image>
-        <Button Style="{DynamicResource button_image_style}" Grid.Row="6" Grid.Column="2" Command="{Binding BackCommand}" Content="BACK" Foreground="White" FontSize="80" FontFamily="\Resources\#8-bit Limit (BRK)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click">
-            
+        </Viewbox>
+        <Viewbox Grid.Row="6" Grid.Column="2">
+            <Image Source="\Resources\Images\Menu\small_board.png"></Image>
+        </Viewbox>
+        <Viewbox Grid.Row="6" Grid.Column="2">
+            <Button Style="{DynamicResource button_image_style}" Command="{Binding BackCommand}" Content="BACK" Foreground="White" FontSize="80" FontFamily="\Resources\#8-bit Limit (BRK)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click">
         </Button>
+        </Viewbox>
     </Grid>
 </UserControl>

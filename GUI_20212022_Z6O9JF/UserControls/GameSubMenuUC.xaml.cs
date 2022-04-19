@@ -21,8 +21,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public GameSubMenuUC()
         {
             InitializeComponent();
-            this.clientLogic = (this.DataContext as GameSubMenuUC).clientLogic;
             this.DataContext = new GameSubMenuViewModel();
+            this.clientLogic = (this.DataContext as GameSubMenuViewModel).clientLogic;
             img_mute.Source = new BitmapImage(unmutedUri);
         }
         private void volume_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -40,12 +40,19 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 img_mute.Source = new BitmapImage(unmutedUri);
             }
         }
-        private void UserControl_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        private void HandleKeyPress(object sender, KeyEventArgs e)
         {
+            ;
             if (e.Key == Key.Escape)
             {
-                clientLogic.ChangeView("");
+                GameUC.IsInSubUC = false;
+                clientLogic.ESCChange("");
             }
+        }
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var window = Window.GetWindow(this);
+            window.KeyDown += HandleKeyPress;
         }
     }
 }

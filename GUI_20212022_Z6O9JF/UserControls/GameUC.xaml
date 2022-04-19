@@ -124,7 +124,8 @@
                 <Image Source="\Resources\Images\Menu\brick_border.png"/>
             </Viewbox>
             <Viewbox Grid.Column="13" VerticalAlignment="Center">
-                <TextBlock Text="{Binding CanSend, Converter={StaticResource turnconverter}}" TextAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="#EE4B2B" Width="200" Height="100" FontSize="30" Background="Transparent"></TextBlock>
+                <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding CanSend, Converter={StaticResource turnconverter}}" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="Red" Width="200" Height="100" FontSize="30">
+                </Label>
             </Viewbox>
         </Grid>
         <Grid Grid.Row="1" Grid.ColumnSpan="3">

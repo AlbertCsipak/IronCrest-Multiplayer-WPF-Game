@@ -27,14 +27,17 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IClientLogic clientLogic;
         IGameLogic gameLogic;
         IControlLogic controlLogic;
+        Window window;
         public MediaPlayer button_click = new MediaPlayer();
         DispatcherTimer dt;
         bool IsResourceChanged;
+        public static bool IsInSubUC;
         Player player;
         List<SubItem<Quest>> quests;
         public GameUC()
         {
             InitializeComponent();
+            
             this.DataContext = new GameViewModel();
             this.gameLogic = (this.DataContext as GameViewModel).gameLogic;
             this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
@@ -56,6 +59,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             GoldChangeLabel.Opacity = 0;
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(33);
+            
             quests = new List<SubItem<Quest>>();
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(0)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(1)));
@@ -94,7 +98,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 display.InvalidateVisual();
             };
             dt.Start();
-
+            
         }
         public void SetMovePictures()
         {
@@ -312,22 +316,28 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            IsInSubUC = false;
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+            window = Window.GetWindow(this);
+            window.KeyDown += HandleKeyPress;
         }
+        private void HandleKeyPress(object sender, KeyEventArgs e)
+        {
+            ;
+            if (!IsInSubUC && e.Key == Key.Escape)
+            {
+                IsInSubUC = true;
+                clientLogic.ESCChange("ESC");
+            }
 
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
         }
 
-        private void UserControl_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-            {
-                clientLogic.ChangeView("ESC");
-            }
-        }
+        
 
         private void Build_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -343,6 +353,15 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Play();
             txt_harvest.Foreground = Brushes.Gray;
             btn_harvest.IsEnabled = false;
+        }
+
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.Key == Key.Escape)
+            {
+                clientLogic.ESCChange("ESC");
+            }
         }
     }
 }

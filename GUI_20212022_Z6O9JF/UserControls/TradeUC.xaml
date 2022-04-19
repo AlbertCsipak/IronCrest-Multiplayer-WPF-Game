@@ -37,27 +37,27 @@
         <Viewbox Grid.Row="1" Grid.Column="1">
             <Label Content="Trading point" FontSize="12" FontFamily="\Resources\#8-bit Limit (BRK)"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="2">
+        <Viewbox Grid.Column="1" Grid.Row="2" Stretch="Fill">
             <Image x:Name="flag1_img" Source="\Resources\Images\Menu\flag_darken.png" Stretch="Fill" Width="700"/>
         </Viewbox>
-        <Viewbox Grid.Row="2" Grid.Column="1">
-            <CheckBox x:Name="check1" Margin="10" Click="check1_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+        <Viewbox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
+            <CheckBox x:Name="check1" Margin="10" Click="check1_Click" VerticalContentAlignment="Center" HorizontalAlignment="Stretch">
                 <TextBlock Padding="20" Text="{Binding Option1.Text}" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" TextWrapping="Wrap"></TextBlock>
             </CheckBox>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="3">
+        <Viewbox Grid.Column="1" Grid.Row="3" Stretch="Fill">
             <Image x:Name="flag2_img" Source="\Resources\Images\Menu\flag_darken.png" Stretch="Fill"/>
         </Viewbox>
-        <Viewbox Grid.Row="3" Grid.Column="1">
-            <CheckBox x:Name="check2" Margin="10" Click="check1_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+        <Viewbox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left">
+            <CheckBox x:Name="check2" Margin="10" Click="check1_Click" VerticalContentAlignment="Center" HorizontalAlignment="Stretch">
                 <TextBlock Padding="20" Text="{Binding Option2.Text}" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" TextWrapping="Wrap"></TextBlock>
             </CheckBox>
         </Viewbox>
-        <Viewbox Grid.Column="1" Grid.Row="4">
+        <Viewbox Grid.Column="1" Grid.Row="4" Stretch="Fill">
             <Image x:Name="flag3_img" Source="\Resources\Images\Menu\flag_darken.png" Stretch="Fill"/>
         </Viewbox>
-        <Viewbox Grid.Row="4" Grid.Column="1">
-            <CheckBox x:Name="check3" Margin="10" Click="check1_Click" VerticalContentAlignment="Center" HorizontalContentAlignment="Left">
+        <Viewbox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left">
+            <CheckBox x:Name="check3" Margin="10" Click="check1_Click" VerticalContentAlignment="Center" HorizontalAlignment="Stretch">
                 <TextBlock Padding="20" Text="{Binding Option3.Text}" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" TextWrapping="Wrap"></TextBlock>
             </CheckBox>
         </Viewbox>
