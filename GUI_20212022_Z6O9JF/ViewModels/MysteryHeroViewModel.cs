@@ -15,7 +15,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand OKButtonCommand { get; set; }
-        public string MysteryEventDescription { get { return gameLogic.CurrentMystery.Description; } }
+        public Hero CurrentHero { get { return gameLogic.CurrentHero; } }
         public FieldType Background { get { return gameLogic.CurrentMystery.FieldType; } }
         public static bool IsInDesignMode
         {
@@ -39,7 +39,6 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             OKButtonCommand = new RelayCommand(() =>
             {
                 clientLogic.MysteryButtonOK();
-                clientLogic.TradeViewChange("asd");
             });
 
             Messenger.Register<MysteryHeroViewModel, string, string>(this, "Base", (recipient, msg) =>

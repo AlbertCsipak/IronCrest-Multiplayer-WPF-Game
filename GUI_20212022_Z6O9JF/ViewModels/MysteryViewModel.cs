@@ -39,7 +39,6 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             OKButtonCommand = new RelayCommand(() =>
             {
                 clientLogic.MysteryButtonOK();
-                clientLogic.TradeViewChange("asd");
             });
 
             Messenger.Register<MysteryViewModel, string, string>(this, "Base", (recipient, msg) =>

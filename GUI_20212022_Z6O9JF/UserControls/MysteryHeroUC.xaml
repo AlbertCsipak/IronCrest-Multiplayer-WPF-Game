@@ -12,6 +12,7 @@
              d:DesignHeight="120" d:DesignWidth="220">
     <UserControl.Resources>
         <converter:FieldTypeToImgConverter x:Key="fieldconverter"/>
+        <converter:HeroToImgConverter x:Key="hero_converter"/>
     </UserControl.Resources>
     <UserControl.DataContext>
         <vm:MysteryHeroViewModel></vm:MysteryHeroViewModel>
@@ -26,38 +27,71 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="12*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="background" gif:ImageBehavior.AnimatedSource="{Binding Background, Converter={StaticResource fieldconverter}}" Stretch="Fill" Grid.RowSpan="5" Grid.ColumnSpan="3"/>
-        <Viewbox Grid.RowSpan="4" Grid.Column="1">
+        <Image x:Name="background" gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\mystery_hero_background.gif" Stretch="Fill" Grid.RowSpan="5" Grid.ColumnSpan="4"/>
+        <Viewbox Grid.RowSpan="4" Grid.Column="2">
             <Image Source="\Resources\Images\Menu\button_board.png" Width="600"/>
         </Viewbox>
-        <Image Source="\Resources\Images\Menu\frame.png" Grid.RowSpan="5" Grid.ColumnSpan="3" Stretch="Fill"/>
-        <Viewbox Grid.Row="1" Grid.Column="1">
+        <Image Source="\Resources\Images\Menu\frame.png" Grid.RowSpan="5" Grid.ColumnSpan="4" Stretch="Fill"/>
+        <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <Image Source="\Resources\Images\Menu\board_long.png"/>
         </Viewbox>
-        <Viewbox Grid.Row="1" Grid.Column="1">
+        <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <Label  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Mystery Event" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="WhiteSmoke"/>
         </Viewbox>
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Viewbox Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Column="0" Grid.ColumnSpan="5">
                 <Image Source="\Resources\Images\Menu\flag.png" Height="400"/>
             </Viewbox>
-            <Viewbox Grid.Column="1">
-                <Label x:Name="mystery_description" Margin="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
-                    <TextBlock Text="{Binding MysteryEventDescription}" TextWrapping="Wrap" FontSize="60" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="Black"/>
+            <Viewbox Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0">
+                <Label Margin="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
+                    <TextBlock Text="You got a hero!" TextWrapping="Wrap" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="Black"/>
+                </Label>
+            </Viewbox>
+            <Viewbox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5">
+                <Image Source="\Resources\Images\Menu\flag.png" Height="400"/>
+            </Viewbox>
+            <Viewbox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+                <Label Margin="20" VerticalContentAlignment="Center" >
+                    <TextBlock Text="Name:" TextWrapping="Wrap" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="Black"/>
+                </Label>
+            </Viewbox>
+            <Viewbox Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left">
+                <Label Margin="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
+                    <TextBlock Text="{Binding CurrentHero.Name}" TextWrapping="Wrap" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="Black"/>
+                </Label>
+            </Viewbox>
+            <Viewbox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="5">
+                <Image Source="\Resources\Images\Menu\flag.png" Height="400"/>
+            </Viewbox>
+            <Viewbox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right">
+                <Label Margin="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
+                    <TextBlock Text="Damage:" TextWrapping="Wrap" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="Black"/>
+                </Label>
+            </Viewbox>
+            <Viewbox Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left">
+                <Label Margin="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  >
+                    <TextBlock Text="{Binding CurrentHero.Damage}" TextWrapping="Wrap" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="Black"/>
                 </Label>
             </Viewbox>
         </Grid>
-        
-        
-        <Viewbox Grid.Row="3" Grid.Column="1">
+        <Image Source="{Binding CurrentHero, Converter={StaticResource hero_converter}}" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Stretch="UniformToFill"/>
+
+        <Viewbox Grid.Row="3" Grid.Column="2">
             <Button Style="{StaticResource button_image_style}" Width="80" Height="30" VerticalContentAlignment="Center" Content="OK!" FontSize="20" Foreground="WhiteSmoke" FontFamily="\Resources\#8-bit Limit (BRK)"  Command="{Binding OKButtonCommand}" Click="Button_Click_1"/>
         </Viewbox>
     </Grid>

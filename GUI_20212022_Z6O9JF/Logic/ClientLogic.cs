@@ -20,6 +20,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public object View { get; set; }
         public object TradeView { get; set; }
         public object MysteryView { get; set; }
+        public object MysteryHeroView { get; set; }
         public object GoldMineView { get; set; }
         public object ESCView { get; set; }
         public bool CanSend { get; set; }
@@ -150,6 +151,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void MysteryButtonOK()
         {
             MysteryViewChange("");
+            MysteryHeroViewChange("");
         }
         public void TradeViewChange(string view)
         {
@@ -187,6 +189,19 @@ namespace GUI_20212022_Z6O9JF.Logic
             else
             {
                 MysteryView = null;
+            }
+            messenger.Send("Message", "Base");
+        }
+        public void MysteryHeroViewChange(string view)
+        {
+
+            if (view.Equals("mysteryHero"))
+            {
+                MysteryHeroView = new MysteryHeroUC();
+            }
+            else
+            {
+                MysteryHeroView = null;
             }
             messenger.Send("Message", "Base");
         }

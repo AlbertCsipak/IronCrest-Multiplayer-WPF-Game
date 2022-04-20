@@ -8,6 +8,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         int ClientId { get; set; }
         object ESCView { get; set; }
         object GoldMineView { get; set; }
+        object MysteryHeroView { get; set; }
         object MysteryView { get; set; }
         int Timer { get; set; }
         object TradeView { get; set; }
@@ -23,6 +24,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         void IsAllQuestsDone();
         void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1");
         void MysteryButtonOK();
+        void MysteryHeroViewChange(string view);
         void MysteryViewChange(string view);
         void SkipTurn();
         void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 8192);

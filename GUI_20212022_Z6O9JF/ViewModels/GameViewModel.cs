@@ -15,6 +15,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     {
         public object TradeView { get { return clientLogic.TradeView; } }
         public object MysteryView { get { return clientLogic.MysteryView; } }
+        public object MysteryHeroView { get { return clientLogic.MysteryHeroView; } }
         public object GoldMineView { get { return clientLogic.GoldMineView; } }
         public object ESCView { get { return clientLogic.ESCView; } }
         public IGameLogic gameLogic { get; set; }
@@ -76,6 +77,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("Timer");
                 OnPropertyChanged("TradeView");
                 OnPropertyChanged("MysteryView");
+                OnPropertyChanged("MysteryHeroView");
                 OnPropertyChanged("ESCView");
             });
 

@@ -12,7 +12,7 @@
     <None Remove="Resources\blurite_sword.cur" />
     <None Remove="Resources\Images\Characters\bjorn.png" />
     <None Remove="Resources\Images\Characters\crusader_head.png" />
-    <None Remove="Resources\Images\Characters\dark_night.png" />
+    <None Remove="Resources\Images\Characters\dark_knight.png" />
     <None Remove="Resources\Images\Characters\disabled_arabian.png" />
     <None Remove="Resources\Images\Characters\disabled_crusader.png" />
     <None Remove="Resources\Images\Characters\disabled_mongolian.png" />
@@ -155,7 +155,7 @@
     <Content Include="Resources\Images\Characters\crusader_head.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Characters\dark_night.png">
+    <Content Include="Resources\Images\Characters\dark_knight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\disabled_arabian.png">
