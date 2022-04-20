@@ -7,7 +7,7 @@
         public bool Done { get; set; }
         public Quest(int id, string Name, bool Done)
         {
-            Id=id;
+            Id = id;
             this.Name = Name;
             this.Done = Done;
         }

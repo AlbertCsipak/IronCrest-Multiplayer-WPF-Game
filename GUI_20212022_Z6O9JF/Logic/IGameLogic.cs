@@ -8,6 +8,7 @@ namespace GUI_20212022_Z6O9JF.Logic
     {
         List<Faction> AvailableFactions { get; set; }
         int ClientID { get; set; }
+        Hero CurrentHero { get; set; }
         MysteryEvent CurrentMystery { get; set; }
         Trade CurrentTrade { get; set; }
         HexagonTile[,] GameMap { get; set; }
@@ -31,6 +32,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         void MakeTrade();
         void MoveUnit(HexagonTile hexagonTile);
         void MysteryBoxEvent(HexagonTile hexagonTile);
+        void MysteryHeroEvent();
         List<Quest> RandomQuestSelector(int n);
         void ReadQuests();
         void ReloadHexagonObjects();

@@ -97,6 +97,7 @@
     <None Remove="Resources\Images\Menu\mountain_background.gif" />
     <None Remove="Resources\Images\Menu\move_background.png" />
     <None Remove="Resources\Images\Menu\mystery_background.gif" />
+    <None Remove="Resources\Images\Menu\mystery_hero_background.gif" />
     <None Remove="Resources\Images\Menu\ocean.png" />
     <None Remove="Resources\Images\Menu\podium.png" />
     <None Remove="Resources\Images\Menu\produce_background.png" />
@@ -376,6 +377,9 @@
     <Content Include="Resources\Images\Menu\mystery_background.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\mystery_hero_background.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\podium.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -530,6 +534,12 @@
     <Content Include="Resources\slkscr.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="UserControls\MysteryHeroUC.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
   </ItemGroup>
 
 </Project>

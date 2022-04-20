@@ -9,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -32,19 +31,20 @@ namespace GUI_20212022_Z6O9JF.UserControls
         DispatcherTimer dt;
         bool IsResourceChanged;
         public static bool IsInSubUC;
-        Player player;
         List<SubItem<Quest>> quests;
+        Player player;
         public GameUC()
         {
             InitializeComponent();
-            
+
             this.DataContext = new GameViewModel();
             this.gameLogic = (this.DataContext as GameViewModel).gameLogic;
             this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
             this.controlLogic = (this.DataContext as GameViewModel).controlLogic;
+            player = gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
-            player = gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
             player.ResourceChanges.CollectionChanged += ResourceChanges_CollectionChanged;
+
             HeartChange.Opacity = 0;
             HeartChangeLabel.Opacity = 0;
             ArmyPowerChange.Opacity = 0;
@@ -57,13 +57,14 @@ namespace GUI_20212022_Z6O9JF.UserControls
             FoodChangeLabel.Opacity = 0;
             GoldChange.Opacity = 0;
             GoldChangeLabel.Opacity = 0;
+
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(33);
-            
             quests = new List<SubItem<Quest>>();
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(0)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(1)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(2)));
+
             var itemQuest = new ItemMenu("Quests", quests, PackIconKind.ViewDashboard);
             Menu.Children.Add(new UserControlMenuItem(itemQuest));
 
@@ -76,7 +77,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     Menu.Children.Clear();
                     Menu.Children.Add(new UserControlMenuItem(itemQuest));
                 }
-                
+
                 clientLogic.IsAllQuestsDone();
                 ResourceChanging();
                 OpacityDefault();
@@ -94,15 +95,15 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     ImageBehavior.SetAnimatedSource(hourglass_gif, image);
                     ImageBehavior.SetRepeatBehavior(hourglass_gif, new RepeatBehavior(1));
                 }
-                
+
                 display.InvalidateVisual();
             };
             dt.Start();
-            
+
         }
         public void SetMovePictures()
         {
-            if (player.DefaultNumOfMoves==2)
+            if (player.DefaultNumOfMoves == 2)
             {
                 switch (player.RemainingMoves)
                 {
@@ -323,7 +324,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
         }
         private void HandleKeyPress(object sender, KeyEventArgs e)
         {
-            ;
             if (!IsInSubUC && e.Key == Key.Escape)
             {
                 IsInSubUC = true;
@@ -337,7 +337,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Play();
         }
 
-        
+
 
         private void Build_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -357,7 +357,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
             if (e.Key == Key.Escape)
             {
                 clientLogic.ESCChange("ESC");

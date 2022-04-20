@@ -46,7 +46,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             gameLogic.ClearCompass(polygon.Tag as HexagonTile);
                             clientLogic.TradeViewChange("trade");
                         }
-                        
+
                         ClearSelections();
                     }
                 }

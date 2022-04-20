@@ -56,16 +56,6 @@ namespace GUI_20212022_Z6O9JF.Models
                 case FieldType.wheat:
                     player.Wheat++;
                     break;
-                case FieldType.goldMine:
-                    if (player.Faction == Faction.Mongolian)
-                    {
-                        player.Gold += 3;
-                    }
-                    else
-                    {
-                        player.Gold += 2;
-                    }
-                    break;
                 default:
                     break;
             }

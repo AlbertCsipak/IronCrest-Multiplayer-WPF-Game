@@ -24,6 +24,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public Trade CurrentTrade { get; set; }
         public Queue<MysteryEvent> MysteryEvents { get; set; }
         public MysteryEvent CurrentMystery { get; set; }
+        public Hero CurrentHero { get; set; }
 
         public GameLogic(IMessenger messenger)
         {
@@ -33,7 +34,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             MysteryEvents = new Queue<MysteryEvent>();
             CurrentMystery = null;
             CurrentTrade = null;
-
             AvailableFactions = new List<Faction>();
         }
         public void SelectableFactions()
@@ -141,12 +141,12 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public bool HasSufficientResources(int offerindex)
         {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             bool HasEnoughResources = true;
             int counter = 0;
-            while (counter < Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.Offers[offerindex].Cost.Count && HasEnoughResources)
+            while (counter < player.Trade.Offers[offerindex].Cost.Count && HasEnoughResources)
             {
-                var cost = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.Offers[offerindex].Cost.ElementAt(counter);
-                Player player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+                var cost = player.Trade.Offers[offerindex].Cost.ElementAt(counter);
                 switch (cost.Key)
                 {
                     case "Gold":
@@ -194,15 +194,14 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public bool HasSufficientResources(string resource, int cost)
         {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             bool HasEnoughResources = true;
-            Player player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             switch (resource)
             {
                 case "Gold":
                     if (player.Gold < cost)
                     {
                         HasEnoughResources = false;
-                        //NotEnoughResource event meghivasa
                     }
                     break;
                 case "ArmyPower":
@@ -240,69 +239,70 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void GetResourcesFromMysteryEvent()
         {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             switch (CurrentMystery.Resource)
             {
                 case "Gold":
                     if (HasSufficientResources("Gold", Math.Abs(CurrentMystery.Number)))
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += CurrentMystery.Number;
+                        player.Gold += CurrentMystery.Number;
                     }
                     else
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold = 0;
+                        player.Gold = 0;
                     }
                     break;
                 case "ArmyPower":
                     if (HasSufficientResources("ArmyPower", Math.Abs(CurrentMystery.Number)))
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower += CurrentMystery.Number;
+                        player.ArmyPower += CurrentMystery.Number;
                     }
                     else
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower = 0;
+                        player.ArmyPower = 0;
                     }
                     break;
                 case "Popularity":
                     if (HasSufficientResources("Popularity", Math.Abs(CurrentMystery.Number)))
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity += CurrentMystery.Number;
+                        player.Popularity += CurrentMystery.Number;
                     }
                     else
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity = 0;
+                        player.Popularity = 0;
                     }
                     break;
                 case "Stone":
                     if (HasSufficientResources("Stone", Math.Abs(CurrentMystery.Number)))
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone += CurrentMystery.Number;
+                        player.Stone += CurrentMystery.Number;
                     }
                     else
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone = 0;
+                        player.Stone = 0;
                     }
                     break;
                 case "Wood":
                     if (HasSufficientResources("Wood", Math.Abs(CurrentMystery.Number)))
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += CurrentMystery.Number;
+                        player.Wood += CurrentMystery.Number;
                     }
                     else
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood = 0;
+                        player.Wood = 0;
                     }
-                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += CurrentMystery.Number;
+                    //player.Wood += CurrentMystery.Number;
                     break;
                 case "Wheat":
                     if (HasSufficientResources("Wheat", Math.Abs(CurrentMystery.Number)))
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat += CurrentMystery.Number;
+                        player.Wheat += CurrentMystery.Number;
                     }
                     else
                     {
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat = 0;
+                        player.Wheat = 0;
                     }
-                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat += CurrentMystery.Number;
+                    //Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat += CurrentMystery.Number;
                     break;
                 default:
                     break;
@@ -310,71 +310,73 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void MakeTrade()
         {
-            foreach (var selectedoffer in Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.SelectedOfferIndexes)
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            foreach (var selectedoffer in player.Trade.SelectedOfferIndexes)
             {
-                foreach (var cost in Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.Offers[selectedoffer].Cost)
+                foreach (var cost in player.Trade.Offers[selectedoffer].Cost)
                 {
                     switch (cost.Key)
                     {
                         case "Gold":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold -= cost.Value;
+                            player.Gold -= cost.Value;
                             break;
                         case "ArmyPower":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower -= cost.Value;
+                            player.ArmyPower -= cost.Value;
                             break;
                         case "Popularity":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity -= cost.Value;
+                            player.Popularity -= cost.Value;
                             break;
                         case "Stone":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone -= cost.Value;
+                            player.Stone -= cost.Value;
                             break;
                         case "Wood":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood -= cost.Value;
+                            player.Wood -= cost.Value;
                             break;
                         case "Wheat":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat -= cost.Value;
+                            player.Wheat -= cost.Value;
                             break;
                         default:
                             break;
                     }
                 }
-                foreach (var gain in Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade.Offers[selectedoffer].Gain)
+                foreach (var gain in player.Trade.Offers[selectedoffer].Gain)
                 {
                     switch (gain.Key)
                     {
                         case "Gold":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += gain.Value;
+                            player.Gold += gain.Value;
                             break;
                         case "ArmyPower":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower += gain.Value;
+                            player.ArmyPower += gain.Value;
                             break;
                         case "Popularity":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity += gain.Value;
+                            player.Popularity += gain.Value;
                             break;
                         case "Stone":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone += gain.Value;
+                            player.Stone += gain.Value;
                             break;
                         case "Wood":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += gain.Value;
+                            player.Wood += gain.Value;
                             break;
                         case "Wheat":
-                            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat += gain.Value;
+                            player.Wheat += gain.Value;
                             break;
                         default:
                             break;
                     }
                 }
-                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().NumOfTradesMade++;
+                player.NumOfTradesMade++;
             }
         }
         public void ClearCompass(HexagonTile hexagon)
         {
-            Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Trade = hexagon.Compass;
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            player.Trade = hexagon.Compass;
             hexagon.Compass = null;
         }
         public void MysteryBoxEvent(HexagonTile hexagonTile)
         {
-            ;
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             Point[] points = SelectedHexagonTile.NeighborCoords();
             Point point = new Point();
             point.X = hexagonTile.Position[0];
@@ -382,14 +384,13 @@ namespace GUI_20212022_Z6O9JF.Logic
             MysteryEvent mysteryEvent = null;
             if (hexagonTile != null && points.Contains(point))
             {
-                //If: Forest, Mountain, WheatField
                 if (hexagonTile.FieldType == FieldType.forest ||
                     hexagonTile.FieldType == FieldType.mountain ||
                     hexagonTile.FieldType == FieldType.wheat ||
                     hexagonTile.FieldType == FieldType.grass)
                 {
                     int rnd = RandomNumber.RandomNumberGenerator(1, 21);
-                    if (true && Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (true && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         //Dequeue
                         if (MysteryEvents.Count() != 0)
@@ -397,63 +398,179 @@ namespace GUI_20212022_Z6O9JF.Logic
                             mysteryEvent = MysteryEvents.Dequeue();
                             mysteryEvent.FieldType = hexagonTile.FieldType;
 
-                            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-
                             switch (mysteryEvent.Resource)
                             {
                                 case "Gold":
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += mysteryEvent.Number;
-                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold < 0)//cannot be negative! -> 0 default
+                                    player.Gold += mysteryEvent.Number;
+                                    if (player.Gold < 0)//cannot be negative! -> 0 default
                                     {
-                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold = 0;
+                                        player.Gold = 0;
                                     }
                                     break;
                                 case "Wood":
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood += mysteryEvent.Number;
-                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood < 0)
+                                    player.Wood += mysteryEvent.Number;
+                                    if (player.Wood < 0)
                                     {
-                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood = 0;
+                                        player.Wood = 0;
                                     }
                                     break;
                                 case "Stone":
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone += mysteryEvent.Number;
-                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone < 0)
+                                    player.Stone += mysteryEvent.Number;
+                                    if (player.Stone < 0)
                                     {
-                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone = 0;
+                                        player.Stone = 0;
                                     }
                                     break;
                                 case "Popularity":
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity += mysteryEvent.Number;
-                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity < 0)
+                                    player.Popularity += mysteryEvent.Number;
+                                    if (player.Popularity < 0)
                                     {
-                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Popularity = 0;
+                                        player.Popularity = 0;
                                     }
                                     break;
                                 case "ArmyPower":
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower += mysteryEvent.Number;
-                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower < 0)
+                                    player.ArmyPower += mysteryEvent.Number;
+                                    if (player.ArmyPower < 0)
                                     {
-                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().ArmyPower = 0;
+                                        player.ArmyPower = 0;
                                     }
                                     break;
                                 case "Wheat":
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat += mysteryEvent.Number;
-                                    if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat < 0)
+                                    player.Wheat += mysteryEvent.Number;
+                                    if (player.Wheat < 0)
                                     {
-                                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat = 0;
+                                        player.Wheat = 0;
                                     }
                                     break;
                                 case "Moves":
-                                    Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().DefaultNumOfMoves += mysteryEvent.Number;
+                                    player.DefaultNumOfMoves += mysteryEvent.Number;
                                     break;
                                 default:
                                     break;
                             }
                         }
                     }
+                    if (true && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    {
+                        MysteryHeroEvent();
+                    }
                 }
             }
             CurrentMystery = mysteryEvent;
+        }
+
+        public void MysteryHeroEvent()
+        {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            Hero hero = new Hero();
+            switch (player.Faction)
+            {
+                case Faction.Viking:
+                    if (player.Heroes.Count == 0)
+                    {
+                        int random = RandomNumber.RandomNumberGenerator(1, 2);
+                        if (random == 1)
+                        {
+                            hero = new Hero() { Name = "Bjorn", Damage = 5, FactionType = Faction.Viking, OwnerId = player.PlayerID };
+                            player.Heroes.Add(hero);
+                        }
+                        else
+                        {
+                            hero = new Hero() { Name = "Sigurd", Damage = 3, FactionType = Faction.Viking, OwnerId = player.PlayerID };
+                            player.Heroes.Add(hero);
+                        }
+                    }
+                    else if (player.Heroes.ElementAt(0).Name == "Bjorn")
+                    {
+                        hero = new Hero() { Name = "Sigurd", Damage = 3, FactionType = Faction.Viking, OwnerId = player.PlayerID };
+                        player.Heroes.Add(hero);
+                    }
+                    else
+                    {
+                        hero = new Hero() { Name = "Bjorn", Damage = 5, FactionType = Faction.Viking, OwnerId = player.PlayerID };
+                        player.Heroes.Add(hero);
+                    }
+                    break;
+                case Faction.Crusader:
+                    if (player.Heroes.Count == 0)
+                    {
+                        int random = RandomNumber.RandomNumberGenerator(1, 2);
+                        if (random == 1)
+                        {
+                            hero = new Hero() { Name = "Dark Knight", Damage = 4, FactionType = Faction.Crusader, OwnerId = player.PlayerID };
+                            player.Heroes.Add(hero);
+                        }
+                        else
+                        {
+                            hero = new Hero() { Name = "Crusader Knight", Damage = 3, FactionType = Faction.Crusader, OwnerId = player.PlayerID };
+                            player.Heroes.Add(hero);
+                        }
+                    }
+                    else if (player.Heroes.ElementAt(0).Name == "Dark Knight")
+                    {
+                        hero = new Hero() { Name = "Crusader Knight", Damage = 3, FactionType = Faction.Crusader, OwnerId = player.PlayerID };
+                        player.Heroes.Add(hero);
+                    }
+                    else
+                    {
+                        hero = new Hero() { Name = "Dark Knight", Damage = 4, FactionType = Faction.Crusader, OwnerId = player.PlayerID };
+                        player.Heroes.Add(hero);
+                    }
+                    break;
+                case Faction.Mongolian:
+                    if (player.Heroes.Count == 0)
+                    {
+                        int random = RandomNumber.RandomNumberGenerator(1, 2);
+                        if (random == 1)
+                        {
+                            hero = new Hero() { Name = "Genghis Khan", Damage = 4, FactionType = Faction.Mongolian, OwnerId = player.PlayerID };
+                            player.Heroes.Add(hero);
+                        }
+                        else
+                        {
+                            hero = new Hero() { Name = "Mongolian Mouse", Damage = 2, FactionType = Faction.Mongolian, OwnerId = player.PlayerID };
+                            player.Heroes.Add(hero);
+                        }
+                    }
+                    else if (player.Heroes.ElementAt(0).Name == "Genghis Khan")
+                    {
+                        hero = new Hero() { Name = "Mongolian Mouse", Damage = 2, FactionType = Faction.Mongolian, OwnerId = player.PlayerID };
+                        player.Heroes.Add(hero);
+                    }
+                    else
+                    {
+                        hero = new Hero() { Name = "Genghis Khan", Damage = 4, FactionType = Faction.Mongolian, OwnerId = player.PlayerID };
+                        player.Heroes.Add(hero);
+                    }
+                    break;
+                case Faction.Arabian:
+                    if (player.Heroes.Count == 0)
+                    {
+                        int random = RandomNumber.RandomNumberGenerator(1, 2);
+                        if (random == 1)
+                        {
+                            hero = new Hero() { Name = "Jhin", Damage = 3, FactionType = Faction.Arabian, OwnerId = player.PlayerID };
+                            player.Heroes.Add(hero);
+                        }
+                        else
+                        {
+                            hero = new Hero() { Name = "Prophet", Damage = 2, FactionType = Faction.Arabian, OwnerId = player.PlayerID };
+                            player.Heroes.Add(hero);
+                        }
+                    }
+                    else if (player.Heroes.ElementAt(0).Name == "Jhin")
+                    {
+                        hero = new Hero() { Name = "Prophet", Damage = 2, FactionType = Faction.Arabian, OwnerId = player.PlayerID };
+                        player.Heroes.Add(hero);
+                    }
+                    else
+                    {
+                        hero = new Hero() { Name = "Jhin", Damage = 3, FactionType = Faction.Arabian, OwnerId = player.PlayerID };
+                        player.Heroes.Add(hero);
+                    }
+                    break;
+            }
+            CurrentHero = hero;
         }
         public Queue<MysteryEvent> LoadMysteryEvents()
         {
@@ -513,7 +630,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             foreach (var item in file)
             {
                 string[] line = item.Split(';');
-                Quests.Add(new Quest(counter,line[0], line[1] == "false" ? false : true));
+                Quests.Add(new Quest(counter, line[0], line[1] == "false" ? false : true));
                 counter++;
             }
         }
@@ -537,84 +654,85 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public bool IsQuestDone()
         {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             bool IsQuestDone = false;
-            foreach (var item in Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests)
+            foreach (var item in player.Quests)
             {
                 switch (item.Id)
                 {
                     case 1:
-                        if (!Quests.Where(x => x.Id == 1).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Villages.Count >= 3)
+                        if (!Quests.Where(x => x.Id == 1).FirstOrDefault().Done && player.Villages.Count >= 3)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 1).FirstOrDefault().Done = true;
+                            player.Quests.Where(x => x.Id == 1).FirstOrDefault().Done = true;
                             IsQuestDone = true;
                         }
                         break;
                     case 2:
-                        if (!Quests.Where(x => x.Id == 2).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().ArmyPower >= 15)
+                        if (!Quests.Where(x => x.Id == 2).FirstOrDefault().Done && player.ArmyPower >= 15)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 2).FirstOrDefault().Done = true;
+                            player.Quests.Where(x => x.Id == 2).FirstOrDefault().Done = true;
                             IsQuestDone = true;
                         }
                         break;
                     case 3:
-                        if (!Quests.Where(x => x.Id == 3).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Popularity >= 12)
+                        if (!Quests.Where(x => x.Id == 3).FirstOrDefault().Done && player.Popularity >= 12)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 3).FirstOrDefault().Done = true;
+                            player.Quests.Where(x => x.Id == 3).FirstOrDefault().Done = true;
                             IsQuestDone = true;
                         }
                         break;
                     case 4:
-                        if (!Quests.Where(x => x.Id == 4).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().BattlesWon >= 3)
+                        if (!Quests.Where(x => x.Id == 4).FirstOrDefault().Done && player.BattlesWon >= 3)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 4).FirstOrDefault().Done = true;
+                            player.Quests.Where(x => x.Id == 4).FirstOrDefault().Done = true;
                             IsQuestDone = true;
                         }
                         break;
                     case 5:
-                        if (!Quests.Where(x => x.Id == 5).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Heroes.Count == 2)
+                        if (!Quests.Where(x => x.Id == 5).FirstOrDefault().Done && player.Heroes.Count == 2)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 5).FirstOrDefault().Done = true;
+                            player.Quests.Where(x => x.Id == 5).FirstOrDefault().Done = true;
                             IsQuestDone = true;
                         }
                         break;
                     case 6:
-                        if (!Quests.Where(x => x.Id == 6).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Gold >= 20)
+                        if (!Quests.Where(x => x.Id == 6).FirstOrDefault().Done && player.Gold >= 20)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 6).FirstOrDefault().Done = true;
+                            player.Quests.Where(x => x.Id == 6).FirstOrDefault().Done = true;
                             IsQuestDone = true;
                         }
                         break;
                     case 7:
                         if (!Quests.Where(x => x.Id == 7).FirstOrDefault().Done)
                         {
-                            foreach (var village in Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Villages)
+                            foreach (var village in player.Villages)
                             {
-                                if (village.Level==3)
+                                if (village.Level == 3)
                                 {
-                                    Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 7).FirstOrDefault().Done = true;
+                                    player.Quests.Where(x => x.Id == 7).FirstOrDefault().Done = true;
                                     IsQuestDone = true;
                                 }
                             }
                         }
                         break;
                     case 8:
-                        if (!Quests.Where(x => x.Id == 8).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Units.Count >= 7)
+                        if (!Quests.Where(x => x.Id == 8).FirstOrDefault().Done && player.Units.Count >= 7)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 8).FirstOrDefault().Done = true;
+                            player.Quests.Where(x => x.Id == 8).FirstOrDefault().Done = true;
                             IsQuestDone = true;
                         }
                         break;
                     case 9:
-                        if (!Quests.Where(x => x.Id == 9).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().HasEnteredGoldMine)
+                        if (!Quests.Where(x => x.Id == 9).FirstOrDefault().Done && player.HasEnteredGoldMine)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 9).FirstOrDefault().Done = true;
+                            player.Quests.Where(x => x.Id == 9).FirstOrDefault().Done = true;
                             IsQuestDone = true;
                         }
                         break;
                     case 10:
-                        if (!Quests.Where(x => x.Id == 10).FirstOrDefault().Done && Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().NumOfTradesMade >= 3)
+                        if (!Quests.Where(x => x.Id == 10).FirstOrDefault().Done && player.NumOfTradesMade >= 3)
                         {
-                            Players.Where(x => x.PlayerID == ClientID).FirstOrDefault().Quests.Where(x => x.Id == 10).FirstOrDefault().Done = true;
+                            player.Quests.Where(x => x.Id == 10).FirstOrDefault().Done = true;
                             IsQuestDone = true;
                         }
                         break;
@@ -625,72 +743,12 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void AddUnit()
         {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             if (SelectedHexagonTile != null)
             {
                 if (SelectedHexagonTile.OwnerId == ClientID && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count > 0)
                 {
-                    var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-                    if (item != null && item.RemainingMoves != 0)
-                    {
-                        Unit newUnit = new Unit();
-                        newUnit.FactionType = item.Faction;
-                        newUnit.Position = SelectedHexagonTile.Position;
-                        newUnit.Name = item.Faction.ToString();
-                        newUnit.OwnerId = item.PlayerID;
-
-                        SelectedHexagonTile.Objects.Add(newUnit);
-                        SelectedHexagonTile.OwnerId = ClientID;
-
-                        item.Units.Add(newUnit);
-                    }
-                }
-            }
-        }
-        public void AddVillage()
-        {
-            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
-                && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
-            {
-                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && HasSufficientResources("Wood", 3) && HasSufficientResources("Stone", 2))
-                {
-                    var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-                    if (item != null && item.RemainingMoves != 0)
-                    {
-                        Village newVillage = new Village();
-
-                        newVillage.Position = SelectedHexagonTile.Position;
-                        newVillage.Level = 1;
-                        newVillage.FactionType = item.Faction;
-                        newVillage.OwnerId = item.PlayerID;
-
-                        SelectedHexagonTile.Objects.Add(newVillage);
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wood -= 3;
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Stone -= 2;
-                        SelectedHexagonTile.OwnerId = item.PlayerID;
-                        item.Villages.Add(newVillage);
-                    }
-                }
-
-            }
-        }
-        public void UpgradeVillage()
-        {
-            if (SelectedHexagonTile != null)
-            {
-                if ((SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
-                    && HasSufficientResources("Gold", 3)
-                    && HasSufficientResources("Wheat", 2))
-                {
-                    var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-                    var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
-                    if (item != null && player.RemainingMoves != 0 && item.Level < 3)
-                    {
-                        SelectedHexagonTile.Objects.Remove(item);
-                        item.Level++;
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold -= 3;
-                        Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Wheat -= 2;
-                    }
-                    if (item.Level==3)
+                    if (player != null && player.RemainingMoves != 0)
                     {
                         Unit newUnit = new Unit();
                         newUnit.FactionType = player.Faction;
@@ -706,9 +764,68 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
             }
         }
+        public void AddVillage()
+        {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
+                && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
+            {
+                if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && HasSufficientResources("Wood", 3) && HasSufficientResources("Stone", 2))
+                {
+                    if (player != null && player.RemainingMoves != 0)
+                    {
+                        Village newVillage = new Village();
+
+                        newVillage.Position = SelectedHexagonTile.Position;
+                        newVillage.Level = 1;
+                        newVillage.FactionType = player.Faction;
+                        newVillage.OwnerId = player.PlayerID;
+
+                        SelectedHexagonTile.Objects.Add(newVillage);
+                        player.Wood -= 3;
+                        player.Stone -= 2;
+                        SelectedHexagonTile.OwnerId = player.PlayerID;
+                        player.Villages.Add(newVillage);
+                    }
+                }
+
+            }
+        }
+        public void UpgradeVillage()
+        {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            if (SelectedHexagonTile != null)
+            {
+                if ((SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
+                    && HasSufficientResources("Gold", 3)
+                    && HasSufficientResources("Wheat", 2))
+                {
+                    var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
+                    if (item != null && player.RemainingMoves != 0 && item.Level < 3)
+                    {
+                        SelectedHexagonTile.Objects.Remove(item);
+                        item.Level++;
+                        player.Gold -= 3;
+                        player.Wheat -= 2;
+                    }
+                    if (item.Level == 3)
+                    {
+                        Unit newUnit = new Unit();
+                        newUnit.FactionType = player.Faction;
+                        newUnit.Position = SelectedHexagonTile.Position;
+                        newUnit.Name = player.Faction.ToString();
+                        newUnit.OwnerId = player.PlayerID;
+                        SelectedHexagonTile.Objects.Add(newUnit);
+                        SelectedHexagonTile.OwnerId = ClientID;
+                        player.Units.Add(newUnit);
+                    }
+                }
+            }
+        }
 
         public void MoveUnit(HexagonTile hexagonTile)
         {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
             {
                 Point[] points = SelectedHexagonTile.NeighborCoords();
@@ -718,24 +835,20 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                 if (points.Contains(point))
                 {
-                    var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
                     var item = SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
 
                     if (item != null && player.RemainingMoves != 0)
                     {
-
                         if (hexagonTile.Objects.ToList().Count == 0)
                         {
                             item.Move(hexagonTile.Position);
                             hexagonTile.Objects.Add(item);
                             hexagonTile.OwnerId = item.OwnerId;
-
                             SelectedHexagonTile.Objects.Remove(item);
                             if (SelectedHexagonTile.Objects.Count == 0)
                             {
                                 SelectedHexagonTile.OwnerId = 0;
                             }
-                            //MysteryBoxEvent(hexagonTile);
                             SelectedHexagonTile = null;
 
                             DecreaseMoves();
@@ -788,8 +901,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void GetResources()
         {
-            bool success = false;
             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            bool success = false;
             if (player != null && player.RemainingMoves != 0)
             {
                 foreach (var tile in GameMap)
@@ -813,18 +926,16 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void DecreaseMoves()
         {
-            var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            if (item != null)
+            if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault() != null)
             {
-                item.RemainingMoves--;
+                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves--;
             }
         }
         public void ResetMoves()
         {
-            var item = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            if (item != null)
+            if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault() != null)
             {
-                item.RemainingMoves = item.DefaultNumOfMoves;
+                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().DefaultNumOfMoves;
             }
         }
 

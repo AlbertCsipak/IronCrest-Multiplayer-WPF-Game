@@ -1,10 +1,6 @@
 ﻿using GUI_20212022_Z6O9JF.Models;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace GUI_20212022_Z6O9JF.Converters
