@@ -74,6 +74,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                         string message = socketClient.DataReceive();
                         if (message != null)
                         {
+                            if (message.Contains("win"))
+                            {
+                                //aki ilyet kap az vesztett.
+                            }
+
                             if (message.Equals("false") || message.Equals("true"))
                             {
                                 CanSend = bool.Parse(message);

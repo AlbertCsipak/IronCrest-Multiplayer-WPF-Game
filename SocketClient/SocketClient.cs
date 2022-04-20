@@ -82,6 +82,9 @@ namespace SocketClient
         {
             MySocket.Send(Encoding.ASCII.GetBytes("skip"));
         }
+        public void GameWin() {
+            MySocket.Send(Encoding.ASCII.GetBytes("win"));
+        }
     }
 }
 
