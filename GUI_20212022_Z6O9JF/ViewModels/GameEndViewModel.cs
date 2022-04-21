@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using System.ComponentModel;
@@ -11,6 +12,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
+        public Player First { get; set; }
+        public Player Second { get; set; }
+        public Player Third { get; set; }
 
         public static bool IsInDesignMode
         {

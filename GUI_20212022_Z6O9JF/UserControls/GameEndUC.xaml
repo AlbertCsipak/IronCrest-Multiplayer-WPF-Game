@@ -11,6 +11,52 @@
         <vm:GameEndViewModel></vm:GameEndViewModel>
     </UserControl.DataContext>
     <Grid>
-        <Image Source="\Resources\Images\Menu\ending_background.png" Stretch="Fill"></Image>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Image Source="\Resources\Images\Menu\ending_background.png" Stretch="Fill" Grid.ColumnSpan="4" Grid.RowSpan="8"/>
+        <Viewbox Grid.Row="1">
+            <Label Content="1." FontSize="10"/>
+        </Viewbox>
+        <Viewbox Grid.Row="2">
+            <Label Content="2." FontSize="10"/>
+        </Viewbox>
+        <Viewbox Grid.Row="3">
+            <Label Content="3." FontSize="10"/>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="1">
+            <Label Content="{Binding First}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="2" Grid.Column="1">
+            <Label Content="{Binding Second}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="1">
+            <Label Content="{Binding Third}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="2">
+            <Image Source="{Binding First}"/>
+        </Viewbox>
+        <Viewbox>
+            <Image Source="{Binding Second}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="2">
+            <Image Source="{Binding Third}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="2" Grid.RowSpan="3">
+            <Image Source="\Resources\Images\Menu\podium.png"/>
+        </Viewbox>
     </Grid>
 </UserControl>
