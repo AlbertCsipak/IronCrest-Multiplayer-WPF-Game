@@ -28,6 +28,34 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand ProduceCommand { get; set; }
         public ICommand TradeCommand { get; set; }
         public Faction SelectedFaction { get { return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
+        public Hero Hero1 
+        {
+            get 
+            {
+                if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Count>=1)
+                {
+                    return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.ElementAt(0);
+                }
+                else
+                {
+                    return new Hero();
+                }
+            } 
+        }
+        public Hero Hero2 
+        { 
+            get 
+            {
+                if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Count >= 2)
+                {
+                    return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.ElementAt(0);
+                }
+                else
+                {
+                    return new Hero();
+                }
+            } 
+        }
 
         public int Timer { get { return clientLogic.Timer; } }
         public bool CanSend { get { return clientLogic.CanSend; } }

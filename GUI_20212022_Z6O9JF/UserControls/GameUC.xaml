@@ -17,6 +17,7 @@
     <UserControl.Resources>
         <converter:HeroSelectorConverter x:Key="converter"/>
         <converter:TurnConverter x:Key="turnconverter"/>
+        <converter:HeroToImgConverter x:Key="heroconverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -40,6 +41,8 @@
         <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" >
             <renderer:Display x:Name="display"/>
         </Grid>
+        <Image Grid.Row="2" Source="{Binding Hero1, Converter={StaticResource heroconverter}}"/>
+        <Image Grid.Row="2" Grid.Column="2" Source="{Binding Hero2, Converter={StaticResource heroconverter}}"/>
         <Grid Grid.Row="0" Grid.ColumnSpan="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -128,6 +131,7 @@
                 </Label>
             </Viewbox>
         </Grid>
+        
         <Grid Grid.Row="1" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -239,6 +243,7 @@
             <Viewbox Grid.Column="2" Stretch="Fill">
                 <Image  Source="\Resources\Images\Menu\build_background.png" Stretch="Fill" Margin="10,0,10,0"/>
             </Viewbox>
+            
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.2*"/>
