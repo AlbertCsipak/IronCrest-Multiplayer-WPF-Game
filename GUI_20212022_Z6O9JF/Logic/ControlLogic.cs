@@ -38,10 +38,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             clientLogic.MysteryViewChange("mystery");
                         }
-                        if (gameLogic.CurrentHero!=null)
+                        if (gameLogic.FirstHero!=null || gameLogic.SecondaryHero!=null)
                         {
                             clientLogic.MysteryHeroViewChange("mysteryHero");
-                            gameLogic.CurrentHero = null;
+                            //gameLogic.FirstHero= null;
                         }
                         if ((polygon.Tag as HexagonTile).Compass != null)
                         {
@@ -65,10 +65,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 clientLogic.MysteryViewChange("mystery");
                             }
-                            if (gameLogic.CurrentHero != null)
+                            if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
                             {
                                 clientLogic.MysteryHeroViewChange("mysteryHero");
-                                gameLogic.CurrentHero = null;
+                                //gameLogic.CurrentHero = null;
                             }
                             if ((polygon.Tag as HexagonTile).Compass != null)
                             {

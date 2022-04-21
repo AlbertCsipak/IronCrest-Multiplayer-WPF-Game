@@ -9,18 +9,14 @@ using System.Windows.Data;
 
 namespace GUI_20212022_Z6O9JF.Converters
 {
-    public class HeroToImgConverter : IValueConverter
+    public class FirstHeroToImgConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             switch (((Hero)value).FactionType)
             {
                 case Faction.Arabian:
-                    if (((Hero)value).Name == "Prophet")
-                    {
-                        return "\\Resources\\Images\\Characters\\prophet.png";
-                    }
-                    else if (((Hero)value).Name == "Jhin")
+                    if (((Hero)value).Name == "Jhin")
                     {
                         return "\\Resources\\Images\\Characters\\jhin.png";
                     }
@@ -29,11 +25,7 @@ namespace GUI_20212022_Z6O9JF.Converters
                         return "";
                     }
                 case Faction.Mongolian:
-                    if (((Hero)value).Name == "Mongolian Mouse")
-                    {
-                        return "\\Resources\\Images\\Characters\\mongolian_mouse.png";
-                    }
-                    else if (((Hero)value).Name == "Genghis Khan")
+                    if(((Hero)value).Name == "Genghis Khan")
                     {
                         return "\\Resources\\Images\\Characters\\genghis_khan.png";
                     }
@@ -46,10 +38,6 @@ namespace GUI_20212022_Z6O9JF.Converters
                     {
                         return "\\Resources\\Images\\Characters\\dark_knight.png";
                     }
-                    else if (((Hero)value).Name == "Crusader Knight")
-                    {
-                        return "\\Resources\\Images\\Characters\\white_knight.png";
-                    }
                     else
                     {
                         return "";
@@ -58,10 +46,6 @@ namespace GUI_20212022_Z6O9JF.Converters
                     if (((Hero)value).Name == "Bjorn")
                     {
                         return "\\Resources\\Images\\Characters\\bjorn.png";
-                    }
-                    else if (((Hero)value).Name == "Sigurd")
-                    {
-                        return "\\Resources\\Images\\Characters\\sigurd.png";
                     }
                     else
                     {

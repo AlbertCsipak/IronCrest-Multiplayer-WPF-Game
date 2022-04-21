@@ -17,7 +17,8 @@
     <UserControl.Resources>
         <converter:HeroSelectorConverter x:Key="converter"/>
         <converter:TurnConverter x:Key="turnconverter"/>
-        <converter:HeroToImgConverter x:Key="heroconverter"/>
+        <converter:FirstHeroToImgConverter x:Key="firstheroconverter"/>
+        <converter:SecondaryHeroToImgConverter x:Key="secondaryheroconverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -41,8 +42,22 @@
         <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" >
             <renderer:Display x:Name="display"/>
         </Grid>
-        <Image Grid.Row="2" Source="{Binding Hero1, Converter={StaticResource heroconverter}}"/>
-        <Image Grid.Row="2" Grid.Column="2" Source="{Binding Hero2, Converter={StaticResource heroconverter}}"/>
+        <StackPanel Grid.Row="2">
+            <Viewbox>
+                <Label Content="{Binding Hero1.Name}" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="20"/>
+            </Viewbox>
+            <Viewbox>
+                <Image Source="{Binding Hero1, Converter={StaticResource firstheroconverter}}" Width="100"/>
+            </Viewbox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <Viewbox>
+                <Label Content="{Binding Hero2.Name}" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="20"/>
+            </Viewbox>
+            <Viewbox>
+                <Image Grid.Column="2" Source="{Binding Hero2, Converter={StaticResource secondaryheroconverter}}" Width="100"/>
+            </Viewbox>
+        </StackPanel>
         <Grid Grid.Row="0" Grid.ColumnSpan="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>

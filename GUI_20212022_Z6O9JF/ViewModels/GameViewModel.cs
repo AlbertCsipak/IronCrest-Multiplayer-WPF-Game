@@ -32,9 +32,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             get 
             {
-                if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Count>=1)
+                if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault()!=null)
                 {
-                    return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.ElementAt(0);
+                    return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x=>x.HeroType==HeroType.First).First();
                 }
                 else
                 {
@@ -46,9 +46,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         { 
             get 
             {
-                if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Count >= 2)
+                if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault()!=null)
                 {
-                    return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.ElementAt(0);
+                    return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).First();
                 }
                 else
                 {
@@ -107,6 +107,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("MysteryView");
                 OnPropertyChanged("MysteryHeroView");
                 OnPropertyChanged("ESCView");
+                OnPropertyChanged("Hero1");
+                OnPropertyChanged("Hero2");
             });
 
         }

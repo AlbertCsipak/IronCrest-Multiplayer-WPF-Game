@@ -15,7 +15,20 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand OKButtonCommand { get; set; }
-        public Hero CurrentHero { get { return gameLogic.CurrentHero; } }
+        public Hero CurrentHero 
+        { 
+            get 
+            {
+                if (gameLogic.FirstHero==null)
+                {
+                    return gameLogic.SecondaryHero;
+                }
+                else
+                {
+                    return gameLogic.FirstHero;
+                }
+            } 
+        }
         public FieldType Background { get { return gameLogic.CurrentMystery.FieldType; } }
         public static bool IsInDesignMode
         {

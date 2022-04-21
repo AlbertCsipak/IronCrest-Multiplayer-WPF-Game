@@ -24,7 +24,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         public Trade CurrentTrade { get; set; }
         public Queue<MysteryEvent> MysteryEvents { get; set; }
         public MysteryEvent CurrentMystery { get; set; }
-        public Hero CurrentHero { get; set; }
+        public Hero FirstHero { get; set; }
+        public Hero SecondaryHero { get; set; }
 
         public GameLogic(IMessenger messenger)
         {
@@ -462,12 +463,14 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void MysteryHeroEvent()
         {
             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            Hero hero = new Hero();
-            if (player.Heroes.Count==2)
+            Hero firsthero = null;
+            Hero secondaryhero = null;
+            if (player.Heroes.Count == 2)
             {
-                hero = null;
+                firsthero = null;
+                secondaryhero = null;
             }
-            else
+            else if (player.Heroes.Count == 0)
             {
                 switch (player.Faction)
                 {
@@ -477,24 +480,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                             int random = RandomNumber.RandomNumberGenerator(1, 2);
                             if (random == 1)
                             {
-                                hero = new Hero() { Name = "Bjorn", Damage = 5, FactionType = Faction.Viking, OwnerId = player.PlayerID };
-                                player.Heroes.Add(hero);
+                                firsthero = new Hero() { Name = "Bjorn", Damage = 5, FactionType = Faction.Viking, OwnerId = player.PlayerID, HeroType = HeroType.First };
+                                player.Heroes.Add(firsthero);
                             }
                             else
                             {
-                                hero = new Hero() { Name = "Sigurd", Damage = 3, FactionType = Faction.Viking, OwnerId = player.PlayerID };
-                                player.Heroes.Add(hero);
+                                secondaryhero = new Hero() { Name = "Sigurd", Damage = 3, FactionType = Faction.Viking, OwnerId = player.PlayerID, HeroType = HeroType.Secondary };
+                                player.Heroes.Add(secondaryhero);
                             }
-                        }
-                        else if (player.Heroes.ElementAt(0).Name == "Bjorn")
-                        {
-                            hero = new Hero() { Name = "Sigurd", Damage = 3, FactionType = Faction.Viking, OwnerId = player.PlayerID };
-                            player.Heroes.Add(hero);
-                        }
-                        else
-                        {
-                            hero = new Hero() { Name = "Bjorn", Damage = 5, FactionType = Faction.Viking, OwnerId = player.PlayerID };
-                            player.Heroes.Add(hero);
                         }
                         break;
                     case Faction.Crusader:
@@ -503,24 +496,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                             int random = RandomNumber.RandomNumberGenerator(1, 2);
                             if (random == 1)
                             {
-                                hero = new Hero() { Name = "Dark Knight", Damage = 4, FactionType = Faction.Crusader, OwnerId = player.PlayerID };
-                                player.Heroes.Add(hero);
+                                firsthero = new Hero() { Name = "Dark Knight", Damage = 4, FactionType = Faction.Crusader, OwnerId = player.PlayerID, HeroType = HeroType.First };
+                                player.Heroes.Add(firsthero);
                             }
                             else
                             {
-                                hero = new Hero() { Name = "Crusader Knight", Damage = 3, FactionType = Faction.Crusader, OwnerId = player.PlayerID };
-                                player.Heroes.Add(hero);
+                                secondaryhero = new Hero() { Name = "Crusader Knight", Damage = 3, FactionType = Faction.Crusader, OwnerId = player.PlayerID, HeroType = HeroType.Secondary };
+                                player.Heroes.Add(secondaryhero);
                             }
-                        }
-                        else if (player.Heroes.ElementAt(0).Name == "Dark Knight")
-                        {
-                            hero = new Hero() { Name = "Crusader Knight", Damage = 3, FactionType = Faction.Crusader, OwnerId = player.PlayerID };
-                            player.Heroes.Add(hero);
-                        }
-                        else
-                        {
-                            hero = new Hero() { Name = "Dark Knight", Damage = 4, FactionType = Faction.Crusader, OwnerId = player.PlayerID };
-                            player.Heroes.Add(hero);
                         }
                         break;
                     case Faction.Mongolian:
@@ -529,24 +512,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                             int random = RandomNumber.RandomNumberGenerator(1, 2);
                             if (random == 1)
                             {
-                                hero = new Hero() { Name = "Genghis Khan", Damage = 4, FactionType = Faction.Mongolian, OwnerId = player.PlayerID };
-                                player.Heroes.Add(hero);
+                                firsthero = new Hero() { Name = "Genghis Khan", Damage = 4, FactionType = Faction.Mongolian, OwnerId = player.PlayerID, HeroType = HeroType.First };
+                                player.Heroes.Add(firsthero);
                             }
                             else
                             {
-                                hero = new Hero() { Name = "Mongolian Mouse", Damage = 2, FactionType = Faction.Mongolian, OwnerId = player.PlayerID };
-                                player.Heroes.Add(hero);
+                                secondaryhero = new Hero() { Name = "Mongolian Mouse", Damage = 2, FactionType = Faction.Mongolian, OwnerId = player.PlayerID, HeroType = HeroType.Secondary };
+                                player.Heroes.Add(secondaryhero);
                             }
-                        }
-                        else if (player.Heroes.ElementAt(0).Name == "Genghis Khan")
-                        {
-                            hero = new Hero() { Name = "Mongolian Mouse", Damage = 2, FactionType = Faction.Mongolian, OwnerId = player.PlayerID };
-                            player.Heroes.Add(hero);
-                        }
-                        else
-                        {
-                            hero = new Hero() { Name = "Genghis Khan", Damage = 4, FactionType = Faction.Mongolian, OwnerId = player.PlayerID };
-                            player.Heroes.Add(hero);
                         }
                         break;
                     case Faction.Arabian:
@@ -555,29 +528,69 @@ namespace GUI_20212022_Z6O9JF.Logic
                             int random = RandomNumber.RandomNumberGenerator(1, 2);
                             if (random == 1)
                             {
-                                hero = new Hero() { Name = "Jhin", Damage = 3, FactionType = Faction.Arabian, OwnerId = player.PlayerID };
-                                player.Heroes.Add(hero);
+                                firsthero = new Hero() { Name = "Jhin", Damage = 3, FactionType = Faction.Arabian, OwnerId = player.PlayerID, HeroType = HeroType.First };
+                                player.Heroes.Add(firsthero);
                             }
                             else
                             {
-                                hero = new Hero() { Name = "Prophet", Damage = 2, FactionType = Faction.Arabian, OwnerId = player.PlayerID };
-                                player.Heroes.Add(hero);
+                                secondaryhero = new Hero() { Name = "Prophet", Damage = 2, FactionType = Faction.Arabian, OwnerId = player.PlayerID, HeroType = HeroType.Secondary };
+                                player.Heroes.Add(secondaryhero);
                             }
-                        }
-                        else if (player.Heroes.ElementAt(0).Name == "Jhin")
-                        {
-                            hero = new Hero() { Name = "Prophet", Damage = 2, FactionType = Faction.Arabian, OwnerId = player.PlayerID };
-                            player.Heroes.Add(hero);
-                        }
-                        else
-                        {
-                            hero = new Hero() { Name = "Jhin", Damage = 3, FactionType = Faction.Arabian, OwnerId = player.PlayerID };
-                            player.Heroes.Add(hero);
                         }
                         break;
                 }
             }
-            CurrentHero = hero;
+            else
+            {
+                if (!player.Heroes.Exists(x => x.HeroType == HeroType.First))
+                {
+                    switch (player.Faction)
+                    {
+                        case Faction.Viking:
+                            firsthero = new Hero() { Name = "Bjorn", Damage = 5, FactionType = Faction.Viking, OwnerId = player.PlayerID, HeroType = HeroType.First };
+                            player.Heroes.Add(firsthero);
+                            break;
+                        case Faction.Crusader:
+                            firsthero = new Hero() { Name = "Dark Knight", Damage = 4, FactionType = Faction.Crusader, OwnerId = player.PlayerID, HeroType = HeroType.First };
+                            player.Heroes.Add(firsthero);
+                            break;
+                        case Faction.Mongolian:
+                            firsthero = new Hero() { Name = "Genghis Khan", Damage = 4, FactionType = Faction.Mongolian, OwnerId = player.PlayerID, HeroType = HeroType.First };
+                            player.Heroes.Add(firsthero);
+                            break;
+                        case Faction.Arabian:
+                            firsthero = new Hero() { Name = "Jhin", Damage = 3, FactionType = Faction.Arabian, OwnerId = player.PlayerID, HeroType = HeroType.First };
+                            player.Heroes.Add(firsthero);
+                            break;
+                    }
+                }
+                else if (!player.Heroes.Exists(x => x.HeroType == HeroType.Secondary))
+                {
+                    switch (player.Faction)
+                    {
+                        case Faction.Viking:
+                            secondaryhero = new Hero() { Name = "Sigurd", Damage = 3, FactionType = Faction.Viking, OwnerId = player.PlayerID, HeroType = HeroType.Secondary };
+                            player.Heroes.Add(secondaryhero);
+                            break;
+                        case Faction.Crusader:
+                            secondaryhero = new Hero() { Name = "Crusader Knight", Damage = 3, FactionType = Faction.Crusader, OwnerId = player.PlayerID, HeroType = HeroType.Secondary };
+                            player.Heroes.Add(secondaryhero);
+                            break;
+                        case Faction.Mongolian:
+                            secondaryhero = new Hero() { Name = "Mongolian Mouse", Damage = 2, FactionType = Faction.Mongolian, OwnerId = player.PlayerID, HeroType = HeroType.Secondary };
+                            player.Heroes.Add(secondaryhero);
+                            break;
+                        case Faction.Arabian:
+                            secondaryhero = new Hero() { Name = "Prophet", Damage = 2, FactionType = Faction.Arabian, OwnerId = player.PlayerID, HeroType = HeroType.Secondary };
+                            player.Heroes.Add(secondaryhero);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            FirstHero = firsthero;
+            SecondaryHero = secondaryhero;
         }
         public Queue<MysteryEvent> LoadMysteryEvents()
         {

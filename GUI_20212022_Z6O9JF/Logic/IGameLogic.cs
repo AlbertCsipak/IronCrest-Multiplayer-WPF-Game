@@ -8,13 +8,14 @@ namespace GUI_20212022_Z6O9JF.Logic
     {
         List<Faction> AvailableFactions { get; set; }
         int ClientID { get; set; }
-        Hero CurrentHero { get; set; }
         MysteryEvent CurrentMystery { get; set; }
         Trade CurrentTrade { get; set; }
+        Hero FirstHero { get; set; }
         HexagonTile[,] GameMap { get; set; }
         string Map { get; set; }
         Queue<MysteryEvent> MysteryEvents { get; set; }
         ObservableCollection<Player> Players { get; set; }
+        Hero SecondaryHero { get; set; }
         HexagonTile SelectedHexagonTile { get; set; }
 
         void AddUnit();
