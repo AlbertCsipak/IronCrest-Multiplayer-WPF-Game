@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace GUI_20212022_Z6O9JF.Models
 {
     public enum Faction { Viking, Crusader, Mongolian, Arabian }
-    public enum Activity { Move, Build, Upgrade, Farm }
+    public enum Activity {Init, Move, Build, Upgrade, Farm }
     public class Player
     {
         public int PlayerID { get; set; }
@@ -19,6 +19,7 @@ namespace GUI_20212022_Z6O9JF.Models
         public ObservableCollection<int> ResourceChanges { get; set; }
         public int BattlesWon { get; set; }
         public List<Quest> Quests { get; set; }
+        //public int QuestsDone { get; set; }
         public List<Village> Villages { get; set; }
         public List<Unit> Units { get; set; }
         public List<Hero> Heroes { get; set; }
@@ -130,7 +131,9 @@ namespace GUI_20212022_Z6O9JF.Models
             Units = new List<Unit>();
             Heroes = new List<Hero>();
             Quests = new List<Quest>();
+            //QuestsDone = 0;
             Villages = new List<Village>();
+            Activity = Activity.Init;
             ResourceChanges = new ObservableCollection<int>();
             for (int i = 0; i < 6; i++) ResourceChanges.Add(0);
 

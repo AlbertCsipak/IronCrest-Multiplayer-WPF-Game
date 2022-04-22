@@ -5,17 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
+             xmlns:converter="clr-namespace:GUI_20212022_Z6O9JF.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <vm:GameEndViewModel></vm:GameEndViewModel>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <converter:HeroSelectorConverter x:Key="converter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1.6*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.5*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
@@ -25,38 +33,49 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="5*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1.3*"/>
+            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <Image Source="\Resources\Images\Menu\ending_background.png" Stretch="Fill" Grid.ColumnSpan="4" Grid.RowSpan="8"/>
-        <Viewbox Grid.Row="1">
-            <Label Content="1." FontSize="10"/>
-        </Viewbox>
-        <Viewbox Grid.Row="2">
-            <Label Content="2." FontSize="10"/>
-        </Viewbox>
-        <Viewbox Grid.Row="3">
-            <Label Content="3." FontSize="10"/>
-        </Viewbox>
-        <Viewbox Grid.Row="1" Grid.Column="1">
-            <Label Content="{Binding First}"/>
+        <Image Source="\Resources\Images\Menu\ending_background.png" Stretch="Fill" Grid.ColumnSpan="8" Grid.RowSpan="10"/>
+        <Viewbox Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="2">
+            <Label Content="Game Over" FontFamily="\Resources\#Press Start K" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Viewbox>
         <Viewbox Grid.Row="2" Grid.Column="1">
-            <Label Content="{Binding Second}"/>
+            <Label Content="I." FontSize="10" FontFamily="\Resources\#Press Start K"/>
         </Viewbox>
         <Viewbox Grid.Row="3" Grid.Column="1">
-            <Label Content="{Binding Third}"/>
+            <Label Content="II." FontSize="10" FontFamily="\Resources\#Press Start K"/>
+        </Viewbox>
+        <Viewbox Grid.Row="4" Grid.Column="1">
+            <Label Content="III." FontSize="10" FontFamily="\Resources\#Press Start K"/>
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.Column="1">
+            <Label Content="IV." FontSize="10" FontFamily="\Resources\#Press Start K"/>
+        </Viewbox>
+        <Viewbox Grid.Row="2" Grid.Column="2">
+            <Label Content="{Binding First.Name}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="2">
+            <Label Content="{Binding Second.Name}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="4" Grid.Column="2">
+            <Label Content="{Binding Third.Name}"/>
         </Viewbox>
         <Viewbox Grid.Row="5" Grid.Column="2">
-            <Image Source="{Binding First}"/>
+            <Image Source="{Binding Fourth.Name}"/>
         </Viewbox>
-        <Viewbox>
-            <Image Source="{Binding Second}"/>
-        </Viewbox>
-        <Viewbox Grid.Row="5" Grid.Column="2">
-            <Image Source="{Binding Third}"/>
-        </Viewbox>
-        <Viewbox Grid.Row="6" Grid.Column="2" Grid.RowSpan="3" VerticalAlignment="Bottom">
+        <Viewbox Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="3" VerticalAlignment="Bottom">
             <Image Source="\Resources\Images\Menu\podium.png" />
+        </Viewbox>
+        <Viewbox Grid.Row="5" Grid.RowSpan="2" Grid.Column="5">
+            <Image x:Name="img_first" Source="{Binding First.Faction, Converter={StaticResource converter}}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="6" Grid.Column="4" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+            <Image x:Name="img_second" Source="{Binding Second.Faction, Converter={StaticResource converter}}"/>
+        </Viewbox>
+        <Viewbox Grid.Row="6" Grid.Column="6" Grid.RowSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <Image x:Name="img_third" Source="{Binding Third.Faction, Converter={StaticResource converter}}"/>
         </Viewbox>
     </Grid>
 </UserControl>

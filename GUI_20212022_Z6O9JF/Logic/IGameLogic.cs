@@ -41,6 +41,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         void ReloadHexagonObjects();
         void ResetMoves();
         void SelectableFactions();
+        void SetGameEndOrder();
         void UpgradeVillage();
     }
 }

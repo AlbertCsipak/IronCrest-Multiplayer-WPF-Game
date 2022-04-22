@@ -265,40 +265,11 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void IsAllQuestsDone()
         {
             var player = gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault();
-            if (player.Quests.ElementAt(0).Done && player.Quests.ElementAt(1).Done && player.Quests.ElementAt(2).Done)
+            if (player.Quests.All(x=>x.Done))
             {
+                gameLogic.SetGameEndOrder();
                 ChangeView("ending");
-                gameLogic.WinOrder.Add(player);
             }
-            //winorderbe be kell még rakni a 2. és 3. helyezettet 
-
-            //int Quest2Counter = 0;
-            //foreach (var item in gameLogic.Players)
-            //{
-            //    if (item.Quests.Count(x=>x.Done)==2)
-            //    {
-            //        Quest2Counter++;
-            //    }
-            //}
-            //if (Quest2Counter == 0)
-            //{
-            //    int Quest1Counter = 0;
-            //    foreach (var item in gameLogic.Players)
-            //    {
-            //        if (item.Quests.Count(x => x.Done) == 2)
-            //        {
-            //            Quest1Counter++;
-            //        }
-            //    }
-            //    if (Quest1Counter==0)
-            //    {
-                    
-            //    }
-            //}
-            //else if(Quest2Counter==1)
-            //{
-            //    gameLogic.WinOrder.Add(gameLogic.Players.Where(x => x.Quests.Count(y => y.Done) == 2).First());
-            //}
         }
         public void ChampSelect(Faction faction, string name)
         {

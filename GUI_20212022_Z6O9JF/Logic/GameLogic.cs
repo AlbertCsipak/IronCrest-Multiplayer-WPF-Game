@@ -763,7 +763,25 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             return IsQuestDone;
         }
-
+        public void SetGameEndOrder()
+        {
+            WinOrder.Add(Players.First(x => x.Quests.All(x => x.Done)));
+            var playerWith2QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 2).OrderBy(x => x.Gold).ToList();
+            if (playerWith2QuestsDoneAndMostGold != null)
+            {
+                playerWith2QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+            }
+            var playerWith1QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 1).OrderBy(x => x.Gold).ToList();
+            if (playerWith1QuestsDoneAndMostGold != null)
+            {
+                playerWith1QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+            }
+            var playerWith0QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 0).OrderBy(x => x.Gold).ToList();
+            if (playerWith0QuestsDoneAndMostGold != null)
+            {
+                playerWith0QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+            }
+        }
         public void AddUnit()
         {
             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
@@ -823,7 +841,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                     && HasSufficientResources("Gold", 3)
                     && HasSufficientResources("Wheat", 2))
                 {
-                    var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
+                    //var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
+                    var item = SelectedHexagonTile.Objects.Where(t => t is Village).FirstOrDefault();
                     if (item != null && player.RemainingMoves != 0 && item.Level < 3)
                     {
                         SelectedHexagonTile.Objects.Remove(item);
