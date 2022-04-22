@@ -53,17 +53,17 @@
         <Viewbox Grid.Row="5" Grid.Column="1">
             <Label Content="IV." FontSize="10" FontFamily="\Resources\#Press Start K"/>
         </Viewbox>
-        <Viewbox Grid.Row="2" Grid.Column="2">
-            <Label Content="{Binding First.Name}"/>
+        <Viewbox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" >
+            <Label Content="{Binding First.Name}" FontFamily="\Resources\#Press Start K"/>
         </Viewbox>
-        <Viewbox Grid.Row="3" Grid.Column="2">
-            <Label Content="{Binding Second.Name}"/>
+        <Viewbox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" >
+            <Label Content="{Binding Second.Name}" FontFamily="\Resources\#Press Start K"/>
         </Viewbox>
-        <Viewbox Grid.Row="4" Grid.Column="2">
-            <Label Content="{Binding Third.Name}"/>
+        <Viewbox Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" >
+            <Label Content="{Binding Third.Name}" FontFamily="\Resources\#Press Start K"/>
         </Viewbox>
-        <Viewbox Grid.Row="5" Grid.Column="2">
-            <Image Source="{Binding Fourth.Name}"/>
+        <Viewbox Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" >
+            <Label Content="{Binding Fourth.Name}" FontFamily="\Resources\#Press Start K"/>
         </Viewbox>
         <Viewbox Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="3" VerticalAlignment="Bottom">
             <Image Source="\Resources\Images\Menu\podium.png" />

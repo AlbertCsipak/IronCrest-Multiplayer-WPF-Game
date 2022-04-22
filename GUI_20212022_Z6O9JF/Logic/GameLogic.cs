@@ -28,6 +28,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public Hero SecondaryHero { get; set; }
         public Battle CurrentBattle { get; set; }
         public List<Player> WinOrder { get; set; }
+        public bool IsGameEnded;
 
         public GameLogic(IMessenger messenger)
         {
@@ -765,22 +766,27 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void SetGameEndOrder()
         {
-            WinOrder.Add(Players.First(x => x.Quests.All(x => x.Done)));
-            var playerWith2QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 2).OrderBy(x => x.Gold).ToList();
-            if (playerWith2QuestsDoneAndMostGold != null)
+            if (!IsGameEnded)
             {
-                playerWith2QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+                WinOrder.Add(Players.First(x => x.Quests.All(x => x.Done)));
+                var playerWith2QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 2).OrderBy(x => x.Gold).ToList();
+                if (playerWith2QuestsDoneAndMostGold != null)
+                {
+                    playerWith2QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+                }
+                var playerWith1QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 1).OrderBy(x => x.Gold).ToList();
+                if (playerWith1QuestsDoneAndMostGold != null)
+                {
+                    playerWith1QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+                }
+                var playerWith0QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 0).OrderBy(x => x.Gold).ToList();
+                if (playerWith0QuestsDoneAndMostGold != null)
+                {
+                    playerWith0QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+                }
+                IsGameEnded = true;
             }
-            var playerWith1QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 1).OrderBy(x => x.Gold).ToList();
-            if (playerWith1QuestsDoneAndMostGold != null)
-            {
-                playerWith1QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
-            }
-            var playerWith0QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 0).OrderBy(x => x.Gold).ToList();
-            if (playerWith0QuestsDoneAndMostGold != null)
-            {
-                playerWith0QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
-            }
+            
         }
         public void AddUnit()
         {
