@@ -14,15 +14,18 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// </summary>
     public partial class GameSubMenuUC : UserControl
     {
+        IGameLogic gameLogic;
         IClientLogic clientLogic;
         Uri unmutedUri = new Uri("Resources/Images/Other/unmuted.png", UriKind.RelativeOrAbsolute);
         Uri mutedUri = new Uri("Resources/Images/Other/muted.png", UriKind.RelativeOrAbsolute);
+        private bool KeyCheck;
         public MediaPlayer button_click = new MediaPlayer();
         public GameSubMenuUC()
         {
             InitializeComponent();
             this.DataContext = new GameSubMenuViewModel();
             this.clientLogic = (this.DataContext as GameSubMenuViewModel).clientLogic;
+            this.gameLogic = (this.DataContext as GameSubMenuViewModel).gameLogic;
             img_mute.Source = new BitmapImage(unmutedUri);
         }
         private void volume_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -42,11 +45,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
         }
         private void HandleKeyPress(object sender, KeyEventArgs e)
         {
-            ;
-            if (e.Key == Key.Escape)
+            if (KeyCheck && e.Key == Key.Escape)
             {
-                GameUC.IsInSubUC = false;
                 clientLogic.ESCChange("");
+                KeyCheck = true;
             }
         }
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)

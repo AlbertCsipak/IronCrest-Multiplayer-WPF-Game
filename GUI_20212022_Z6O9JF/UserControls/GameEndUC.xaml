@@ -55,8 +55,8 @@
         <Viewbox Grid.Row="5" Grid.Column="2">
             <Image Source="{Binding Third}"/>
         </Viewbox>
-        <Viewbox Grid.Row="5" Grid.Column="2" Grid.RowSpan="3">
-            <Image Source="\Resources\Images\Menu\podium.png"/>
+        <Viewbox Grid.Row="6" Grid.Column="2" Grid.RowSpan="3" VerticalAlignment="Bottom">
+            <Image Source="\Resources\Images\Menu\podium.png" />
         </Viewbox>
     </Grid>
 </UserControl>

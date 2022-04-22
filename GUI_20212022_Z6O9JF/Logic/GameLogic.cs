@@ -26,6 +26,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         public MysteryEvent CurrentMystery { get; set; }
         public Hero FirstHero { get; set; }
         public Hero SecondaryHero { get; set; }
+        public Battle CurrentBattle { get; set; }
+        public List<Player> WinOrder { get; set; }
 
         public GameLogic(IMessenger messenger)
         {
@@ -36,6 +38,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             CurrentMystery = null;
             CurrentTrade = null;
             AvailableFactions = new List<Faction>();
+            WinOrder = new List<Player>();
         }
         public void SelectableFactions()
         {
@@ -880,6 +883,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if (enemy != null)
                             {
                                 var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
+                                CurrentBattle = new Battle();
+                                CurrentBattle.Defender = enemyPlayer;
+                                CurrentBattle.Attacker = player;
+                                //clientLogic.BattleViewChange("battle");
 
                                 if (player.ArmyPower * (item as Unit).Level >= enemy.Level * enemyPlayer.ArmyPower)
                                 {

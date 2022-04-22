@@ -30,7 +30,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public MediaPlayer button_click = new MediaPlayer();
         DispatcherTimer dt;
         bool IsResourceChanged;
-        public static bool IsInSubUC;
         List<SubItem<Quest>> quests;
         Player player;
         public GameUC()
@@ -70,7 +69,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
             dt.Tick += (sender, eventargs) =>
             {
-                ;
                 SetMovePictures();
                 if (gameLogic.IsQuestDone())
                 {
@@ -317,16 +315,15 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            IsInSubUC = false;
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
             window = Window.GetWindow(this);
             window.KeyDown += HandleKeyPress;
         }
         private void HandleKeyPress(object sender, KeyEventArgs e)
         {
-            if (!IsInSubUC && e.Key == Key.Escape)
+            ;
+            if (clientLogic.ESCView==null && e.Key == Key.Escape)
             {
-                IsInSubUC = true;
                 clientLogic.ESCChange("ESC");
             }
 
@@ -353,15 +350,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Play();
             txt_harvest.Foreground = Brushes.Gray;
             btn_harvest.IsEnabled = false;
-        }
-
-        private void UserControl_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (e.Key == Key.Escape)
-            {
-                clientLogic.ESCChange("ESC");
-            }
         }
     }
 }

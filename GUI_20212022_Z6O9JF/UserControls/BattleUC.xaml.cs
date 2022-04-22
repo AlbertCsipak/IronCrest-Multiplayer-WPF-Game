@@ -11,5 +11,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

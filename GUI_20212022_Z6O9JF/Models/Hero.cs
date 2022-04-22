@@ -10,5 +10,4 @@
         public HeroType HeroType { get; set; }
 
     }
-
 }

@@ -22,6 +22,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public object MysteryView { get; set; }
         public object MysteryHeroView { get; set; }
         public object GoldMineView { get; set; }
+        public object BattleView { get; set; }
         public object ESCView { get; set; }
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
@@ -153,6 +154,18 @@ namespace GUI_20212022_Z6O9JF.Logic
             MysteryViewChange("");
             MysteryHeroViewChange("");
         }
+        public void BattleViewChange(string view)
+        {
+            if (view.Equals("battle"))
+            {
+                BattleView = new BattleUC();
+            }
+            else
+            {
+                BattleView = null;
+            }
+            messenger.Send("Message", "Base");
+        }
         public void TradeViewChange(string view)
         {
 
@@ -255,7 +268,37 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (player.Quests.ElementAt(0).Done && player.Quests.ElementAt(1).Done && player.Quests.ElementAt(2).Done)
             {
                 ChangeView("ending");
+                gameLogic.WinOrder.Add(player);
             }
+            //winorderbe be kell még rakni a 2. és 3. helyezettet 
+
+            //int Quest2Counter = 0;
+            //foreach (var item in gameLogic.Players)
+            //{
+            //    if (item.Quests.Count(x=>x.Done)==2)
+            //    {
+            //        Quest2Counter++;
+            //    }
+            //}
+            //if (Quest2Counter == 0)
+            //{
+            //    int Quest1Counter = 0;
+            //    foreach (var item in gameLogic.Players)
+            //    {
+            //        if (item.Quests.Count(x => x.Done) == 2)
+            //        {
+            //            Quest1Counter++;
+            //        }
+            //    }
+            //    if (Quest1Counter==0)
+            //    {
+                    
+            //    }
+            //}
+            //else if(Quest2Counter==1)
+            //{
+            //    gameLogic.WinOrder.Add(gameLogic.Players.Where(x => x.Quests.Count(y => y.Done) == 2).First());
+            //}
         }
         public void ChampSelect(Faction faction, string name)
         {

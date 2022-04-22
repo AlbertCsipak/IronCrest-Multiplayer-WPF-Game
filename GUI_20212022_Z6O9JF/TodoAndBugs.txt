@@ -11,13 +11,7 @@ Todo:
 - champselect teljes fix
 - number of quest beállítása a logicba (n random quest)
 - mukodjon a map2, és map3
-- minden UC minden képe/szövege legyen responsive
-- game UC-n a questeket tartalmazo combobox designolása
-- trade offer választásánál az arabok tudjanak 2 opciót választani
-- metódus ami minden kör végén megnézi hogy teljesült-e a játékos valamely küldetése
-- átvezető jelenet a harchoz, és az aranybányába való belépéshez
 - legyen letiltva a build/upgrade gomb, ha nincs elég nyersanyagunk hozzá
-- ha felugrott egy mystery event vagy trade ablak legyen letiltva a game UC összes lehetséges interakciója (ne lehessen a háttérben lépkeni)
 - lehessena a textnek outline-t rajzolni, nincs beépített funkciója nekem meg nincs kedvem ehhez
 
 Features:
@@ -25,6 +19,7 @@ Features:
 -ESC gomb nyomásra options menü, ahol lehet állitani a hangerőt és ki lehet lépni
 
 STEVE TO DO: 
+- ha felugrott egy mystery event vagy trade ablak legyen letiltva a game UC összes lehetséges interakciója (ne lehessen a háttérben lépkeni)
 
 LILI TO DO: 
 - app.xaml-be kerüljön át az összes a globális resource (zene,cursor,kép)

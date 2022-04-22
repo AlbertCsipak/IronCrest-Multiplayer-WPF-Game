@@ -1,8 +1,14 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
@@ -11,7 +17,13 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
-
+        public ICommand NextNumber { get; set; }
+        public ICommand PreviousNumber { get; set; }
+        public int SelectedNumber { get; set; }
+        public Battle CurrentBattle { get { return gameLogic.CurrentBattle; } }
+        int index = 0;
+        public List<int> ArmyPower;
+        public int PlayerMaxArmyPower;
         public static bool IsInDesignMode
         {
             get
@@ -30,6 +42,36 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.controlLogic = controlLogic;
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
+            PlayerMaxArmyPower = Math.Min(gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().ArmyPower, 7);
+            ArmyPower = new List<int>(); ;
+            for (int i = 0; i <= PlayerMaxArmyPower; i++)
+            {
+                ArmyPower.Add(i);
+            }
+
+            
+            NextNumber = new RelayCommand(() =>
+            {
+                index++;
+                OnPropertyChanged("SelectedNumber");
+            });
+            PreviousNumber = new RelayCommand(() =>
+            {
+                if (index > 0)
+                {
+                    index--;
+                }
+                else
+                {
+                    index = gameLogic.AvailableFactions.Count - 1;
+                }
+                OnPropertyChanged("SelectedNumber");
+            });
+
+            Messenger.Register<BattleViewModel, string, string>(this, "Base", (recipient, msg) =>
+            {
+                OnPropertyChanged("SelectedNumber");
+            });
         }
     }
 }

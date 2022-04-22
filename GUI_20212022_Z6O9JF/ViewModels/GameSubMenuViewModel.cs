@@ -11,6 +11,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     public class GameSubMenuViewModel : ObservableRecipient
     {
         public IClientLogic clientLogic { get; set; }
+        public IGameLogic gameLogic { get; set; }
 
         public ICommand ExitCommand { get; set; }
         public static bool IsInDesignMode
@@ -25,10 +26,11 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     .Metadata.DefaultValue;
             }
         }
-        public GameSubMenuViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IClientLogic>()) { }
-        public GameSubMenuViewModel(IClientLogic clientLogic)
+        public GameSubMenuViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IClientLogic>(), Ioc.Default.GetService<IGameLogic>()) { }
+        public GameSubMenuViewModel(IClientLogic clientLogic, IGameLogic gameLogic)
         {
             this.clientLogic = clientLogic;
+            this.gameLogic = gameLogic;
             ExitCommand = new RelayCommand(() =>
             {
                 clientLogic.ChangeView("game");
