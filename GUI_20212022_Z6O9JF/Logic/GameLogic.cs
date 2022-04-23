@@ -858,18 +858,19 @@ namespace GUI_20212022_Z6O9JF.Logic
                         item.Level++;
                         player.Gold -= 3;
                         player.Wheat -= 2;
+                        if (item.Level == 3)
+                        {
+                            Unit newUnit = new Unit();
+                            newUnit.FactionType = player.Faction;
+                            newUnit.Position = SelectedHexagonTile.Position;
+                            newUnit.Name = player.Faction.ToString();
+                            newUnit.OwnerId = player.PlayerID;
+                            SelectedHexagonTile.Objects.Add(newUnit);
+                            SelectedHexagonTile.OwnerId = ClientID;
+                            player.Units.Add(newUnit);
+                        }
                     }
-                    if (item.Level == 3)
-                    {
-                        Unit newUnit = new Unit();
-                        newUnit.FactionType = player.Faction;
-                        newUnit.Position = SelectedHexagonTile.Position;
-                        newUnit.Name = player.Faction.ToString();
-                        newUnit.OwnerId = player.PlayerID;
-                        SelectedHexagonTile.Objects.Add(newUnit);
-                        SelectedHexagonTile.OwnerId = ClientID;
-                        player.Units.Add(newUnit);
-                    }
+                    
                 }
             }
         }
