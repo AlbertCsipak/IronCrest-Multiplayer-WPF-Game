@@ -19,10 +19,12 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IControlLogic controlLogic { get; set; }
         public ICommand NextNumber { get; set; }
         public ICommand PreviousNumber { get; set; }
+        public ICommand ReadyCommand { get; set; }
         public int SelectedNumber { get; set; }
+        public Faction Char { get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
         public Battle CurrentBattle { get { return gameLogic.CurrentBattle; } }
-        int index = 0;
-        public List<int> ArmyPower;
+        public Hero Hero1{ get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault(); } }
+        public Hero Hero2{ get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault(); } }
         public int PlayerMaxArmyPower;
         public static bool IsInDesignMode
         {
@@ -43,41 +45,42 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
             PlayerMaxArmyPower = Math.Min(gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().ArmyPower, 7);
-            ArmyPower = new List<int>(); ;
-            for (int i = 0; i <= PlayerMaxArmyPower; i++)
-            {
-                ArmyPower.Add(i);
-            }
-
+            SelectedNumber = 0;
 
             NextNumber = new RelayCommand(() =>
             {
-                if (index < PlayerMaxArmyPower)
+                if (SelectedNumber < PlayerMaxArmyPower)
                 {
-                    index++;
+                    SelectedNumber++;
                 }
                 else
                 {
-                    index = 0;
+                    SelectedNumber = PlayerMaxArmyPower;
                 }
                 OnPropertyChanged("SelectedNumber");
             });
             PreviousNumber = new RelayCommand(() =>
             {
-                if (index > 0)
+                if (SelectedNumber > 0)
                 {
-                    index--;
+                    SelectedNumber--;
                 }
                 else
                 {
-                    index = PlayerMaxArmyPower;
+                    SelectedNumber = 0;
                 }
                 OnPropertyChanged("SelectedNumber");
+            });
+            ReadyCommand = new RelayCommand(() =>
+            {
+                //start the battle animation
             });
 
             Messenger.Register<BattleViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
                 OnPropertyChanged("SelectedNumber");
+                OnPropertyChanged("Hero1");
+                OnPropertyChanged("Hero2");
             });
         }
     }

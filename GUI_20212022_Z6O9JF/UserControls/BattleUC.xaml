@@ -14,6 +14,8 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <converter:HeroSelectorConverter x:Key="converter"/>
+        <converter:FirstHeroToImgConverter x:Key="firstheroconverter"/>
+        <converter:SecondaryHeroToImgConverter x:Key="secondaryheroconverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,16 +32,44 @@
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Image Source="\Resources\Images\Menu\battlebackground.png" Stretch="Fill" Grid.ColumnSpan="5" Grid.RowSpan="4"/>
-
-        <Label Content="Pick army power to use in the battle" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="20"/>
-        <Image Grid.Column="2" Grid.RowSpan="2" Source="\Resources\Images\Menu\button_board_short.png" Width="150" Height="300" VerticalAlignment="Top"/>
-        <Button  Grid.Column="2" Grid.Row="1" Style="{DynamicResource button_image_style}" Height="40" Width="40" Command="{Binding NextNumber}" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">
-            <Image Source="\Resources\Images\Menu\arrow_right.png"></Image>
-        </Button>
-        <Label Content="{Binding SelectedNumber}" Grid.Row="1" Grid.Column="2" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="White"/>
-        <Button  Grid.Column="2" Grid.Row="1" Style="{DynamicResource button_image_style}" Height="40" Width="40" Command="{Binding PreviousNumber}" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
-            <Image Source="\Resources\Images\Menu\arrow_left.png"></Image>
-        </Button>
-        <Image x:Name="img_char"/>
+        <Viewbox Grid.Row="1" Grid.Column="1">
+            <Label Content="Pick army power to use in the battle" VerticalAlignment="Center" FontSize="20"/>
+        </Viewbox>
+        <Viewbox Grid.Column="2" Grid.RowSpan="2">
+            <Image Source="\Resources\Images\Menu\button_board_short.png" Width="450" Height="500" VerticalAlignment="Top" Stretch="Fill"/>
+        </Viewbox>
+        <Viewbox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" Width="80" Height="80" VerticalAlignment="Bottom">
+            <Button Style="{DynamicResource button_image_style}" Command="{Binding NextNumber}" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+                <Image Source="\Resources\Images\Menu\arrow_right.png"></Image>
+            </Button>
+        </Viewbox>
+        <Viewbox Grid.Row="1" Grid.Column="2" Width="70" Height="60" VerticalAlignment="Bottom" Margin="15">
+            <Label Content="{Binding SelectedNumber}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="White"/>
+        </Viewbox>
+        <Viewbox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Width="80" Height="80" VerticalAlignment="Bottom">
+            <Button Style="{DynamicResource button_image_style}" Height="40" Width="40" Command="{Binding PreviousNumber}" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+                <Image Source="\Resources\Images\Menu\arrow_left.png"></Image>
+            </Button>
+        </Viewbox>
+        <Viewbox Grid.Row="2" Grid.Column="2">
+            <Button Style="{StaticResource button_image_style}" Click="Button_Click" Command="{Binding ReadyCommand}" Height="80" Width="220">
+                <TextBlock x:Name="txt_harvest" Text="READY" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="45" Foreground="Black" >
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button>
+        </Viewbox>
+        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+            <Viewbox  Width="150" Height="200" VerticalAlignment="Bottom">
+                <Image Source="{Binding Hero1, Converter={StaticResource firstheroconverter}}"></Image>
+            </Viewbox>
+            <Viewbox  Width="150" Height="200" VerticalAlignment="Bottom">
+                <Image Source="{Binding Hero2, Converter={StaticResource secondaryheroconverter}}"></Image>
+            </Viewbox>
+            <Viewbox  Width="120" Height="160" VerticalAlignment="Bottom">
+                <Image Source="{Binding Char, Converter={StaticResource converter}}"></Image>
+            </Viewbox>
+        </StackPanel>
     </Grid>
 </UserControl>
