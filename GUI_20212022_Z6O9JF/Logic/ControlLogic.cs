@@ -20,6 +20,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            var player = gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
             Polygon polygon = sender as Polygon;
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves != 0))
             {
@@ -36,10 +37,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                         gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         if (gameLogic.CurrentMystery != null)
                         {
-                            gameLogic.Battle((polygon.Tag as HexagonTile));
                             clientLogic.MysteryViewChange("mystery");
                         }
-                        if (gameLogic.FirstHero!=null || gameLogic.SecondaryHero!=null)
+                        if (player.Heroes.Where(x=>x.HeroType==HeroType.First).FirstOrDefault()!=null || (player.Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault() != null))
                         {
                             clientLogic.MysteryHeroViewChange("mysteryHero");
                         }
@@ -51,6 +51,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         }
                         if ((polygon.Tag as HexagonTile).Objects.ToList().Any(x=>x is Unit && (x as Unit).OwnerId!=clientLogic.ClientId))
                         {
+                            gameLogic.Battle((polygon.Tag as HexagonTile));
                             clientLogic.BattleViewChange("battle");
                         }
 
@@ -85,6 +86,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
                                 gameLogic.ClearCompass(polygon.Tag as HexagonTile);
                                 clientLogic.TradeViewChange("trade");
+                            }
+                            if ((polygon.Tag as HexagonTile).Objects.ToList().Any(x => x is Unit && (x as Unit).OwnerId != clientLogic.ClientId))
+                            {
+                                clientLogic.BattleViewChange("battle");
                             }
                             ClearSelections();
                         }

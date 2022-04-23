@@ -905,51 +905,51 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                             DecreaseMoves();
                         }
-                        else
-                        {
-                            //battle
-                            var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
-                            if (enemy != null)
-                            {
-                                var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
-                                //CurrentBattle = new Battle();
-                                //CurrentBattle.Defender = enemyPlayer;
-                                //CurrentBattle.Attacker = player;
-                                //clientLogic.BattleViewChange("battle");
+                        //else
+                        //{
+                        //    //battle
+                        //    var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
+                        //    if (enemy != null)
+                        //    {
+                        //        var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
+                        //        //CurrentBattle = new Battle();
+                        //        //CurrentBattle.Defender = enemyPlayer;
+                        //        //CurrentBattle.Attacker = player;
+                        //        //clientLogic.BattleViewChange("battle");
 
-                                if (player.ArmyPower * (item as Unit).Level >= enemy.Level * enemyPlayer.ArmyPower)
-                                {
-                                    hexagonTile.Objects.Remove(enemy);
+                        //        if (player.ArmyPower * (item as Unit).Level >= enemy.Level * enemyPlayer.ArmyPower)
+                        //        {
+                        //            hexagonTile.Objects.Remove(enemy);
 
-                                    if (hexagonTile.Objects.Count == 0)
-                                    {
-                                        hexagonTile.OwnerId = 0;
-                                    }
+                        //            if (hexagonTile.Objects.Count == 0)
+                        //            {
+                        //                hexagonTile.OwnerId = 0;
+                        //            }
 
-                                    enemy.Move(enemyPlayer.Villages.FirstOrDefault().Position);
-                                    GameMap[enemy.Position[0], enemy.Position[1]].Objects.Add(enemy);
+                        //            enemy.Move(enemyPlayer.Villages.FirstOrDefault().Position);
+                        //            GameMap[enemy.Position[0], enemy.Position[1]].Objects.Add(enemy);
 
-                                    item.Move(hexagonTile.Position);
-                                    hexagonTile.Objects.Add(item);
-                                    hexagonTile.OwnerId = item.OwnerId;
-                                }
-                                else
-                                {
-                                    item.Move(player.Villages.FirstOrDefault().Position);
-                                    GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
-                                }
+                        //            item.Move(hexagonTile.Position);
+                        //            hexagonTile.Objects.Add(item);
+                        //            hexagonTile.OwnerId = item.OwnerId;
+                        //        }
+                        //        else
+                        //        {
+                        //            item.Move(player.Villages.FirstOrDefault().Position);
+                        //            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                        //        }
 
-                                SelectedHexagonTile.Objects.Remove(item);
+                        //        SelectedHexagonTile.Objects.Remove(item);
 
-                                if (SelectedHexagonTile.Objects.Count == 0)
-                                {
-                                    SelectedHexagonTile.OwnerId = 0;
-                                }
-                                SelectedHexagonTile = null;
+                        //        if (SelectedHexagonTile.Objects.Count == 0)
+                        //        {
+                        //            SelectedHexagonTile.OwnerId = 0;
+                        //        }
+                        //        SelectedHexagonTile = null;
 
-                                DecreaseMoves();
-                            }
-                        }
+                        //        DecreaseMoves();
+                        //    }
+                        //}
                     }
                 }
             }
