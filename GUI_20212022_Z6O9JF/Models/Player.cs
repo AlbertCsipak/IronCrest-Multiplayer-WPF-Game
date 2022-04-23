@@ -4,13 +4,13 @@ using System.Collections.ObjectModel;
 namespace GUI_20212022_Z6O9JF.Models
 {
     public enum Faction { Viking, Crusader, Mongolian, Arabian }
-    public enum Activity {Init, Move, Build, Upgrade, Farm }
+    public enum TurnActivity {Init, Move, Build, Upgrade, Harvest }
     public class Player
     {
         public int PlayerID { get; set; }
         public string Name { get; set; }
         public Faction Faction { get; set; }
-        public Activity Activity { get; set; }
+        public TurnActivity TurnActivity { get; set; }
         public bool GoldMine { get; set; }
         public bool HasEnteredGoldMine { get; set; }
         public int DefaultNumOfMoves { get; set; }
@@ -133,7 +133,7 @@ namespace GUI_20212022_Z6O9JF.Models
             Quests = new List<Quest>();
             //QuestsDone = 0;
             Villages = new List<Village>();
-            Activity = Activity.Init;
+            TurnActivity = TurnActivity.Init;
             ResourceChanges = new ObservableCollection<int>();
             for (int i = 0; i < 6; i++) ResourceChanges.Add(0);
 

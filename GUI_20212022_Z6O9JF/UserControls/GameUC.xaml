@@ -42,22 +42,6 @@
         <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" >
             <renderer:Display x:Name="display"/>
         </Grid>
-        <StackPanel Grid.Row="2">
-            <Viewbox>
-                <Label Content="{Binding Hero1.Name}" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="20"/>
-            </Viewbox>
-            <Viewbox>
-                <Image Source="{Binding Hero1, Converter={StaticResource firstheroconverter}}" Width="100"/>
-            </Viewbox>
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="2">
-            <Viewbox>
-                <Label Content="{Binding Hero2.Name}" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="20"/>
-            </Viewbox>
-            <Viewbox>
-                <Image Grid.Column="2" Source="{Binding Hero2, Converter={StaticResource secondaryheroconverter}}" Width="100"/>
-            </Viewbox>
-        </StackPanel>
         <Grid Grid.Row="0" Grid.ColumnSpan="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -201,6 +185,52 @@
                 <Label x:Name="FoodChangeLabel" Height="63" Width="100" FontSize="30" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" HorizontalContentAlignment="Left" Grid.ColumnSpan="3"/>
             </Viewbox>
         </Grid>
+        <Label x:Name="lbl_hero" Content="Heroes" FontFamily="\Resources\#8-bit Limit (BRK)" HorizontalContentAlignment="Center" FontSize="40" Grid.Row="2" VerticalContentAlignment="Bottom"/>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.ColumnSpan="2" Stretch="Fill" x:Name="hero_viewbox">
+                <Image Source="\Resources\Images\Menu\brick_border.png"/>
+            </Viewbox>
+            <Viewbox Grid.Column="0" Margin="10" Stretch="Fill">
+                <Image Source="{Binding Hero1, Converter={StaticResource firstheroconverter}}" Width="100">
+                    <Image.ToolTip>
+                        <TextBlock Text="{Binding Hero1Hover}" Foreground="Black" FontSize="30" Background="Beige" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    </Image.ToolTip>
+                </Image>
+            </Viewbox>
+            <Viewbox Grid.Column="1" Margin="10" Stretch="Fill">
+                <Image Source="{Binding Hero2, Converter={StaticResource secondaryheroconverter}}" Width="100" >
+                    <Image.ToolTip>
+                        <TextBlock Text="{Binding Hero2Hover}" Foreground="Black" FontSize="30" Background="Beige" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                    </Image.ToolTip>
+                </Image>
+            </Viewbox>
+        </Grid>
+        <!--<StackPanel Grid.Row="2">
+            <Viewbox>
+                <Image Source="\Resources\Images\Menu\brick_border_vertical.png"></Image>
+            </Viewbox>
+            <Viewbox>
+                <Label Content="{Binding Hero1.Name}" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="20"/>
+            </Viewbox>
+            <Viewbox>
+                <Image Source="{Binding Hero1, Converter={StaticResource firstheroconverter}}" Width="100"/>
+            </Viewbox>
+        </StackPanel>-->
+        <!--<StackPanel Grid.Row="2" Grid.Column="2">
+            <Viewbox>
+                <Image Source="\Resources\Images\Menu\brick_border_vertical.png"></Image>
+            </Viewbox>
+            <Viewbox>
+                <Label Content="{Binding Hero2.Name}" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="20"/>
+            </Viewbox>
+            <Viewbox>
+                <Image Grid.Column="2" Source="{Binding Hero2, Converter={StaticResource secondaryheroconverter}}" Width="100"/>
+            </Viewbox>
+        </StackPanel>-->
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -221,7 +251,7 @@
                     <Image Source="\Resources\Images\Menu\move_background.png" Margin="10,0,10,0" />
                 </Viewbox>
                 <Viewbox Grid.Column="0">
-                    <Button HorizontalAlignment="Left" Style="{StaticResource button_image_style}" Command="{Binding AddUnitCommand}" Height="80" Width="130" Grid.Column="0" Margin="10,0,0,0" >
+                    <Button HorizontalAlignment="Left" Style="{StaticResource button_image_style}" Command="{Binding MoveUnitCommand}" Height="80" Width="130" Grid.Column="0" Margin="10,0,0,0" >
                         <TextBlock x:Name="txt_move" Text="Move" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="50" Foreground="{StaticResource greenish_blue}" >
                             <TextBlock.Effect>
                                 <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
@@ -309,7 +339,7 @@
                 </Button>
             </Viewbox>
         </Grid>
-        <Grid Grid.Row="3" Grid.Column="0">
+        <Grid Grid.Row="1" Grid.Column="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>

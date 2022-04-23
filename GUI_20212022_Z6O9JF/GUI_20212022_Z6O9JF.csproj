@@ -76,6 +76,7 @@
     <None Remove="Resources\Images\Menu\border.png" />
     <None Remove="Resources\Images\Menu\brick.jpg" />
     <None Remove="Resources\Images\Menu\brick_border.png" />
+    <None Remove="Resources\Images\Menu\brick_border_vertical.png" />
     <None Remove="Resources\Images\Menu\brown.jpg" />
     <None Remove="Resources\Images\Menu\brown_backgound.png" />
     <None Remove="Resources\Images\Menu\build_background.jpg" />
@@ -346,6 +347,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\brick_border.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\brick_border_vertical.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\build_background.png">

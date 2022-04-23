@@ -791,6 +791,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void AddUnit()
         {
             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            player.TurnActivity = TurnActivity.Move;
             if (SelectedHexagonTile != null)
             {
                 if (SelectedHexagonTile.OwnerId == ClientID && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count > 0)
@@ -814,6 +815,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void AddVillage()
         {
             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            player.TurnActivity = TurnActivity.Build;
             if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
                 && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
             {
@@ -841,6 +843,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void UpgradeVillage()
         {
             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            player.TurnActivity = TurnActivity.Upgrade;
             if (SelectedHexagonTile != null)
             {
                 if ((SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
@@ -954,6 +957,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void GetResources()
         {
             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            player.TurnActivity = TurnActivity.Harvest;
             bool success = false;
             if (player != null && player.RemainingMoves != 0)
             {

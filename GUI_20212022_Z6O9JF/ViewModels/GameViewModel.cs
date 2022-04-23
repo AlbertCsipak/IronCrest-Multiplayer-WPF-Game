@@ -21,7 +21,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
-        public ICommand AddUnitCommand { get; set; }
+        public ICommand MoveUnitCommand { get; set; }
         public ICommand AddVillageCommand { get; set; }
         public ICommand UpgradeVillageCommand { get; set; }
         public ICommand SkipTurnCommand { get; set; }
@@ -56,6 +56,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 }
             } 
         }
+        public string Hero1Hover { get { return $"{Hero1.Name} : {Hero1.Damage} dmg"; } }
+        public string Hero2Hover { get { return $"{Hero2.Name} : {Hero2.Damage} dmg"; } }
 
         public int Timer { get { return clientLogic.Timer; } }
         public bool CanSend { get { return clientLogic.CanSend; } }
@@ -85,7 +87,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
 
-            AddUnitCommand = new RelayCommand(() => gameLogic.AddUnit());
+            MoveUnitCommand = new RelayCommand(() => gameLogic.AddUnit());
             AddVillageCommand = new RelayCommand(() => gameLogic.AddVillage());
             UpgradeVillageCommand = new RelayCommand(() => gameLogic.UpgradeVillage());
             SkipTurnCommand = new RelayCommand(() => clientLogic.SkipTurn());

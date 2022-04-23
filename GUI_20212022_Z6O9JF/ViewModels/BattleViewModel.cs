@@ -52,7 +52,14 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             
             NextNumber = new RelayCommand(() =>
             {
-                index++;
+                if (index < PlayerMaxArmyPower)
+                {
+                    index++;
+                }
+                else
+                {
+                    index = 0;
+                }
                 OnPropertyChanged("SelectedNumber");
             });
             PreviousNumber = new RelayCommand(() =>
@@ -63,7 +70,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 }
                 else
                 {
-                    index = gameLogic.AvailableFactions.Count - 1;
+                    index = PlayerMaxArmyPower;
                 }
                 OnPropertyChanged("SelectedNumber");
             });
