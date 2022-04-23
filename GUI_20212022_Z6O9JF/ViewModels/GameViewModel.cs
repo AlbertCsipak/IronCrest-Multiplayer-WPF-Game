@@ -18,6 +18,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public object MysteryHeroView { get { return clientLogic.MysteryHeroView; } }
         public object GoldMineView { get { return clientLogic.GoldMineView; } }
         public object BattleView { get { return clientLogic.BattleView; } }
+        public object GameEndView { get { return clientLogic.BattleView; } }
         public object ESCView { get { return clientLogic.ESCView; } }
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
@@ -113,6 +114,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("ESCView");
                 OnPropertyChanged("Hero1");
                 OnPropertyChanged("Hero2");
+                OnPropertyChanged("GameEndView");
             });
 
         }
