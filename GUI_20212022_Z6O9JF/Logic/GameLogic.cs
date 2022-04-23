@@ -40,6 +40,8 @@ namespace GUI_20212022_Z6O9JF.Logic
             CurrentTrade = null;
             AvailableFactions = new List<Faction>();
             WinOrder = new List<Player>();
+            FirstHero = null;
+            SecondaryHero = null;
         }
         public void SelectableFactions()
         {
