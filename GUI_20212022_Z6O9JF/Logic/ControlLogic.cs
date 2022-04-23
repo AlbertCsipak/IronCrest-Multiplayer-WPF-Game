@@ -34,7 +34,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
                         gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
-                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         if (gameLogic.CurrentMystery != null)
                         {
                             clientLogic.MysteryViewChange("mystery");
@@ -54,45 +53,37 @@ namespace GUI_20212022_Z6O9JF.Logic
                             gameLogic.Battle((polygon.Tag as HexagonTile));
                             clientLogic.BattleViewChange("battle");
                         }
-
+                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         ClearSelections();
                     }
                     
                 }
                 else
                 {
-                    if ((polygon.Tag as HexagonTile).FieldType != FieldType.lake)
+                    if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
-                        if (SelectedPolygon != null && SelectedPolygon != polygon)
+                        gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
+                        if (gameLogic.CurrentMystery != null)
                         {
-                            gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
-                            gameLogic.MoveUnit(polygon.Tag as HexagonTile);
-                            if (gameLogic.CurrentMystery != null)
-                            {
-                                gameLogic.Battle((polygon.Tag as HexagonTile));
-                                clientLogic.MysteryViewChange("mystery");
-                            }
-                            if (gameLogic.CurrentMystery != null)
-                            {
-                                clientLogic.MysteryViewChange("mystery");
-                            }
-                            if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
-                            {
-                                clientLogic.MysteryHeroViewChange("mysteryHero");
-                                //gameLogic.CurrentHero = null;
-                            }
-                            if ((polygon.Tag as HexagonTile).Compass != null)
-                            {
-                                gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
-                                gameLogic.ClearCompass(polygon.Tag as HexagonTile);
-                                clientLogic.TradeViewChange("trade");
-                            }
-                            if ((polygon.Tag as HexagonTile).Objects.ToList().Any(x => x is Unit && (x as Unit).OwnerId != clientLogic.ClientId))
-                            {
-                                clientLogic.BattleViewChange("battle");
-                            }
-                            ClearSelections();
+                            clientLogic.MysteryViewChange("mystery");
                         }
+                        if (player.Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault() != null || (player.Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault() != null))
+                        {
+                            clientLogic.MysteryHeroViewChange("mysteryHero");
+                        }
+                        if ((polygon.Tag as HexagonTile).Compass != null)
+                        {
+                            gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
+                            gameLogic.ClearCompass(polygon.Tag as HexagonTile);
+                            clientLogic.TradeViewChange("trade");
+                        }
+                        if ((polygon.Tag as HexagonTile).Objects.ToList().Any(x => x is Unit && (x as Unit).OwnerId != clientLogic.ClientId))
+                        {
+                            gameLogic.Battle((polygon.Tag as HexagonTile));
+                            clientLogic.BattleViewChange("battle");
+                        }
+                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                        ClearSelections();
                     }
                 }
             }
