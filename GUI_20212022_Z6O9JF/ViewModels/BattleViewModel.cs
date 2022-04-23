@@ -42,14 +42,14 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.controlLogic = controlLogic;
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
-            PlayerMaxArmyPower = Math.Min(gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().ArmyPower, 7);
+            PlayerMaxArmyPower = Math.Min(gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().ArmyPower, 7);
             ArmyPower = new List<int>(); ;
             for (int i = 0; i <= PlayerMaxArmyPower; i++)
             {
                 ArmyPower.Add(i);
             }
 
-            
+
             NextNumber = new RelayCommand(() =>
             {
                 if (index < PlayerMaxArmyPower)

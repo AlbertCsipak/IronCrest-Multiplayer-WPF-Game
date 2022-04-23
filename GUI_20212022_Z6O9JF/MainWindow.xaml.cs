@@ -55,13 +55,13 @@ namespace GUI_20212022_Z6O9JF
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            string players = JsonConvert.SerializeObject(gameLogic.Players);
+            string players = JsonConvert.SerializeObject(gameLogic.Game);
             string map = JsonConvert.SerializeObject(gameLogic.Map);
 
             if (players.Contains("Name"))
             {
                 string save = players + "@" + map;
-                File.AppendAllText($"Resources/Saves/{DateTime.Now.Month}-{DateTime.Now.Day}-{DateTime.Now.Hour}-{DateTime.Now.Minute}_players-{gameLogic.Players.Count}_map-{gameLogic.Map}.txt", save);
+                File.AppendAllText($"Resources/Saves/{DateTime.Now.Month}-{DateTime.Now.Day}-{DateTime.Now.Hour}-{DateTime.Now.Minute}_players-{gameLogic.Game.Players.Count}_map-{gameLogic.Map}.txt", save);
             }
 
         }

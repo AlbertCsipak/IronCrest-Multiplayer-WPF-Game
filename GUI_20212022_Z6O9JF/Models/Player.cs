@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 namespace GUI_20212022_Z6O9JF.Models
 {
     public enum Faction { Viking, Crusader, Mongolian, Arabian }
-    public enum TurnActivity {Init, Move, Build, Upgrade, Harvest }
+    public enum TurnActivity { Init, Move, Build, Upgrade, Harvest }
     public class Player
     {
         public int PlayerID { get; set; }

@@ -30,7 +30,7 @@ namespace SocketClient
                     Map = Encoding.ASCII.GetString(map);
                     ;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     MySocket = null;
                 }
@@ -82,7 +82,8 @@ namespace SocketClient
         {
             MySocket.Send(Encoding.ASCII.GetBytes("skip"));
         }
-        public void GameWin() {
+        public void GameWin()
+        {
             MySocket.Send(Encoding.ASCII.GetBytes("win"));
         }
     }

@@ -4,12 +4,9 @@ using Microsoft.Toolkit.Mvvm.Messaging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Threading;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
@@ -57,7 +54,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 Timer--;
                                 tmpTimer = 0;
                             }
-                            socketClient.DataSend(gameLogic.Players, packetSpeed: 250);
+                            socketClient.DataSend(gameLogic.Game, packetSpeed: 250);
                         }
                     }
                 }, TaskCreationOptions.LongRunning);
@@ -76,11 +73,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                         string message = socketClient.DataReceive();
                         if (message != null)
                         {
-                            if (message.Contains("win"))
-                            {
-                                //aki ilyet kap az vesztett.
-                            }
-
                             if (message.Equals("false") || message.Equals("true"))
                             {
                                 CanSend = bool.Parse(message);
@@ -92,7 +84,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 if (counter < 1 && message.Equals("true"))
                                 {
                                     counter++;
-                                    foreach (var item in gameLogic.Players)
+                                    foreach (var item in gameLogic.Game.Players)
                                     {
                                         gameLogic.AvailableFactions.Remove(item.Faction);
                                         gameLogic.AvailableFactions.Sort();
@@ -110,14 +102,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 try
                                 {
-                                    ObservableCollection<Player> players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(message);
-                                    if (players != null)
+                                    Game game = JsonConvert.DeserializeObject<Game>(message);
+                                    if (game != null)
                                     {
-                                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Clear()));
-                                        foreach (var item in players)
-                                        {
-                                            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Players.Add(item)));
-                                        }
+                                        gameLogic.Game = game;
+                                        //Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Game==null));
+                                        //foreach (var item in players)
+                                        //{
+                                        //    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Game.Players.Add(item)));
+                                        //}
                                     }
                                 }
                                 catch (NullReferenceException) { }
@@ -264,7 +257,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void IsAllQuestsDone()
         {
-            var player = gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault();
+            var player = gameLogic.Game.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault();
             if (player.Quests.All(x => x.Done))
             {
                 gameLogic.SetGameEndOrder();
@@ -275,10 +268,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (CanSend)
             {
-                if (gameLogic.Players.Any(t => t.Faction == faction))
+                if (gameLogic.Game.Players.Any(t => t.Faction == faction))
                 {
-                    gameLogic.Players.Where(t => t.Faction == faction).Select(t => t.Name == name);
-                    gameLogic.Players.Where(t => t.Faction == faction).Select(t => t.PlayerID == ClientId);
+                    gameLogic.Game.Players.Where(t => t.Faction == faction).Select(t => t.Name == name);
+                    gameLogic.Game.Players.Where(t => t.Faction == faction).Select(t => t.PlayerID == ClientId);
                 }
                 else
                 {
@@ -313,34 +306,34 @@ namespace GUI_20212022_Z6O9JF.Logic
                     player.SetupStone(30);
                     player.SetupWood(30);
                     player.SetupWheat(10);
-                    gameLogic.Players.Add(player);
+                    gameLogic.Game.Players.Add(player);
 
                 }
                 Village village = null;
                 Unit unit = null;
-                if (gameLogic.Players.Count == 1)
+                if (gameLogic.Game.Players.Count == 1)
                 {
                     village = new Village() { Position = new int[] { 2, 2 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
                     unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 2, 2 } };
 
                 }
-                else if (gameLogic.Players.Count == 2)
+                else if (gameLogic.Game.Players.Count == 2)
                 {
                     village = new Village() { Position = new int[] { 8, 18 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
                     unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 8, 18 } };
                 }
-                else if (gameLogic.Players.Count == 3)
+                else if (gameLogic.Game.Players.Count == 3)
                 {
                     village = new Village() { Position = new int[] { 2, 18 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
                     unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 2, 18 } };
                 }
-                else if (gameLogic.Players.Count == 4)
+                else if (gameLogic.Game.Players.Count == 4)
                 {
                     village = new Village() { Position = new int[] { 8, 2 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
                     unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 8, 2 } };
                 }
-                gameLogic.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Villages.Add(village);
-                gameLogic.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Units.Add(unit);
+                gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Villages.Add(village);
+                gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Units.Add(unit);
                 gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
                 ChangeView("game");
                 System.Threading.Thread.Sleep(500);
@@ -365,8 +358,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
         {
-            gameLogic.Players = JsonConvert.DeserializeObject<ObservableCollection<Player>>(save.Split('@')[0]);
-            StartServer(turnLength: turnLength, clients: gameLogic.Players.Count, map: save.Split('@')[1], ip: ip);
+            gameLogic.Game = JsonConvert.DeserializeObject<Game>(save.Split('@')[0]);
+            StartServer(turnLength: turnLength, clients: gameLogic.Game.Players.Count, map: save.Split('@')[1], ip: ip);
         }
     }
 }

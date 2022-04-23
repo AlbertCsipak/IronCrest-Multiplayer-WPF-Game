@@ -1,10 +1,6 @@
 ﻿using GUI_20212022_Z6O9JF.Models;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace GUI_20212022_Z6O9JF.Converters
@@ -16,7 +12,7 @@ namespace GUI_20212022_Z6O9JF.Converters
             switch (((Hero)value).FactionType)
             {
                 case Faction.Arabian:
-                    if (((Hero)value).Name=="Prophet")
+                    if (((Hero)value).Name == "Prophet")
                     {
                         return "\\Resources\\Images\\Characters\\prophet.png";
                     }
@@ -34,7 +30,7 @@ namespace GUI_20212022_Z6O9JF.Converters
                         return "";
                     }
                 case Faction.Crusader:
-                    if(((Hero)value).Name == "Crusader Knight")
+                    if (((Hero)value).Name == "Crusader Knight")
                     {
                         return "\\Resources\\Images\\Characters\\white_knight.png";
                     }
@@ -43,7 +39,7 @@ namespace GUI_20212022_Z6O9JF.Converters
                         return "";
                     }
                 case Faction.Viking:
-                    if(((Hero)value).Name == "Sigurd")
+                    if (((Hero)value).Name == "Sigurd")
                     {
                         return "\\Resources\\Images\\Characters\\sigurd.png";
                     }

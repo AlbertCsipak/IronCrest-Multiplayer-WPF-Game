@@ -21,9 +21,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public string Name { get; set; }
         int index = 0;
         public Faction SelectedFaction { get { return gameLogic.AvailableFactions[index]; } }
-        public string Ability 
-        { 
-            get 
+        public string Ability
+        {
+            get
             {
                 switch (SelectedFaction)
                 {
@@ -38,7 +38,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     default:
                         return "";
                 }
-            } 
+            }
         }
         public static bool IsInDesignMode
         {

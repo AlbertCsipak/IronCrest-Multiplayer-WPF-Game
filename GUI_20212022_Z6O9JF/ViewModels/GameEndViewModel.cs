@@ -14,20 +14,28 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public Player First { get { return gameLogic.WinOrder.ElementAt(0); } }
-        public Player Second { get {
-                if (gameLogic.WinOrder.Count>=2)
+        public Player Second
+        {
+            get
+            {
+                if (gameLogic.WinOrder.Count >= 2)
                 {
-                    return gameLogic.WinOrder.ElementAt(1); 
+                    return gameLogic.WinOrder.ElementAt(1);
                 }
                 return null;
-        } }
-        public Player Third { get {
-                if (gameLogic.WinOrder.Count>=3)
+            }
+        }
+        public Player Third
+        {
+            get
+            {
+                if (gameLogic.WinOrder.Count >= 3)
                 {
-                    return gameLogic.WinOrder.ElementAt(2); 
+                    return gameLogic.WinOrder.ElementAt(2);
                 }
                 return null;
-            } }
+            }
+        }
         public Player Fourth
         {
             get
