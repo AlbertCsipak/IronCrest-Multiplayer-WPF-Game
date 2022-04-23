@@ -878,6 +878,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void MoveUnit(HexagonTile hexagonTile)
         {
+
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
             {
@@ -906,7 +907,13 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                             DecreaseMoves();
                         }
-                        //else
+                        else
+                        {
+                            if (hexagonTile.Objects.ToList().Any(x => x is Unit && (x as Unit).OwnerId != ClientID))
+                            {
+                                Battle(hexagonTile);
+                            }
+                        }
                         //{
                         //    //battle
                         //    var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
