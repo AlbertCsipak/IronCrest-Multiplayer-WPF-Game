@@ -1,6 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Models;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
@@ -12,10 +11,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         MysteryEvent CurrentMystery { get; set; }
         Trade CurrentTrade { get; set; }
         Hero FirstHero { get; set; }
+        Game Game { get; set; }
         HexagonTile[,] GameMap { get; set; }
         string Map { get; set; }
         Queue<MysteryEvent> MysteryEvents { get; set; }
-        ObservableCollection<Player> Players { get; set; }
         Hero SecondaryHero { get; set; }
         HexagonTile SelectedHexagonTile { get; set; }
         List<Player> WinOrder { get; set; }

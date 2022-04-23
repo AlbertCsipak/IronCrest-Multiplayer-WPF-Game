@@ -26,7 +26,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.gameLogic = (this.DataContext as TradeViewModel).gameLogic;
             this.clientLogic = (this.DataContext as TradeViewModel).clientLogic;
             this.controlLogic = (this.DataContext as TradeViewModel).controlLogic;
-            var trade = gameLogic.Players.Where(t => t.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade;
+            var trade = gameLogic.Game.Players.Where(t => t.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade;
             uriSourceflag = new Uri(@"\Resources\Images\Menu\flag.png", UriKind.Relative);
             uriSourcedarkened_flag = new Uri(@"\Resources\Images\Menu\flag_darken.png", UriKind.Relative);
             if (!gameLogic.HasSufficientResources(0))
@@ -49,7 +49,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         private void check1_Click(object sender, RoutedEventArgs e)
         {
 
-            if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction != Models.Faction.Arabian)
+            if (gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction != Models.Faction.Arabian)
             {
                 if ((bool)(sender as CheckBox).IsChecked)
                 {
@@ -269,50 +269,50 @@ namespace GUI_20212022_Z6O9JF.UserControls
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction == Models.Faction.Arabian)//arab faction 2 offert fogadhat el
+            if (gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction == Models.Faction.Arabian)//arab faction 2 offert fogadhat el
             {
 
                 if ((bool)check1.IsChecked && (bool)check2.IsChecked)
                 {
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(0);
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(1);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(0);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(1);
                 }
                 else if ((bool)check1.IsChecked && (bool)check3.IsChecked)
                 {
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(0);
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(2);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(0);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(2);
                 }
                 else if ((bool)check2.IsChecked && (bool)check3.IsChecked)
                 {
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(1);
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(2);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(1);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(2);
                 }
                 else if ((bool)check1.IsChecked)
                 {
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(0);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(0);
                 }
                 else if ((bool)check2.IsChecked)
                 {
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(1);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(1);
                 }
                 else if ((bool)check3.IsChecked)
                 {
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(2);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(2);
                 }
             }
             else
             {
                 if ((bool)check1.IsChecked)
                 {
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(0);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(0);
                 }
                 else if ((bool)check2.IsChecked)
                 {
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(1);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(1);
                 }
                 else if ((bool)check3.IsChecked)
                 {
-                    gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(2);
+                    gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Trade.SelectedOfferIndexes.Add(2);
                 }
             }
         }

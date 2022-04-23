@@ -40,7 +40,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.gameLogic = (this.DataContext as GameViewModel).gameLogic;
             this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
             this.controlLogic = (this.DataContext as GameViewModel).controlLogic;
-            player = gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
+            player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
             player.ResourceChanges.CollectionChanged += ResourceChanges_CollectionChanged;
 
@@ -323,7 +323,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         private void HandleKeyPress(object sender, KeyEventArgs e)
         {
             ;
-            if (clientLogic.ESCView==null && e.Key == Key.Escape)
+            if (clientLogic.ESCView == null && e.Key == Key.Escape)
             {
                 clientLogic.ESCChange("ESC");
             }

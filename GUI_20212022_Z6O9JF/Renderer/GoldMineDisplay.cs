@@ -38,7 +38,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
             if (size.Width != 0 && size.Height != 0)
             {
                 double num = size.Width / 100 * XPos;
-                switch (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction)
+                switch (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction)
                 {
                     case Models.Faction.Viking:
                         switch (XPos % 3)

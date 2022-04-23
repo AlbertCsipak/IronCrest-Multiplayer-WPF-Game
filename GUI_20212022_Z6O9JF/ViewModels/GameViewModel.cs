@@ -29,47 +29,47 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand SkipTurnCommand { get; set; }
         public ICommand ProduceCommand { get; set; }
         public ICommand TradeCommand { get; set; }
-        public Faction SelectedFaction { get { return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
-        public Hero Hero1 
+        public Faction SelectedFaction { get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
+        public Hero Hero1
         {
-            get 
+            get
             {
-                if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault()!=null)
+                if (gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault() != null)
                 {
-                    return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x=>x.HeroType==HeroType.First).First();
+                    return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.First).First();
                 }
                 else
                 {
                     return new Hero();
                 }
-            } 
+            }
         }
-        public Hero Hero2 
-        { 
-            get 
+        public Hero Hero2
+        {
+            get
             {
-                if (gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault()!=null)
+                if (gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault() != null)
                 {
-                    return gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).First();
+                    return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).First();
                 }
                 else
                 {
                     return new Hero();
                 }
-            } 
+            }
         }
         public string Hero1Hover { get { return $"{Hero1.Name} : {Hero1.Damage} dmg"; } }
         public string Hero2Hover { get { return $"{Hero2.Name} : {Hero2.Damage} dmg"; } }
 
         public int Timer { get { return clientLogic.Timer; } }
         public bool CanSend { get { return clientLogic.CanSend; } }
-        public int Wood { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Wood).FirstOrDefault(); } }
-        public int Stone { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Stone).FirstOrDefault(); } }
-        public int Food { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Wheat).FirstOrDefault(); } }
-        public int Gold { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Gold).FirstOrDefault(); } }
-        public int Popularity { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Popularity).FirstOrDefault(); } }
-        public int ArmyPower { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.ArmyPower).FirstOrDefault(); } }
-        public List<string> Quests { get { return gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).SelectMany(t => t.Quests).Select(x => x.Name).ToList(); } }
+        public int Wood { get { return gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Wood).FirstOrDefault(); } }
+        public int Stone { get { return gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Stone).FirstOrDefault(); } }
+        public int Food { get { return gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Wheat).FirstOrDefault(); } }
+        public int Gold { get { return gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Gold).FirstOrDefault(); } }
+        public int Popularity { get { return gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Popularity).FirstOrDefault(); } }
+        public int ArmyPower { get { return gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.ArmyPower).FirstOrDefault(); } }
+        public List<string> Quests { get { return gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).SelectMany(t => t.Quests).Select(x => x.Name).ToList(); } }
         public static bool IsInDesignMode
         {
             get

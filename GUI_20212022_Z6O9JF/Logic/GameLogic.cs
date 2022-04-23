@@ -2,7 +2,6 @@
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public int ClientID { get; set; }
         public string Map { get; set; }
         public HexagonTile SelectedHexagonTile { get; set; }
-        public ObservableCollection<Player> Players { get; set; }
+        public Game Game { get; set; }
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
         public List<Quest> Quests;
@@ -33,9 +32,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
-            this.Players = new ObservableCollection<Player>();
             Trades = new Queue<Trade>();
             MysteryEvents = new Queue<MysteryEvent>();
+            Game = new Game();
             CurrentMystery = null;
             CurrentTrade = null;
             AvailableFactions = new List<Faction>();
@@ -45,7 +44,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void SelectableFactions()
         {
-            if (Players.Count == 0)
+            if (Game.Players.Count == 0)
             {
                 AvailableFactions.Add(Faction.Viking);
                 AvailableFactions.Add(Faction.Crusader);
@@ -54,7 +53,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             else
             {
-                foreach (var item in Players)
+                foreach (var item in Game.Players)
                 {
                     AvailableFactions.Add(item.Faction);
                 }
@@ -148,7 +147,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public bool HasSufficientResources(int offerindex)
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             bool HasEnoughResources = true;
             int counter = 0;
             while (counter < player.Trade.Offers[offerindex].Cost.Count && HasEnoughResources)
@@ -201,7 +200,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public bool HasSufficientResources(string resource, int cost)
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             bool HasEnoughResources = true;
             switch (resource)
             {
@@ -246,7 +245,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void GetResourcesFromMysteryEvent()
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             switch (CurrentMystery.Resource)
             {
                 case "Gold":
@@ -317,7 +316,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void MakeTrade()
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             foreach (var selectedoffer in player.Trade.SelectedOfferIndexes)
             {
                 foreach (var cost in player.Trade.Offers[selectedoffer].Cost)
@@ -377,13 +376,13 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void ClearCompass(HexagonTile hexagon)
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.Trade = hexagon.Compass;
             hexagon.Compass = null;
         }
         public void MysteryBoxEvent(HexagonTile hexagonTile)
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             Point[] points = SelectedHexagonTile.NeighborCoords();
             Point point = new Point();
             point.X = hexagonTile.Position[0];
@@ -397,7 +396,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     hexagonTile.FieldType == FieldType.grass)
                 {
                     int rnd = RandomNumber.RandomNumberGenerator(1, 101);
-                    if (true && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (rnd == 1 && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         //Dequeue
                         if (MysteryEvents.Count() != 0)
@@ -457,7 +456,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                         }
                     }
-                    if (true && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (rnd == 2 && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         MysteryHeroEvent();
                     }
@@ -468,7 +467,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void MysteryHeroEvent()
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             Hero firsthero = null;
             Hero secondaryhero = null;
             if (player.Heroes.Count == 2)
@@ -625,7 +624,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     item.OwnerId = 0;
                     item.Objects.Clear();
                 }
-                foreach (var player in Players.ToList())
+                foreach (var player in Game.Players.ToList())
                 {
                     if (player != null)
                     {
@@ -680,7 +679,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public bool IsQuestDone()
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             bool IsQuestDone = false;
             foreach (var item in player.Quests)
             {
@@ -770,18 +769,18 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (!IsGameEnded)
             {
-                WinOrder.Add(Players.First(x => x.Quests.All(x => x.Done)));
-                var playerWith2QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 2).OrderBy(x => x.Gold).ToList();
+                WinOrder.Add(Game.Players.First(x => x.Quests.All(x => x.Done)));
+                var playerWith2QuestsDoneAndMostGold = Game.Players.Where(x => x.Quests.Select(x => x.Done).Count() == 2).OrderBy(x => x.Gold).ToList();
                 if (playerWith2QuestsDoneAndMostGold != null)
                 {
                     playerWith2QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
                 }
-                var playerWith1QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 1).OrderBy(x => x.Gold).ToList();
+                var playerWith1QuestsDoneAndMostGold = Game.Players.Where(x => x.Quests.Select(x => x.Done).Count() == 1).OrderBy(x => x.Gold).ToList();
                 if (playerWith1QuestsDoneAndMostGold != null)
                 {
                     playerWith1QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
                 }
-                var playerWith0QuestsDoneAndMostGold = Players.Where(x => x.Quests.Select(x => x.Done).Count() == 0).OrderBy(x => x.Gold).ToList();
+                var playerWith0QuestsDoneAndMostGold = Game.Players.Where(x => x.Quests.Select(x => x.Done).Count() == 0).OrderBy(x => x.Gold).ToList();
                 if (playerWith0QuestsDoneAndMostGold != null)
                 {
                     playerWith0QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
@@ -792,7 +791,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void AddUnit()
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.TurnActivity = TurnActivity.Move;
             if (SelectedHexagonTile != null)
             {
@@ -816,7 +815,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void AddVillage()
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.TurnActivity = TurnActivity.Build;
             if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
                 && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
@@ -844,7 +843,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void UpgradeVillage()
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.TurnActivity = TurnActivity.Upgrade;
             if (SelectedHexagonTile != null)
             {
@@ -879,7 +878,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void MoveUnit(HexagonTile hexagonTile)
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
             {
                 Point[] points = SelectedHexagonTile.NeighborCoords();
@@ -959,11 +958,11 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void Battle(HexagonTile hexagonTile)
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
             if (enemy != null)
             {
-                var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
+                var enemyPlayer = Game.Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
                 CurrentBattle = new Battle();
                 CurrentBattle.Defender = enemyPlayer;
                 CurrentBattle.Attacker = player;
@@ -972,7 +971,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void GetResources()
         {
-            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.TurnActivity = TurnActivity.Harvest;
             bool success = false;
             if (player != null && player.RemainingMoves != 0)
@@ -998,16 +997,16 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void DecreaseMoves()
         {
-            if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault() != null)
+            if (Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault() != null)
             {
-                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves--;
+                Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves--;
             }
         }
         public void ResetMoves()
         {
-            if (Players.Where(t => t.PlayerID == ClientID).FirstOrDefault() != null)
+            if (Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault() != null)
             {
-                Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().DefaultNumOfMoves;
+                Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().DefaultNumOfMoves;
             }
         }
 

@@ -20,16 +20,16 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var player = gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
+            var player = gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
             Polygon polygon = sender as Polygon;
-            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves != 0))
+            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves != 0))
             {
-                if ((polygon.Tag as HexagonTile).FieldType == FieldType.goldMine && !gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
+                if ((polygon.Tag as HexagonTile).FieldType == FieldType.goldMine && !gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
                 {
                     clientLogic.ChangeView("goldmine");
-                    gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine = true;
+                    gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine = true;
                 }
-                if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
+                if (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
@@ -38,7 +38,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             clientLogic.MysteryViewChange("mystery");
                         }
-                        if (gameLogic.FirstHero!=null || gameLogic.SecondaryHero != null)
+                        if (player.Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault() != null || (player.Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault() != null))
                         {
                             clientLogic.MysteryHeroViewChange("mysteryHero");
                         }
@@ -48,7 +48,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             gameLogic.ClearCompass(polygon.Tag as HexagonTile);
                             clientLogic.TradeViewChange("trade");
                         }
-                        if ((polygon.Tag as HexagonTile).Objects.ToList().Any(x=>x is Unit && (x as Unit).OwnerId!=clientLogic.ClientId))
+                        if ((polygon.Tag as HexagonTile).Objects.ToList().Any(x => x is Unit && (x as Unit).OwnerId != clientLogic.ClientId))
                         {
                             gameLogic.Battle((polygon.Tag as HexagonTile));
                             clientLogic.BattleViewChange("battle");
@@ -56,7 +56,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         ClearSelections();
                     }
-                    
+
                 }
                 else
                 {
@@ -95,7 +95,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = (sender as Polygon);
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
             {
-                if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
+                if (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if ((polygon.Tag as HexagonTile).OwnerId == gameLogic.ClientID || (polygon.Tag as HexagonTile).OwnerId == 0)
                     {
@@ -152,7 +152,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = sender as Polygon;
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
             {
-                if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
+                if (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if (SelectedPolygon != polygon)
                     {
@@ -180,7 +180,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Polygon polygon = sender as Polygon;
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
             {
-                if (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
+                if (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {
                     if (SelectedPolygon != polygon)
                     {
@@ -221,7 +221,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         void PolygonBorderBrush(Polygon polygon)
         {
-            switch (gameLogic.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Faction).FirstOrDefault())
+            switch (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Faction).FirstOrDefault())
             {
                 case Faction.Arabian:
                     polygon.Stroke = Brushes.Red;
