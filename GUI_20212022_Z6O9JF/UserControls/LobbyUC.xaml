@@ -14,22 +14,24 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="9*"/>
+            <RowDefinition Height="1.7*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Viewbox Grid.Row="0" Grid.Column="1">
+        <Viewbox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
             <Label Content="SELECT A FACTION" FontSize="120"
                FontFamily="\Resources\#8-bit Limit (BRK)" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"
                BorderThickness="10,10,10,10" Foreground="#FF2C2E46">
             </Label>
         </Viewbox>
         
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="3*"/>
@@ -49,10 +51,10 @@
                 <Image x:Name="scroll"  Source="\Resources\Images\Menu\scroll.png"/>
             </Viewbox>
             <Viewbox Grid.Column="1" Grid.Row="1">
-                <Image x:Name="hero_selector" Source="{Binding SelectedFaction, Converter={StaticResource converter}}" Width="3" Height="5"/>
+                <Image x:Name="hero_selector" Source="{Binding SelectedFaction, Converter={StaticResource converter}}" Width="1.4" Height="2" Margin="0.3"/>
             </Viewbox>
             <Viewbox Grid.Column="1" Grid.Row="2" >
-                <TextBlock Text="{Binding SelectedFaction}" VerticalAlignment="Center" Height="78" FontSize="80" HorizontalAlignment="Center" FontFamily="Poor Richard" FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedFaction}" VerticalAlignment="Center" Height="78" FontSize="80" HorizontalAlignment="Center" FontFamily="Poor Richard" FontWeight="Bold" Margin="0,0,0,20"/>
             </Viewbox>
             <Viewbox Grid.Column="3" Grid.Row="1">
                 <Button  Style="{DynamicResource button_image_style}" Height="20" Width="20" Command="{Binding PreviousFaction}" Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Right">
@@ -61,7 +63,11 @@
             </Viewbox>
             
         </Grid>
-        <Viewbox Grid.Row="2" Grid.Column="1">
+        <Viewbox Grid.Row="3" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <Label  Content="Ability:" Foreground="#B3C8B7" FontSize="10" FontFamily="Poor Richard" VerticalAlignment="Bottom"/>
+        </Viewbox>
+        <TextBlock Text="{Binding Ability}" Foreground="#B3C8B7" FontSize="40" FontFamily="Poor Richard" TextWrapping="Wrap" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Viewbox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" >
         <StackPanel>
             <Label Content="NAME" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="50" FontFamily="Poor Richard"></Label>
             <TextBox Text="{Binding Name}" Height="50" Width="200" FontSize="40" Background="Transparent" BorderBrush="#B3C8B7" BorderThickness="3"
@@ -69,8 +75,8 @@
                      Foreground="#B3C8B7" VerticalContentAlignment="Center"></TextBox>
         </StackPanel>
         </Viewbox>
-        <Viewbox Grid.Row="3" Grid.Column="1">
-        <Button Style="{DynamicResource button_image_style}" Content="LOCK IN" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+        <Viewbox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+        <Button Style="{DynamicResource button_image_style}" Content="LOCK IN" Foreground="#B3C8B7" Padding="20" Background="Transparent"
                 FontSize="50" FontFamily="Poor Richard" Command="{Binding GameCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
         </Button>

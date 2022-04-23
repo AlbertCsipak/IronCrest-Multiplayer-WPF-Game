@@ -21,6 +21,25 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public string Name { get; set; }
         int index = 0;
         public Faction SelectedFaction { get { return gameLogic.AvailableFactions[index]; } }
+        public string Ability 
+        { 
+            get 
+            {
+                switch (SelectedFaction)
+                {
+                    case Faction.Viking:
+                        return "Vikings can stand on the lake, and start every battle with plus 2 army power.";
+                    case Faction.Crusader:
+                        return "Crusaders get 4 gold for every battle they win, and don't lose popularity if they win.";
+                    case Faction.Mongolian:
+                        return "Mongolians start the game with 3 default moves, and get 3 gold in every turn if they own the goldmine. ";
+                    case Faction.Arabian:
+                        return "Arabians can choose 2 offers at every trading event.";
+                    default:
+                        return "";
+                }
+            } 
+        }
         public static bool IsInDesignMode
         {
             get
@@ -41,7 +60,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
 
             gameLogic.SelectableFactions();
 
-            Name = "";
+            Name = $"Player {clientLogic.ClientId}";
 
             GameCommand = new RelayCommand(() => { clientLogic.ChampSelect(SelectedFaction, Name); index = 0; });
 
@@ -77,6 +96,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     index = 0;
                 }
                 OnPropertyChanged("SelectedFaction");
+                OnPropertyChanged("Ability");
             });
         }
     }
