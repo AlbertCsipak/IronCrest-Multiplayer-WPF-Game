@@ -101,6 +101,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         }
         public void SetMovePictures()
         {
+            var player = gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             if (player.DefaultNumOfMoves == 2)
             {
                 switch (player.RemainingMoves)
