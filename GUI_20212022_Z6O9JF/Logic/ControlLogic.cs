@@ -38,7 +38,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             clientLogic.MysteryViewChange("mystery");
                         }
-                        if (player.Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault() != null || (player.Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault() != null))
+                        if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
                         {
                             clientLogic.MysteryHeroViewChange("mysteryHero");
                         }

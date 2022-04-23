@@ -396,7 +396,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     hexagonTile.FieldType == FieldType.grass)
                 {
                     int rnd = RandomNumber.RandomNumberGenerator(1, 101);
-                    if (rnd == 1 && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (true && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         //Dequeue
                         if (MysteryEvents.Count() != 0)
@@ -456,7 +456,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                         }
                     }
-                    if (rnd == 2 && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (true && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         MysteryHeroEvent();
                     }
