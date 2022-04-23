@@ -36,12 +36,12 @@ namespace GUI_20212022_Z6O9JF.Logic
                         gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         if (gameLogic.CurrentMystery != null)
                         {
+                            gameLogic.Battle((polygon.Tag as HexagonTile));
                             clientLogic.MysteryViewChange("mystery");
                         }
                         if (gameLogic.FirstHero!=null || gameLogic.SecondaryHero!=null)
                         {
                             clientLogic.MysteryHeroViewChange("mysteryHero");
-                            //gameLogic.FirstHero= null;
                         }
                         if ((polygon.Tag as HexagonTile).Compass != null)
                         {
@@ -49,9 +49,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                             gameLogic.ClearCompass(polygon.Tag as HexagonTile);
                             clientLogic.TradeViewChange("trade");
                         }
+                        if ((polygon.Tag as HexagonTile).Objects.ToList().Any(x=>x is Unit && (x as Unit).OwnerId!=clientLogic.ClientId))
+                        {
+                            clientLogic.BattleViewChange("battle");
+                        }
 
                         ClearSelections();
                     }
+                    
                 }
                 else
                 {
@@ -61,6 +66,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
                             gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                            if (gameLogic.CurrentMystery != null)
+                            {
+                                gameLogic.Battle((polygon.Tag as HexagonTile));
+                                clientLogic.MysteryViewChange("mystery");
+                            }
                             if (gameLogic.CurrentMystery != null)
                             {
                                 clientLogic.MysteryViewChange("mystery");

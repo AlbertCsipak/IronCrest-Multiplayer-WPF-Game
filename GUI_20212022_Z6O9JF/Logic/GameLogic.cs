@@ -786,7 +786,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 IsGameEnded = true;
             }
-            
+
         }
         public void AddUnit()
         {
@@ -870,7 +870,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             player.Units.Add(newUnit);
                         }
                     }
-                    
+
                 }
             }
         }
@@ -912,9 +912,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if (enemy != null)
                             {
                                 var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
-                                CurrentBattle = new Battle();
-                                CurrentBattle.Defender = enemyPlayer;
-                                CurrentBattle.Attacker = player;
+                                //CurrentBattle = new Battle();
+                                //CurrentBattle.Defender = enemyPlayer;
+                                //CurrentBattle.Attacker = player;
                                 //clientLogic.BattleViewChange("battle");
 
                                 if (player.ArmyPower * (item as Unit).Level >= enemy.Level * enemyPlayer.ArmyPower)
@@ -955,6 +955,19 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
 
         }
+        public void Battle(HexagonTile hexagonTile)
+        {
+            var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
+            if (enemy != null)
+            {
+                var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
+                CurrentBattle = new Battle();
+                CurrentBattle.Defender = enemyPlayer;
+                CurrentBattle.Attacker = player;
+            }
+        }
+
         public void GetResources()
         {
             var player = Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();

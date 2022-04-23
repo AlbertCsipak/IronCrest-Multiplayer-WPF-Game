@@ -265,7 +265,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void IsAllQuestsDone()
         {
             var player = gameLogic.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault();
-            if (player.Quests.All(x=>x.Done))
+            if (player.Quests.All(x => x.Done))
             {
                 gameLogic.SetGameEndOrder();
                 ChangeView("ending");

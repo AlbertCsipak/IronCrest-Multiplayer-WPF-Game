@@ -4,6 +4,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 {
     public interface IClientLogic
     {
+        object BattleView { get; set; }
         bool CanSend { get; set; }
         int ClientId { get; set; }
         object ESCView { get; set; }
@@ -14,6 +15,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         object TradeView { get; set; }
         object View { get; set; }
 
+        void BattleViewChange(string view);
         void ChampSelect(Faction faction, string name);
         void ChangeView(string view);
         void ChooseOffer();

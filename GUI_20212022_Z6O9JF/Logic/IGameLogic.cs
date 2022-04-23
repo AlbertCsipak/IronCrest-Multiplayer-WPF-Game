@@ -22,6 +22,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         void AddUnit();
         void AddVillage();
+        void Battle(HexagonTile hexagonTile);
         void ClearCompass(HexagonTile hexagon);
         void DecreaseMoves();
         HexagonTile[,] GameMapSetup(string path);
