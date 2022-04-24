@@ -81,6 +81,7 @@
     <None Remove="Resources\Images\Menu\brown_backgound.png" />
     <None Remove="Resources\Images\Menu\build_background.jpg" />
     <None Remove="Resources\Images\Menu\build_background.png" />
+    <None Remove="Resources\Images\Menu\build_background_disabled.png" />
     <None Remove="Resources\Images\Menu\button_board.png" />
     <None Remove="Resources\Images\Menu\button_board_short.png" />
     <None Remove="Resources\Images\Menu\choose_button.png" />
@@ -98,16 +99,19 @@
     <None Remove="Resources\Images\Menu\main_background.gif" />
     <None Remove="Resources\Images\Menu\mountain_background.gif" />
     <None Remove="Resources\Images\Menu\move_background.png" />
+    <None Remove="Resources\Images\Menu\move_background_disabled.png" />
     <None Remove="Resources\Images\Menu\mystery_background.gif" />
     <None Remove="Resources\Images\Menu\mystery_hero_background.gif" />
     <None Remove="Resources\Images\Menu\ocean.png" />
     <None Remove="Resources\Images\Menu\podium.png" />
     <None Remove="Resources\Images\Menu\produce_background.png" />
+    <None Remove="Resources\Images\Menu\produce_background_disabled.png" />
     <None Remove="Resources\Images\Menu\scroll.png" />
     <None Remove="Resources\Images\Menu\skip_button_unpressed.png" />
     <None Remove="Resources\Images\Menu\small_board.png" />
     <None Remove="Resources\Images\Menu\trade_background.gif" />
     <None Remove="Resources\Images\Menu\upgrade_background.png" />
+    <None Remove="Resources\Images\Menu\upgrade_background_disabled.png" />
     <None Remove="Resources\Images\Menu\wheat_background.gif" />
     <None Remove="Resources\Images\Other\back.png" />
     <None Remove="Resources\Images\Other\compass.png" />
@@ -132,6 +136,7 @@
     <None Remove="Resources\Maps\Quests.txt" />
     <None Remove="Resources\Music\ambient.mp3" />
     <None Remove="Resources\Music\battle_music.mp3" />
+    <None Remove="Resources\Music\beep.mp3" />
     <None Remove="Resources\Music\button.mp3" />
     <None Remove="Resources\Music\Lannister_music.mp3" />
     <None Remove="Resources\Music\money_money_money.mp3" />
@@ -355,6 +360,9 @@
     <Content Include="Resources\Images\Menu\build_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\build_background_disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\button_board.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -382,6 +390,9 @@
     <Content Include="Resources\Images\Menu\move_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\move_background_disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\mystery_background.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -394,13 +405,22 @@
     <Content Include="Resources\Images\Menu\produce_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\produce_background_disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\small_board.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\upgrade_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\upgrade_background_disabled.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\wheat_background.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Music\beep.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Music\money_money_money.mp3">

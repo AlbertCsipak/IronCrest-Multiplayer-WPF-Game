@@ -248,10 +248,10 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Viewbox Grid.ColumnSpan="5" Stretch="Fill">
-                    <Image Source="\Resources\Images\Menu\move_background.png" Margin="10,0,10,0" />
+                    <Image x:Name="img_move" Source="\Resources\Images\Menu\move_background.png" Margin="10,0,10,0" />
                 </Viewbox>
                 <Viewbox Grid.Column="0">
-                    <Button HorizontalAlignment="Left" Style="{StaticResource button_image_style}" Command="{Binding MoveUnitCommand}" Height="80" Width="130" Grid.Column="0" Margin="10,0,0,0" >
+                    <Button x:Name="btn_move" HorizontalAlignment="Left" Style="{StaticResource button_image_style}" Command="{Binding MoveUnitCommand}" Height="80" Width="130" Grid.Column="0" Margin="10,0,0,0" Click="Move_Button_Click">
                         <TextBlock x:Name="txt_move" Text="Move" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="50" Foreground="{StaticResource greenish_blue}" >
                             <TextBlock.Effect>
                                 <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
@@ -274,7 +274,7 @@
             </Grid>
 
             <Viewbox Grid.Column="1" Stretch="Fill">
-                <Image Source="\Resources\Images\Menu\produce_background.png" Stretch="Fill" Margin="10,0,10,0"/>
+                <Image x:Name="img_harvest" Source="\Resources\Images\Menu\produce_background.png" Stretch="Fill" Margin="10,0,10,0"/>
             </Viewbox>
             <Viewbox Grid.Column="1">
                 <Button x:Name="btn_harvest" Style="{StaticResource button_image_style}" Click="Harvest_Button_Click" Command="{Binding ProduceCommand}" Height="80" Width="220">
@@ -286,7 +286,7 @@
                 </Button>
             </Viewbox>
             <Viewbox Grid.Column="2" Stretch="Fill">
-                <Image  Source="\Resources\Images\Menu\build_background.png" Stretch="Fill" Margin="10,0,10,0"/>
+                <Image x:Name="img_build" Source="\Resources\Images\Menu\build_background.png" Stretch="Fill" Margin="10,0,10,0"/>
             </Viewbox>
             
             <Grid Grid.Column="2">
@@ -306,7 +306,7 @@
             
             <Viewbox Grid.Column="1" Grid.RowSpan="4">
                 <Button x:Name="btn_build" Style="{StaticResource button_image_style}" Command="{Binding AddVillageCommand}" Height="80" Width="130" Click="Build_Button_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                    <TextBlock x:Name="txt_build" Text="Build" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="55" Foreground="{StaticResource greenish_blue}" Width="120" Height="60" VerticalAlignment="Center">
+                        <TextBlock x:Name="txt_build" Text="Build" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="55" Foreground="{StaticResource greenish_blue}" Width="120" Height="60" VerticalAlignment="Center">
                         <TextBlock.Effect>
                             <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
                         </TextBlock.Effect>
@@ -327,11 +327,11 @@
             </Viewbox>
         </Grid>
         <Viewbox Grid.Column="3" Stretch="Fill">
-                <Image Source="\Resources\Images\Menu\upgrade_background.png" Stretch="Fill" Margin="10,0,10,0"/>
+                <Image x:Name="img_upgrade" Source="\Resources\Images\Menu\upgrade_background.png" Stretch="Fill" Margin="10,0,10,0"/>
             </Viewbox>
             <Viewbox Grid.Column="4" HorizontalAlignment="Left">
-                <Button Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Height="100" Width="210"  HorizontalAlignment="Left" Margin="30,0,0,0">
-                    <TextBlock Text="Upgrade" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="50" Foreground="{StaticResource greenish_blue}" >
+                <Button x:Name="btn_upgrade" Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Click="Upgrade_Button_Click" Height="100" Width="210"  HorizontalAlignment="Left" Margin="30,0,0,0">
+                    <TextBlock x:Name="txt_upgrade" Text="Upgrade" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="50" Foreground="{StaticResource greenish_blue}" >
                         <TextBlock.Effect>
                             <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
                         </TextBlock.Effect>

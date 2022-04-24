@@ -34,7 +34,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
                         
-                        if (gameLogic.CurrentBattle!=null)
+                        if (gameLogic.Game.CurrentBattle !=null)
                         {
                             clientLogic.BattleViewChange("battle");
                         }
@@ -69,7 +69,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
                         
-                        if (gameLogic.CurrentBattle != null)
+                        if (gameLogic.Game.CurrentBattle != null)
                         {
                             clientLogic.BattleViewChange("battle");
                         }

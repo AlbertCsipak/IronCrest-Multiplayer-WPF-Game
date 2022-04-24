@@ -30,7 +30,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                     case Faction.Viking:
                         return "Vikings can stand on the lake, and start every battle with plus 2 army power.";
                     case Faction.Crusader:
-                        return "Crusaders get 4 gold for every battle they win, and don't lose popularity if they win.";
+                        return "Crusaders can choose the same activity they did the previous turn.";
                     case Faction.Mongolian:
                         return "Mongolians start the game with 3 default moves, and get 3 gold in every turn if they own the goldmine. ";
                     case Faction.Arabian:

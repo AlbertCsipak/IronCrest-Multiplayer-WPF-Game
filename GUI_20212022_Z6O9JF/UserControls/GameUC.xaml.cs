@@ -35,7 +35,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public GameUC()
         {
             InitializeComponent();
-
+           
             this.DataContext = new GameViewModel();
             this.gameLogic = (this.DataContext as GameViewModel).gameLogic;
             this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
@@ -81,11 +81,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 OpacityDefault();
                 if (clientLogic.Timer == 60)
                 {
-                    var bc = new BrushConverter();
-                    btn_build.IsEnabled = true;
-                    txt_build.Foreground = (Brush)bc.ConvertFrom("#B3C8B7");
-                    btn_harvest.IsEnabled = true;
-                    txt_harvest.Foreground = (Brush)bc.ConvertFrom("#B3C8B7");
+                    SetTurnActivities();
+                   
                     var image = new BitmapImage();
                     image.BeginInit();
                     image.UriSource = new Uri(@"\Resources\Images\Menu\hourglassgif.gif", UriKind.Relative);
@@ -98,6 +95,109 @@ namespace GUI_20212022_Z6O9JF.UserControls
             };
             dt.Start();
 
+        }
+        public void EnableAllActivities()
+        {
+            img_build.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\build_background.png", UriKind.RelativeOrAbsolute));
+            img_move.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\move_background.png", UriKind.RelativeOrAbsolute));
+            img_upgrade.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\upgrade_background.png", UriKind.RelativeOrAbsolute));
+            img_harvest.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\produce_background.png", UriKind.RelativeOrAbsolute));
+            btn_move.IsEnabled = true;
+            btn_build.IsEnabled = true;
+            btn_harvest.IsEnabled = true;
+            btn_upgrade.IsEnabled = true;
+            txt_build.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+            txt_move.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+            txt_upgrade.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+            txt_harvest.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+        }
+        public void DisableAllActivities() 
+        {
+            btn_move.IsEnabled = false;
+            btn_build.IsEnabled = false;
+            btn_harvest.IsEnabled = false;
+            btn_upgrade.IsEnabled = false;
+        }
+        public void SetTurnActivities()
+        {
+            if (player.Faction!=Faction.Crusader)
+            {
+                switch (player.TurnActivity)
+                {
+                    case TurnActivity.Init:
+                        img_build.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\build_background.png", UriKind.RelativeOrAbsolute));
+                        img_move.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\move_background.png", UriKind.RelativeOrAbsolute));
+                        img_upgrade.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\upgrade_background.png", UriKind.RelativeOrAbsolute));
+                        img_harvest.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\produce_background.png", UriKind.RelativeOrAbsolute));
+                        btn_move.IsEnabled = true;
+                        btn_build.IsEnabled = true;
+                        btn_harvest.IsEnabled = true;
+                        btn_upgrade.IsEnabled = true;
+                        break;
+                    case TurnActivity.Move:
+                        img_build.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\build_background.png", UriKind.RelativeOrAbsolute));
+                        img_move.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\move_background_disabled.png", UriKind.RelativeOrAbsolute));
+                        img_upgrade.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\upgrade_background.png", UriKind.RelativeOrAbsolute));
+                        img_harvest.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\produce_background.png", UriKind.RelativeOrAbsolute));
+                        btn_move.IsEnabled = false;
+                        btn_build.IsEnabled = true;
+                        btn_harvest.IsEnabled = true;
+                        btn_upgrade.IsEnabled = true;
+                        txt_move.Foreground = Brushes.Gray;
+                        txt_build.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        txt_upgrade.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        txt_harvest.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        break;
+                    case TurnActivity.Build:
+                        img_build.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\build_background_disabled.png", UriKind.RelativeOrAbsolute));
+                        img_move.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\move_background.png", UriKind.RelativeOrAbsolute));
+                        img_upgrade.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\upgrade_background.png", UriKind.RelativeOrAbsolute));
+                        img_harvest.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\produce_background.png", UriKind.RelativeOrAbsolute));
+                        btn_build.IsEnabled = false;
+                        btn_move.IsEnabled = true;
+                        btn_harvest.IsEnabled = true;
+                        btn_upgrade.IsEnabled = true;
+                        txt_build.Foreground = Brushes.Gray;
+                        txt_move.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        txt_upgrade.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        txt_harvest.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        break;
+                    case TurnActivity.Upgrade:
+                        img_build.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\build_background.png", UriKind.RelativeOrAbsolute));
+                        img_move.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\move_background.png", UriKind.RelativeOrAbsolute));
+                        img_upgrade.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\upgrade_background_disabled.png", UriKind.RelativeOrAbsolute));
+                        img_harvest.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\produce_background.png", UriKind.RelativeOrAbsolute));
+                        btn_upgrade.IsEnabled = false;
+                        btn_move.IsEnabled = true;
+                        btn_build.IsEnabled = true;
+                        btn_harvest.IsEnabled = true;
+                        txt_upgrade.Foreground = Brushes.Gray;
+                        txt_build.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        txt_move.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        txt_harvest.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        break;
+                    case TurnActivity.Harvest:
+                        img_build.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\build_background.png", UriKind.RelativeOrAbsolute));
+                        img_move.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\move_background.png", UriKind.RelativeOrAbsolute));
+                        img_upgrade.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\upgrade_background.png", UriKind.RelativeOrAbsolute));
+                        img_harvest.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\produce_background_disabled.png", UriKind.RelativeOrAbsolute));
+                        btn_harvest.IsEnabled = false;
+                        btn_move.IsEnabled = true;
+                        btn_build.IsEnabled = true;
+                        btn_upgrade.IsEnabled = true;
+                        txt_harvest.Foreground = Brushes.Gray;
+                        txt_build.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        txt_upgrade.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        txt_move.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                EnableAllActivities();
+            }
         }
         public void SetMovePictures()
         {
@@ -341,16 +441,32 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
-            txt_build.Foreground = Brushes.Gray;
-            btn_build.IsEnabled = false;
+            SetTurnActivities();
+            DisableAllActivities();
         }
 
         private void Harvest_Button_Click(object sender, RoutedEventArgs e)
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
-            txt_harvest.Foreground = Brushes.Gray;
-            btn_harvest.IsEnabled = false;
+            SetTurnActivities();
+            DisableAllActivities();
+        }
+
+        private void Move_Button_Click(object sender, RoutedEventArgs e)
+        {
+            button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
+            button_click.Play();
+            SetTurnActivities();
+            DisableAllActivities();
+        }
+
+        private void Upgrade_Button_Click(object sender, RoutedEventArgs e)
+        {
+            button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
+            button_click.Play();
+            SetTurnActivities();
+            DisableAllActivities();
         }
     }
 }

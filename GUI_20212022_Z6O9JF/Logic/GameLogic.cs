@@ -25,8 +25,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         public MysteryEvent CurrentMystery { get; set; }
         public Hero FirstHero { get; set; }
         public Hero SecondaryHero { get; set; }
-        public Battle CurrentBattle { get; set; }
-        public List<Player> WinOrder { get; set; }
+
+
         public bool IsGameEnded;
 
         public GameLogic(IMessenger messenger)
@@ -38,7 +38,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             CurrentMystery = null;
             CurrentTrade = null;
             AvailableFactions = new List<Faction>();
-            WinOrder = new List<Player>();
             FirstHero = null;
             SecondaryHero = null;
         }
@@ -769,21 +768,21 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (!IsGameEnded)
             {
-                WinOrder.Add(Game.Players.First(x => x.Quests.All(x => x.Done)));
+                Game.WinOrder.Add(Game.Players.First(x => x.Quests.All(x => x.Done)));
                 var playerWith2QuestsDoneAndMostGold = Game.Players.Where(x => x.Quests.Select(x => x.Done).Count() == 2).OrderBy(x => x.Gold).ToList();
                 if (playerWith2QuestsDoneAndMostGold != null)
                 {
-                    playerWith2QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+                    playerWith2QuestsDoneAndMostGold.ForEach(x => Game.WinOrder.Add(x));
                 }
                 var playerWith1QuestsDoneAndMostGold = Game.Players.Where(x => x.Quests.Select(x => x.Done).Count() == 1).OrderBy(x => x.Gold).ToList();
                 if (playerWith1QuestsDoneAndMostGold != null)
                 {
-                    playerWith1QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+                    playerWith1QuestsDoneAndMostGold.ForEach(x => Game.WinOrder.Add(x));
                 }
                 var playerWith0QuestsDoneAndMostGold = Game.Players.Where(x => x.Quests.Select(x => x.Done).Count() == 0).OrderBy(x => x.Gold).ToList();
                 if (playerWith0QuestsDoneAndMostGold != null)
                 {
-                    playerWith0QuestsDoneAndMostGold.ForEach(x => WinOrder.Add(x));
+                    playerWith0QuestsDoneAndMostGold.ForEach(x => Game.WinOrder.Add(x));
                 }
                 IsGameEnded = true;
             }
@@ -970,9 +969,9 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (enemy != null)
             {
                 var enemyPlayer = Game.Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
-                CurrentBattle = new Battle();
-                CurrentBattle.Defender = enemyPlayer;
-                CurrentBattle.Attacker = player;
+                Game.CurrentBattle = new Battle();
+                Game.CurrentBattle.Defender = enemyPlayer;
+                Game.CurrentBattle.Attacker = player;
             }
         }
 

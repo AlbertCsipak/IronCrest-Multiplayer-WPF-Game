@@ -20,9 +20,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public ICommand NextNumber { get; set; }
         public ICommand PreviousNumber { get; set; }
         public ICommand ReadyCommand { get; set; }
+        public ICommand ExitCommand { get; set; }
         public int SelectedNumber { get; set; }
         public Faction Char { get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
-        public Battle CurrentBattle { get { return gameLogic.CurrentBattle; } }
+        public Battle CurrentBattle { get { return gameLogic.Game.CurrentBattle; } }
         public Hero Hero1{ get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault(); } }
         public Hero Hero2{ get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault(); } }
         public int PlayerMaxArmyPower;
@@ -46,7 +47,6 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.clientLogic = clientLogic;
             PlayerMaxArmyPower = Math.Min(gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().ArmyPower, 7);
             SelectedNumber = 0;
-
             NextNumber = new RelayCommand(() =>
             {
                 if (SelectedNumber < PlayerMaxArmyPower)
@@ -74,6 +74,12 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             ReadyCommand = new RelayCommand(() =>
             {
                 //start the battle animation
+                //BattleDisplay.cs
+                //Display.InvalidatVisual();
+            });
+            ExitCommand = new RelayCommand(() =>
+            {
+                clientLogic.BattleViewChange("");
             });
 
             Messenger.Register<BattleViewModel, string, string>(this, "Base", (recipient, msg) =>

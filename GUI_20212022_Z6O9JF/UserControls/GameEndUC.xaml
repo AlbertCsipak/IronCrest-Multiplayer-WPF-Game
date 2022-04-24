@@ -77,5 +77,26 @@
         <Viewbox Grid.Row="6" Grid.Column="6" Grid.RowSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left">
             <Image x:Name="img_third" Source="{Binding Third.Faction, Converter={StaticResource converter}}"/>
         </Viewbox>
+        <Viewbox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button Style="{DynamicResource button_image_style}" Background="Transparent"
+                Command="{Binding ExitCommand}"
+                BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Exit_Click" >
+                <Image x:Name="img_exit" Source="\Resources\Images\Other\exit.png">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect ShadowDepth="0" Color="#B3C8B7" Opacity="1" BlurRadius="30"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+        </Viewbox>
     </Grid>
 </UserControl>

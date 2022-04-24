@@ -5,6 +5,7 @@ using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
@@ -13,14 +14,14 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
-        public Player First { get { return gameLogic.WinOrder.ElementAt(0); } }
+        public Player First { get { return gameLogic.Game.WinOrder.ElementAt(0); } }
         public Player Second
         {
             get
             {
-                if (gameLogic.WinOrder.Count >= 2)
+                if (gameLogic.Game.WinOrder.Count >= 2)
                 {
-                    return gameLogic.WinOrder.ElementAt(1);
+                    return gameLogic.Game.WinOrder.ElementAt(1);
                 }
                 return null;
             }
@@ -29,9 +30,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             get
             {
-                if (gameLogic.WinOrder.Count >= 3)
+                if (gameLogic.Game.WinOrder.Count >= 3)
                 {
-                    return gameLogic.WinOrder.ElementAt(2);
+                    return gameLogic.Game.WinOrder.ElementAt(2);
                 }
                 return null;
             }
@@ -40,9 +41,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             get
             {
-                if (gameLogic.WinOrder.Count == 4)
+                if (gameLogic.Game.WinOrder.Count == 4)
                 {
-                    return gameLogic.WinOrder.ElementAt(3);
+                    return gameLogic.Game.WinOrder.ElementAt(3);
                 }
                 return null;
             }
@@ -65,6 +66,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.controlLogic = controlLogic;
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
+
 
             Messenger.Register<GameEndViewModel, string, string>(this, "Base", (recipient, msg) =>
             {

@@ -7,7 +7,6 @@ namespace GUI_20212022_Z6O9JF.Logic
     {
         List<Faction> AvailableFactions { get; set; }
         int ClientID { get; set; }
-        Battle CurrentBattle { get; set; }
         MysteryEvent CurrentMystery { get; set; }
         Trade CurrentTrade { get; set; }
         Hero FirstHero { get; set; }
@@ -17,7 +16,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         Queue<MysteryEvent> MysteryEvents { get; set; }
         Hero SecondaryHero { get; set; }
         HexagonTile SelectedHexagonTile { get; set; }
-        List<Player> WinOrder { get; set; }
 
         void AddUnit();
         void AddVillage();
