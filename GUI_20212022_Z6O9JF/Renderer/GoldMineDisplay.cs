@@ -34,7 +34,6 @@ namespace GUI_20212022_Z6O9JF.Renderer
         }
         protected override void OnRender(DrawingContext drawingContext)
         {
-            ;
             if (size.Width != 0 && size.Height != 0)
             {
                 double num = size.Width / 100 * XPos;

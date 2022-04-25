@@ -5,5 +5,6 @@
         public Player Attacker { get; set; }
         public Player Defender { get; set; }
         public Player Winner { get; set; }
+        public bool IsBattleStarted { get; set; }
     }
 }

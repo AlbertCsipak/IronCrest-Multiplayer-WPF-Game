@@ -1,4 +1,8 @@
-﻿using System;
+﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Renderer;
+using GUI_20212022_Z6O9JF.ViewModels;
+using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -10,6 +14,9 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// </summary>
     public partial class BattleUC : UserControl
     {
+        IClientLogic clientLogic;
+        IGameLogic gameLogic;
+        IControlLogic controlLogic;
         DispatcherTimer dt;
         MediaPlayer counterSoundEffect = new MediaPlayer();
         MediaPlayer buttonSoundEffect = new MediaPlayer();
@@ -17,10 +24,14 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public BattleUC()
         {
             InitializeComponent();
+            this.DataContext = new BattleViewModel();
+            this.gameLogic = (this.DataContext as BattleViewModel).gameLogic;
+            this.clientLogic = (this.DataContext as BattleViewModel).clientLogic;
+            this.controlLogic = (this.DataContext as BattleViewModel).controlLogic;
+            battleDisplay.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
             lbl_counter.Visibility = System.Windows.Visibility.Hidden;
 
         }
-
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             buttonSoundEffect.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
@@ -49,6 +60,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 if (counter==0)
                 {
                     lbl_counter.Content = "BATTLE!";
+                    battleDisplay.InvalidateVisual();
+                    
                 }
             };
             dt.Start();
@@ -58,6 +71,19 @@ namespace GUI_20212022_Z6O9JF.UserControls
             }
 
         }
-        
+
+        private void UserControl_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
+        {
+            battleDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+        }
+        //private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        //{
+        //    battleDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+        //}
+
+        //private void UserControl_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
+        //{
+        //    battleDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+        //}
     }
 }

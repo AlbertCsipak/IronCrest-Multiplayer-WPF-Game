@@ -1,5 +1,6 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using GUI_20212022_Z6O9JF.Models;
+using GUI_20212022_Z6O9JF.Renderer;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -73,9 +74,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             });
             ReadyCommand = new RelayCommand(() =>
             {
+                CurrentBattle.IsBattleStarted = true;
+
                 //start the battle animation
                 //BattleDisplay.cs
-                //Display.InvalidatVisual();
             });
             ExitCommand = new RelayCommand(() =>
             {

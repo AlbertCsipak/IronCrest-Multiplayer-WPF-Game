@@ -33,34 +33,31 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
-                        
-                        if (gameLogic.Game.CurrentBattle !=null)
+                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                        if (gameLogic.Game.CurrentBattle != null)
                         {
                             clientLogic.BattleViewChange("battle");
                         }
-                        gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
-                        if (gameLogic.CurrentMystery != null)
+                        if (gameLogic.Game.CurrentBattle==null && gameLogic.SelectedHexagonTile!=null)
                         {
-                            clientLogic.MysteryViewChange("mystery");
+                            gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
+                            if (gameLogic.CurrentMystery != null)
+                            {
+                                clientLogic.MysteryViewChange("mystery");
+                            }
+                            if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
+                            {
+                                clientLogic.MysteryHeroViewChange("mysteryHero");
+                            }
+                            if ((polygon.Tag as HexagonTile).Compass != null)
+                            {
+                                gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
+                                gameLogic.ClearCompass(polygon.Tag as HexagonTile);
+                                clientLogic.TradeViewChange("trade");
+                            }
                         }
-                        if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
-                        {
-                            clientLogic.MysteryHeroViewChange("mysteryHero");
-                        }
-                        if ((polygon.Tag as HexagonTile).Compass != null)
-                        {
-                            gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
-                            gameLogic.ClearCompass(polygon.Tag as HexagonTile);
-                            clientLogic.TradeViewChange("trade");
-                        }
-                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
-                        //if ((polygon.Tag as HexagonTile).Objects.ToList().Any(x => x is Unit && (x as Unit).OwnerId != clientLogic.ClientId))
-                        //{
-                        //    gameLogic.Battle((polygon.Tag as HexagonTile));
-                        //    clientLogic.BattleViewChange("battle");
-                        //}
-
                         ClearSelections();
+                        gameLogic.SelectedHexagonTile = null;
                     }
 
                 }
@@ -68,7 +65,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     if (SelectedPolygon != null && SelectedPolygon != polygon)
                     {
-                        
+                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         if (gameLogic.Game.CurrentBattle != null)
                         {
                             clientLogic.BattleViewChange("battle");
@@ -88,8 +85,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                             gameLogic.ClearCompass(polygon.Tag as HexagonTile);
                             clientLogic.TradeViewChange("trade");
                         }
-                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                         ClearSelections();
+                        gameLogic.SelectedHexagonTile = null;
                     }
                 }
             }

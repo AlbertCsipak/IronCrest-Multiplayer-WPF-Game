@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI_20212022_Z6O9JF.Logic;
+using System;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -9,6 +10,9 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// </summary>
     public partial class GameEndUC : UserControl
     {
+        IClientLogic clientLogic;
+        IGameLogic gameLogic;
+        IControlLogic controlLogic;
         public MediaPlayer button_click = new MediaPlayer();
         public GameEndUC()
         {

@@ -175,8 +175,21 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             foreach (var item in gameLogic.GameMap[i, j].Objects.ToList())
                             {
                                 if (item is Unit)
+                                    switch (item.Level)
+                                    {
+                                        case 1:
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Characters/standing_{item.FactionType}_lvl{item.Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
+                                            break;
+                                        case 2:
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Characters/standing_{item.FactionType}_lvl{item.Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
+                                            break;
+                                        case 3:
+                                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Characters/standing_{item.FactionType}_lvl{item.Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 {
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Characters/standing_{item.FactionType}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
                                 }
                             }
                         }

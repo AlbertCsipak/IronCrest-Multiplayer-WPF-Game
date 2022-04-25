@@ -8,7 +8,7 @@
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              xmlns:converter="clr-namespace:GUI_20212022_Z6O9JF.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" SizeChanged="UserControl_SizeChanged">
     <UserControl.DataContext>
         <vm:BattleViewModel></vm:BattleViewModel>
     </UserControl.DataContext>
@@ -17,7 +17,8 @@
         <converter:FirstHeroToImgConverter x:Key="firstheroconverter"/>
         <converter:SecondaryHeroToImgConverter x:Key="secondaryheroconverter"/>
     </UserControl.Resources>
-    <Grid>
+
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
@@ -96,5 +97,8 @@
                 <Image Source="{Binding Char, Converter={StaticResource converter}}"></Image>
             </Viewbox>
         </StackPanel>
+        <Grid>
+            <renderer:BattleDisplay x:Name="battleDisplay"/>
+        </Grid>
     </Grid>
 </UserControl>

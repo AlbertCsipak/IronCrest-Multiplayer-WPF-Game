@@ -888,30 +888,42 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                 if (points.Contains(point))
                 {
-                    var item = SelectedHexagonTile.Objects.Where(t => t.CanMove).FirstOrDefault();
+                    var unit = SelectedHexagonTile.Objects.Where(t => t is Unit && t.OwnerId==ClientID).FirstOrDefault();
 
-                    if (item != null && player.RemainingMoves != 0)
+                    if (unit != null && player.RemainingMoves != 0)
                     {
                         if (hexagonTile.Objects.ToList().Count == 0)
                         {
-                            item.Move(hexagonTile.Position);
-                            hexagonTile.Objects.Add(item);
-                            hexagonTile.OwnerId = item.OwnerId;
-                            SelectedHexagonTile.Objects.Remove(item);
+                            unit.Move(hexagonTile.Position);
+                            hexagonTile.Objects.Add(unit);
+                            hexagonTile.OwnerId = unit.OwnerId;
+                            SelectedHexagonTile.Objects.Remove(unit);
                             if (SelectedHexagonTile.Objects.Count == 0)
                             {
                                 SelectedHexagonTile.OwnerId = 0;
                             }
-                            SelectedHexagonTile = null;
-
+                            //SelectedHexagonTile = null;
                             DecreaseMoves();
                         }
-                        else
+                        else if(hexagonTile.Objects.ToList().Where(x=>x.OwnerId==ClientID).FirstOrDefault()!=null)
                         {
-                            if (hexagonTile.Objects.ToList().Any(x => x is Unit && (x as Unit).OwnerId != ClientID))
+                            if (hexagonTile.Objects.First(x=>x.OwnerId==ClientID).Level<3)
                             {
-                                Battle(hexagonTile);
+                                hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level++;
+                                SelectedHexagonTile.Objects.Remove(unit);
+                                player.Units.Remove(unit as Unit);
+                                if (SelectedHexagonTile.Objects.Count == 0)
+                                {
+                                    SelectedHexagonTile.OwnerId = 0;
+                                }
+                                SelectedHexagonTile = null;
+                                DecreaseMoves();
                             }
+                        }
+                        else if (hexagonTile.Objects.ToList().Any(x => x is Unit && x.OwnerId != ClientID))
+                        {
+                            Battle(hexagonTile);
+                            DecreaseMoves();
                         }
                         //{
                         //    //battle

@@ -13,13 +13,13 @@ namespace GUI_20212022_Z6O9JF.Converters
             switch ((Faction)value)
             {
                 case Faction.Arabian:
-                    return "\\Resources\\Images\\Characters\\standing_arabian.png";
+                    return "\\Resources\\Images\\Characters\\standing_arabian_lvl1.png";
                 case Faction.Mongolian:
-                    return "\\Resources\\Images\\Characters\\standing_mongolian.png";
+                    return "\\Resources\\Images\\Characters\\standing_mongolian_lvl1.png";
                 case Faction.Crusader:
-                    return "\\Resources\\Images\\Characters\\standing_crusader.png";
+                    return "\\Resources\\Images\\Characters\\standing_crusader_lvl1.png";
                 case Faction.Viking:
-                    return "\\Resources\\Images\\Characters\\standing_viking.png";
+                    return "\\Resources\\Images\\Characters\\standing_viking_lvl1.png";
                 default: return "";
             }
         }

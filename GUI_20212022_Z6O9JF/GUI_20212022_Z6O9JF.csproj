@@ -23,9 +23,21 @@
     <None Remove="Resources\Images\Characters\prophet.png" />
     <None Remove="Resources\Images\Characters\sigurd.png" />
     <None Remove="Resources\Images\Characters\standing_arabian.png" />
+    <None Remove="Resources\Images\Characters\standing_arabian_lvl1.png" />
+    <None Remove="Resources\Images\Characters\standing_arabian_lvl2.png" />
+    <None Remove="Resources\Images\Characters\standing_arabian_lvl3.png" />
     <None Remove="Resources\Images\Characters\standing_crusader.png" />
+    <None Remove="Resources\Images\Characters\standing_crusader_lvl1.png" />
+    <None Remove="Resources\Images\Characters\standing_crusader_lvl2.png" />
+    <None Remove="Resources\Images\Characters\standing_crusader_lvl3.png" />
     <None Remove="Resources\Images\Characters\standing_mongolian.png" />
+    <None Remove="Resources\Images\Characters\standing_mongolian_lvl1.png" />
+    <None Remove="Resources\Images\Characters\standing_mongolian_lvl2.png" />
+    <None Remove="Resources\Images\Characters\standing_mongolian_lvl3.png" />
     <None Remove="Resources\Images\Characters\standing_viking.png" />
+    <None Remove="Resources\Images\Characters\standing_viking_lvl1.png" />
+    <None Remove="Resources\Images\Characters\standing_viking_lvl2.png" />
+    <None Remove="Resources\Images\Characters\standing_viking_lvl3.png" />
     <None Remove="Resources\Images\Characters\walking_arabian.gif" />
     <None Remove="Resources\Images\Characters\walking_arabian1.png" />
     <None Remove="Resources\Images\Characters\walking_arabian2.png" />
@@ -192,16 +204,40 @@
     <Content Include="Resources\Images\Characters\sigurd.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Characters\standing_arabian.png">
+    <Content Include="Resources\Images\Characters\standing_arabian_lvl1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Characters\standing_crusader.png">
+    <Content Include="Resources\Images\Characters\standing_arabian_lvl2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Characters\standing_mongolian.png">
+    <Content Include="Resources\Images\Characters\standing_arabian_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Characters\standing_viking.png">
+    <Content Include="Resources\Images\Characters\standing_crusader_lvl1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\standing_crusader_lvl2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\standing_crusader_lvl3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\standing_mongolian_lvl1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\standing_mongolian_lvl2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\standing_mongolian_lvl3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\standing_viking_lvl1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\standing_viking_lvl2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\standing_viking_lvl3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\walking_arabian.gif">
