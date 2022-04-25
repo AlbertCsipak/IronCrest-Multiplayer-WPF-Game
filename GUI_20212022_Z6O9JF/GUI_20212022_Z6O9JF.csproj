@@ -48,6 +48,7 @@
     <None Remove="Resources\Images\Map\Arabian_village_lvl3.png" />
     <None Remove="Resources\Images\Map\blue_background.png" />
     <None Remove="Resources\Images\Map\cloud2.png" />
+    <None Remove="Resources\Images\Map\clouds.png" />
     <None Remove="Resources\Images\Map\cloud_bottom.png" />
     <None Remove="Resources\Images\Map\cloud_left.png" />
     <None Remove="Resources\Images\Map\cloud_right.png" />
@@ -268,6 +269,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\cloud2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Map\clouds.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Map\cloud_bottom.png">

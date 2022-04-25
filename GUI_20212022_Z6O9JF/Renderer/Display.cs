@@ -19,7 +19,8 @@ namespace GUI_20212022_Z6O9JF.Renderer
         Grid grid;
         double[,][] HexagonPoints;
         bool sizeChanged;
-        int gif;
+        int vizgif;
+        int felhogif;
         static Random random;
         public Display()
         {
@@ -91,7 +92,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/grass.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
                                 case FieldType.ocean:
-                                    if (gif < 30)
+                                    if (vizgif < 30)
                                     {
                                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     }
@@ -101,7 +102,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                     }
                                     break;
                                 case FieldType.lake:
-                                    if (gif < 30)
+                                    if (vizgif < 30)
                                     {
                                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     }
@@ -179,13 +180,19 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Characters/standing_{item.FactionType}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] - width / 2 * 1.3 + (width * 0.7 / 2), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.8 / 5)), new Size(width * 0.7, height * 0.8)));
                                 }
                             }
+                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/clouds.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250+felhogif,size.Height/6,150,150));
                         }
                     }
                 }
-                gif++;
-                if (gif > 60)
+                vizgif++;
+                if (vizgif > 60)
                 {
-                    gif = 0;
+                    vizgif = 0;
+                }
+                felhogif++;
+                if (felhogif > size.Width+200)
+                {
+                    felhogif = 0;
                 }
                 sizeChanged = false;
             }
