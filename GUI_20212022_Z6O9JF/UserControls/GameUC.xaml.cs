@@ -58,7 +58,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             GoldChangeLabel.Opacity = 0;
 
             dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(33);
+            dt.Interval = TimeSpan.FromMilliseconds(100);
             quests = new List<SubItem<Quest>>();
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(0)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(1)));

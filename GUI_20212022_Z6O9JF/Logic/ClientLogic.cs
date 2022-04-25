@@ -126,7 +126,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         gameLogic.ReloadHexagonObjects();
                         messenger.Send("Message", "Base");
-                        System.Threading.Thread.Sleep(250);
+                        System.Threading.Thread.Sleep(500);
                     }
                 }, TaskCreationOptions.LongRunning);
 
@@ -336,7 +336,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Units.Add(unit);
                 gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
                 ChangeView("game");
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(300);
                 SkipTurn();
             }
         }
