@@ -395,7 +395,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     hexagonTile.FieldType == FieldType.grass)
                 {
                     int rnd = RandomNumber.RandomNumberGenerator(1, 101);
-                    if (true && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (rnd<51)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         //Dequeue
                         if (MysteryEvents.Count() != 0)
@@ -449,13 +449,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                                     break;
                                 case "Moves":
                                     player.DefaultNumOfMoves += mysteryEvent.Number;
+                                    player.RemainingMoves++;
                                     break;
                                 default:
                                     break;
                             }
                         }
                     }
-                    if (true && player.RemainingMoves != 0)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (rnd>50)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         MysteryHeroEvent();
                     }
@@ -905,11 +906,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                             //SelectedHexagonTile = null;
                             DecreaseMoves();
                         }
-                        else if(hexagonTile.Objects.ToList().Where(x=>x.OwnerId==ClientID).FirstOrDefault()!=null)
+                        else if(hexagonTile.Objects.ToList().Where(x=>x is Unit && x.OwnerId==ClientID).FirstOrDefault()!=null)
                         {
-                            if (hexagonTile.Objects.First(x=>x.OwnerId==ClientID).Level<3)
+                            if (hexagonTile.Objects.First(x=>x.OwnerId==ClientID).Level+unit.Level<=3)
                             {
-                                hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level++;
+                                hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level+=unit.Level;
                                 SelectedHexagonTile.Objects.Remove(unit);
                                 player.Units.Remove(unit as Unit);
                                 if (SelectedHexagonTile.Objects.Count == 0)

@@ -48,6 +48,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
                             {
                                 clientLogic.MysteryHeroViewChange("mysteryHero");
+                                gameLogic.FirstHero = null;
+                                gameLogic.SecondaryHero = null;
                             }
                             if ((polygon.Tag as HexagonTile).Compass != null)
                             {
