@@ -29,5 +29,21 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             //gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            //GameUC.IsInSubWindow = true;
+            //IsHitTestVisible = true;
+            //CaptureMouse();
+            Window window = Window.GetWindow(this);
+            window.Closing += window_Closing;
+            ;
+        }
+
+        void window_Closing(object sender, global::System.ComponentModel.CancelEventArgs e)
+        {
+            //GameUC.IsInSubWindow = false;
+            //ReleaseMouseCapture();
+        }
     }
 }

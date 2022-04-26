@@ -20,6 +20,7 @@
         <converter:FirstHeroToImgConverter x:Key="firstheroconverter"/>
         <converter:SecondaryHeroToImgConverter x:Key="secondaryheroconverter"/>
     </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -32,6 +33,7 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        
 
 
         <Image x:Name="background" Grid.RowSpan="4" Grid.ColumnSpan="3" Source="\Resources\Images\Map\blue_background.png" Stretch="Fill"/>
@@ -39,9 +41,13 @@
         <ContentControl x:Name="goldmine_control" Grid.ColumnSpan="3" Grid.RowSpan="4" Content="{Binding GoldMineView}">
 
         </ContentControl>
+
+
         <Grid x:Name="grid" Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" >
             <renderer:Display x:Name="display"/>
+
         </Grid>
+        
         <Grid Grid.Row="0" Grid.ColumnSpan="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -384,18 +390,16 @@
             <ContentControl x:Name="trade_control" Grid.Column="1" Grid.Row="1" Content="{Binding TradeView}">
 
             </ContentControl>
-            <ContentControl x:Name="mystery_control" Grid.Column="1" Grid.Row="1" Content="{Binding MysteryView}">
+            
+            <!--<ContentControl x:Name="mystery_control" Grid.Column="0" Grid.Row="0" Content="{Binding MysteryView}"/>
+            <ContentControl x:Name="mysteryhero_control" Grid.Column="0" Grid.Row="0" Content="{Binding MysteryHeroView}"/>-->
 
-            </ContentControl>
-            <ContentControl x:Name="mysteryhero_control" Grid.Column="1" Grid.Row="1" Content="{Binding MysteryHeroView}">
-
-            </ContentControl>
-            <ContentControl x:Name="ESC_control" Grid.Column="1" Grid.Row="1" Content="{Binding ESCView}">
-
-            </ContentControl>
-            <ContentControl x:Name="battle_control" Grid.Column="1" Grid.Row="1" Content="{Binding BattleView}">
-
-            </ContentControl>
+            <ContentControl x:Name="ESC_control" Grid.Column="1" Grid.Row="1" Content="{Binding ESCView}"/>
+            <ContentControl x:Name="battle_control" Grid.Column="1" Grid.Row="1" Content="{Binding BattleView}"/>
         </Grid>
+        
+        <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" x:Name="mystery_control" Content="{Binding MysteryView}"/>
+        <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" x:Name="mysteryhero_control" Content="{Binding MysteryHeroView}"/>
+
     </Grid>
 </UserControl>

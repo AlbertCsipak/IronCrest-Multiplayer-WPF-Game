@@ -27,6 +27,9 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IGameLogic gameLogic;
         IControlLogic controlLogic;
         Window window;
+
+
+
         public MediaPlayer button_click = new MediaPlayer();
         DispatcherTimer dt;
         bool IsResourceChanged;
@@ -35,7 +38,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public GameUC()
         {
             InitializeComponent();
-           
             this.DataContext = new GameViewModel();
             this.gameLogic = (this.DataContext as GameViewModel).gameLogic;
             this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
