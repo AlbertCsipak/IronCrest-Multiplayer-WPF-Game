@@ -40,20 +40,32 @@
     <None Remove="Resources\Images\Characters\standing_viking_lvl3.png" />
     <None Remove="Resources\Images\Characters\walking_arabian.gif" />
     <None Remove="Resources\Images\Characters\walking_arabian1.png" />
+    <None Remove="Resources\Images\Characters\walking_arabian1_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_arabian2.png" />
+    <None Remove="Resources\Images\Characters\walking_arabian2_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_arabian3.png" />
+    <None Remove="Resources\Images\Characters\walking_arabian3_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_crusader.gif" />
     <None Remove="Resources\Images\Characters\walking_crusader1.png" />
+    <None Remove="Resources\Images\Characters\walking_crusader1_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_crusader2.png" />
+    <None Remove="Resources\Images\Characters\walking_crusader2_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_crusader3.png" />
+    <None Remove="Resources\Images\Characters\walking_crusader3_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_mongolian.gif" />
     <None Remove="Resources\Images\Characters\walking_mongolian1.png" />
+    <None Remove="Resources\Images\Characters\walking_mongolian1_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_mongolian2.png" />
+    <None Remove="Resources\Images\Characters\walking_mongolian2_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_mongolian3.png" />
+    <None Remove="Resources\Images\Characters\walking_mongolian3_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_viking.gif" />
     <None Remove="Resources\Images\Characters\walking_viking1.png" />
+    <None Remove="Resources\Images\Characters\walking_viking1_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_viking2.png" />
+    <None Remove="Resources\Images\Characters\walking_viking2_reversed.png" />
     <None Remove="Resources\Images\Characters\walking_viking3.png" />
+    <None Remove="Resources\Images\Characters\walking_viking3_reversed.png" />
     <None Remove="Resources\Images\Characters\white_knight.png" />
     <None Remove="Resources\Images\Map\Arabian_village_lvl1.png" />
     <None Remove="Resources\Images\Map\Arabian_village_lvl2.png" />
@@ -153,6 +165,7 @@
     <None Remove="Resources\Music\button.mp3" />
     <None Remove="Resources\Music\Lannister_music.mp3" />
     <None Remove="Resources\Music\money_money_money.mp3" />
+    <None Remove="Resources\Music\placement.mp3" />
     <None Remove="Resources\Music\standard.mp3" />
     <None Remove="Resources\press-start.k.ttf" />
     <None Remove="Resources\Saves\NewGame.txt" />
@@ -247,10 +260,19 @@
     <Content Include="Resources\Images\Characters\walking_arabian1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Characters\walking_arabian1_reversed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Characters\walking_arabian2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Characters\walking_arabian2_reversed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Characters\walking_arabian3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_arabian3_reversed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\walking_crusader.gif">
@@ -259,10 +281,19 @@
     <Content Include="Resources\Images\Characters\walking_crusader1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Characters\walking_crusader1_reversed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Characters\walking_crusader2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Characters\walking_crusader2_reversed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Characters\walking_crusader3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_crusader3_reversed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\walking_mongolian.gif">
@@ -271,10 +302,19 @@
     <Content Include="Resources\Images\Characters\walking_mongolian1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Characters\walking_mongolian1_reversed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Characters\walking_mongolian2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Characters\walking_mongolian2_reversed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Characters\walking_mongolian3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_mongolian3_reversed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\walking_viking.gif">
@@ -283,10 +323,19 @@
     <Content Include="Resources\Images\Characters\walking_viking1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Characters\walking_viking1_reversed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Characters\walking_viking2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Characters\walking_viking2_reversed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Characters\walking_viking3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Characters\walking_viking3_reversed.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Characters\white_knight.png">
@@ -464,6 +513,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Music\money_money_money.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Music\placement.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\Images\Menu\flag.png">

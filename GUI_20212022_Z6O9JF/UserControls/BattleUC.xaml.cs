@@ -17,7 +17,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IClientLogic clientLogic;
         IGameLogic gameLogic;
         IControlLogic controlLogic;
-        DispatcherTimer dt;
+        DispatcherTimer dt_counter;
+        DispatcherTimer dt_movement;
         MediaPlayer counterSoundEffect = new MediaPlayer();
         MediaPlayer buttonSoundEffect = new MediaPlayer();
         int counter = 4;
@@ -47,9 +48,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
             btn_right.Visibility = System.Windows.Visibility.Hidden;
             btn_ready.Visibility = System.Windows.Visibility.Hidden;
             lbl_counter.Visibility = System.Windows.Visibility.Visible;
-            dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(1000);
-            dt.Tick += (sender, eventargs) =>
+            dt_counter = new DispatcherTimer();
+            dt_movement = new DispatcherTimer();
+            dt_counter.Interval = TimeSpan.FromMilliseconds(1000);
+            dt_counter.Tick += (sender, eventargs) =>
             {
                 if (counter>0)
                 {
@@ -60,15 +62,25 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 if (counter==0)
                 {
                     lbl_counter.Content = "BATTLE!";
-                    battleDisplay.InvalidateVisual();
+                    
                     
                 }
             };
-            dt.Start();
-            if (counter==0)
+            dt_counter.Start();
+            if (counter == 0)
             {
-                dt.Stop();
+                dt_counter.Stop();
+                dt_movement.Interval = TimeSpan.FromMilliseconds(33);
+                dt_movement.Start();
             }
+            
+            dt_movement.Tick += (sender, eventargs) =>
+            {
+                battleDisplay.InvalidateVisual();
+            };
+            
+
+
 
         }
 

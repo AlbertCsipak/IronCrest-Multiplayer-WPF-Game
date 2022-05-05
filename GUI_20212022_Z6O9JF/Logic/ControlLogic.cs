@@ -72,20 +72,25 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             clientLogic.BattleViewChange("battle");
                         }
-                        gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
-                        if (gameLogic.CurrentMystery != null)
+                        if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null)
                         {
-                            clientLogic.MysteryViewChange("mystery");
-                        }
-                        if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
-                        {
-                            clientLogic.MysteryHeroViewChange("mysteryHero");
-                        }
-                        if ((polygon.Tag as HexagonTile).Compass != null)
-                        {
-                            gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
-                            gameLogic.ClearCompass(polygon.Tag as HexagonTile);
-                            clientLogic.TradeViewChange("trade");
+                            gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
+                            if (gameLogic.CurrentMystery != null)
+                            {
+                                clientLogic.MysteryViewChange("mystery");
+                            }
+                            if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
+                            {
+                                clientLogic.MysteryHeroViewChange("mysteryHero");
+                                gameLogic.FirstHero = null;
+                                gameLogic.SecondaryHero = null;
+                            }
+                            if ((polygon.Tag as HexagonTile).Compass != null)
+                            {
+                                gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
+                                gameLogic.ClearCompass(polygon.Tag as HexagonTile);
+                                clientLogic.TradeViewChange("trade");
+                            }
                         }
                         ClearSelections();
                         gameLogic.SelectedHexagonTile = null;

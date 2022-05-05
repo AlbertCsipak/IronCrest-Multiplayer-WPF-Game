@@ -816,9 +816,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void AddVillage()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            player.TurnActivity = TurnActivity.Build;
             if (SelectedHexagonTile != null && SelectedHexagonTile.FieldType == FieldType.grass
-                && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count == 0)
+                && !SelectedHexagonTile.Objects.Any(t => t is Unit))
             {
                 if (SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0 && HasSufficientResources("Wood", 3) && HasSufficientResources("Stone", 2))
                 {
@@ -836,6 +835,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         player.Stone -= 2;
                         SelectedHexagonTile.OwnerId = player.PlayerID;
                         player.Villages.Add(newVillage);
+                        player.TurnActivity = TurnActivity.Build;
                     }
                 }
 
@@ -844,7 +844,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void UpgradeVillage()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            player.TurnActivity = TurnActivity.Upgrade;
+            
             if (SelectedHexagonTile != null)
             {
                 if ((SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
@@ -852,14 +852,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                     && HasSufficientResources("Wheat", 2))
                 {
                     //var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
-                    var item = SelectedHexagonTile.Objects.Where(t => t is Village).FirstOrDefault();
-                    if (item != null && player.RemainingMoves != 0 && item.Level < 3)
+                    var village = SelectedHexagonTile.Objects.Where(t => t is Village).FirstOrDefault();
+                    if (village!=null && village.Level < 3)
                     {
-                        SelectedHexagonTile.Objects.Remove(item);
-                        item.Level++;
+                        player.TurnActivity = TurnActivity.Upgrade;
+                        SelectedHexagonTile.Objects.Remove(village);
+                        village.Level++;
                         player.Gold -= 3;
                         player.Wheat -= 2;
-                        if (item.Level == 3)
+                        if (village.Level == 3)
                         {
                             Unit newUnit = new Unit();
                             newUnit.FactionType = player.Faction;
@@ -992,7 +993,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.TurnActivity = TurnActivity.Harvest;
-            bool success = false;
+            //bool success = false;
             if (player != null && player.RemainingMoves != 0)
             {
                 foreach (var tile in GameMap)
@@ -1001,13 +1002,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         foreach (var item2 in tile.Objects.ToList())
                         {
-                            if (item2.CanMove)
+                            if (item2 is Unit)
                             {
+                                
                                 tile.GiveResources(player);
-                                if (success is false)
-                                {
-                                    success = true;
-                                }
+                                
+                                //if (!success)
+                                //{
+                                //    success = true;
+                                //}
                             }
                         }
                     }
