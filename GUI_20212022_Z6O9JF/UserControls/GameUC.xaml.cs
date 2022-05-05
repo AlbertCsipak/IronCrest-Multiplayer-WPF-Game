@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -443,8 +444,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
-            SetTurnActivities();
-            DisableAllActivities();
+            Thread.Sleep(1000);
+            if (player.TurnActivity==TurnActivity.Build)
+            {
+                SetTurnActivities();
+                DisableAllActivities();
+            }
         }
 
         private void Harvest_Button_Click(object sender, RoutedEventArgs e)
@@ -467,8 +472,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
-            SetTurnActivities();
-            DisableAllActivities();
+            if (player.TurnActivity == TurnActivity.Upgrade)
+            {
+                SetTurnActivities();
+                DisableAllActivities();
+            }
         }
     }
 }

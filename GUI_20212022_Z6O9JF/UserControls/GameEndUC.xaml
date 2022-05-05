@@ -41,6 +41,9 @@
         <Viewbox Grid.Column="2" Grid.ColumnSpan="5" Grid.RowSpan="2">
             <Label Content="Game Over" FontFamily="\Resources\#Press Start K" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Viewbox>
+        <Viewbox Grid.Row="7" Grid.Column="2" Grid.RowSpan="3">
+            <Image Source="\Resources\Images\Menu\trophy.png"/>
+        </Viewbox>
         <Viewbox Grid.Row="2" Grid.Column="1">
             <Label Content="I." FontSize="10" FontFamily="\Resources\#Press Start K"/>
         </Viewbox>
