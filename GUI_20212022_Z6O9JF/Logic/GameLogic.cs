@@ -986,6 +986,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 Game.CurrentBattle = new Battle();
                 Game.CurrentBattle.Defender = enemyPlayer;
                 Game.CurrentBattle.Attacker = player;
+                ;
             }
         }
 
