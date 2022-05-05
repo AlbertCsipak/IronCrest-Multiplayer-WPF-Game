@@ -74,7 +74,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             });
             ReadyCommand = new RelayCommand(() =>
             {
-                CurrentBattle.IsBattleStarted = true;
+                if (CurrentBattle!=null)
+                {
+                    CurrentBattle.IsBattleStarted = true;
+                }
 
                 //start the battle animation
                 //BattleDisplay.cs
