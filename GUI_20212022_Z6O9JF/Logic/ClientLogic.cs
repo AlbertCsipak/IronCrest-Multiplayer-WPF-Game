@@ -24,6 +24,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public bool CanSend { get; set; }
         public int ClientId { get; set; }
         public int Timer { get; set; }
+        public bool inBattle { get; set; }
         int tmpTimer;
         SocketClient.SocketClient socketClient;
         public ClientLogic(IMessenger messenger, IGameLogic gameLogic)
@@ -125,6 +126,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                     while (socketClient.MySocket.Connected)
                     {
                         gameLogic.ReloadHexagonObjects();
+
+                        if (!inBattle)
+                        {
+                            if (gameLogic.Game.CurrentBattle != null && gameLogic.Game.CurrentBattle.Defender==gameLogic.Game.Players.Where(t=>t.PlayerID==ClientId))
+                            {
+                                BattleView = new BattleUC();
+                            }
+                        }
                         messenger.Send("Message", "Base");
                         System.Threading.Thread.Sleep(500);
                     }
@@ -137,6 +146,22 @@ namespace GUI_20212022_Z6O9JF.Logic
                 ChangeView("lobby");
             }
         }
+        public void IsAllQuestsDone()
+        {
+            var player = gameLogic.Game.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault();
+            if (player.Quests.All(x => x.Done))
+            {
+                gameLogic.SetGameEndOrder();
+                ChangeView("ending");
+            }
+        }
+
+
+
+
+
+
+
         public void ChooseOffer()
         {
             gameLogic.MakeTrade();
@@ -255,15 +280,14 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             GoldMineViewChange("goldmine");
         }
-        public void IsAllQuestsDone()
-        {
-            var player = gameLogic.Game.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault();
-            if (player.Quests.All(x => x.Done))
-            {
-                gameLogic.SetGameEndOrder();
-                ChangeView("ending");
-            }
-        }
+
+
+
+
+
+
+
+
         public void ChampSelect(Faction faction, string name)
         {
             if (CanSend)
@@ -340,7 +364,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                 SkipTurn();
             }
         }
-
         public void SkipTurn()
         {
             if (CanSend)
