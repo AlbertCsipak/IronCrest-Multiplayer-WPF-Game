@@ -19,7 +19,6 @@ namespace GUI_20212022_Z6O9JF
         MediaPlayer background_music = new MediaPlayer();
         MediaPlayer background_ambient = new MediaPlayer();
         Cursor c1;
-
         public MainWindow()
         {
             InitializeComponent();

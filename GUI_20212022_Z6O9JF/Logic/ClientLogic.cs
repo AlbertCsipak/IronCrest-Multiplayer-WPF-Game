@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
@@ -130,13 +132,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (gameLogic.Game.CurrentBattle != null)
                         {
                             ;
-                            if ( !inBattle&& gameLogic.Game.CurrentBattle.Defender==gameLogic.Game.Players.Where(t=>t.PlayerID==ClientId))
+                            if ( !inBattle&&gameLogic.Game.CurrentBattle.Defender.PlayerID==ClientId)
                             {
                                 inBattle = true;
-                                BattleView = new BattleUC();
-                                ;
+                                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => BattleViewChange("battle")));
                             }
-                            ;
                         }
                         messenger.Send("Message", "Base");
                         System.Threading.Thread.Sleep(500);
