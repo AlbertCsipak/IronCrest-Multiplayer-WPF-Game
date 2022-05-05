@@ -127,13 +127,16 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         gameLogic.ReloadHexagonObjects();
 
-                        if (!inBattle)
+                        if (gameLogic.Game.CurrentBattle != null)
                         {
-                            if (gameLogic.Game.CurrentBattle != null && gameLogic.Game.CurrentBattle.Defender==gameLogic.Game.Players.Where(t=>t.PlayerID==ClientId))
+                            ;
+                            if ( !inBattle&& gameLogic.Game.CurrentBattle.Defender==gameLogic.Game.Players.Where(t=>t.PlayerID==ClientId))
                             {
                                 inBattle = true;
                                 BattleView = new BattleUC();
+                                ;
                             }
+                            ;
                         }
                         messenger.Send("Message", "Base");
                         System.Threading.Thread.Sleep(500);
