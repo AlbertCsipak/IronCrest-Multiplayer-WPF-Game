@@ -131,6 +131,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             if (gameLogic.Game.CurrentBattle != null && gameLogic.Game.CurrentBattle.Defender==gameLogic.Game.Players.Where(t=>t.PlayerID==ClientId))
                             {
+                                inBattle = true;
                                 BattleView = new BattleUC();
                             }
                         }
