@@ -32,6 +32,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
 
         public MediaPlayer button_click = new MediaPlayer();
+        public MediaPlayer bell_sound= new MediaPlayer();
         DispatcherTimer dt;
         bool IsResourceChanged;
         List<SubItem<Quest>> quests;
@@ -84,8 +85,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 OpacityDefault();
                 if (clientLogic.Timer == 60)
                 {
+                    bell_sound.Open(new Uri("Resources/Music/bell.mp3", UriKind.RelativeOrAbsolute));
+                    bell_sound.Play();
                     SetTurnActivities();
-
+                      
                     var image = new BitmapImage();
                     image.BeginInit();
                     image.UriSource = new Uri(@"\Resources\Images\Menu\hourglassgif.gif", UriKind.Relative);
