@@ -38,7 +38,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             clientLogic.BattleViewChange("battle");
                         }
-                        if (gameLogic.Game.CurrentBattle==null && gameLogic.SelectedHexagonTile!=null)
+                        if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null)
                         {
                             gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
                             if (gameLogic.CurrentMystery != null)

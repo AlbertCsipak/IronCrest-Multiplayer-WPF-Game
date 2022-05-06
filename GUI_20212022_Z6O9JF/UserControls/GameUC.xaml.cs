@@ -85,7 +85,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 if (clientLogic.Timer == 60)
                 {
                     SetTurnActivities();
-                   
+
                     var image = new BitmapImage();
                     image.BeginInit();
                     image.UriSource = new Uri(@"\Resources\Images\Menu\hourglassgif.gif", UriKind.Relative);
@@ -114,7 +114,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             txt_upgrade.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
             txt_harvest.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
         }
-        public void DisableAllActivities() 
+        public void DisableAllActivities()
         {
             btn_move.IsEnabled = false;
             btn_build.IsEnabled = false;
@@ -123,7 +123,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         }
         public void SetTurnActivities()
         {
-            if (player.Faction!=Faction.Crusader)
+            if (player.Faction != Faction.Crusader)
             {
                 switch (player.TurnActivity)
                 {
@@ -445,7 +445,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
             Thread.Sleep(1000);
-            if (player.TurnActivity==TurnActivity.Build)
+            if (player.TurnActivity == TurnActivity.Build)
             {
                 SetTurnActivities();
                 DisableAllActivities();

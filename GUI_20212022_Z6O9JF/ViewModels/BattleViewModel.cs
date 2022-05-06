@@ -1,11 +1,9 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using GUI_20212022_Z6O9JF.Models;
-using GUI_20212022_Z6O9JF.Renderer;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -25,8 +23,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public int SelectedNumber { get; set; }
         public Faction Char { get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
         public Battle CurrentBattle { get { return gameLogic.Game.CurrentBattle; } }
-        public Hero Hero1{ get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault(); } }
-        public Hero Hero2{ get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault(); } }
+        public Hero Hero1 { get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.First).FirstOrDefault(); } }
+        public Hero Hero2 { get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Heroes.Where(x => x.HeroType == HeroType.Secondary).FirstOrDefault(); } }
         public int PlayerMaxArmyPower;
         public static bool IsInDesignMode
         {
@@ -74,7 +72,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             });
             ReadyCommand = new RelayCommand(() =>
             {
-                if (CurrentBattle!=null)
+                if (CurrentBattle != null)
                 {
                     CurrentBattle.IsBattleStarted = true;
                 }

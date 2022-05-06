@@ -1,11 +1,7 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using GUI_20212022_Z6O9JF.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -107,8 +103,8 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         }
                         break;
                 }
-                
-                
+
+
                 switch (battle.Attacker.Faction)
                 {
                     case Faction.Viking:
@@ -168,11 +164,11 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         }
                         break;
                 }
-                if (attackernum <= size.Width/2)
+                if (attackernum <= size.Width / 2)
                 {
                     AttackerXPos++;
                 }
-                if (defendernum >= size.Width/2)
+                if (defendernum >= size.Width / 2)
                 {
                     DefenderXPos--;
                 }

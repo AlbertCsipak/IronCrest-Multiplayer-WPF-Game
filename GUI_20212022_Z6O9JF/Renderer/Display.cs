@@ -193,7 +193,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 {
                                 }
                             }
-                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/clouds.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250+felhogif,size.Height/6,150,150));
+                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/clouds.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250 + felhogif, size.Height / 6, 150, 150));
                         }
                     }
                 }
@@ -203,7 +203,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     vizgif = 0;
                 }
                 felhogif++;
-                if (felhogif > size.Width+200)
+                if (felhogif > size.Width + 200)
                 {
                     felhogif = 0;
                 }

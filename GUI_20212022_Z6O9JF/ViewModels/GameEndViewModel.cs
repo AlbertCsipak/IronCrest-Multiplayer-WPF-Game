@@ -5,7 +5,6 @@ using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
