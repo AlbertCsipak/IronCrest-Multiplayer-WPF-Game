@@ -34,6 +34,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public MediaPlayer button_click = new MediaPlayer();
         public MediaPlayer bell_sound= new MediaPlayer();
         public MediaPlayer quest_sound= new MediaPlayer();
+        public MediaPlayer placement= new MediaPlayer();
         DispatcherTimer dt;
         bool IsResourceChanged;
         List<SubItem<Quest>> quests;
@@ -461,6 +462,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
             gameLogic.AddVillage();
+            placement.Open(new Uri("Resources/Music/placement.mp3", UriKind.RelativeOrAbsolute));
+            placement.Play();
             if (player.TurnActivity==TurnActivity.Build)
             {
                 SetTurnActivities();
