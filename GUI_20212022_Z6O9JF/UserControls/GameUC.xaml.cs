@@ -131,7 +131,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             txt_upgrade.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
             txt_harvest.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#B3C8B7");
         }
-        public void DisableAllActivities() 
+        public void DisableAllActivities()
         {
             btn_move.IsEnabled = false;
             btn_build.IsEnabled = false;
@@ -140,7 +140,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         }
         public void SetTurnActivities()
         {
-            if (player.Faction!=Faction.Crusader)
+            if (player.Faction != Faction.Crusader)
             {
                 switch (player.TurnActivity)
                 {

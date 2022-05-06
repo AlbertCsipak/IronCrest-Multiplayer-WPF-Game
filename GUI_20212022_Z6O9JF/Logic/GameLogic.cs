@@ -59,7 +59,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             messenger.Send("FactionsAdded", "Base");
         }
-
         public HexagonTile[,] GameMapSetup(string path)
         {
             string[] lines = File.ReadAllLines(path);
@@ -108,6 +107,11 @@ namespace GUI_20212022_Z6O9JF.Logic
 
             return map;
         }
+
+
+
+
+
         //Fisher–Yates shuffle
         public static void Shuffle<T>(List<T> list)
         {
@@ -119,6 +123,66 @@ namespace GUI_20212022_Z6O9JF.Logic
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
+            }
+        }
+        public void MakeTrade()
+        {
+            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            foreach (var selectedoffer in player.Trade.SelectedOfferIndexes)
+            {
+                foreach (var cost in player.Trade.Offers[selectedoffer].Cost)
+                {
+                    switch (cost.Key)
+                    {
+                        case "Gold":
+                            player.Gold -= cost.Value;
+                            break;
+                        case "ArmyPower":
+                            player.ArmyPower -= cost.Value;
+                            break;
+                        case "Popularity":
+                            player.Popularity -= cost.Value;
+                            break;
+                        case "Stone":
+                            player.Stone -= cost.Value;
+                            break;
+                        case "Wood":
+                            player.Wood -= cost.Value;
+                            break;
+                        case "Wheat":
+                            player.Wheat -= cost.Value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                foreach (var gain in player.Trade.Offers[selectedoffer].Gain)
+                {
+                    switch (gain.Key)
+                    {
+                        case "Gold":
+                            player.Gold += gain.Value;
+                            break;
+                        case "ArmyPower":
+                            player.ArmyPower += gain.Value;
+                            break;
+                        case "Popularity":
+                            player.Popularity += gain.Value;
+                            break;
+                        case "Stone":
+                            player.Stone += gain.Value;
+                            break;
+                        case "Wood":
+                            player.Wood += gain.Value;
+                            break;
+                        case "Wheat":
+                            player.Wheat += gain.Value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                player.NumOfTradesMade++;
             }
         }
         public Queue<Trade> LoadTrades()
@@ -143,6 +207,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             trades.ForEach(x => tradeQueue.Enqueue(x));
             return tradeQueue;
         }
+
+
+
+
 
         public bool HasSufficientResources(int offerindex)
         {
@@ -242,6 +310,11 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             return HasEnoughResources;
         }
+
+
+
+
+
         public void GetResourcesFromMysteryEvent()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
@@ -313,66 +386,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                     break;
             }
         }
-        public void MakeTrade()
-        {
-            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            foreach (var selectedoffer in player.Trade.SelectedOfferIndexes)
-            {
-                foreach (var cost in player.Trade.Offers[selectedoffer].Cost)
-                {
-                    switch (cost.Key)
-                    {
-                        case "Gold":
-                            player.Gold -= cost.Value;
-                            break;
-                        case "ArmyPower":
-                            player.ArmyPower -= cost.Value;
-                            break;
-                        case "Popularity":
-                            player.Popularity -= cost.Value;
-                            break;
-                        case "Stone":
-                            player.Stone -= cost.Value;
-                            break;
-                        case "Wood":
-                            player.Wood -= cost.Value;
-                            break;
-                        case "Wheat":
-                            player.Wheat -= cost.Value;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                foreach (var gain in player.Trade.Offers[selectedoffer].Gain)
-                {
-                    switch (gain.Key)
-                    {
-                        case "Gold":
-                            player.Gold += gain.Value;
-                            break;
-                        case "ArmyPower":
-                            player.ArmyPower += gain.Value;
-                            break;
-                        case "Popularity":
-                            player.Popularity += gain.Value;
-                            break;
-                        case "Stone":
-                            player.Stone += gain.Value;
-                            break;
-                        case "Wood":
-                            player.Wood += gain.Value;
-                            break;
-                        case "Wheat":
-                            player.Wheat += gain.Value;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                player.NumOfTradesMade++;
-            }
-        }
         public void ClearCompass(HexagonTile hexagon)
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
@@ -395,7 +408,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     hexagonTile.FieldType == FieldType.grass)
                 {
                     int rnd = RandomNumber.RandomNumberGenerator(1, 101);
-                    if (rnd<51)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (rnd < 51)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         //Dequeue
                         if (MysteryEvents.Count() != 0)
@@ -456,7 +469,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                         }
                     }
-                    if (rnd>50)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
+                    if (rnd > 50)//5% chance    //for normal: if (rnd == 1)     //for testing: if(true)
                     {
                         MysteryHeroEvent();
                     }
@@ -464,7 +477,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             CurrentMystery = mysteryEvent;
         }
-
         public void MysteryHeroEvent()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
@@ -614,6 +626,9 @@ namespace GUI_20212022_Z6O9JF.Logic
             mysteryEventslist.ForEach(x => mysteryEvents.Enqueue(x));
             return mysteryEvents;
         }
+
+
+
 
         public void ReloadHexagonObjects()
         {
@@ -789,6 +804,9 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
 
         }
+
+
+
         public void AddUnit()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
@@ -844,7 +862,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void UpgradeVillage()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            
+
             if (SelectedHexagonTile != null)
             {
                 if ((SelectedHexagonTile.OwnerId == ClientID || SelectedHexagonTile.OwnerId == 0)
@@ -853,7 +871,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     //var item = SelectedHexagonTile.Objects.Where(t => t.CanMove == false).FirstOrDefault() as Village;
                     var village = SelectedHexagonTile.Objects.Where(t => t is Village).FirstOrDefault();
-                    if (village!=null && village.Level < 3)
+                    if (village != null && village.Level < 3)
                     {
                         player.TurnActivity = TurnActivity.Upgrade;
                         SelectedHexagonTile.Objects.Remove(village);
@@ -876,7 +894,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
             }
         }
-
         public void MoveUnit(HexagonTile hexagonTile)
         {
 
@@ -890,7 +907,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                 if (points.Contains(point))
                 {
-                    var unit = SelectedHexagonTile.Objects.Where(t => t is Unit && t.OwnerId==ClientID).FirstOrDefault();
+                    var unit = SelectedHexagonTile.Objects.Where(t => t is Unit && t.OwnerId == ClientID).FirstOrDefault();
 
                     if (unit != null && player.RemainingMoves != 0)
                     {
@@ -907,11 +924,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                             //SelectedHexagonTile = null;
                             DecreaseMoves();
                         }
-                        else if(hexagonTile.Objects.ToList().Where(x=>x is Unit && x.OwnerId==ClientID).FirstOrDefault()!=null)
+                        else if (hexagonTile.Objects.ToList().Where(x => x is Unit && x.OwnerId == ClientID).FirstOrDefault() != null)
                         {
-                            if (hexagonTile.Objects.First(x=>x.OwnerId==ClientID).Level+unit.Level<=3)
+                            if (hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level + unit.Level <= 3)
                             {
-                                hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level+=unit.Level;
+                                hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level += unit.Level;
                                 SelectedHexagonTile.Objects.Remove(unit);
                                 player.Units.Remove(unit as Unit);
                                 if (SelectedHexagonTile.Objects.Count == 0)
@@ -989,7 +1006,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                 ;
             }
         }
-
         public void GetResources()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
@@ -1005,9 +1021,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             if (item2 is Unit)
                             {
-                                
+
                                 tile.GiveResources(player);
-                                
+
                                 //if (!success)
                                 //{
                                 //    success = true;
@@ -1018,6 +1034,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
             }
         }
+
+
+
         public void DecreaseMoves()
         {
             if (Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault() != null)
@@ -1032,9 +1051,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                 Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().RemainingMoves = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().DefaultNumOfMoves;
             }
         }
-
-
     }
+
+
+
+
+
+
     public static class RandomNumber
     {
         private static readonly RNGCryptoServiceProvider _generator = new RNGCryptoServiceProvider();

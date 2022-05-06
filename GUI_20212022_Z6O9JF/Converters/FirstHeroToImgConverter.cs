@@ -9,7 +9,7 @@ namespace GUI_20212022_Z6O9JF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value!=null)
+            if (value != null)
             {
                 switch (((Hero)value).FactionType)
                 {
@@ -56,7 +56,7 @@ namespace GUI_20212022_Z6O9JF.Converters
             {
                 return "";
             }
-            
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

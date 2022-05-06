@@ -1,5 +1,4 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
-using GUI_20212022_Z6O9JF.Renderer;
 using GUI_20212022_Z6O9JF.ViewModels;
 using System;
 using System.Windows;
@@ -53,17 +52,17 @@ namespace GUI_20212022_Z6O9JF.UserControls
             dt_counter.Interval = TimeSpan.FromMilliseconds(1000);
             dt_counter.Tick += (sender, eventargs) =>
             {
-                if (counter>0)
+                if (counter > 0)
                 {
                     lbl_counter.Content = --counter;
                     buttonSoundEffect.Open(new Uri("Resources/Music/beep.mp3", UriKind.RelativeOrAbsolute));
                     buttonSoundEffect.Play();
                 }
-                if (counter==0)
+                if (counter == 0)
                 {
                     lbl_counter.Content = "BATTLE!";
-                    
-                    
+
+
                 }
             };
             dt_counter.Start();
@@ -73,12 +72,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 dt_movement.Interval = TimeSpan.FromMilliseconds(33);
                 dt_movement.Start();
             }
-            
+
             dt_movement.Tick += (sender, eventargs) =>
             {
                 battleDisplay.InvalidateVisual();
             };
-            
+
 
 
 

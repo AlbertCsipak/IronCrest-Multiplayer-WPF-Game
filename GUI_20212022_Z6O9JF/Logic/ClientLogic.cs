@@ -109,11 +109,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                                     if (game != null)
                                     {
                                         gameLogic.Game = game;
-                                        //Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Game==null));
-                                        //foreach (var item in players)
-                                        //{
-                                        //    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => gameLogic.Game.Players.Add(item)));
-                                        //}
                                     }
                                 }
                                 catch (NullReferenceException) { }
@@ -132,7 +127,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (gameLogic.Game.CurrentBattle != null)
                         {
                             ;
-                            if ( !inBattle&&gameLogic.Game.CurrentBattle.Defender.PlayerID==ClientId)
+                            if (!inBattle && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId)
                             {
                                 inBattle = true;
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => BattleViewChange("battle")));
