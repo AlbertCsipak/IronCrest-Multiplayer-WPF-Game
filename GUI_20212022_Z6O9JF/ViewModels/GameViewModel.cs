@@ -24,10 +24,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
         public ICommand MoveUnitCommand { get; set; }
-        public ICommand AddVillageCommand { get; set; }
-        public ICommand UpgradeVillageCommand { get; set; }
+        //public ICommand AddVillageCommand { get; set; }
+        //public ICommand UpgradeVillageCommand { get; set; }
         public ICommand SkipTurnCommand { get; set; }
-        public ICommand ProduceCommand { get; set; }
+        //public ICommand ProduceCommand { get; set; }
         public ICommand TradeCommand { get; set; }
         public Faction SelectedFaction { get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
         public Hero Hero1
@@ -90,10 +90,10 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.clientLogic = clientLogic;
 
             MoveUnitCommand = new RelayCommand(() => gameLogic.AddUnit());
-            AddVillageCommand = new RelayCommand(() => gameLogic.AddVillage());
-            UpgradeVillageCommand = new RelayCommand(() => gameLogic.UpgradeVillage());
+            //AddVillageCommand = new RelayCommand(() => gameLogic.AddVillage());
+            //UpgradeVillageCommand = new RelayCommand(() => gameLogic.UpgradeVillage());
             SkipTurnCommand = new RelayCommand(() => clientLogic.SkipTurn());
-            ProduceCommand = new RelayCommand(() => gameLogic.GetResources());
+            //ProduceCommand = new RelayCommand(() => gameLogic.GetResources());
             TradeCommand = new RelayCommand(() => clientLogic.TradeViewChange("trade"));
 
             Messenger.Register<GameViewModel, string, string>(this, "Base", (recipient, msg) =>

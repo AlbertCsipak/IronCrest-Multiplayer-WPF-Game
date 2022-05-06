@@ -33,10 +33,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         public MediaPlayer button_click = new MediaPlayer();
         public MediaPlayer bell_sound= new MediaPlayer();
+        public MediaPlayer quest_sound= new MediaPlayer();
         DispatcherTimer dt;
         bool IsResourceChanged;
         List<SubItem<Quest>> quests;
         Player player;
+        bool bell = false;
         public GameUC()
         {
             InitializeComponent();
@@ -62,7 +64,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             GoldChangeLabel.Opacity = 0;
 
             dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(100);
+            dt.Interval = TimeSpan.FromMilliseconds(16.66);
             quests = new List<SubItem<Quest>>();
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(0)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(1)));
@@ -78,6 +80,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 {
                     Menu.Children.Clear();
                     Menu.Children.Add(new UserControlMenuItem(itemQuest));
+                    quest_sound.Open(new Uri("Resources/Music/quest_completed_sound.mp3", UriKind.RelativeOrAbsolute));
+                    quest_sound.Play();
                 }
 
                 clientLogic.IsAllQuestsDone();
@@ -85,8 +89,13 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 OpacityDefault();
                 if (clientLogic.Timer == 60)
                 {
-                    bell_sound.Open(new Uri("Resources/Music/bell.mp3", UriKind.RelativeOrAbsolute));
-                    bell_sound.Play();
+                    
+                    if (!bell)
+                    {
+                        bell_sound.Open(new Uri("Resources/Music/bell.mp3", UriKind.RelativeOrAbsolute));
+                        bell_sound.Play();
+                    }
+                    bell = true;
                     SetTurnActivities();
                       
                     var image = new BitmapImage();
@@ -96,10 +105,14 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     ImageBehavior.SetAnimatedSource(hourglass_gif, image);
                     ImageBehavior.SetRepeatBehavior(hourglass_gif, new RepeatBehavior(1));
                 }
-
+                if (clientLogic.Timer == 59)
+                {
+                    bell = false;
+                }
                 display.InvalidateVisual();
             };
             dt.Start();
+
 
         }
         public void EnableAllActivities()
@@ -447,7 +460,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
-            Thread.Sleep(1000);
+            gameLogic.AddVillage();
             if (player.TurnActivity==TurnActivity.Build)
             {
                 SetTurnActivities();
@@ -459,8 +472,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
-            SetTurnActivities();
-            DisableAllActivities();
+            gameLogic.GetResources();
+            if (player.TurnActivity == TurnActivity.Harvest)
+            {
+                SetTurnActivities();
+                DisableAllActivities();
+            }
         }
 
         private void Move_Button_Click(object sender, RoutedEventArgs e)
@@ -475,6 +492,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
+            gameLogic.UpgradeVillage();
             if (player.TurnActivity == TurnActivity.Upgrade)
             {
                 SetTurnActivities();

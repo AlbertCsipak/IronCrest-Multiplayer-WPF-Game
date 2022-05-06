@@ -167,6 +167,7 @@
     <None Remove="Resources\Music\Lannister_music.mp3" />
     <None Remove="Resources\Music\money_money_money.mp3" />
     <None Remove="Resources\Music\placement.mp3" />
+    <None Remove="Resources\Music\quest_completed_sound.mp3" />
     <None Remove="Resources\Music\standard.mp3" />
     <None Remove="Resources\press-start.k.ttf" />
     <None Remove="Resources\Saves\NewGame.txt" />
@@ -520,6 +521,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Music\placement.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Music\quest_completed_sound.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Resources\Images\Menu\flag.png">
