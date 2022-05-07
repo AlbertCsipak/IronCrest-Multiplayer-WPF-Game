@@ -8,10 +8,17 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
+    public class LastClientEventArgs : EventArgs
+    {
+        public int lastClientId { get; set; }
+        public bool CanSendBool { get; set; }
+    }
+
     public class ClientLogic : IClientLogic
     {
         IGameLogic gameLogic;
@@ -23,7 +30,31 @@ namespace GUI_20212022_Z6O9JF.Logic
         public object GoldMineView { get; set; }
         public object BattleView { get; set; }
         public object ESCView { get; set; }
-        public bool CanSend { get; set; }
+        public static EventHandler StartOfTurnEvent;
+        public static EventHandler EndOfTurnEvent;
+        LastClientEventArgs e = new LastClientEventArgs();
+        private bool canSend;
+        public bool CanSend
+        {
+            get { return canSend; }
+            set 
+            {
+                bool lastValue = canSend;
+                canSend = value;
+                if (canSend && !lastValue)
+                {
+                    StartOfTurnEvent?.Invoke(this, EventArgs.Empty);
+                    YourTurn();
+                }
+                if (!CanSend && lastValue)
+                {
+                    e.lastClientId = this.ClientId;
+                    e.CanSendBool = canSend;
+                    EndOfTurnEvent?.Invoke(this, e);
+                }
+            }
+        }
+
         public int ClientId { get; set; }
         public int Timer { get; set; }
         public bool inBattle { get; set; }
@@ -35,6 +66,11 @@ namespace GUI_20212022_Z6O9JF.Logic
             this.gameLogic = gameLogic;
             socketClient = new SocketClient.SocketClient();
         }
+        public void YourTurn()
+        {
+            gameLogic.AddGold();
+        }
+
         public void ClientConnect(string ip)
         {
             socketClient.Connect(ip: ip);
@@ -126,7 +162,6 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                         if (gameLogic.Game.CurrentBattle != null)
                         {
-                            ;
                             if (!inBattle && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId)
                             {
                                 inBattle = true;
@@ -154,12 +189,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                 ChangeView("ending");
             }
         }
-
-
-
-
-
-
 
         public void ChooseOffer()
         {
@@ -261,10 +290,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 View = new ServerUC();
             }
-            else if (view.Equals("goldmine"))
-            {
-                View = new GoldMineUC();
-            }
             else if (view.Equals("ending"))
             {
                 View = new GameEndUC();
@@ -279,13 +304,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             GoldMineViewChange("goldmine");
         }
-
-
-
-
-
-
-
 
         public void ChampSelect(Faction faction, string name)
         {

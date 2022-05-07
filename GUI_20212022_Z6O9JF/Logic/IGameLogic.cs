@@ -17,6 +17,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         Hero SecondaryHero { get; set; }
         HexagonTile SelectedHexagonTile { get; set; }
 
+        void AddGold();
         void AddUnit();
         void AddVillage();
         void Battle(HexagonTile hexagonTile);
@@ -27,7 +28,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         void GetResourcesFromMysteryEvent();
         bool HasSufficientResources(int offerindex);
         bool HasSufficientResources(string resource, int cost);
-        bool IsQuestDone();
+        bool IsQuestDone(int id);
         Queue<MysteryEvent> LoadMysteryEvents();
         Queue<Trade> LoadTrades();
         void MakeTrade();

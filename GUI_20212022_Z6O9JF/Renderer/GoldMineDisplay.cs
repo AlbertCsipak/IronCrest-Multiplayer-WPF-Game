@@ -98,13 +98,13 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     default:
                         break;
                 }
-                if (num <= size.Width)
+                if (num <= size.Width - (size.Width / 16))
                 {
                     XPos++;
                 }
                 else
                 {
-                    clientLogic.ChangeView("game");
+                    clientLogic.GoldMineViewChange("");
                 }
             }
 

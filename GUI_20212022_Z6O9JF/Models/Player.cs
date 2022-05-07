@@ -134,9 +134,7 @@ namespace GUI_20212022_Z6O9JF.Models
             //QuestsDone = 0;
             Villages = new List<Village>();
             TurnActivity = TurnActivity.Init;
-            ResourceChanges = new ObservableCollection<int>();
-            for (int i = 0; i < 6; i++) ResourceChanges.Add(0);
-
+            ResourceChanges = new ObservableCollection<int>() {0,0,0,0,0,0 };
         }
     }
 }

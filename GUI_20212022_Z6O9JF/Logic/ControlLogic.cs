@@ -26,8 +26,9 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 if ((polygon.Tag as HexagonTile).FieldType == FieldType.goldMine && !gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
                 {
-                    clientLogic.ChangeView("goldmine");
+                    clientLogic.GoldMineViewChange("goldmine");
                     gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine = true;
+                    gameLogic.Game.CurrentGoldMineOwner = gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
                 }
                 if (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                 {

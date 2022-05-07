@@ -115,6 +115,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("Hero1");
                 OnPropertyChanged("Hero2");
                 OnPropertyChanged("GameEndView");
+                OnPropertyChanged("GoldMineView");
             });
 
         }

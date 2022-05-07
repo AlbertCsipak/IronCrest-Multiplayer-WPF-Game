@@ -29,20 +29,21 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IControlLogic controlLogic;
         Window window;
 
-
-
         public MediaPlayer button_click = new MediaPlayer();
-        public MediaPlayer bell_sound= new MediaPlayer();
-        public MediaPlayer quest_sound= new MediaPlayer();
-        public MediaPlayer placement= new MediaPlayer();
+        public MediaPlayer bell_sound = new MediaPlayer();
+        public MediaPlayer quest_sound = new MediaPlayer();
+        public MediaPlayer placement = new MediaPlayer();
         DispatcherTimer dt;
         bool IsResourceChanged;
         List<SubItem<Quest>> quests;
         Player player;
         bool bell = false;
+        ItemMenu itemQuest;
         public GameUC()
         {
             InitializeComponent();
+            ClientLogic.StartOfTurnEvent += StartOfTurn;
+            ClientLogic.EndOfTurnEvent += EndOfTurn;
             this.DataContext = new GameViewModel();
             this.gameLogic = (this.DataContext as GameViewModel).gameLogic;
             this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
@@ -50,7 +51,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
             player.ResourceChanges.CollectionChanged += ResourceChanges_CollectionChanged;
-
             HeartChange.Opacity = 0;
             HeartChangeLabel.Opacity = 0;
             ArmyPowerChange.Opacity = 0;
@@ -70,35 +70,38 @@ namespace GUI_20212022_Z6O9JF.UserControls
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(0)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(1)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(2)));
+            itemQuest= new ItemMenu("Quests", quests, PackIconKind.ViewDashboard);
 
-            var itemQuest = new ItemMenu("Quests", quests, PackIconKind.ViewDashboard);
             Menu.Children.Add(new UserControlMenuItem(itemQuest));
-
             dt.Tick += (sender, eventargs) =>
             {
                 SetMovePictures();
-                if (gameLogic.IsQuestDone())
-                {
-                    Menu.Children.Clear();
-                    Menu.Children.Add(new UserControlMenuItem(itemQuest));
-                    quest_sound.Open(new Uri("Resources/Music/quest_completed_sound.mp3", UriKind.RelativeOrAbsolute));
-                    quest_sound.Play();
-                }
+                //if (gameLogic.IsQuestDone())
+                //{
+                //    Menu.Children.Clear();
+                //    Menu.Children.Add(new UserControlMenuItem(itemQuest));
+                //    quest_sound.Open(new Uri("Resources/Music/quest_completed_sound.mp3", UriKind.RelativeOrAbsolute));
+                //    quest_sound.Play();
+                //}
 
                 clientLogic.IsAllQuestsDone();
                 ResourceChanging();
                 OpacityDefault();
-                if (clientLogic.Timer == 60)
+                if (clientLogic.Timer == 60.0)
                 {
-                    
-                    if (!bell)
-                    {
-                        bell_sound.Open(new Uri("Resources/Music/bell.mp3", UriKind.RelativeOrAbsolute));
-                        bell_sound.Play();
-                    }
-                    bell = true;
+                    //if (!bell)
+                    //{
+                    //    bell = true;
+                    //    bell_sound.Open(new Uri("Resources/Music/bell.mp3", UriKind.RelativeOrAbsolute));
+                    //    bell_sound.Play();
+                    //    //if (player == gameLogic.Game.CurrentGoldMineOwner)
+                    //    //{
+                    //    //    //gameLogic.AddGold();
+                    //    //}
+
+                    //}
                     SetTurnActivities();
-                      
+
                     var image = new BitmapImage();
                     image.BeginInit();
                     image.UriSource = new Uri(@"\Resources\Images\Menu\hourglassgif.gif", UriKind.Relative);
@@ -106,16 +109,37 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     ImageBehavior.SetAnimatedSource(hourglass_gif, image);
                     ImageBehavior.SetRepeatBehavior(hourglass_gif, new RepeatBehavior(1));
                 }
-                if (clientLogic.Timer == 59)
-                {
-                    bell = false;
-                }
+                //if (clientLogic.Timer != 60)
+                //{
+                //    bell = false;
+                //}
                 display.InvalidateVisual();
             };
             dt.Start();
 
 
         }
+        public void StartOfTurn(object sender, EventArgs e)
+        {
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => {
+                bell_sound.Open(new Uri("Resources/Music/bell.mp3", UriKind.RelativeOrAbsolute));
+                bell_sound.Play();
+            }));
+        }
+        public void EndOfTurn(object sender, EventArgs e )
+        {
+            if (gameLogic.IsQuestDone((e as LastClientEventArgs).lastClientId))
+            {
+                //thread owns it vagy vmi hiba idk
+                Menu.Children.Clear();
+                Menu.Children.Add(new UserControlMenuItem(itemQuest));
+                quest_sound.Open(new Uri("Resources/Music/quest_completed_sound.mp3", UriKind.RelativeOrAbsolute));
+                quest_sound.Play();
+            }
+            
+
+        }
+
         public void EnableAllActivities()
         {
             img_build.Source = new BitmapImage(new Uri(@"\Resources\Images\Menu\build_background.png", UriKind.RelativeOrAbsolute));
@@ -140,6 +164,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         }
         public void SetTurnActivities()
         {
+            player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             if (player.Faction != Faction.Crusader)
             {
                 switch (player.TurnActivity)
@@ -312,7 +337,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         private void OpacityDefault()
         {
             //ResourceChanges
-            double OpacityChanging = 0.05;
+            double OpacityChanging = 0.02;
             if (HeartChange.Opacity >= 0)
             {
                 HeartChange.Opacity -= OpacityChanging;
@@ -349,8 +374,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void ResourceChanging()
         {
+            //player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             if (IsResourceChanged)
             {
+                player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
                 if (player.ResourceChanges[0] != 0)
                 {
                     //POP
@@ -459,6 +486,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void Build_Button_Click(object sender, RoutedEventArgs e)
         {
+            player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
             gameLogic.AddVillage();
@@ -473,6 +501,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void Harvest_Button_Click(object sender, RoutedEventArgs e)
         {
+            player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
             gameLogic.GetResources();
@@ -493,6 +522,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void Upgrade_Button_Click(object sender, RoutedEventArgs e)
         {
+            player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
             gameLogic.UpgradeVillage();

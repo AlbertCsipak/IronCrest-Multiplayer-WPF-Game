@@ -10,6 +10,7 @@ namespace GUI_20212022_Z6O9JF.Models
         public List<Trade> Trades { get; set; }
         public List<Player> WinOrder { get; set; }
         public Battle CurrentBattle { get; set; }
+        public Player CurrentGoldMineOwner = null;
         public Game()
         {
             Players = new List<Player>();

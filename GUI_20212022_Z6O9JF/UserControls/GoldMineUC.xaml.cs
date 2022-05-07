@@ -22,16 +22,15 @@ namespace GUI_20212022_Z6O9JF.UserControls
         MediaPlayer music = new MediaPlayer();
         public GoldMineUC()
         {
-            ;
             InitializeComponent();
             this.DataContext = new GoldMineViewModel();
             this.gameLogic = (this.DataContext as GoldMineViewModel).gameLogic;
             this.clientLogic = (this.DataContext as GoldMineViewModel).clientLogic;
             this.controlLogic = (this.DataContext as GoldMineViewModel).controlLogic;
             goldmineDisplay.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
-            music.Open(new Uri(Path.Combine("Resources", "Music", "money_money_money.mp3"), UriKind.RelativeOrAbsolute));
-            music.Volume = 0.3;
-            music.Play();
+            //music.Open(new Uri(Path.Combine("Resources", "Music", "money_money_money.mp3"), UriKind.RelativeOrAbsolute));
+            //music.Volume = 0.3;
+            //music.Play();
             dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(60);
             dt.Tick += (sender, eventargs) =>
