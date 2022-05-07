@@ -134,7 +134,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                         }
                         messenger.Send("Message", "Base");
-                        System.Threading.Thread.Sleep(500);
+                        System.Threading.Thread.Sleep(1000);
                     }
                 }, TaskCreationOptions.LongRunning);
 
