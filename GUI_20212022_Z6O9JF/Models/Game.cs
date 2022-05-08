@@ -9,7 +9,7 @@ namespace GUI_20212022_Z6O9JF.Models
         public int Timer { get; set; }
         public List<Player> Players { get; set; }
         public Queue<Trade> RemainingTrades;
-        public List<Trade> Trades;
+        //public List<Trade> Trades;
         public List<Player> WinOrder { get; set; }
         public Battle CurrentBattle { get; set; }
         public Player CurrentGoldMineOwner = null;
@@ -17,7 +17,7 @@ namespace GUI_20212022_Z6O9JF.Models
         {
             Players = new List<Player>();
             RemainingTrades = new Queue<Trade>();
-            Trades = new List<Trade>();
+            //Trades = new List<Trade>();
             WinOrder = new List<Player>();
         }
     }

@@ -95,6 +95,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                         case 'c':
                             map[i, j].FieldType = FieldType.compassField;
                             map[i, j].Compass = Game.RemainingTrades.Dequeue();
+                            map[i, j].Compass.Position[0] = i;
+                            map[i, j].Compass.Position[1] = j;
                             break;
                         default:
                             break;
