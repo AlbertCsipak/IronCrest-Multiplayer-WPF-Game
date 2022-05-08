@@ -647,7 +647,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                             GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
-                        GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = null;
+                        if (player.Trade != null)
+                        {
+                            GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = null;
+                        }
                         //if (player.Trade!=null)
                         //{
                         //    GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = player.Trade;
