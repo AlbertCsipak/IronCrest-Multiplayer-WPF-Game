@@ -82,10 +82,16 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                 Task Send = new Task(() =>
                 {
+                    int i = 0;
                     while (socketClient.MySocket.Connected)
                     {
                         if (CanSend)
                         {
+                            if (i==0)
+                            {
+                                gameLogic.ResetMoves();
+                            }
+                            i++;
                             tmpTimer++;
                             if (tmpTimer == 4)
                             {
@@ -93,6 +99,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 tmpTimer = 0;
                             }
                             socketClient.DataSend(gameLogic.Game, packetSpeed: 250);
+                        }
+                        else
+                        {
+                            i =0;
                         }
                     }
                 }, TaskCreationOptions.LongRunning);
