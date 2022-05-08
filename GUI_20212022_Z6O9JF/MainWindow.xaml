@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         WindowStyle="None"
+        VisualBitmapScalingMode="LowQuality"
         WindowStartupLocation="CenterOwner"
         Title="IronCrest" Height="1080" Width="1920" Icon="Resources\Images\Other\icon.png" Closing="Window_Closing" KeyDown="UserControl_KeyDown">
     <Grid x:Name="grid">
