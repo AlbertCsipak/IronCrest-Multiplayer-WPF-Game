@@ -130,11 +130,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             if (gameLogic.IsQuestDone((e as LastClientEventArgs).lastClientId))
             {
-                //thread owns it vagy vmi hiba idk
-                Menu.Children.Clear();
-                Menu.Children.Add(new UserControlMenuItem(itemQuest));
-                quest_sound.Open(new Uri("Resources/Music/quest_completed_sound.mp3", UriKind.RelativeOrAbsolute));
-                quest_sound.Play();
+                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => {
+                    Menu.Children.Clear();
+                    Menu.Children.Add(new UserControlMenuItem(itemQuest));
+                    quest_sound.Open(new Uri("Resources/Music/quest_completed_sound.mp3", UriKind.RelativeOrAbsolute));
+                    quest_sound.Play();
+                }));
             }
             
 
@@ -532,5 +533,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 DisableAllActivities();
             }
         }
+
     }
 }

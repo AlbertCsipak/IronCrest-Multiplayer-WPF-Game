@@ -142,6 +142,7 @@
     <None Remove="Resources\Images\Other\compass.png" />
     <None Remove="Resources\Images\Other\crest_icon.png" />
     <None Remove="Resources\Images\Other\exit.png" />
+    <None Remove="Resources\Images\Other\gear.png" />
     <None Remove="Resources\Images\Other\icon.png" />
     <None Remove="Resources\Images\Other\muted.png" />
     <None Remove="Resources\Images\Other\splash.png" />
@@ -509,6 +510,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\wheat_background.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Other\gear.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Music\beep.mp3">

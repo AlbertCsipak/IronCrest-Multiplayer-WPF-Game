@@ -33,7 +33,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
             ExitCommand = new RelayCommand(() =>
             {
-                clientLogic.ChangeView("game");
+                clientLogic.ESCChange("");
             });
 
             Messenger.Register<GameSubMenuViewModel, string, string>(this, "Base", (recipient, msg) =>
