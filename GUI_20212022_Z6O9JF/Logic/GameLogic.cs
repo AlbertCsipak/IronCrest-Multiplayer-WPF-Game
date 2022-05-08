@@ -19,7 +19,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         public List<Faction> AvailableFactions { get; set; }
         public HexagonTile[,] GameMap { get; set; }
         public List<Quest> Quests;
-        public Queue<Trade> Trades;
         public Trade CurrentTrade { get; set; }
         public Queue<MysteryEvent> MysteryEvents { get; set; }
         public MysteryEvent CurrentMystery { get; set; }
@@ -31,7 +30,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         public GameLogic(IMessenger messenger)
         {
             this.messenger = messenger;
-            Trades = new Queue<Trade>();
             MysteryEvents = new Queue<MysteryEvent>();
             Game = new Game();
             CurrentMystery = null;
@@ -62,7 +60,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             string[] lines = File.ReadAllLines(path);
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
-            Trades = LoadTrades();
+            Game.Trades = LoadTrades();
             MysteryEvents = LoadMysteryEvents();
             for (int i = 0; i < map.GetLength(0); i++)
             {
@@ -96,7 +94,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             break;
                         case 'c':
                             map[i, j].FieldType = FieldType.compassField;
-                            map[i, j].Compass = Trades.Dequeue();
+                            map[i, j].Compass = Game.Trades.Dequeue();
                             break;
                         default:
                             break;
