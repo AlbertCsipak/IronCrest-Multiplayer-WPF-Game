@@ -58,7 +58,7 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Viewbox Grid.ColumnSpan="2">
-                <Image Source="\Resources\Images\Menu\brick_border.png" Stretch="Fill"/>
+                <Image Source="\Resources\Images\Menu\wood_border.png" Stretch="Fill"/>
             </Viewbox>
             <Viewbox Grid.Column="0">
                 <Image Source="\Resources\Images\Resources\gold.png" Width="20" Height="10"/>
@@ -67,7 +67,7 @@
                 <Label Content="{Binding Gold}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             </Viewbox>
             <Viewbox Grid.Column="2" Grid.ColumnSpan="2">
-                <Image Source="\Resources\Images\Menu\brick_border.png" Stretch="Fill"/>
+                <Image Source="\Resources\Images\Menu\wood_border.png" Stretch="Fill"/>
             </Viewbox>
             <Viewbox Grid.Column="2">
                 <Image Source="\Resources\Images\Resources\heart.png" Width="40" Height="20" />
@@ -76,7 +76,7 @@
                 <Label Content="{Binding Popularity}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             </Viewbox>
             <Viewbox Grid.Column="4" Grid.ColumnSpan="2">
-                <Image Source="\Resources\Images\Menu\brick_border.png" Stretch="Fill"/>
+                <Image Source="\Resources\Images\Menu\wood_border.png" Stretch="Fill"/>
             </Viewbox>
             <Viewbox  Grid.Column="4">
                 <Image Source="\Resources\Images\Resources\sword.png" Width="25" Height="90"/>
@@ -85,7 +85,7 @@
                 <Label Content="{Binding ArmyPower}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             </Viewbox>
             <Viewbox Grid.Column="6" Grid.ColumnSpan="2">
-                <Image Source="\Resources\Images\Menu\brick_border.png" Stretch="Fill"/>
+                <Image Source="\Resources\Images\Menu\wood_border.png" Stretch="Fill"/>
             </Viewbox>
             <Viewbox  Grid.Column="6">
                 <Image Source="\Resources\Images\Resources\log.png" Width="50" Height="90"/>
@@ -94,7 +94,7 @@
                 <Label Content="{Binding Wood}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center" Grid.Column="7"/>
             </Viewbox>
             <Viewbox Grid.Column="8" Grid.ColumnSpan="2">
-                <Image Source="\Resources\Images\Menu\brick_border.png" Stretch="Fill"/>
+                <Image Source="\Resources\Images\Menu\wood_border.png" Stretch="Fill"/>
             </Viewbox>
             <Viewbox Grid.Column="8">
                 <Image x:Name="stone" Source="\Resources\Images\Resources\stone.png" Width="40" Height="20"/>
@@ -103,13 +103,13 @@
                 <Label Content="{Binding Stone}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             </Viewbox>
             <Viewbox Grid.Column="10" Grid.ColumnSpan="2">
-                <Image Source="\Resources\Images\Menu\brick_border.png" Stretch="Fill"/>
+                <Image Source="\Resources\Images\Menu\wood_border.png" Stretch="Fill"/>
             </Viewbox>
             <Viewbox Grid.Column="10">
                 <Image Source="\Resources\Images\Resources\wheat.png" Width="20" Height="12"/>
             </Viewbox>
             <Viewbox Grid.Column="11">
-                <Label Content="{Binding Food}" Height="100" Width="80" FontSize="70" FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
+                <Label Content="{Binding Food}" Height="100" Width="80" FontSize="70"  FontFamily="\Resources\#8-bit Limit (BRK)" FontWeight="Bold" Margin="5,0,40,0" HorizontalContentAlignment="Center"/>
             </Viewbox>
 
             <StackPanel Width="400"  Grid.Column="12" Grid.ColumnSpan="1" Margin="0,40,0,-300">
@@ -121,7 +121,7 @@
             </StackPanel>
            
             <Viewbox Grid.Column="13" Grid.ColumnSpan="2">
-                <Image Source="\Resources\Images\Menu\brick_border.png"/>
+                <Image Source="\Resources\Images\Menu\wood_border.png"/>
             </Viewbox>
             <Viewbox Grid.Column="13" VerticalAlignment="Center">
                 <Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding CanSend, Converter={StaticResource turnconverter}}" FontFamily="\Resources\#8-bit Limit (BRK)" Foreground="Red" Width="200" Height="100" FontSize="30">
@@ -190,7 +190,7 @@
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Viewbox Grid.ColumnSpan="2" Stretch="Fill" x:Name="hero_viewbox">
-                <Image Source="\Resources\Images\Menu\brick_border.png"/>
+                <Image Source="\Resources\Images\Menu\wood_border.png"/>
             </Viewbox>
             <Viewbox Grid.Column="0" Margin="10" Stretch="Fill">
                 <Image Source="{Binding Hero1, Converter={StaticResource firstheroconverter}}" Width="100">

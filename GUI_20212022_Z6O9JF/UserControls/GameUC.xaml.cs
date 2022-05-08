@@ -489,10 +489,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
             gameLogic.AddVillage();
-            placement.Open(new Uri("Resources/Music/placement.mp3", UriKind.RelativeOrAbsolute));
-            placement.Play();
             if (player.TurnActivity==TurnActivity.Build)
             {
+                placement.Open(new Uri("Resources/Music/placement.mp3", UriKind.RelativeOrAbsolute));
+                placement.Play();
                 SetTurnActivities();
                 DisableAllActivities();
             }

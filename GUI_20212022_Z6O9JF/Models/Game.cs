@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GUI_20212022_Z6O9JF.Models
 {
@@ -7,14 +8,16 @@ namespace GUI_20212022_Z6O9JF.Models
         public int QuestCount { get; set; }
         public int Timer { get; set; }
         public List<Player> Players { get; set; }
-        public Queue<Trade> Trades;
+        public Queue<Trade> RemainingTrades;
+        public List<Trade> Trades;
         public List<Player> WinOrder { get; set; }
         public Battle CurrentBattle { get; set; }
         public Player CurrentGoldMineOwner = null;
         public Game()
         {
             Players = new List<Player>();
-            Trades = new Queue<Trade>();
+            RemainingTrades = new Queue<Trade>();
+            Trades = new List<Trade>();
             WinOrder = new List<Player>();
         }
     }

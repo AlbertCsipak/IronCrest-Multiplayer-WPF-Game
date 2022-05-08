@@ -140,6 +140,7 @@
     <None Remove="Resources\Images\Menu\upgrade_background.png" />
     <None Remove="Resources\Images\Menu\upgrade_background_disabled.png" />
     <None Remove="Resources\Images\Menu\wheat_background.gif" />
+    <None Remove="Resources\Images\Menu\wood_border.png" />
     <None Remove="Resources\Images\Other\back.png" />
     <None Remove="Resources\Images\Other\compass.png" />
     <None Remove="Resources\Images\Other\crest_icon.png" />
@@ -518,6 +519,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\wheat_background.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\wood_border.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Other\gear.png">

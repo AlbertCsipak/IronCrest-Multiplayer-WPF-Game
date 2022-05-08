@@ -43,18 +43,18 @@ namespace GUI_20212022_Z6O9JF.Models
 
             return coords;
         }
-        public void GiveResources(Player player)
+        public void GiveResources(Player player, Unit unit)
         {
             switch (FieldType)
             {
                 case FieldType.mountain:
-                    player.Stone++;
+                    player.Stone+=unit.Level;
                     break;
                 case FieldType.forest:
-                    player.Wood++;
+                    player.Wood += unit.Level;
                     break;
                 case FieldType.wheat:
-                    player.Wheat++;
+                    player.Wheat += unit.Level;
                     break;
                 default:
                     break;

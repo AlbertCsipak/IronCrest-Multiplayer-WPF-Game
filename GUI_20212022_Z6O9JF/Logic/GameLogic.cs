@@ -60,7 +60,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             string[] lines = File.ReadAllLines(path);
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
-            Game.Trades = LoadTrades();
+            Game.RemainingTrades = LoadTrades();
             MysteryEvents = LoadMysteryEvents();
             for (int i = 0; i < map.GetLength(0); i++)
             {
@@ -94,7 +94,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             break;
                         case 'c':
                             map[i, j].FieldType = FieldType.compassField;
-                            map[i, j].Compass = Game.Trades.Dequeue();
+                            map[i, j].Compass = Game.RemainingTrades.Dequeue();
                             break;
                         default:
                             break;
@@ -198,6 +198,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Shuffle(trades);
             Queue<Trade> tradeQueue = new Queue<Trade>();
             trades.ForEach(x => tradeQueue.Enqueue(x));
+            Game.Trades = trades;
             return tradeQueue;
         }
 
@@ -646,12 +647,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                             GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
-                        //foreach (var item in player.Trade.ToList())
+                        //if (player.Trade!=null)
                         //{
-                        //    GameMap[item.Position[0], item.Position[1]].Compass = item;
-                        //    GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
-                        //}
+                        //    GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = player.Trade;
+                        //}  
                     }
+                }
+                foreach (var item in Game.RemainingTrades)
+                {
+                    GameMap[item.Position[0], item.Position[1]].Compass=item;
                 }
             }
         }
@@ -894,11 +898,11 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 if (player.Faction == Faction.Mongolian)
                 {
-                    Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += 3;
+                    Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += 3 * GameMap[5, 10].Objects.Where(x => x is Unit).FirstOrDefault().Level;
                 }
                 else
                 {
-                    Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold++;
+                    Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold+=GameMap[5,10].Objects.Where(x=>x is Unit).FirstOrDefault().Level;
                 }
             }
         }
@@ -1040,7 +1044,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if (item2 is Unit)
                             {
 
-                                tile.GiveResources(player);
+                                tile.GiveResources(player, (item2 as Unit));
 
                                 //if (!success)
                                 //{
