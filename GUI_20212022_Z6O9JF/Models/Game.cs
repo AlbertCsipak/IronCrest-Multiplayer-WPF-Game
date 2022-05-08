@@ -24,7 +24,7 @@ namespace GUI_20212022_Z6O9JF.Models
         }
         public void NextPlayer() {
             PlayerID++;
-            System.Threading.Thread.Sleep(300);
+            //System.Threading.Thread.Sleep(300);
             if (PlayerID>PlayerCount)
             {
                 PlayerID = 1;
