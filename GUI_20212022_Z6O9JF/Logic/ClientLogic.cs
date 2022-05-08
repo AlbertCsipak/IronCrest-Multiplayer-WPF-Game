@@ -169,7 +169,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                         }
                         messenger.Send("Message", "Base");
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(500);
                     }
                 }, TaskCreationOptions.LongRunning);
 
@@ -338,15 +338,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Trade = null,
                         HasEnteredGoldMine = false
                     };
-                    player.SetupGold(20);
-                    //player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
-                    //player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
-                    //player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
-                    player.SetupArmyPower(20);
-                    player.SetupPopulatiry(20);
-                    player.SetupStone(30);
-                    player.SetupWood(30);
-                    player.SetupWheat(10);
+                    player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
+                    player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
+                    player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
+                    //player.SetupGold(20);
+                    //player.SetupArmyPower(20);
+                    //player.SetupPopulatiry(20);
+                    player.SetupStone(0);
+                    player.SetupWood(0);
+                    player.SetupWheat(0);
                     gameLogic.Game.Players.Add(player);
 
                 }
