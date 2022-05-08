@@ -25,7 +25,7 @@ namespace GUI_20212022_Z6O9JF.Models
         public List<Hero> Heroes { get; set; }
         public Trade Trade { get; set; }
         public int NumOfTradesMade { get; set; }
-
+        public bool HisTurn { get; set; }
         public void SetupPopulatiry(int num)
         {
             popularity = num;

@@ -13,7 +13,7 @@ namespace GUI_20212022_Z6O9JF.Models
         public List<Player> WinOrder { get; set; }
         public Battle CurrentBattle { get; set; }
         public Player CurrentGoldMineOwner = null;
-        public int PlayerID = 0;
+        public int PlayerID = 1;
         public Game()
         {
             Players = new List<Player>();
@@ -21,16 +21,12 @@ namespace GUI_20212022_Z6O9JF.Models
             WinOrder = new List<Player>();
         }
         public void NextPlayer() {
-
+            PlayerID++;
             if (PlayerID>Players.Count)
             {
-                PlayerID = 0;
-                Turns++;
+                PlayerID = 1;
             }
-            else
-            {
-                PlayerID++;
-            }
+            ;
         }
     }
 }

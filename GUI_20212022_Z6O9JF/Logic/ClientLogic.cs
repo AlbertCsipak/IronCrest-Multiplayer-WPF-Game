@@ -288,7 +288,8 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void ChampSelect(Faction faction, string name)
         {
-            if (true)
+            ;
+            if (CanSend)
             {
                 if (gameLogic.Game.Players.Any(t => t.Faction == faction))
                 {
@@ -358,13 +359,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                 gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Units.Add(unit);
                 gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Game.Map}.txt");
                 ChangeView("game");
-                System.Threading.Thread.Sleep(300);
+                System.Threading.Thread.Sleep(500);
                 SkipTurn();
             }
         }
         public void SkipTurn()
         {
-            if (true)
+            if (CanSend)
             {
                 gameLogic.Game.NextPlayer();
             }

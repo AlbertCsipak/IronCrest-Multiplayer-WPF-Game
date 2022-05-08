@@ -73,8 +73,8 @@ namespace Server
                 //:)
                 System.Threading.Thread.Sleep(100);
             }
-            Console.WriteLine("Press enter to close the server window.");
-            Console.ReadLine();
+            //Console.WriteLine("Press enter to close the server window.");
+            //Console.ReadLine();
 
             ServerSocket.Close();
             ServerSocket.Dispose();
