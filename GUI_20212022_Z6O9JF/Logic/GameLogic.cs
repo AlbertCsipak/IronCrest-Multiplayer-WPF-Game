@@ -631,13 +631,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                 foreach (var item in GameMap)
                 {
                     item.OwnerId = 0;
-                    if (item.Compass!=null)
-                    {
-                        if (item.Compass.OwnerId != 0)
-                        {
-                            item.Compass = null;
-                        }
-                    }
                     item.Objects.Clear();
                 }
                 foreach (var player in Game.Players.ToList())
@@ -654,6 +647,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
+                        GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = null;
                         //if (player.Trade!=null)
                         //{
                         //    GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = player.Trade;
