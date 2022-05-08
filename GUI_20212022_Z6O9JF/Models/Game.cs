@@ -15,6 +15,7 @@ namespace GUI_20212022_Z6O9JF.Models
         public Battle CurrentBattle { get; set; }
         public Player CurrentGoldMineOwner = null;
         public int PlayerID = 1;
+        public int PlayerCount { get; set; }
         public Game()
         {
             Players = new List<Player>();
@@ -27,10 +28,7 @@ namespace GUI_20212022_Z6O9JF.Models
             if (PlayerID>Players.Count)
             {
                 PlayerID = 1;
-
             }
-            ;
-            ;
         }
     }
 }
