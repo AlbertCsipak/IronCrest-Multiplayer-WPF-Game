@@ -20,7 +20,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public string SelectedString { get; set; }
         public string Name { get; set; }
         int index = 0;
-        public Faction SelectedFaction { get { return gameLogic.AvailableFactions[index]; } }
+        public Faction SelectedFaction { get; set; }
         public string Ability
         {
             get
@@ -58,8 +58,9 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
             this.clientLogic = clientLogic;
 
-            gameLogic.SelectableFactions();
+            //gameLogic.SelectableFactions();
 
+            SelectedFaction = Faction.Viking;
             Name = $"Player {clientLogic.ClientId}";
 
             GameCommand = new RelayCommand(() => { clientLogic.ChampSelect(SelectedFaction, Name); index = 0; });

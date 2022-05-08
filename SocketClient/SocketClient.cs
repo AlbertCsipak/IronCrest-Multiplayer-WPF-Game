@@ -9,7 +9,6 @@ namespace SocketClient
     public class SocketClient
     {
         public int ClientId { get; set; }
-        public string Map { get; set; }
         public Socket MySocket;
         public SocketClient() { }
         public void Connect(string ip = "127.0.0.1", int port = 10000)
@@ -24,11 +23,6 @@ namespace SocketClient
                     byte[] id = new byte[1];
                     MySocket.Receive(id);
                     ClientId = int.Parse(Encoding.ASCII.GetString(id));
-
-                    byte[] map = new byte[1];
-                    MySocket.Receive(map);
-                    Map = Encoding.ASCII.GetString(map);
-                    ;
                 }
                 catch (Exception)
                 {
@@ -77,14 +71,6 @@ namespace SocketClient
                 }
             }
             return message;
-        }
-        public void Skip()
-        {
-            MySocket.Send(Encoding.ASCII.GetBytes("skip"));
-        }
-        public void GameWin()
-        {
-            MySocket.Send(Encoding.ASCII.GetBytes("win"));
         }
     }
 }

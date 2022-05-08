@@ -79,7 +79,6 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 ClientId = socketClient.ClientId;
                 gameLogic.ClientID = ClientId;
-                gameLogic.Map = socketClient.Map;
 
                 Task Send = new Task(() =>
                 {
@@ -100,56 +99,28 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                 Task Receive = new Task(() =>
                 {
-                    int counter = 0;
                     while (socketClient.MySocket.Connected)
                     {
-                        tmpTimer++;
-                        if (tmpTimer == 4)
-                        {
-                            Timer--;
-                            tmpTimer = 0;
-                        }
                         string message = socketClient.DataReceive();
                         if (message != null)
                         {
-                            if (message.Equals("false") || message.Equals("true"))
+                            try
                             {
-                                CanSend = bool.Parse(message);
-                                if (CanSend)
+                                Game game = JsonConvert.DeserializeObject<Game>(message);
+                                if (game != null)
                                 {
-                                    gameLogic.ResetMoves();
+                                    gameLogic.Game = game;
                                 }
+                            }
+                            catch (NullReferenceException) { }
+                            catch (Exception) { }
+                        }
 
-                                if (counter < 1 && message.Equals("true"))
-                                {
-                                    counter++;
-                                    foreach (var item in gameLogic.Game.Players)
-                                    {
-                                        gameLogic.AvailableFactions.Remove(item.Faction);
-                                        gameLogic.AvailableFactions.Sort();
-                                        messenger.Send("FactionsAdded", "Base");
-                                    }
-                                }
-
-                            }
-                            else if (message.Equals("timer"))
-                            {
-                                tmpTimer = 0;
-                                Timer = 60;
-                            }
-                            else
-                            {
-                                try
-                                {
-                                    Game game = JsonConvert.DeserializeObject<Game>(message);
-                                    if (game != null)
-                                    {
-                                        gameLogic.Game = game;
-                                    }
-                                }
-                                catch (NullReferenceException) { }
-                                catch (Exception) { }
-                            }
+                        foreach (var item in gameLogic.Game.Players)
+                        {
+                            gameLogic.AvailableFactions.Remove(item.Faction);
+                            gameLogic.AvailableFactions.Sort();
+                            messenger.Send("FactionsAdded", "Base");
                         }
                     }
                 }, TaskCreationOptions.LongRunning);
@@ -168,8 +139,18 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => BattleViewChange("battle")));
                             }
                         }
+
+                        if (gameLogic.Game.PlayerID==ClientId)
+                        {
+                            CanSend = true;
+                        }
+                        else
+                        {
+                            CanSend = false;
+                        }
+
                         messenger.Send("Message", "Base");
-                        System.Threading.Thread.Sleep(1000);
+                        System.Threading.Thread.Sleep(250);
                     }
                 }, TaskCreationOptions.LongRunning);
 
@@ -307,7 +288,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
         public void ChampSelect(Faction faction, string name)
         {
-            if (CanSend)
+            if (true)
             {
                 if (gameLogic.Game.Players.Any(t => t.Faction == faction))
                 {
@@ -375,7 +356,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Villages.Add(village);
                 gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Units.Add(unit);
-                gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Map}.txt");
+                gameLogic.GameMap = gameLogic.GameMapSetup($"Resources/Maps/map{gameLogic.Game.Map}.txt");
                 ChangeView("game");
                 System.Threading.Thread.Sleep(300);
                 SkipTurn();
@@ -383,9 +364,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void SkipTurn()
         {
-            if (CanSend)
+            if (true)
             {
-                socketClient.Skip();
+                gameLogic.Game.NextPlayer();
             }
         }
         public void StartServer(int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1", int port = 10000, int bufferSize = 8192)
@@ -394,6 +375,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             server.FileName = "SocketServer.exe";
             server.Arguments = $" {ip} {clients} {port} {map} {turnLength} {bufferSize}";
             Process.Start(server);
+            gameLogic.Game.Map = map;
             ClientConnect(ip);
         }
         public void LoadGame(string save, int turnLength = 100, int clients = 1, string map = "1", string ip = "127.0.0.1")
