@@ -200,7 +200,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             Shuffle(trades);
             Queue<Trade> tradeQueue = new Queue<Trade>();
             trades.ForEach(x => tradeQueue.Enqueue(x));
-            Game.Trades = trades;
+            //Game.Trades = trades;
             return tradeQueue;
         }
 
