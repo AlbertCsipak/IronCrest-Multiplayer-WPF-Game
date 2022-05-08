@@ -65,7 +65,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             GoldChangeLabel.Opacity = 0;
 
             dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(16.66);
+            dt.Interval = TimeSpan.FromMilliseconds(33.33);
             quests = new List<SubItem<Quest>>();
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(0)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(1)));
@@ -137,8 +137,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     quest_sound.Play();
                 }));
             }
-            
-
         }
 
         public void EnableAllActivities()

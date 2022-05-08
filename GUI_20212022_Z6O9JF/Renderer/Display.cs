@@ -20,7 +20,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
         double[,][] HexagonPoints;
         bool sizeChanged;
         int vizgif;
-        int felhogif;
+        double felhogif;
         int birdgif;
         static Random random;
         public Display()
@@ -93,7 +93,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/grass.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
                                 case FieldType.ocean:
-                                    if (vizgif < 30)
+                                    if (vizgif < 60)
                                     {
                                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     }
@@ -103,7 +103,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                     }
                                     break;
                                 case FieldType.lake:
-                                    if (vizgif < 30)
+                                    if (vizgif < 60)
                                     {
                                         drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/water.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     }
@@ -196,28 +196,28 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             }
                             if (birdgif%100<50)
                             {
-                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/duck1.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250 + birdgif, size.Height / 6, 150, 150));
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Menu/ducks1.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-150 + birdgif, size.Height / 4, 75, 75));
                             }
                             else
                             {
-                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/duck2.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250 + birdgif, size.Height / 4, 50, 50));
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Menu/ducks2.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-150 + birdgif, size.Height / 4, 75, 75));
                             }
-                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/clouds.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250 + felhogif, size.Height / 4, 50, 50));
+                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/clouds.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-1000 + felhogif, size.Height / 16, 250, 250));
                         }
                     }
                 }
                 vizgif++;
-                if (vizgif > 60)
+                if (vizgif > 120)
                 {
                     vizgif = 0;
                 }
-                felhogif++;
-                if (felhogif > size.Width + 200)
+                felhogif+=0.5;
+                if (felhogif > size.Width + 2000)
                 {
                     felhogif = 0;
                 }
-                birdgif++;
-                if (birdgif > size.Width + 200)
+                birdgif+=2;
+                if (birdgif > size.Width + 2000)
                 {
                     birdgif = 0;
                 }
