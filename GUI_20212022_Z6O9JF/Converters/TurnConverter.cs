@@ -11,7 +11,7 @@ namespace GUI_20212022_Z6O9JF.Converters
             //bool -> string
             if ((bool)value)
             {
-                return "Your turn.";
+                return "Skip turn.";
             }
             else
             {
