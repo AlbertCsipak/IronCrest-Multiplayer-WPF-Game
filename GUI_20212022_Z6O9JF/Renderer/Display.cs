@@ -21,6 +21,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
         bool sizeChanged;
         int vizgif;
         int felhogif;
+        int birdgif;
         static Random random;
         public Display()
         {
@@ -193,7 +194,15 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 {
                                 }
                             }
-                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/clouds.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250 + felhogif, size.Height / 6, 150, 150));
+                            if (birdgif%100<50)
+                            {
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/duck1.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250 + birdgif, size.Height / 6, 150, 150));
+                            }
+                            else
+                            {
+                                drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/duck2.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250 + birdgif, size.Height / 4, 50, 50));
+                            }
+                            drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/clouds.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-250 + felhogif, size.Height / 4, 50, 50));
                         }
                     }
                 }
@@ -207,13 +216,13 @@ namespace GUI_20212022_Z6O9JF.Renderer
                 {
                     felhogif = 0;
                 }
+                birdgif++;
+                if (birdgif > size.Width + 200)
+                {
+                    birdgif = 0;
+                }
                 sizeChanged = false;
             }
-            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_bottom.png", UriKind.RelativeOrAbsolute)), new Rect(0, size.Height - size.Height / 7, size.Width, size.Height / 7));
-            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_up.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width, size.Height / 7));
-            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_left.png", UriKind.RelativeOrAbsolute)), new Rect(0, 0, size.Width / 9, size.Height));
-            //drawingContext.DrawImage(new BitmapImage(new Uri("Resources/Images/Map/cloud_right.png", UriKind.RelativeOrAbsolute)), new Rect(size.Width - size.Width / 9, 0, size.Width / 9, size.Height));
-
         }
     }
 }
