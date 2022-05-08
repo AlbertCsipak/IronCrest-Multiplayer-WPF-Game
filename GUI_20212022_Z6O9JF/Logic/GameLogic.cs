@@ -95,6 +95,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                         case 'c':
                             map[i, j].FieldType = FieldType.compassField;
                             map[i, j].Compass = Game.RemainingTrades.Dequeue();
+                            map[i, j].Compass.Position[0] = i;
+                            map[i, j].Compass.Position[1] = j;
+                            Game.Trades.Add(map[i, j].Compass);
                             break;
                         default:
                             break;
@@ -631,6 +634,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 foreach (var item in GameMap)
                 {
                     item.OwnerId = 0;
+                    item.Compass = null;
                     item.Objects.Clear();
                 }
                 foreach (var player in Game.Players.ToList())
@@ -656,6 +660,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                         //    GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = player.Trade;
                         //}  
                     }
+                }
+                foreach (var item in Game.Trades)
+                {
+                    GameMap[item.Position[0], item.Position[1]].Compass = item;
                 }
             }
         }
