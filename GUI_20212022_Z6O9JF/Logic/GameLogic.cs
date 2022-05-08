@@ -631,9 +631,12 @@ namespace GUI_20212022_Z6O9JF.Logic
                 foreach (var item in GameMap)
                 {
                     item.OwnerId = 0;
-                    if (item.Compass.OwnerId!=0)
+                    if (item.Compass!=null)
                     {
-                        item.Compass = null;
+                        if (item.Compass.OwnerId != 0)
+                        {
+                            item.Compass = null;
+                        }
                     }
                     item.Objects.Clear();
                 }
