@@ -25,16 +25,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().
-        }
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //GameUC.IsInSubWindow = true;
-            //IsHitTestVisible = true;
-            //CaptureMouse();
             Window window = Window.GetWindow(this);
             window.Closing += window_Closing;
             ;

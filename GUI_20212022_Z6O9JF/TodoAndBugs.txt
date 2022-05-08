@@ -1,5 +1,4 @@
 ﻿Bugs:
-- gold be tud menni minuszba
 - mystery event meg tud jelenni, ha jobb klikkel kattintunk egy hexagonra, nem nézi h a játékossal léptünk-e rá
 - ha egy compassos mezőről lekerül a compass át kell alakitani a hexagon grass FieldType-ra, mert különben nem enged falut építeni rá 
 
@@ -12,14 +11,9 @@ Todo:
 - number of quest beállítása a logicba (n random quest)
 - mukodjon a map2, és map3
 - legyen letiltva a build/upgrade gomb, ha nincs elég nyersanyagunk hozzá
-- lehessena a textnek outline-t rajzolni, nincs beépített funkciója nekem meg nincs kedvem ehhez
 
 Features:
 - Reconnect a serverre
--ESC gomb nyomásra options menü, ahol lehet állitani a hangerőt és ki lehet lépni
 
 STEVE TO DO: 
-- ha felugrott egy mystery event vagy trade ablak legyen letiltva a game UC összes lehetséges interakciója (ne lehessen a háttérben lépkeni)
-
 LILI TO DO: 
-- app.xaml-be kerüljön át az összes a globális resource (zene,cursor,kép)

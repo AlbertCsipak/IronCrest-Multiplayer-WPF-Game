@@ -24,10 +24,5 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.controlLogic = (this.DataContext as MysteryHeroViewModel).controlLogic;
 
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //gameLogic.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().
-        }
     }
 }

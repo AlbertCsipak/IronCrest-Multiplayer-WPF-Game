@@ -16,9 +16,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
     {
         IGameLogic gameLogic;
         IClientLogic clientLogic;
-        Uri unmutedUri = new Uri("Resources/Images/Other/unmuted.png", UriKind.RelativeOrAbsolute);
-        Uri mutedUri = new Uri("Resources/Images/Other/muted.png", UriKind.RelativeOrAbsolute);
-        private bool KeyCheck;
+        Uri unmutedUri = new Uri(@"\Resources\Images\Other\unmuted.png", UriKind.RelativeOrAbsolute);
+        Uri mutedUri = new Uri(@"\Resources\Images\Other\muted.png", UriKind.RelativeOrAbsolute);
         public MediaPlayer button_click = new MediaPlayer();
         public GameSubMenuUC()
         {
@@ -31,30 +30,21 @@ namespace GUI_20212022_Z6O9JF.UserControls
         private void volume_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             double volume = volume_slider.Value;
-            //background_music.Volume = volume / 1000;
+            MainWindow.game_music.Volume = volume;
             if (volume == 0.0)
             {
-                //background_music.IsMuted = true;
+                MainWindow.game_music.IsMuted = true;
                 img_mute.Source = new BitmapImage(mutedUri);
             }
             else
             {
-                //background_music.IsMuted = false;
+                MainWindow.game_music.IsMuted = false;
                 img_mute.Source = new BitmapImage(unmutedUri);
             }
         }
-        private void HandleKeyPress(object sender, KeyEventArgs e)
-        {
-            if (KeyCheck && e.Key == Key.Escape)
-            {
-                clientLogic.ESCChange("");
-                KeyCheck = true;
-            }
-        }
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            var window = Window.GetWindow(this);
-            window.KeyDown += HandleKeyPress;
-        }
+        //private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        //{
+        //    var window = Window.GetWindow(this);
+        //}
     }
 }

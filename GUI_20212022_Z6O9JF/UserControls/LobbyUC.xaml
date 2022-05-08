@@ -80,7 +80,7 @@
         <Viewbox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
         <Button Style="{DynamicResource button_image_style}" Content="LOCK IN" Foreground="#B3C8B7" Padding="20" Background="Transparent"
                 FontSize="50" FontFamily="Poor Richard" Command="{Binding GameCommand}"
-                BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_LockIn_Click">
         </Button>
         </Viewbox>
     </Grid>

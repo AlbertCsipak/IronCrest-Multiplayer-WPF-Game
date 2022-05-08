@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.UserControls;
 using GUI_20212022_Z6O9JF.ViewModels;
 using Newtonsoft.Json;
 using System;
@@ -16,12 +17,14 @@ namespace GUI_20212022_Z6O9JF
     {
         IGameLogic gameLogic;
         IClientLogic clientLogic;
-        MediaPlayer background_music = new MediaPlayer();
-        MediaPlayer background_ambient = new MediaPlayer();
+        public static MediaPlayer background_music = new MediaPlayer();
+        public static MediaPlayer game_music = new MediaPlayer();
+        public static MediaPlayer background_ambient = new MediaPlayer();
         Cursor c1;
         public MainWindow()
         {
             InitializeComponent();
+            LobbyUC.StartOfGame += StartOfGame;
             this.DataContext = new MainViewModel();
             gameLogic = (this.DataContext as MainViewModel).gameLogic;
             clientLogic = (this.DataContext as MainViewModel).clientLogic;
@@ -51,7 +54,13 @@ namespace GUI_20212022_Z6O9JF
             background_music.Play();
         }
 
-
+        public void StartOfGame(object sender, EventArgs e)
+        {
+            background_music.Stop();
+            game_music.Open(new Uri("Resources/Music/standard.mp3", UriKind.RelativeOrAbsolute));
+            game_music.Volume = 0.5;
+            game_music.Play();
+        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

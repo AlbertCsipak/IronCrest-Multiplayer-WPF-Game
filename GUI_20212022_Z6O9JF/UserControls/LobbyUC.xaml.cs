@@ -10,6 +10,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// </summary>
     public partial class LobbyUC : UserControl
     {
+        public static event EventHandler StartOfGame ;
         public MediaPlayer button_click = new MediaPlayer();
         public LobbyUC()
         {
@@ -22,6 +23,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
+        }
+
+        private void Button_LockIn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            StartOfGame?.Invoke(this, EventArgs.Empty);
         }
     }
 }

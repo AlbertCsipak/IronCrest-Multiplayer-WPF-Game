@@ -12,7 +12,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     {
         public IClientLogic clientLogic { get; set; }
         public IGameLogic gameLogic { get; set; }
-
+        public double CurrentVolume { get { return MainWindow.game_music.Volume; } }
+        public ICommand ResumeCommand { get; set; }
         public ICommand ExitCommand { get; set; }
         public static bool IsInDesignMode
         {
@@ -31,9 +32,13 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         {
             this.clientLogic = clientLogic;
             this.gameLogic = gameLogic;
-            ExitCommand = new RelayCommand(() =>
+            ResumeCommand = new RelayCommand(() =>
             {
                 clientLogic.ESCChange("");
+            });
+            ExitCommand = new RelayCommand(() =>
+            {
+                clientLogic.ChangeView("menu");
             });
 
             Messenger.Register<GameSubMenuViewModel, string, string>(this, "Base", (recipient, msg) =>

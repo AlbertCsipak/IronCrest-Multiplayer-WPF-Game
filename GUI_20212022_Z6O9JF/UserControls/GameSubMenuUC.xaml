@@ -6,46 +6,50 @@
              xmlns:local="clr-namespace:GUI_20212022_Z6O9JF.UserControls"
              xmlns:vm="clr-namespace:GUI_20212022_Z6O9JF.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920" SizeChanged="UserControl_SizeChanged" Background="Transparent">
+             d:DesignHeight="1080" d:DesignWidth="1920" Background="Transparent" >
     <UserControl.DataContext>
         <vm:GameSubMenuViewModel/>
     </UserControl.DataContext>
-    <Grid x:Name="grid">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="grid" Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Row="1" Grid.Column="1" Opacity="0.95" Background="SaddleBrown">
-        </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" Background="SaddleBrown" Opacity="0.95">
-            <Label FontFamily="Poor Richard" Content="Sound Settings" Foreground="White" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Image x:Name="img_mute" Grid.Column="0" Grid.Row="1" Width="30" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
-            <Slider Style="{DynamicResource SliderStyle1}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="500" Value="50" Minimum="0" Maximum="100" TickFrequency="10" IsSnapToTickEnabled="True" Cursor="Hand" SmallChange="10" Height="30"/>
-        </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1" Background="SaddleBrown" Opacity="0.95"> 
-            <Button Content="Exit to MainMenu" Height="90" Width="300" FontSize="40" 
-                      FontFamily="Poor Richard">
-            </Button>
-        </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="1" Background="SaddleBrown" Opacity="0.95">
-            <Button Content="Resume" Height="90" Width="300" FontSize="40" FontFamily="Poor Richard" Command="{Binding ExitCommand}">
-            </Button>
+        <Image Source="\Resources\Images\Menu\ESC_background.png" Grid.Column="1" Grid.RowSpan="5" Stretch="Fill"/>
+        <Image Source="\Resources\Images\Menu\frame.png" Grid.Column="1" Grid.RowSpan="5" Stretch="Fill"/>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="img_mute" Grid.Column="1" Width="70" Height="70" HorizontalAlignment="Left" Margin="30,0,0,0"/>
+                <Slider Style="{DynamicResource SliderStyle1}" Grid.Column="1" VerticalAlignment="Center" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="300" Value="{Binding CurrentVolume, Mode=OneWay}" Minimum="0" Maximum="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Cursor="Hand" SmallChange="0.1" Height="30"/>
+            </Grid>
             
-        </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="1" Background="SaddleBrown" Opacity="0.95">
-            
-        </StackPanel>
+        <Button Content="Resume" Height="90" Width="300" FontSize="40" FontFamily="Poor Richard" Command="{Binding ResumeCommand}" Grid.Row="2" Grid.Column="1"/>
+        <Button Content="Exit to MainMenu" Height="90" Width="300" FontSize="40" FontFamily="Poor Richard" Grid.Row="3" Grid.Column="1" Command="{Binding ExitCommand}"/>
+        
 
+    </Grid>
     </Grid>
 </UserControl>

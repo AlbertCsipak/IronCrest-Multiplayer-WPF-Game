@@ -408,12 +408,12 @@
             
             
         </Grid>
-        <ContentControl x:Name="ESC_control" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" Content="{Binding ESCView}"/>
         <ContentControl x:Name="battle_control" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" Content="{Binding BattleView}"/>
         <ContentControl x:Name="trade_control" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" Content="{Binding TradeView}"/>
         <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" x:Name="mystery_control" Content="{Binding MysteryView}"/>
         <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" x:Name="mysteryhero_control" Content="{Binding MysteryHeroView}"/>
         <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" x:Name="goldmine_control" Content="{Binding GoldMineView}"/>
+        <ContentControl x:Name="ESC_control" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" Content="{Binding ESCView}"/>
 
     </Grid>
 </UserControl>

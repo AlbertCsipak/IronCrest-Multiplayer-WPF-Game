@@ -103,7 +103,7 @@
             <Image Source="{Binding CurrentHero, Converter={StaticResource hero_converter}}" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Stretch="UniformToFill"/>
 
             <Viewbox Grid.Row="3" Grid.Column="2">
-                <Button Style="{StaticResource button_image_style}" Width="80" Height="30" VerticalContentAlignment="Center" Content="OK!" FontSize="20" Foreground="WhiteSmoke" FontFamily="\Resources\#8-bit Limit (BRK)"  Command="{Binding OKButtonCommand}" Click="Button_Click_1"/>
+                <Button Style="{StaticResource button_image_style}" Width="80" Height="30" VerticalContentAlignment="Center" Content="OK!" FontSize="20" Foreground="WhiteSmoke" FontFamily="\Resources\#8-bit Limit (BRK)"  Command="{Binding OKButtonCommand}"/>
             </Viewbox>
         </Grid>
     </Grid>

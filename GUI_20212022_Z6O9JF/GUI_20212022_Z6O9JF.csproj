@@ -113,6 +113,7 @@
     <None Remove="Resources\Images\Menu\ducks1.png" />
     <None Remove="Resources\Images\Menu\ducks2.png" />
     <None Remove="Resources\Images\Menu\ending_background.png" />
+    <None Remove="Resources\Images\Menu\ESC_background.png" />
     <None Remove="Resources\Images\Menu\flag.png" />
     <None Remove="Resources\Images\Menu\flag_darken.png" />
     <None Remove="Resources\Images\Menu\flag_disabled.png" />
@@ -141,6 +142,7 @@
     <None Remove="Resources\Images\Menu\upgrade_background_disabled.png" />
     <None Remove="Resources\Images\Menu\wheat_background.gif" />
     <None Remove="Resources\Images\Menu\wood_border.png" />
+    <None Remove="Resources\Images\Menu\wood_tiles.jpg" />
     <None Remove="Resources\Images\Other\back.png" />
     <None Remove="Resources\Images\Other\compass.png" />
     <None Remove="Resources\Images\Other\crest_icon.png" />
@@ -474,6 +476,9 @@
     <Content Include="Resources\Images\Menu\ending_background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\ESC_background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Menu\flag_disabled.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -525,6 +530,9 @@
     <Content Include="Resources\Images\Menu\wood_border.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Menu\wood_tiles.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Other\gear.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -550,9 +558,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="Resources\Images\Menu\frame.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Menu\frame_trans_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\goldmine_background.png">
