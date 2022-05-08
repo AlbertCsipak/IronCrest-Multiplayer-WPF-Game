@@ -26,23 +26,24 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" Opacity="0.75" Background="SaddleBrown">
+        <StackPanel Grid.Row="1" Grid.Column="1" Opacity="0.95" Background="SaddleBrown">
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.Column="1" Background="SaddleBrown" Opacity="0.75">
-            <Image x:Name="img_mute" Grid.Column="0" Grid.Row="1" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
+        <StackPanel Grid.Row="2" Grid.Column="1" Background="SaddleBrown" Opacity="0.95">
+            <Label FontFamily="Poor Richard" Content="Sound Settings" Foreground="White" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image x:Name="img_mute" Grid.Column="0" Grid.Row="1" Width="30" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
             <Slider Style="{DynamicResource SliderStyle1}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="500" Value="50" Minimum="0" Maximum="100" TickFrequency="10" IsSnapToTickEnabled="True" Cursor="Hand" SmallChange="10" Height="30"/>
         </StackPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1" Background="SaddleBrown" Opacity="0.75"> 
-            <Button Content="Options" Height="90" Width="300" FontSize="40" 
+        <StackPanel Grid.Row="3" Grid.Column="1" Background="SaddleBrown" Opacity="0.95"> 
+            <Button Content="Exit to MainMenu" Height="90" Width="300" FontSize="40" 
                       FontFamily="Poor Richard">
             </Button>
         </StackPanel>
-        <StackPanel Grid.Row="4" Grid.Column="1" Background="SaddleBrown" Opacity="0.75">
-            <Button Content="Exit" Height="90" Width="300" FontSize="40" FontFamily="Poor Richard" Command="{Binding ExitCommand}">
+        <StackPanel Grid.Row="4" Grid.Column="1" Background="SaddleBrown" Opacity="0.95">
+            <Button Content="Resume" Height="90" Width="300" FontSize="40" FontFamily="Poor Richard" Command="{Binding ExitCommand}">
             </Button>
             
         </StackPanel>
-        <StackPanel Grid.Row="5" Grid.Column="1" Background="SaddleBrown" Opacity="0.75">
+        <StackPanel Grid.Row="5" Grid.Column="1" Background="SaddleBrown" Opacity="0.95">
             
         </StackPanel>
 

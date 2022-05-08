@@ -27,6 +27,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         //public ICommand AddVillageCommand { get; set; }
         //public ICommand UpgradeVillageCommand { get; set; }
         public ICommand SkipTurnCommand { get; set; }
+
+        public ICommand SettingsCommand { get; set; }
         //public ICommand ProduceCommand { get; set; }
         public ICommand TradeCommand { get; set; }
         public Faction SelectedFaction { get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
@@ -93,6 +95,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             //AddVillageCommand = new RelayCommand(() => gameLogic.AddVillage());
             //UpgradeVillageCommand = new RelayCommand(() => gameLogic.UpgradeVillage());
             SkipTurnCommand = new RelayCommand(() => clientLogic.SkipTurn());
+
+            SettingsCommand = new RelayCommand(() => clientLogic.ESCChange("ESC"));
             //ProduceCommand = new RelayCommand(() => gameLogic.GetResources());
             TradeCommand = new RelayCommand(() => clientLogic.TradeViewChange("trade"));
 
