@@ -2,6 +2,7 @@
 using GUI_20212022_Z6O9JF.ViewModels;
 using System;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -66,11 +67,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
             lbl_counter.Visibility = System.Windows.Visibility.Visible;
             dt_counter = new DispatcherTimer();
             dt_movement = new DispatcherTimer();
-            dt_counter.Interval = TimeSpan.FromMilliseconds(50);
+            dt_counter.Interval = TimeSpan.FromMilliseconds(1000);
             dt_counter.Tick += (sender, eventargs) =>
             {
                 if (counter > 0)
                 {
+
                     lbl_counter.Content = --counter;
                     buttonSoundEffect.Open(new Uri("Resources/Music/beep.mp3", UriKind.RelativeOrAbsolute));
                     buttonSoundEffect.Play();
@@ -82,16 +84,21 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
                 }
             };
-            dt_movement.Tick += (sender, eventargs) =>
-            {
-                battleDisplay.InvalidateVisual();
-            };
             dt_counter.Start();
+            while (counter>0)
+            {
+                Thread.Sleep(100);
+            }
             if (counter == 0)
             {
                 dt_counter.Stop();
                 dt_movement.Interval = TimeSpan.FromMilliseconds(33);
+                dt_movement.Tick += (sender, eventargs) =>
+                {
+                    battleDisplay.InvalidateVisual();
+                };
                 dt_movement.Start();
+
             }
 
             
