@@ -61,7 +61,7 @@ namespace GUI_20212022_Z6O9JF
         {
             background_music.Stop();
             game_music.Open(new Uri("Resources/Music/standard.mp3", UriKind.RelativeOrAbsolute));
-            game_music.Volume = 0.5;
+            game_music.Volume = 0.02;
             game_music.Play();
         }
 

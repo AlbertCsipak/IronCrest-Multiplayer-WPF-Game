@@ -131,6 +131,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
             {
                 bell_sound.Open(new Uri("Resources/Music/bell.mp3", UriKind.RelativeOrAbsolute));
+                bell_sound.Volume = 0.05;
                 bell_sound.Play();
             }));
         }
@@ -143,6 +144,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     Menu.Children.Clear();
                     Menu.Children.Add(new UserControlMenuItem(itemQuest));
                     quest_sound.Open(new Uri("Resources/Music/quest_completed_sound.mp3", UriKind.RelativeOrAbsolute));
+                    quest_sound.Volume = 0.05;
                     quest_sound.Play();
                 }));
             }

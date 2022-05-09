@@ -24,6 +24,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         public MysteryEvent CurrentMystery { get; set; }
         public Hero FirstHero { get; set; }
         public Hero SecondaryHero { get; set; }
+        public static Random Random = new Random();
+
         public static event EventHandler Move;
         public bool IsGameEnded;
 
@@ -60,7 +62,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             string[] lines = File.ReadAllLines(path);
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
-            Game.RemainingTrades = LoadTrades();
             MysteryEvents = LoadMysteryEvents();
             for (int i = 0; i < map.GetLength(0); i++)
             {
@@ -92,19 +93,29 @@ namespace GUI_20212022_Z6O9JF.Logic
                         case 'o':
                             map[i, j].FieldType = FieldType.ocean;
                             break;
-                        case 'c':
-                            map[i, j].FieldType = FieldType.compassField;
-                            map[i, j].Compass = Game.RemainingTrades.Dequeue();
-                            map[i, j].Compass.Position[0] = i;
-                            map[i, j].Compass.Position[1] = j;
-                            Game.Trades.Add(map[i, j].Compass);
-                            break;
                         default:
                             break;
                     }
                 }
             }
-
+            if (Game.Trades.Count == 0)
+            {
+                Game.Trades = LoadTrades();
+                foreach (var item in Game.Trades)
+                {
+                    while (item.Position[0] == 0)
+                    {
+                        int i = Random.Next(0, map.GetLength(0));
+                        int j = Random.Next(0, map.GetLength(1));
+                        if (map[i, j].FieldType == FieldType.grass && map[i, j].Compass == null)
+                        {
+                            map[i, j].Compass = item;
+                            item.Position[0] = i;
+                            item.Position[1] = j;
+                        }
+                    }
+                }
+            }
             return map;
         }
 
@@ -181,7 +192,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 player.NumOfTradesMade++;
             }
         }
-        public Queue<Trade> LoadTrades()
+        public List<Trade> LoadTrades()
         {
             List<Trade> trades = new List<Trade>()
             {
@@ -199,10 +210,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 new Trade(new Offer[3]{ new Offer("You get 1 gold and 2 army power.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 1 },{"ArmyPower",2 } }), new Offer("You get 3 logs and 1 popularity for 2 gold.", new Dictionary<string, int>() { { "Gold", 2 } }, new Dictionary<string, int>() { { "Wood", 3 }, { "Popularity", 1 } }), new Offer("You get 2 stones, 2 logs, 1 popularity and 1 army power for 4 gold.", new Dictionary<string, int>() { { "Gold", 4 } }, new Dictionary<string, int>() { { "Stone", 2 }, { "Wood", 2 },{"Popularity",1 },{"ArmyPower",1 } })})
             };
             Shuffle(trades);
-            Queue<Trade> tradeQueue = new Queue<Trade>();
-            trades.ForEach(x => tradeQueue.Enqueue(x));
-            //Game.Trades = trades;
-            return tradeQueue;
+            return trades;
         }
 
 
@@ -387,6 +395,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.Trade = hexagon.Compass;
+            player.Trade.OwnerId = player.PlayerID;
             hexagon.Compass = null;
         }
         public void MysteryBoxEvent(HexagonTile hexagonTile)
@@ -651,19 +660,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                             GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
-                        if (player.Trade != null)
-                        {
-                            GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = null;
-                        }
-                        //if (player.Trade!=null)
-                        //{
-                        //    GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = player.Trade;
-                        //}  
                     }
                 }
                 foreach (var item in Game.Trades)
                 {
-                    GameMap[item.Position[0], item.Position[1]].Compass = item;
+                    if (item.OwnerId==0)
+                    {
+                        GameMap[item.Position[0], item.Position[1]].Compass = item;
+                    }
                 }
             }
         }

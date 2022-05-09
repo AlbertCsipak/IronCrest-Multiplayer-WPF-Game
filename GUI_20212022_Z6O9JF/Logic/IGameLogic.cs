@@ -30,7 +30,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         bool HasSufficientResources(string resource, int cost);
         bool IsQuestDone(int id);
         Queue<MysteryEvent> LoadMysteryEvents();
-        Queue<Trade> LoadTrades();
+        List<Trade> LoadTrades();
         void MakeTrade();
         void MoveUnit(HexagonTile hexagonTile);
         void MysteryBoxEvent(HexagonTile hexagonTile);
