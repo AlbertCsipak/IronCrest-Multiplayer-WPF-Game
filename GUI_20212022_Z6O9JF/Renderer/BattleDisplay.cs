@@ -1,5 +1,6 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using GUI_20212022_Z6O9JF.Models;
+using GUI_20212022_Z6O9JF.UserControls;
 using System;
 using System.IO;
 using System.Windows;
@@ -14,6 +15,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
         IClientLogic clientLogic;
         IGameLogic gameLogic;
         IControlLogic controlLogic;
+        static public event EventHandler Explosion;
         Size size;
         Grid grid;
         Battle battle { get { return gameLogic.Game.CurrentBattle; } }
@@ -175,7 +177,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     }
                     if (AttackerXPos==size.Width/2 - size.Width / 16 && AttackerXPos == size.Width / 2 + size.Width / 16)
                     {
-                        BattleUC.Explosion();
+                        Explosion?.Invoke(this, EventArgs.Empty);
                         //drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian1.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(attackernum, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
                     }
                     //robbanó kép

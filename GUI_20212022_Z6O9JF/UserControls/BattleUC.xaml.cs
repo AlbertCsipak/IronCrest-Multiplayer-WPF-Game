@@ -1,4 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
+using GUI_20212022_Z6O9JF.Renderer;
 using GUI_20212022_Z6O9JF.ViewModels;
 using System;
 using System.Linq;
@@ -17,7 +18,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// </summary>
     public partial class BattleUC : UserControl
     {
-        static public event EventHandler Explosion;
         IClientLogic clientLogic;
         IGameLogic gameLogic;
         IControlLogic controlLogic;
@@ -29,7 +29,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public BattleUC()
         {
             InitializeComponent();
-            Explosion += ExplosionGif;
+            BattleDisplay.Explosion += ExplosionGif;
             this.DataContext = new BattleViewModel();
             this.gameLogic = (this.DataContext as BattleViewModel).gameLogic;
             this.clientLogic = (this.DataContext as BattleViewModel).clientLogic;
