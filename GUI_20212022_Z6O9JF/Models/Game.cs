@@ -8,15 +8,13 @@ namespace GUI_20212022_Z6O9JF.Models
         public int QuestCount { get; set; }
         public int Timer { get; set; }
         public List<Player> Players { get; set; }
-        public Queue<Trade> RemainingTrades;
-        public List<Trade> Trades;
+        public List<Trade> Trades { get; set; }
         public List<Player> WinOrder { get; set; }
         public Battle CurrentBattle { get; set; }
         public Player CurrentGoldMineOwner = null;
         public Game()
         {
             Players = new List<Player>();
-            RemainingTrades = new Queue<Trade>();
             Trades = new List<Trade>();
             WinOrder = new List<Player>();
         }

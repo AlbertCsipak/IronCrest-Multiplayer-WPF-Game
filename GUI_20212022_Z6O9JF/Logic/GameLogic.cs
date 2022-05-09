@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
-    public class GameLogic : IGameLogic
+    public class GameLogic
     {
         IMessenger messenger;
         public int ClientID { get; set; }
@@ -24,6 +24,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public MysteryEvent CurrentMystery { get; set; }
         public Hero FirstHero { get; set; }
         public Hero SecondaryHero { get; set; }
+        public static Random Random;
 
         public bool IsGameEnded;
 
@@ -60,7 +61,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             string[] lines = File.ReadAllLines(path);
             HexagonTile[,] map = new HexagonTile[int.Parse(lines[0]), int.Parse(lines[1])];
-            Game.RemainingTrades = LoadTrades();
             MysteryEvents = LoadMysteryEvents();
             for (int i = 0; i < map.GetLength(0); i++)
             {
@@ -92,19 +92,29 @@ namespace GUI_20212022_Z6O9JF.Logic
                         case 'o':
                             map[i, j].FieldType = FieldType.ocean;
                             break;
-                        case 'c':
-                            map[i, j].FieldType = FieldType.compassField;
-                            map[i, j].Compass = Game.RemainingTrades.Dequeue();
-                            map[i, j].Compass.Position[0] = i;
-                            map[i, j].Compass.Position[1] = j;
-                            Game.Trades.Add(map[i, j].Compass);
-                            break;
                         default:
                             break;
                     }
                 }
             }
+            if (Game.Trades.Count == 0)
+            {
+                Game.Trades = LoadTrades();
+                foreach (var item in Game.Trades)
+                {
+                    while (item.Position[0]==0)
+                    {
+                        int i = Random.Next(0, GameMap.GetLength(0));
+                        int j = Random.Next(0, GameMap.GetLength(1));
+                        if (GameMap[i,j].FieldType==FieldType.grass&&GameMap[i,j].Compass==null)
+                        {
+                            item.Position[0] = i;
+                            item.Position[1] = j;
+                        }
+                    }
 
+                }
+            }
             return map;
         }
 
@@ -181,7 +191,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 player.NumOfTradesMade++;
             }
         }
-        public Queue<Trade> LoadTrades()
+        public List<Trade> LoadTrades()
         {
             List<Trade> trades = new List<Trade>()
             {
@@ -199,10 +209,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 new Trade(new Offer[3]{ new Offer("You get 1 gold and 2 army power.", new Dictionary<string, int>() { { "Gold", 0 } }, new Dictionary<string, int>() { { "Gold", 1 },{"ArmyPower",2 } }), new Offer("You get 3 logs and 1 popularity for 2 gold.", new Dictionary<string, int>() { { "Gold", 2 } }, new Dictionary<string, int>() { { "Wood", 3 }, { "Popularity", 1 } }), new Offer("You get 2 stones, 2 logs, 1 popularity and 1 army power for 4 gold.", new Dictionary<string, int>() { { "Gold", 4 } }, new Dictionary<string, int>() { { "Stone", 2 }, { "Wood", 2 },{"Popularity",1 },{"ArmyPower",1 } })})
             };
             Shuffle(trades);
-            Queue<Trade> tradeQueue = new Queue<Trade>();
-            trades.ForEach(x => tradeQueue.Enqueue(x));
-            //Game.Trades = trades;
-            return tradeQueue;
+            return trades;
         }
 
 
