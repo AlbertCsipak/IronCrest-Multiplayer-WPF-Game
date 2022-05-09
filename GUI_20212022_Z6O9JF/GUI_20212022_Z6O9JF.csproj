@@ -110,6 +110,8 @@
     <None Remove="Resources\Images\Menu\button_board.png" />
     <None Remove="Resources\Images\Menu\button_board_short.png" />
     <None Remove="Resources\Images\Menu\choose_button.png" />
+    <None Remove="Resources\Images\Menu\deer1.gif" />
+    <None Remove="Resources\Images\Menu\deer2.gif" />
     <None Remove="Resources\Images\Menu\ducks1.png" />
     <None Remove="Resources\Images\Menu\ducks2.png" />
     <None Remove="Resources\Images\Menu\ending_background.png" />
@@ -465,6 +467,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\button_board_short.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\deer1.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\deer2.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\ducks1.png">
