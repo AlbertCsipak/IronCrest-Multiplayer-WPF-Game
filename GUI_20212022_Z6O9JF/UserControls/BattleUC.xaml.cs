@@ -37,6 +37,14 @@ namespace GUI_20212022_Z6O9JF.UserControls
             buttonSoundEffect.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             buttonSoundEffect.Play();
         }
+
+        public void DefenderView()
+        {
+            img_board.Visibility = Visibility.Hidden;
+            btn_left.Visibility = Visibility.Hidden;
+            btn_ready.Visibility = Visibility.Hidden;
+            btn_ready.Visibility = Visibility.Hidden;
+        }
         private void Ready_Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             buttonSoundEffect.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
@@ -87,10 +95,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             battleDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
         }
-        //private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        //{
-        //    battleDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
-        //}
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            battleDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
+        }
 
         //private void UserControl_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
         //{

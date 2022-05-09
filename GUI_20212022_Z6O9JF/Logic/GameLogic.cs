@@ -1038,14 +1038,14 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void Battle(HexagonTile hexagonTile)
         {
-            var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
-            if (enemy != null)
+            var attackerplayer = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
+            var defenderenemy = hexagonTile.Objects.Where(t => t is Unit && t.FactionType != attackerplayer.Faction).FirstOrDefault();
+            if (defenderenemy != null)
             {
-                var enemyPlayer = Game.Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
+                //var enemyPlayer = Game.Players.Where(t => t.PlayerID == defenderenemy.OwnerId).FirstOrDefault();
                 Game.CurrentBattle = new Battle();
-                Game.CurrentBattle.Defender = enemyPlayer;
-                Game.CurrentBattle.Attacker = player;
+                Game.CurrentBattle.Defender = defenderenemy as Player;
+                Game.CurrentBattle.Attacker = attackerplayer;
                 ;
             }
         }
