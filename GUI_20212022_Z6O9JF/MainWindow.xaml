@@ -8,7 +8,7 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         WindowState="Maximized"
-        WindowStyle="SingleBorderWindow"
+        WindowStyle="none"
         VisualBitmapScalingMode="LowQuality"
         WindowStartupLocation="CenterOwner"
         Title="IronCrest" Height="1080" Width="1920" Icon="Resources\Images\Other\icon.png" Closing="Window_Closing" KeyDown="UserControl_KeyDown">
