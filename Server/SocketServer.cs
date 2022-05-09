@@ -119,6 +119,7 @@ namespace Server
             while (Clients.Count == clients)
             {
                 //:)
+                System.Threading.Thread.Sleep(500);
             }
 
             ServerSocket.Close();
