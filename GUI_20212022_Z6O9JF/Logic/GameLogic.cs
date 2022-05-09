@@ -394,6 +394,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.Trade = hexagon.Compass;
+            player.Trade.OwnerId = player.PlayerID;
             hexagon.Compass = null;
         }
         public void MysteryBoxEvent(HexagonTile hexagonTile)
@@ -658,10 +659,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                             GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
-                        //if (player.Trade!=null)
-                        //{
-                        //    GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = player.Trade;
-                        //}  
                     }
                 }
                 foreach (var item in Game.Trades)
