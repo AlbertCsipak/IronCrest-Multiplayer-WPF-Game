@@ -189,24 +189,28 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void Polygon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             Polygon polygon = sender as Polygon;
+            
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
             {
-                if (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
+                if (gameLogic.Game.Players != null)
                 {
-                    if (SelectedPolygon != polygon)
-                    {
-                        currentColor = polygon.Stroke;
-                        polygon.Stroke = Brushes.White;
-                    }
-                }
-                else
-                {
-                    if ((polygon.Tag as HexagonTile).FieldType != FieldType.lake)
+                    if (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                     {
                         if (SelectedPolygon != polygon)
                         {
                             currentColor = polygon.Stroke;
                             polygon.Stroke = Brushes.White;
+                        }
+                    }
+                    else
+                    {
+                        if ((polygon.Tag as HexagonTile).FieldType != FieldType.lake)
+                        {
+                            if (SelectedPolygon != polygon)
+                            {
+                                currentColor = polygon.Stroke;
+                                polygon.Stroke = Brushes.White;
+                            }
                         }
                     }
                 }
