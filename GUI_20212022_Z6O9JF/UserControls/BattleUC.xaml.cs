@@ -6,7 +6,9 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using WpfAnimatedGif;
 
 namespace GUI_20212022_Z6O9JF.UserControls
 {
@@ -15,6 +17,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// </summary>
     public partial class BattleUC : UserControl
     {
+        static public event EventHandler Explosion;
         IClientLogic clientLogic;
         IGameLogic gameLogic;
         IControlLogic controlLogic;
@@ -26,6 +29,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public BattleUC()
         {
             InitializeComponent();
+            Explosion += ExplosionGif;
             this.DataContext = new BattleViewModel();
             this.gameLogic = (this.DataContext as BattleViewModel).gameLogic;
             this.clientLogic = (this.DataContext as BattleViewModel).clientLogic;
@@ -40,6 +44,15 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 DefenderView();
             }
 
+        }
+
+        public void ExplosionGif(object sender, EventArgs e)
+        {
+            var image = new BitmapImage();
+            image.BeginInit();
+            image.UriSource = new Uri(@"\Resources\Images\Menu\explosion.gif");
+            image.EndInit();
+            ImageBehavior.SetAnimatedSource(img_explosion, image);
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {

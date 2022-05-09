@@ -43,8 +43,8 @@ namespace GUI_20212022_Z6O9JF.Renderer
             {
                 if (size.Width != 0 && size.Height != 0)
                 {
-                    double attackernum = size.Width / 100 * AttackerXPos;
-                    double defendernum = size.Width / 100 * DefenderXPos;
+                    double attackernum = size.Width / 50 * AttackerXPos;
+                    double defendernum = DefenderXPos;
                     switch (battle.Defender.Faction)
                     {
                         case Faction.Viking:
@@ -175,6 +175,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     }
                     if (AttackerXPos==size.Width/2 - size.Width / 16 && AttackerXPos == size.Width / 2 + size.Width / 16)
                     {
+                        BattleUC.Explosion();
                         //drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian1.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(attackernum, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
                     }
                     //robbanó kép

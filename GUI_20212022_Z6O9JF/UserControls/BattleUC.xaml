@@ -66,7 +66,7 @@
                 </Button>
             </Viewbox>
             <Viewbox Grid.Row="2" Grid.Column="2" Grid.RowSpan="2">
-                <Image gif:ImageBehavior.AnimatedSource="\Resources\Images\Menu\explosion.gif" Stretch="Fill"/>
+                <Image x:Name="img_explosion" Stretch="Fill"/>
             </Viewbox>
             <Viewbox Grid.Column="2" Grid.RowSpan="2">
                 <Image x:Name="img_board" Source="\Resources\Images\Menu\button_board_short.png" Width="450" Height="550" VerticalAlignment="Top" Stretch="Fill"/>
