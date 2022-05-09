@@ -299,54 +299,44 @@
             <Viewbox Grid.Column="3" Stretch="Fill">
                 <Image x:Name="img_upgrade" Source="\Resources\Images\Menu\upgrade_background.png" Stretch="Fill" Margin="10,0,10,0"/>
             </Viewbox>
-            <Viewbox Grid.Column="4" HorizontalAlignment="Left">
-                <Button x:Name="btn_upgrade" Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Click="Upgrade_Button_Click" Height="100" Width="210"  HorizontalAlignment="Left" Margin="30,0,0,0">
-                    <TextBlock x:Name="txt_upgrade" Text="Upgrade" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="50" Foreground="{StaticResource greenish_blue}" >
-                        <TextBlock.Effect>
-                            <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
-                        </TextBlock.Effect>
-                    </TextBlock>
-                </Button>
-            </Viewbox>
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+                    <Button x:Name="btn_upgrade" Style="{StaticResource button_image_style}"  Command="{Binding UpgradeVillageCommand}" Click="Upgrade_Button_Click" Height="100" Width="210"  HorizontalAlignment="Left">
+                        <TextBlock x:Name="txt_upgrade" Text="Upgrade" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="50" Foreground="{StaticResource greenish_blue}" >
+                            <TextBlock.Effect>
+                                <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="20"/>
+                            </TextBlock.Effect>
+                        </TextBlock>
+                    </Button>
+                </Viewbox>
+                <Viewbox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right">
+                    <Label Content="-3" FontWeight="Bold" Foreground="{StaticResource greenish_blue}" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                </Viewbox>
+                <Viewbox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left">
+                    <Image Source="\Resources\Images\Resources\gold.png" Width="8" Height="10"/>
+                </Viewbox>
+                <Viewbox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
+                    <Label Content="-2" FontWeight="Bold" Foreground="{StaticResource greenish_blue}" FontFamily="\Resources\#8-bit Limit (BRK)"/>
+                </Viewbox>
+                <Viewbox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left">
+                    <Image Source="\Resources\Images\Resources\wheat.png" Width="8" Height="10"/>
+                </Viewbox>
+            </Grid>
+            
         </Grid>
-        <!--<Viewbox Grid.Column="2" Grid.Row="3">
-            <Button Style="{StaticResource button_image_style}" Command="{Binding SkipTurnCommand}" Width="140" Height="100" Background="Transparent" Click="Button_Click" >
-            <Image x:Name="skip_image" Source="\Resources\Images\Menu\skip_button_unpressed.png" Width="130" Height="100">
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Effect">
-                                    <Setter.Value>
-                                        <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="30"/>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
-        </Button>
-        </Viewbox>-->
-        <!--<Viewbox Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100">
-            <Button Style="{StaticResource button_image_style}" Command="{Binding SettingsCommand}" Background="Transparent" Click="Button_Click" >
-                <Image x:Name="settings_image" Source="\Resources\Images\Other\gear.png" Stretch="Fill">
-                    <Image.Style>
-                        <Style TargetType="{x:Type Image}">
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Effect">
-                                        <Setter.Value>
-                                            <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="30"/>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                </Image>
-            </Button>
-        </Viewbox>-->
         <Viewbox Grid.Column="4" Grid.Row="3" Stretch="fill">
             <Image Source="\Resources\Images\Menu\wood_border.png"/>
         </Viewbox>
@@ -371,7 +361,7 @@
                 <Image x:Name="hourglass_gif" />
             </Viewbox>
             <Viewbox Grid.Column="1" Margin="0,15,0,0">
-                <Label Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontFamily="\Resources\#8-bit Limit (BRK)" Content="{Binding Timer}" FontSize="50" Foreground="Black"></Label>
+                <Label Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  FontFamily="\Resources\#8-bit Limit (BRK)" Content="{Binding Timer}" FontSize="50" Foreground="White"></Label>
             </Viewbox>
         </Grid>
         <ContentControl x:Name="battle_control" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" Content="{Binding BattleView}"/>

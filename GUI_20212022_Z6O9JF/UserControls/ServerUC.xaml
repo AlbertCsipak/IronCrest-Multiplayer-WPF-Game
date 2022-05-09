@@ -76,16 +76,30 @@
         </Viewbox>
 
         <Viewbox Grid.Column="1" Grid.Row="6">
-        <Button x:Name="btn_create_game" Style="{DynamicResource button_text_style}" Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
+            <Button x:Name="btn_create_game" Style="{DynamicResource button_text_style}" Content="CREATE GAME" Foreground="#B3C8B7" Padding="30" Background="Transparent"
                  FontSize="50" FontFamily="Poor Richard" Command="{Binding StartCommand}"
                 BorderBrush="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button_Click"/>
         </Viewbox>
         <Viewbox Grid.Row="6" Grid.Column="2">
-            <Image Source="\Resources\Images\Menu\small_board.png"></Image>
-        </Viewbox>
-        <Viewbox Grid.Row="6" Grid.Column="2">
-            <Button Style="{DynamicResource button_image_style}" Command="{Binding BackCommand}" Content="BACK" Foreground="White" FontSize="80" FontFamily="\Resources\#8-bit Limit (BRK)" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click">
-        </Button>
+            <Button Style="{DynamicResource button_image_style}" Background="Transparent"
+                Command="{Binding BackCommand}"
+                BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Click">
+                <Image x:Name="img_exit" Source="\Resources\Images\Other\back.png">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect ShadowDepth="0" Color="#B3C8B7" Opacity="1" BlurRadius="30"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
         </Viewbox>
     </Grid>
 </UserControl>
