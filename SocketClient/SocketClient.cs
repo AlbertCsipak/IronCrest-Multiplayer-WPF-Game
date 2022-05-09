@@ -53,7 +53,7 @@ namespace SocketClient
         }
         public string DataReceive(int bufferSize = 8192)
         {
-            byte[] buffer = new byte[bufferSize];
+            byte[] buffer = new byte[20000];
             try
             {
                 MySocket.Receive(buffer);
@@ -71,7 +71,7 @@ namespace SocketClient
                 helper[0] = buffer[idx];
                 message = message + Encoding.ASCII.GetString(helper);
                 idx++;
-                if (bufferSize - 1 == idx)
+                if (20000 - 1 == idx)
                 {
                     break;
                 }

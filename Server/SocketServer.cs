@@ -63,7 +63,7 @@ namespace Server
 
                             while (x < turnLength)
                             {
-                                byte[] buffer = new byte[bufferSize];
+                                byte[] buffer = new byte[20000];
                                 item.Receive(buffer);
 
                                 msg = Encoding.ASCII.GetString(buffer);
@@ -78,7 +78,7 @@ namespace Server
                                     helper[0] = buffer[idx];
                                     message = message + Encoding.ASCII.GetString(helper);
                                     idx++;
-                                    if (bufferSize - 1 == idx)
+                                    if (20000 - 1 == idx)
                                     {
                                         break;
                                     }
