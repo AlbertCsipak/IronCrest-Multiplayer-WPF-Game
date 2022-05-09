@@ -395,6 +395,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             ProcessStartInfo server = new ProcessStartInfo();
             server.FileName = "SocketServer.exe";
             server.Arguments = $" {ip} {clients} {port} {map} {turnLength} {bufferSize}";
+            server.CreateNoWindow = true;
             Process.Start(server);
             ClientConnect(ip);
         }

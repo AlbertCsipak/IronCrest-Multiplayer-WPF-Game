@@ -83,7 +83,7 @@ namespace Server
                                         break;
                                     }
                                 }
-                                Console.WriteLine(message);
+                                //Console.WriteLine(message);
 
                                 if (msg.Contains("skip"))
                                 {
@@ -119,6 +119,7 @@ namespace Server
             while (Clients.Count == clients)
             {
                 //:)
+                System.Threading.Thread.Sleep(500);
             }
 
             ServerSocket.Close();
