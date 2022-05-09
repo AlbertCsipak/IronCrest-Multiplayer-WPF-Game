@@ -77,30 +77,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
             dt.Tick += (sender, eventargs) =>
             {
                 SetMovePictures();
-                //if (gameLogic.IsQuestDone())
-                //{
-                //    Menu.Children.Clear();
-                //    Menu.Children.Add(new UserControlMenuItem(itemQuest));
-                //    quest_sound.Open(new Uri("Resources/Music/quest_completed_sound.mp3", UriKind.RelativeOrAbsolute));
-                //    quest_sound.Play();
-                //}
-
                 clientLogic.IsAllQuestsDone();
                 ResourceChanging();
                 OpacityDefault();
                 if (clientLogic.Timer == 60.0)
                 {
-                    //if (!bell)
-                    //{
-                    //    bell = true;
-                    //    bell_sound.Open(new Uri("Resources/Music/bell.mp3", UriKind.RelativeOrAbsolute));
-                    //    bell_sound.Play();
-                    //    //if (player == gameLogic.Game.CurrentGoldMineOwner)
-                    //    //{
-                    //    //    //gameLogic.AddGold();
-                    //    //}
-
-                    //}
                     SetTurnActivities();
 
                     var image = new BitmapImage();

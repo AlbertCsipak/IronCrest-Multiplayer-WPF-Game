@@ -295,7 +295,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             else if (view.Equals("ending"))
             {
-                GameEndView = new GameEndUC();
+                View = new GameEndUC();
             }
             else if (view.Equals("lobby") && socketClient.ClientId != 0)
             {
@@ -343,11 +343,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                     };
                     //player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
                     player.SetupGold(30);
-                    player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
-                    player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
+                    //player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
+                    //player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
                     //player.SetupGold(20);
-                    //player.SetupArmyPower(20);
-                    //player.SetupPopulatiry(20);
+                    player.SetupArmyPower(20);
+                    player.SetupPopulatiry(20);
                     player.SetupStone(20);
                     player.SetupWood(20);
                     player.SetupWheat(20);

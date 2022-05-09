@@ -75,6 +75,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     lbl_result.Content = "Victory!";
                     lbl_result.Visibility = Visibility.Visible;
                     battle_result_sound.Open(new Uri("Resources/Music/victory.mp3", UriKind.RelativeOrAbsolute));
+                    battle_result_sound.Volume = 0.2;
                     battle_result_sound.Play();
                 }
                 else if (player.PlayerID == gameLogic.Game.CurrentBattle.Loser.PlayerID)
@@ -83,6 +84,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     lbl_result.Content = "Defeat!";
                     lbl_result.Visibility = Visibility.Visible;
                     battle_result_sound.Open(new Uri("Resources/Music/defeat.mp3", UriKind.RelativeOrAbsolute));
+                    battle_result_sound.Volume = 0.2;
                     battle_result_sound.Play();
                 }
                 
@@ -116,7 +118,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             btn_ready.Visibility = System.Windows.Visibility.Hidden;
             lbl_counter.Visibility = System.Windows.Visibility.Visible;
             dt_counter = new DispatcherTimer();
-            //dt_movement = new DispatcherTimer();
             dt_counter.Interval = TimeSpan.FromMilliseconds(100);
             int i = 0;
             dt_counter.Tick += (sender, eventargs) =>
@@ -142,20 +143,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
             };
             dt_counter.Start();
-            
-            //if (counter == 0)
-            //{
-            //    dt_counter.Stop();
-            //    dt_movement.Interval = TimeSpan.FromMilliseconds(33);
-            //    dt_movement.Tick += (sender, eventargs) =>
-            //    {
-                    
-            //    };
-            //    dt_movement.Start();
-
-            //}
-
-            
         }
 
         private void UserControl_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
@@ -166,10 +153,5 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             battleDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
         }
-
-        //private void UserControl_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
-        //{
-        //    battleDisplay.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
-        //}
     }
 }
