@@ -29,17 +29,18 @@ namespace GUI_20212022_Z6O9JF.UserControls
         private void volume_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             double volume = volume_slider.Value;
-            MainWindow.game_music.Volume = volume;
+            MainWindow.background_music.Volume = volume;
             if (volume == 0.0)
             {
-                MainWindow.game_music.IsMuted = true;
+                MainWindow.background_music.IsMuted = true;
                 img_mute.Source = new BitmapImage(mutedUri);
             }
             else
             {
-                MainWindow.game_music.IsMuted = false;
+                MainWindow.background_music.IsMuted = false;
                 img_mute.Source = new BitmapImage(unmutedUri);
             }
+
         }
         //private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         //{

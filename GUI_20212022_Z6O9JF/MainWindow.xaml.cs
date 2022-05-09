@@ -18,8 +18,10 @@ namespace GUI_20212022_Z6O9JF
         IGameLogic gameLogic;
         IClientLogic clientLogic;
         public static MediaPlayer background_music = new MediaPlayer();
-        public static MediaPlayer game_music = new MediaPlayer();
+        //public static MediaPlayer game_music = new MediaPlayer();
         public static MediaPlayer background_ambient = new MediaPlayer();
+        public static MediaPlayer button_click_sound = new MediaPlayer();
+
         Cursor c1;
         public MainWindow()
         {
@@ -37,7 +39,7 @@ namespace GUI_20212022_Z6O9JF
         }
         public static void StartMenu()
         {
-            game_music.Stop();
+            background_music.Stop();
             background_ambient.Open(new Uri("Resources/Music/ambient.mp3", UriKind.RelativeOrAbsolute));
             background_ambient.Volume = 0.025;
             background_ambient.Play();
@@ -60,9 +62,9 @@ namespace GUI_20212022_Z6O9JF
         public void StartOfGame(object sender, EventArgs e)
         {
             background_music.Stop();
-            game_music.Open(new Uri("Resources/Music/standard.mp3", UriKind.RelativeOrAbsolute));
-            game_music.Volume = 0.02;
-            game_music.Play();
+            background_music.Open(new Uri("Resources/Music/standard.mp3", UriKind.RelativeOrAbsolute));
+            background_music.Volume = 0.02;
+            background_music.Play();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -84,6 +86,12 @@ namespace GUI_20212022_Z6O9JF
             {
                 clientLogic.ChangeView("ESC");
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            button_click_sound.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
+            button_click_sound.Play();
         }
     }
 }

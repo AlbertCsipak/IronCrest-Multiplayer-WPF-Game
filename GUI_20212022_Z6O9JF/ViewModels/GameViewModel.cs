@@ -19,7 +19,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public object GoldMineView { get { return clientLogic.GoldMineView; } }
         public object BattleView { get { return clientLogic.BattleView; } }
         public object GameEndView { get { return clientLogic.BattleView; } }
-        public object ESCView { get { return clientLogic.ESCView; } }
+        
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
@@ -28,7 +28,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         //public ICommand UpgradeVillageCommand { get; set; }
         public ICommand SkipTurnCommand { get; set; }
 
-        public ICommand SettingsCommand { get; set; }
+        //public ICommand SettingsCommand { get; set; }
         //public ICommand ProduceCommand { get; set; }
         public ICommand TradeCommand { get; set; }
         public Faction SelectedFaction { get { return gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().Faction; } }
@@ -96,7 +96,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             //UpgradeVillageCommand = new RelayCommand(() => gameLogic.UpgradeVillage());
             SkipTurnCommand = new RelayCommand(() => clientLogic.SkipTurn());
 
-            SettingsCommand = new RelayCommand(() => clientLogic.ESCChange("ESC"));
+            //SettingsCommand = new RelayCommand(() => clientLogic.ESCChange("ESC"));
             //ProduceCommand = new RelayCommand(() => gameLogic.GetResources());
             TradeCommand = new RelayCommand(() => clientLogic.TradeViewChange("trade"));
 
@@ -115,7 +115,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("MysteryView");
                 OnPropertyChanged("BattleView");
                 OnPropertyChanged("MysteryHeroView");
-                OnPropertyChanged("ESCView");
+                
                 OnPropertyChanged("Hero1");
                 OnPropertyChanged("Hero2");
                 OnPropertyChanged("GameEndView");

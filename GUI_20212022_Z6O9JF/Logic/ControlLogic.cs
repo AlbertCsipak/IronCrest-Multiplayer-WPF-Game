@@ -122,7 +122,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             foreach (var item in (polygon.Tag as HexagonTile).NeighborCoords())
                             {
                                 Polygon thisPoly = grid.Children[gameLogic.GameMap[item.X, item.Y].ParentId] as Polygon;
-                                if (gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.ocean)
+                                if (gameLogic.GameMap[item.X, item.Y].FieldType != FieldType.ocean && thisPoly!=null)
                                 {
                                     PolygonBorderBrush(thisPoly);
                                 }

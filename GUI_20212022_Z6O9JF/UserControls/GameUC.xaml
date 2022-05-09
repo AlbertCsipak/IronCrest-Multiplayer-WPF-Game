@@ -328,7 +328,7 @@
             </Image>
         </Button>
         </Viewbox>-->
-        <Viewbox Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100">
+        <!--<Viewbox Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100">
             <Button Style="{StaticResource button_image_style}" Command="{Binding SettingsCommand}" Background="Transparent" Click="Button_Click" >
                 <Image x:Name="settings_image" Source="\Resources\Images\Other\gear.png" Stretch="Fill">
                     <Image.Style>
@@ -346,7 +346,7 @@
                     </Image.Style>
                 </Image>
             </Button>
-        </Viewbox>
+        </Viewbox>-->
         <Viewbox Grid.Column="4" Grid.Row="3" Stretch="fill">
             <Image Source="\Resources\Images\Menu\wood_border.png"/>
         </Viewbox>
@@ -379,7 +379,7 @@
         <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" x:Name="mystery_control" Content="{Binding MysteryView}"/>
         <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" x:Name="mysteryhero_control" Content="{Binding MysteryHeroView}"/>
         <ContentControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" x:Name="goldmine_control" Content="{Binding GoldMineView}"/>
-        <ContentControl x:Name="ESC_control" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10" Grid.RowSpan="10" Content="{Binding ESCView}"/>
+        
 
     </Grid>
 </UserControl>

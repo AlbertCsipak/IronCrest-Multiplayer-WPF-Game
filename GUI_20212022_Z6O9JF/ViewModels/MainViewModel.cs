@@ -1,8 +1,10 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Input;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace GUI_20212022_Z6O9JF.ViewModels
 {
@@ -10,6 +12,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
     {
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
+        public ICommand SettingsCommand { get; set; }
+        public object ESCView { get { return clientLogic.ESCView; } }
         public object View
         {
             get { return clientLogic.View; }
@@ -33,9 +37,11 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             this.gameLogic = gameLogic;
             clientLogic.ChangeView("menu");
 
+            SettingsCommand = new RelayCommand(() => clientLogic.ESCChange("ESC"));
             Messenger.Register<MainViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
                 OnPropertyChanged("View");
+                OnPropertyChanged("ESCView");
             });
         }
     }

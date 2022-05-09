@@ -15,15 +15,39 @@
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Image gif:ImageBehavior.AnimatedSource="Resources\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
-        <Label Grid.Row="1" Grid.Column="1" Background="#2C2E46"></Label>
-        <ContentControl Content="{Binding View}" Grid.RowSpan="2" Grid.ColumnSpan="3" ></ContentControl>
+
+        <Image gif:ImageBehavior.AnimatedSource="Resources\Images\Menu\main_background.gif" Stretch="Fill" Grid.ColumnSpan="3" Grid.RowSpan="4"/>
+        <Label Grid.Row="4" Grid.Column="2" Background="#2C2E46"></Label>
+        <ContentControl Content="{Binding View}" Grid.RowSpan="4" Grid.ColumnSpan="3" ></ContentControl>
+        <Viewbox Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100">
+            <Button Style="{StaticResource button_image_style}" Command="{Binding SettingsCommand}" Background="Transparent" Click="Button_Click" >
+                <Image x:Name="settings_image" Source="\Resources\Images\Other\gear.png" Stretch="Fill">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect ShadowDepth="0" Color="Black" Opacity="1" BlurRadius="30"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+        </Viewbox>
+        <ContentControl x:Name="ESC_control" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="4" Content="{Binding ESCView}"/>
     </Grid>
     
 </Window>
