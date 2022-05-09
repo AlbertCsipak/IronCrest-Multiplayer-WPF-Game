@@ -979,8 +979,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                             else if (hexagonTile.Objects.ToList().Any(x => x is Unit && x.OwnerId != ClientID))
                             {
-                            unit.Move(hexagonTile.Position);
-                            Battle(hexagonTile);
+                                Battle(hexagonTile);
+                                if (Game.CurrentBattle.Winner== Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault())
+                                {
+                                    unit.Move(hexagonTile.Position);
+                                }
                                 DecreaseMoves();
                             }
                             //{
@@ -1045,7 +1048,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             {
                 //var enemyPlayer = Game.Players.Where(t => t.PlayerID == defenderenemy.OwnerId).FirstOrDefault();
                 Game.CurrentBattle = new Battle();
-                Game.CurrentBattle.Defender = defenderenemy as Player;
+                Game.CurrentBattle.Defender = defenderenemy;
                 Game.CurrentBattle.Attacker = attackerplayer;
                 ;
             }

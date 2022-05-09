@@ -29,6 +29,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public object GoldMineView { get; set; }
         public object BattleView { get; set; }
         public object ESCView { get; set; }
+        public object GameEndView { get; set; }
         public static EventHandler StartOfTurnEvent;
         public static EventHandler EndOfTurnEvent;
         LastClientEventArgs e = new LastClientEventArgs();
@@ -294,7 +295,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             else if (view.Equals("ending"))
             {
-                View = new GameEndUC();
+                GameEndView = new GameEndUC();
             }
             else if (view.Equals("lobby") && socketClient.ClientId != 0)
             {
