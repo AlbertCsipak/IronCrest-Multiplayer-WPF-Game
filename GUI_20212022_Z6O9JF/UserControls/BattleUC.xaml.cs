@@ -66,40 +66,44 @@ namespace GUI_20212022_Z6O9JF.UserControls
             btn_ready.Visibility = System.Windows.Visibility.Hidden;
             lbl_counter.Visibility = System.Windows.Visibility.Visible;
             dt_counter = new DispatcherTimer();
-            dt_movement = new DispatcherTimer();
-            dt_counter.Interval = TimeSpan.FromMilliseconds(1000);
+            //dt_movement = new DispatcherTimer();
+            dt_counter.Interval = TimeSpan.FromMilliseconds(100);
+            int i = 0;
             dt_counter.Tick += (sender, eventargs) =>
             {
                 if (counter > 0)
                 {
-
-                    lbl_counter.Content = --counter;
-                    buttonSoundEffect.Open(new Uri("Resources/Music/beep.mp3", UriKind.RelativeOrAbsolute));
-                    buttonSoundEffect.Play();
+                    if (i%10==0)
+                    {
+                        lbl_counter.Content = --counter;
+                        buttonSoundEffect.Open(new Uri("Resources/Music/beep.mp3", UriKind.RelativeOrAbsolute));
+                        buttonSoundEffect.Play();
+                    }
                 }
-                if (counter == 0)
-                {
-                    lbl_counter.Content = "BATTLE!";
-
-
-                }
-            };
-            dt_counter.Start();
-            while (counter>0)
-            {
-                Thread.Sleep(100);
-            }
-            if (counter == 0)
-            {
-                dt_counter.Stop();
-                dt_movement.Interval = TimeSpan.FromMilliseconds(33);
-                dt_movement.Tick += (sender, eventargs) =>
+                else
                 {
                     battleDisplay.InvalidateVisual();
-                };
-                dt_movement.Start();
+                    if (!lbl_counter.Content.Equals("BATTLE"))
+                    {
+                        lbl_counter.Content = "BATTLE!";
+                    }
+                }
+                i++;
 
-            }
+            };
+            dt_counter.Start();
+            
+            //if (counter == 0)
+            //{
+            //    dt_counter.Stop();
+            //    dt_movement.Interval = TimeSpan.FromMilliseconds(33);
+            //    dt_movement.Tick += (sender, eventargs) =>
+            //    {
+                    
+            //    };
+            //    dt_movement.Start();
+
+            //}
 
             
         }
