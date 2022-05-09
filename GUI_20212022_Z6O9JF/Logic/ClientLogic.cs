@@ -164,7 +164,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                         if (gameLogic.Game.CurrentBattle != null)
                         {
-                            if (!inBattle && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId)
+                            if (!inBattle && gameLogic.Game.CurrentBattle.Defender!=null && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId)
                             {
                                 inBattle = true;
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => BattleViewChange("battle")));
@@ -346,9 +346,9 @@ namespace GUI_20212022_Z6O9JF.Logic
                     //player.SetupGold(20);
                     //player.SetupArmyPower(20);
                     //player.SetupPopulatiry(20);
-                    player.SetupStone(0);
-                    player.SetupWood(0);
-                    player.SetupWheat(0);
+                    player.SetupStone(20);
+                    player.SetupWood(20);
+                    player.SetupWheat(20);
                     gameLogic.Game.Players.Add(player);
 
                 }
