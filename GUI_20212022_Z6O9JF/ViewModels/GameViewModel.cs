@@ -18,7 +18,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public object MysteryHeroView { get { return clientLogic.MysteryHeroView; } }
         public object GoldMineView { get { return clientLogic.GoldMineView; } }
         public object BattleView { get { return clientLogic.BattleView; } }
-        public object GameEndView { get { return clientLogic.GameEndView("ending"); } }
+        public object GameEndView { get { return clientLogic.GameEndView; } }
         
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
