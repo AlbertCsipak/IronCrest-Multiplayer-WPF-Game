@@ -41,6 +41,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if (gameLogic.Game.CurrentBattle != null)
                             {
                                 clientLogic.BattleViewChange("battle");
+                                //gameLogic.Game.CurrentBattle = null;
                             }
                             if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null)
                             {

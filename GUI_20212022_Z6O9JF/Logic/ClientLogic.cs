@@ -165,7 +165,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                         if (gameLogic.Game.CurrentBattle != null)
                         {
-                            if (!inBattle && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId)
+                            if (!inBattle && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId && gameLogic.Game.CurrentBattle.IsBattleStarted)
                             {
                                 inBattle = true;
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => BattleViewChange("battle")));
@@ -358,23 +358,23 @@ namespace GUI_20212022_Z6O9JF.Logic
                 Unit unit = null;
                 if (gameLogic.Game.Players.Count == 1)
                 {
-                    village = new Village() { Position = new int[] { 2, 2 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
+                    village = new Village() { Position = new int[] { 2, 2 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID, IsBase=true };
                     unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 2, 2 } };
 
                 }
                 else if (gameLogic.Game.Players.Count == 2)
                 {
-                    village = new Village() { Position = new int[] { 8, 18 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
+                    village = new Village() { Position = new int[] { 8, 18 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID, IsBase = true };
                     unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 8, 18 } };
                 }
                 else if (gameLogic.Game.Players.Count == 3)
                 {
-                    village = new Village() { Position = new int[] { 2, 18 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
+                    village = new Village() { Position = new int[] { 2, 18 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID, IsBase = true };
                     unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 2, 18 } };
                 }
                 else if (gameLogic.Game.Players.Count == 4)
                 {
-                    village = new Village() { Position = new int[] { 8, 2 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID };
+                    village = new Village() { Position = new int[] { 8, 2 }, FactionType = faction, CanMove = false, Level = 1, OwnerId = gameLogic.ClientID, IsBase = true };
                     unit = new Unit() { CanMove = true, FactionType = faction, OwnerId = gameLogic.ClientID, Position = new int[] { 8, 2 } };
                 }
                 gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault().Villages.Add(village);

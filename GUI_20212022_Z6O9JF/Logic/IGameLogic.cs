@@ -31,6 +31,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         bool IsQuestDone(int id);
         Queue<MysteryEvent> LoadMysteryEvents();
         List<Trade> LoadTrades();
+        void MakeBattle(int armypower);
         void MakeTrade();
         void MoveUnit(HexagonTile hexagonTile);
         void MysteryBoxEvent(HexagonTile hexagonTile);

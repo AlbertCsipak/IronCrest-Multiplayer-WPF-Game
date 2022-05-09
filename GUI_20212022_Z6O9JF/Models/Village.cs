@@ -8,6 +8,7 @@
         public int Level { get; set; }
         public bool CanMove { get; set; }
         public Faction FactionType { get; set; }
+        public bool IsBase { get; set; }
 
         public Village()
         {

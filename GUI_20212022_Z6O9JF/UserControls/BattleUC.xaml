@@ -45,7 +45,10 @@
             </Grid.RowDefinitions>
             <Image Source="\Resources\Images\Menu\battlebackground.png" Stretch="Fill" Grid.ColumnSpan="5" Grid.RowSpan="4"/>
             <Image Source="\Resources\Images\Menu\frame.png" Grid.ColumnSpan="5" Grid.RowSpan="4" Stretch="Fill"/>
-            <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="3">
+            <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" >
+                <Label x:Name="lbl_result" FontFamily="\Resources\#8-bit Limit (BRK)" FontSize="60"/>
+            </Viewbox>
+                <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="3">
                 <Button Style="{DynamicResource button_image_style}" Background="Transparent" Command="{Binding ExitCommand}" Width="10" Height="10"
                 BorderBrush="Transparent" Click="Button_Click" >
                     <Image x:Name="img_exit" Source="\Resources\Images\Other\exit.png" Stretch="Fill">
@@ -66,7 +69,7 @@
                 </Button>
             </Viewbox>
             <Viewbox Grid.Row="2" Grid.Column="2" Grid.RowSpan="2">
-                <Image x:Name="img_explosion" Stretch="Fill"/>
+                <Image x:Name="img_explosion" Stretch="Fill" gif:ImageBehavior.RepeatBehavior="1x"/>
             </Viewbox>
             <Viewbox Grid.Column="2" Grid.RowSpan="2">
                 <Image x:Name="img_board" Source="\Resources\Images\Menu\button_board_short.png" Width="450" Height="550" VerticalAlignment="Top" Stretch="Fill"/>

@@ -75,10 +75,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 if (CurrentBattle != null)
                 {
                     CurrentBattle.IsBattleStarted = true;
+                    gameLogic.MakeBattle(SelectedNumber);
                 }
-
-                //start the battle animation
-                //BattleDisplay.cs
             });
             ExitCommand = new RelayCommand(() =>
             {

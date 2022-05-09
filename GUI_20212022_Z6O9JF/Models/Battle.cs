@@ -5,6 +5,8 @@
         public Player Attacker { get; set; }
         public Player Defender { get; set; }
         public Player Winner { get; set; }
+        public Player Loser { get; set; }
         public bool IsBattleStarted { get; set; }
+        public HexagonTile BattleLocation { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
         IGameLogic gameLogic;
         IControlLogic controlLogic;
         static public event EventHandler Explosion;
+        public static bool IsExplosionCalled;
         Size size;
         Grid grid;
         Battle battle { get { return gameLogic.Game.CurrentBattle; } }
@@ -31,7 +32,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
             this.controlLogic = controlLogic;
             sizeChanged = true;
             controlLogic.grid = grid;
-            AttackerXPos = 0;
+            AttackerXPos = 1;
             DefenderXPos = (int)size.Width;
         }
         public void Resize(Size size)
@@ -41,12 +42,16 @@ namespace GUI_20212022_Z6O9JF.Renderer
         }
         protected override void OnRender(DrawingContext drawingContext)
         {
+            if (DefenderXPos==0)
+            {
+                DefenderXPos = 49;
+            }
             if (gameLogic.Game.CurrentBattle.IsBattleStarted)
             {
-                if (size.Width != 0 && size.Height != 0)
+                if (size.Width != 0 && size.Height != 0 && !IsExplosionCalled)
                 {
-                    double attackernum = size.Width / 50 * AttackerXPos;
-                    double defendernum = DefenderXPos;
+                    double attackernum = (size.Width / 50 * AttackerXPos) + size.Width * 0.2;
+                    double defendernum = (size.Width /50 * DefenderXPos) - size.Width * 0.2;
                     switch (battle.Defender.Faction)
                     {
                         case Faction.Viking:
@@ -167,20 +172,19 @@ namespace GUI_20212022_Z6O9JF.Renderer
                             }
                             break;
                     }
-                    if (attackernum <= size.Width / 2)
+                    if (attackernum < size.Width / 2 )
                     {
                         AttackerXPos++;
                     }
-                    if (defendernum >= size.Width / 2)
+                    if (defendernum > size.Width / 2 )
                     {
                         DefenderXPos--;
                     }
-                    if (AttackerXPos==size.Width/2 - size.Width / 16 && AttackerXPos == size.Width / 2 + size.Width / 16)
+                    if (attackernum >= (size.Width/2) && defendernum <= (size.Width / 2 ) && !IsExplosionCalled)
                     {
+                        IsExplosionCalled = true;
                         Explosion?.Invoke(this, EventArgs.Empty);
-                        //drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Resources", "Images", "Characters", "walking_arabian1.png"), UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(attackernum, size.Height / 10 * 5.8), new Size(size.Width / 16, size.Height / 7)));
                     }
-                    //robbanó kép
                 }
             }
             sizeChanged = false;

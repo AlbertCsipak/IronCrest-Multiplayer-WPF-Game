@@ -25,6 +25,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         DispatcherTimer dt_movement;
         MediaPlayer counterSoundEffect = new MediaPlayer();
         MediaPlayer buttonSoundEffect = new MediaPlayer();
+        MediaPlayer battle_result_sound = new MediaPlayer();
         int counter = 4;
         public BattleUC()
         {
@@ -35,24 +36,58 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.clientLogic = (this.DataContext as BattleViewModel).clientLogic;
             this.controlLogic = (this.DataContext as BattleViewModel).controlLogic;
             battleDisplay.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
-            if (gameLogic.Game.CurrentBattle.Attacker == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault())
+            if (gameLogic.Game.CurrentBattle.Attacker.PlayerID == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().PlayerID)
             {
-                lbl_counter.Visibility = System.Windows.Visibility.Hidden;
+                lbl_counter.Visibility = Visibility.Hidden;
+                lbl_result.Visibility = Visibility.Hidden;
             }
-            if (gameLogic.Game.CurrentBattle.Defender == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault())
+            if (gameLogic.Game.CurrentBattle.Defender.PlayerID == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().PlayerID)
             {
                 DefenderView();
+                dt_counter = new DispatcherTimer();
+                dt_counter.Interval = TimeSpan.FromMilliseconds(100);
+                int i = 0;
+                dt_counter.Tick += (sender, eventargs) =>
+                {
+                    if (gameLogic.Game.CurrentBattle.IsBattleStarted)
+                    {
+                        battleDisplay.InvalidateVisual();
+                    }
+                };
+                dt_counter.Start();
             }
 
         }
 
         public void ExplosionGif(object sender, EventArgs e)
         {
-            var image = new BitmapImage();
-            image.BeginInit();
-            image.UriSource = new Uri(@"\Resources\Images\Menu\explosion.gif");
-            image.EndInit();
-            ImageBehavior.SetAnimatedSource(img_explosion, image);
+            if (BattleDisplay.IsExplosionCalled)
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.UriSource = new Uri(@"\Resources\Images\Menu\explosion.gif", UriKind.Relative);
+                image.EndInit();
+                ImageBehavior.SetAnimatedSource(img_explosion, image);
+                var player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
+                if (player.PlayerID==gameLogic.Game.CurrentBattle.Winner.PlayerID)
+                {
+                    btn_ready.Visibility = Visibility.Hidden;
+                    lbl_result.Content = "Victory!";
+                    lbl_result.Visibility = Visibility.Visible;
+                    battle_result_sound.Open(new Uri("Resources/Music/victory.mp3", UriKind.RelativeOrAbsolute));
+                    battle_result_sound.Play();
+                }
+                else if (player.PlayerID == gameLogic.Game.CurrentBattle.Loser.PlayerID)
+                {
+                    btn_ready.Visibility = Visibility.Hidden;
+                    lbl_result.Content = "Defeat!";
+                    lbl_result.Visibility = Visibility.Visible;
+                    battle_result_sound.Open(new Uri("Resources/Music/defeat.mp3", UriKind.RelativeOrAbsolute));
+                    battle_result_sound.Play();
+                }
+                
+                //clientLogic.BattleViewChange("");
+            }
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -64,9 +99,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
         {
             img_board.Visibility = Visibility.Hidden;
             btn_left.Visibility = Visibility.Hidden;
-            btn_ready.Visibility = Visibility.Hidden;
+            btn_right.Visibility = Visibility.Hidden;
             btn_ready.Visibility = Visibility.Hidden;
             lbl_counter.Visibility = Visibility.Hidden;
+            img_armypowernum.Visibility = Visibility.Hidden;
+            lbl_result.Visibility = Visibility.Hidden;
         }
         private void Ready_Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
