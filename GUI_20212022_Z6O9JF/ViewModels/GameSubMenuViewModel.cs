@@ -3,6 +3,7 @@ using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -38,8 +39,11 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             });
             ExitCommand = new RelayCommand(() =>
             {
-                clientLogic.ChangeView("menu");
-                MainWindow.StartMenu();
+                ProcessStartInfo uj = new ProcessStartInfo();
+                uj.FileName = "GUI_20212022_Z6O9JF.exe";
+                Process.Start(uj);
+                System.Threading.Thread.Sleep(1500);
+                Application.Current.Shutdown();
             });
 
             Messenger.Register<GameSubMenuViewModel, string, string>(this, "Base", (recipient, msg) =>
