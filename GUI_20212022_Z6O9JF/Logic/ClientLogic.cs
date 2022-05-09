@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace GUI_20212022_Z6O9JF.Logic
@@ -37,7 +36,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public bool CanSend
         {
             get { return canSend; }
-            set 
+            set
             {
                 bool lastValue = canSend;
                 canSend = value;
@@ -68,6 +67,9 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void YourTurn()
         {
+            //var player = gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault();
+            //player.RecentTurnActivity = player.TurnActivity;
+            //player.TurnActivity = TurnActivity.Init;
             gameLogic.AddGold();
         }
 

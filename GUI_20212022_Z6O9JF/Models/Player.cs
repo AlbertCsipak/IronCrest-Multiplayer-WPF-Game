@@ -11,6 +11,8 @@ namespace GUI_20212022_Z6O9JF.Models
         public string Name { get; set; }
         public Faction Faction { get; set; }
         public TurnActivity TurnActivity { get; set; }
+        //public TurnActivity RecentTurnActivity { get; set; }
+        public bool IsRecentTurnActivityMove;
         public bool GoldMine { get; set; }
         public bool HasEnteredGoldMine { get; set; }
         public int DefaultNumOfMoves { get; set; }
@@ -134,7 +136,7 @@ namespace GUI_20212022_Z6O9JF.Models
             //QuestsDone = 0;
             Villages = new List<Village>();
             TurnActivity = TurnActivity.Init;
-            ResourceChanges = new ObservableCollection<int>() {0,0,0,0,0,0 };
+            ResourceChanges = new ObservableCollection<int>() { 0, 0, 0, 0, 0, 0 };
         }
     }
 }

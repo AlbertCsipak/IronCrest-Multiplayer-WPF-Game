@@ -1,6 +1,5 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using GUI_20212022_Z6O9JF.ViewModels;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 

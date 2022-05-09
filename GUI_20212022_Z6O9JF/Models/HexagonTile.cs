@@ -48,7 +48,7 @@ namespace GUI_20212022_Z6O9JF.Models
             switch (FieldType)
             {
                 case FieldType.mountain:
-                    player.Stone+=unit.Level;
+                    player.Stone += unit.Level;
                     break;
                 case FieldType.forest:
                     player.Wood += unit.Level;

@@ -12,6 +12,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         IClientLogic clientLogic;
         Polygon SelectedPolygon;
         Brush currentColor;
+
         public Grid grid { get; set; }
         public ControlLogic(IGameLogic gameLogic, IClientLogic clientLogic)
         {
@@ -21,84 +22,86 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var player = gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
-            Polygon polygon = sender as Polygon;
-            if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves != 0))
+            if (player.TurnActivity == TurnActivity.Move)
             {
-                if ((polygon.Tag as HexagonTile).FieldType == FieldType.goldMine && !gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
+                Polygon polygon = sender as Polygon;
+                if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves != 0))
                 {
-                    clientLogic.GoldMineViewChange("goldmine");
-                    gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine = true;
-                    gameLogic.Game.CurrentGoldMineOwner = gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
-                }
-                if (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
-                {
-                    if (SelectedPolygon != null && SelectedPolygon != polygon)
+                    if ((polygon.Tag as HexagonTile).FieldType == FieldType.goldMine && !gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
                     {
-                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
-                        if (gameLogic.Game.CurrentBattle != null)
-                        {
-                            clientLogic.BattleViewChange("battle");
-                        }
-                        if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null)
-                        {
-                            gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
-                            if (gameLogic.CurrentMystery != null)
-                            {
-                                clientLogic.MysteryViewChange("mystery");
-                            }
-                            if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
-                            {
-                                clientLogic.MysteryHeroViewChange("mysteryHero");
-                                gameLogic.FirstHero = null;
-                                gameLogic.SecondaryHero = null;
-                            }
-                            if ((polygon.Tag as HexagonTile).Compass != null)
-                            {
-                                gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
-                                gameLogic.ClearCompass(polygon.Tag as HexagonTile);
-                                clientLogic.TradeViewChange("trade");
-                            }
-                        }
-                        ClearSelections();
-                        gameLogic.SelectedHexagonTile = null;
+                        clientLogic.GoldMineViewChange("goldmine");
+                        gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine = true;
+                        gameLogic.Game.CurrentGoldMineOwner = gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
                     }
-
-                }
-                else
-                {
-                    if (SelectedPolygon != null && SelectedPolygon != polygon)
+                    if (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().Faction == Faction.Viking)
                     {
-                        gameLogic.MoveUnit(polygon.Tag as HexagonTile);
-                        if (gameLogic.Game.CurrentBattle != null)
+                        if (SelectedPolygon != null && SelectedPolygon != polygon)
                         {
-                            clientLogic.BattleViewChange("battle");
+                            gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                            if (gameLogic.Game.CurrentBattle != null)
+                            {
+                                clientLogic.BattleViewChange("battle");
+                            }
+                            if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null && player.RemainingMoves!=0)
+                            {
+                                gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
+                                if (gameLogic.CurrentMystery != null)
+                                {
+                                    clientLogic.MysteryViewChange("mystery");
+                                }
+                                if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
+                                {
+                                    clientLogic.MysteryHeroViewChange("mysteryHero");
+                                    gameLogic.FirstHero = null;
+                                    gameLogic.SecondaryHero = null;
+                                }
+                                if ((polygon.Tag as HexagonTile).Compass != null)
+                                {
+                                    gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
+                                    gameLogic.ClearCompass(polygon.Tag as HexagonTile);
+                                    clientLogic.TradeViewChange("trade");
+                                }
+                            }
+                            ClearSelections();
+                            gameLogic.SelectedHexagonTile = null;
                         }
-                        if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null)
+
+                    }
+                    else
+                    {
+                        if (SelectedPolygon != null && SelectedPolygon != polygon)
                         {
-                            gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
-                            if (gameLogic.CurrentMystery != null)
+                            gameLogic.MoveUnit(polygon.Tag as HexagonTile);
+                            if (gameLogic.Game.CurrentBattle != null)
                             {
-                                clientLogic.MysteryViewChange("mystery");
+                                clientLogic.BattleViewChange("battle");
                             }
-                            if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
+                            if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null && player.RemainingMoves != 0)
                             {
-                                clientLogic.MysteryHeroViewChange("mysteryHero");
-                                gameLogic.FirstHero = null;
-                                gameLogic.SecondaryHero = null;
+                                gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
+                                if (gameLogic.CurrentMystery != null)
+                                {
+                                    clientLogic.MysteryViewChange("mystery");
+                                }
+                                if (gameLogic.FirstHero != null || gameLogic.SecondaryHero != null)
+                                {
+                                    clientLogic.MysteryHeroViewChange("mysteryHero");
+                                    gameLogic.FirstHero = null;
+                                    gameLogic.SecondaryHero = null;
+                                }
+                                if ((polygon.Tag as HexagonTile).Compass != null)
+                                {
+                                    gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
+                                    gameLogic.ClearCompass(polygon.Tag as HexagonTile);
+                                    clientLogic.TradeViewChange("trade");
+                                }
                             }
-                            if ((polygon.Tag as HexagonTile).Compass != null)
-                            {
-                                gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
-                                gameLogic.ClearCompass(polygon.Tag as HexagonTile);
-                                clientLogic.TradeViewChange("trade");
-                            }
+                            ClearSelections();
+                            gameLogic.SelectedHexagonTile = null;
                         }
-                        ClearSelections();
-                        gameLogic.SelectedHexagonTile = null;
                     }
                 }
             }
-
 
         }
         public void Polygon_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -189,7 +192,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void Polygon_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             Polygon polygon = sender as Polygon;
-            
+
             if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
             {
                 if (gameLogic.Game.Players != null)
