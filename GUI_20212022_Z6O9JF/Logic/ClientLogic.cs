@@ -164,7 +164,7 @@ namespace GUI_20212022_Z6O9JF.Logic
 
                         if (gameLogic.Game.CurrentBattle != null)
                         {
-                            if (!inBattle && gameLogic.Game.CurrentBattle.Defender!=null && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId)
+                            if (!inBattle && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId)
                             {
                                 inBattle = true;
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => BattleViewChange("battle")));
@@ -340,7 +340,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Trade = null,
                         HasEnteredGoldMine = false
                     };
-                    player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
+                    //player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
+                    player.SetupGold(30);
                     player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
                     player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
                     //player.SetupGold(20);

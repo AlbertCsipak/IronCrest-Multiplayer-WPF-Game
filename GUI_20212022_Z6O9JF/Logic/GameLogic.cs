@@ -979,7 +979,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                             }
                             else if (hexagonTile.Objects.ToList().Any(x => x is Unit && x.OwnerId != ClientID))
                             {
-                                Battle(hexagonTile);
+                            unit.Move(hexagonTile.Position);
+                            Battle(hexagonTile);
                                 DecreaseMoves();
                             }
                             //{
@@ -1039,7 +1040,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void Battle(HexagonTile hexagonTile)
         {
             var attackerplayer = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            var defenderenemy = hexagonTile.Objects.Where(t => t is Unit && t.FactionType != attackerplayer.Faction).FirstOrDefault();
+            var defenderenemy = Game.Players.Where(x => x.Units.Any(x => x.Position == hexagonTile.Position) && x.Faction != attackerplayer.Faction).FirstOrDefault();
             if (defenderenemy != null)
             {
                 //var enemyPlayer = Game.Players.Where(t => t.PlayerID == defenderenemy.OwnerId).FirstOrDefault();

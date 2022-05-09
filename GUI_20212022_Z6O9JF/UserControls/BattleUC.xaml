@@ -43,6 +43,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <Image Source="\Resources\Images\Menu\battlebackground.png" Stretch="Fill" Grid.ColumnSpan="5" Grid.RowSpan="4"/>
+            <Image Source="\Resources\Images\Menu\frame.png" Grid.ColumnSpan="5" Grid.RowSpan="4" Stretch="Fill"/>
             <Viewbox VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Row="3" Grid.Column="3">
                 <Button Style="{DynamicResource button_image_style}" Background="Transparent" Command="{Binding ExitCommand}" Width="10" Height="10"
                 BorderBrush="Transparent" Click="Button_Click" >
@@ -110,6 +111,6 @@
                 <renderer:BattleDisplay x:Name="battleDisplay"/>
             </Grid>
         </Grid>
-        <Image Source="\Resources\Images\Menu\frame.png" Grid.Row="1" Grid.Column="1" Stretch="Fill"/>
+        
     </Grid>
 </UserControl>
