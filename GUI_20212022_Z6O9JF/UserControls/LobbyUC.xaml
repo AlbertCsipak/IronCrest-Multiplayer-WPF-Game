@@ -63,10 +63,10 @@
             </Viewbox>
 
         </Grid>
-        <TextBlock Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Text="{Binding Ability}" Foreground="#B3C8B7" FontSize="50" FontFamily="Poor Richard" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Text="{Binding Ability}" Foreground="#B3C8B7" FontSize="35" FontFamily="Poor Richard" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Viewbox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" >
         <StackPanel>
-            <Label Content="NAME" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="35" FontFamily="Poor Richard"></Label>
+            <Label Content="NAME" Foreground="#B3C8B7" HorizontalContentAlignment="Center" FontSize="50" FontFamily="Poor Richard"></Label>
             <TextBox Text="{Binding Name}" Height="50" Width="200" FontSize="40" Background="Transparent" BorderBrush="#B3C8B7" BorderThickness="3"
                      FontFamily="Poor Richard"  HorizontalContentAlignment="Center"
                      Foreground="#B3C8B7" VerticalContentAlignment="Center"></TextBox>
