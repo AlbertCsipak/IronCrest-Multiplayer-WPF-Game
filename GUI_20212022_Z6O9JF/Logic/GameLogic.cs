@@ -107,7 +107,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     {
                         int i = Random.Next(0, map.GetLength(0));
                         int j = Random.Next(0, map.GetLength(1));
-                        if (map[i, j].FieldType == FieldType.grass && map[i, j].Compass == null)
+                        if (map[i, j].FieldType == FieldType.grass && !map[i, j].Objects.Any(x=>x is Village) && map[i, j].Compass == null)
                         {
                             map[i, j].Compass = item;
                             item.Position[0] = i;
