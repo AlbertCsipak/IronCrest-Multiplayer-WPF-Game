@@ -19,7 +19,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public object GoldMineView { get { return clientLogic.GoldMineView; } }
         public object BattleView { get { return clientLogic.BattleView; } }
         public object GameEndView { get { return clientLogic.GameEndView; } }
-        
+
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
@@ -115,7 +115,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
                 OnPropertyChanged("MysteryView");
                 OnPropertyChanged("BattleView");
                 OnPropertyChanged("MysteryHeroView");
-                
+
                 OnPropertyChanged("Hero1");
                 OnPropertyChanged("Hero2");
                 OnPropertyChanged("GameEndView");

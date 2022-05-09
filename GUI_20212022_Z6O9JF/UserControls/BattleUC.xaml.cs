@@ -1,6 +1,7 @@
 ﻿using GUI_20212022_Z6O9JF.Logic;
 using GUI_20212022_Z6O9JF.ViewModels;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -29,7 +30,14 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.clientLogic = (this.DataContext as BattleViewModel).clientLogic;
             this.controlLogic = (this.DataContext as BattleViewModel).controlLogic;
             battleDisplay.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
-            lbl_counter.Visibility = System.Windows.Visibility.Hidden;
+            if (gameLogic.Game.CurrentBattle.Attacker == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault())
+            {
+                lbl_counter.Visibility = System.Windows.Visibility.Hidden;
+            }
+            if (gameLogic.Game.CurrentBattle.Defender == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault())
+            {
+                DefenderView();
+            }
 
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -44,6 +52,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             btn_left.Visibility = Visibility.Hidden;
             btn_ready.Visibility = Visibility.Hidden;
             btn_ready.Visibility = Visibility.Hidden;
+            lbl_counter.Visibility = Visibility.Hidden;
         }
         private void Ready_Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -57,7 +66,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             lbl_counter.Visibility = System.Windows.Visibility.Visible;
             dt_counter = new DispatcherTimer();
             dt_movement = new DispatcherTimer();
-            dt_counter.Interval = TimeSpan.FromMilliseconds(1000);
+            dt_counter.Interval = TimeSpan.FromMilliseconds(50);
             dt_counter.Tick += (sender, eventargs) =>
             {
                 if (counter > 0)
@@ -73,6 +82,10 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
                 }
             };
+            dt_movement.Tick += (sender, eventargs) =>
+            {
+                battleDisplay.InvalidateVisual();
+            };
             dt_counter.Start();
             if (counter == 0)
             {
@@ -81,14 +94,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 dt_movement.Start();
             }
 
-            dt_movement.Tick += (sender, eventargs) =>
-            {
-                battleDisplay.InvalidateVisual();
-            };
-
-
-
-
+            
         }
 
         private void UserControl_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)

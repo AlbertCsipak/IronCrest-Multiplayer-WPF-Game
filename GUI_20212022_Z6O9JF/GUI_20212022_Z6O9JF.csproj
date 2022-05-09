@@ -116,6 +116,7 @@
     <None Remove="Resources\Images\Menu\ducks2.png" />
     <None Remove="Resources\Images\Menu\ending_background.png" />
     <None Remove="Resources\Images\Menu\ESC_background.png" />
+    <None Remove="Resources\Images\Menu\explosion.gif" />
     <None Remove="Resources\Images\Menu\flag.png" />
     <None Remove="Resources\Images\Menu\flag_darken.png" />
     <None Remove="Resources\Images\Menu\flag_disabled.png" />
@@ -486,6 +487,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\ESC_background.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu\explosion.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Menu\flag_disabled.png">

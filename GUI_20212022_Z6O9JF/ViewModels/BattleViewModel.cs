@@ -88,8 +88,8 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             Messenger.Register<BattleViewModel, string, string>(this, "Base", (recipient, msg) =>
             {
                 OnPropertyChanged("SelectedNumber");
-                OnPropertyChanged("Hero1");
-                OnPropertyChanged("Hero2");
+                //OnPropertyChanged("Hero1");
+                //OnPropertyChanged("Hero2");
             });
         }
     }
