@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace GUI_20212022_Z6O9JF.Logic
 {
-    public class GameLogic
+    public class GameLogic : IGameLogic
     {
         IMessenger messenger;
         public int ClientID { get; set; }
@@ -102,11 +102,11 @@ namespace GUI_20212022_Z6O9JF.Logic
                 Game.Trades = LoadTrades();
                 foreach (var item in Game.Trades)
                 {
-                    while (item.Position[0]==0)
+                    while (item.Position[0] == 0)
                     {
                         int i = Random.Next(0, GameMap.GetLength(0));
                         int j = Random.Next(0, GameMap.GetLength(1));
-                        if (GameMap[i,j].FieldType==FieldType.grass&&GameMap[i,j].Compass==null)
+                        if (GameMap[i, j].FieldType == FieldType.grass && GameMap[i, j].Compass == null)
                         {
                             item.Position[0] = i;
                             item.Position[1] = j;
@@ -909,7 +909,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void AddGold()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            if (player!=null && Game.CurrentGoldMineOwner==player)
+            if (player != null && Game.CurrentGoldMineOwner == player)
             {
                 if (player.Faction == Faction.Mongolian)
                 {
@@ -917,7 +917,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 else
                 {
-                    Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold+=GameMap[5,10].Objects.Where(x=>x is Unit).FirstOrDefault().Level;
+                    Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += GameMap[5, 10].Objects.Where(x => x is Unit).FirstOrDefault().Level;
                 }
             }
         }
@@ -936,7 +936,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 if (points.Contains(point))
                 {
                     var unit = SelectedHexagonTile.Objects.Where(t => t is Unit && t.OwnerId == ClientID).FirstOrDefault();
-                    
+
                     if (unit != null && player.RemainingMoves != 0)
                     {
                         if (hexagonTile.FieldType == FieldType.goldMine)
@@ -950,7 +950,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (hexagonTile.Objects.ToList().Count == 0)
                         {
                             unit.Move(hexagonTile.Position);
-                            
+
                             hexagonTile.Objects.Add(unit);
                             hexagonTile.OwnerId = unit.OwnerId;
                             SelectedHexagonTile.Objects.Remove(unit);
