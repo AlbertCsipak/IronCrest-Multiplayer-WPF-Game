@@ -24,7 +24,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public MysteryEvent CurrentMystery { get; set; }
         public Hero FirstHero { get; set; }
         public Hero SecondaryHero { get; set; }
-        public static Random Random;
+        public static Random Random = new Random();
 
         public bool IsGameEnded;
 
@@ -104,15 +104,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     while (item.Position[0] == 0)
                     {
-                        int i = Random.Next(0, GameMap.GetLength(0));
-                        int j = Random.Next(0, GameMap.GetLength(1));
-                        if (GameMap[i, j].FieldType == FieldType.grass && GameMap[i, j].Compass == null)
+                        int i = Random.Next(0, map.GetLength(0));
+                        int j = Random.Next(0, map.GetLength(1));
+                        if (map[i, j].FieldType == FieldType.grass && map[i, j].Compass == null)
                         {
+                            map[i, j].Compass = item;
                             item.Position[0] = i;
                             item.Position[1] = j;
                         }
                     }
-
                 }
             }
             return map;
@@ -658,10 +658,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                             GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
                             GameMap[item.Position[0], item.Position[1]].OwnerId = item.OwnerId;
                         }
-                        if (player.Trade != null)
-                        {
-                            GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = null;
-                        }
                         //if (player.Trade!=null)
                         //{
                         //    GameMap[player.Trade.Position[0], player.Trade.Position[1]].Compass = player.Trade;
@@ -670,7 +666,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 foreach (var item in Game.Trades)
                 {
-                    GameMap[item.Position[0], item.Position[1]].Compass = item;
+                    if (item.OwnerId==0)
+                    {
+                        GameMap[item.Position[0], item.Position[1]].Compass = item;
+                    }
                 }
             }
         }

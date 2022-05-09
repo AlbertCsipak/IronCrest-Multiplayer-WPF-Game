@@ -55,6 +55,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             if ((polygon.Tag as HexagonTile).Compass != null)
                             {
                                 gameLogic.CurrentTrade = (polygon.Tag as HexagonTile).Compass;
+                                (polygon.Tag as HexagonTile).Compass.OwnerId = player.PlayerID;
                                 gameLogic.ClearCompass(polygon.Tag as HexagonTile);
                                 clientLogic.TradeViewChange("trade");
                             }

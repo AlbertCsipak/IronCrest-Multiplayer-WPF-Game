@@ -124,9 +124,6 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 case FieldType.goldMine:
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/goldMine.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                     break;
-                                case FieldType.compassField:
-                                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Map/grass.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
-                                    break;
                                 default:
                                     break;
                             }
@@ -170,7 +167,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Map/{item.FactionType}_village_lvl{(item as Village).Level}.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), rect);
                                 }
                             }
-                            if (gameLogic.GameMap[i, j].Compass != null)
+                            if (gameLogic.GameMap[i, j].Compass != null && gameLogic.GameMap[i, j].Compass.OwnerId==0)
                             {
                                 drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri("Resources/Images/Other/compass.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(new Point(HexagonPoints[i, j][1] + (width / 2 * 1.3) - (width / 2 * 1.7), HexagonPoints[i, j][0] - height / 2 * 1.1 + (height * 0.5)), new Size(width * 0.4, height * 0.4)));
                             }
