@@ -924,8 +924,8 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void MoveUnit(HexagonTile hexagonTile)
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            if (!player.IsRecentTurnActivityMove && player.RemainingMoves!=0)
-            {
+            //if (!player.IsRecentTurnActivityMove && player.RemainingMoves!=0)
+            //{
                 Move?.Invoke(this, EventArgs.Empty);
                 if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
                 {
@@ -1033,7 +1033,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     player.IsRecentTurnActivityMove = true;
                 }
-            }
+            //}
 
         }
         public void Battle(HexagonTile hexagonTile)

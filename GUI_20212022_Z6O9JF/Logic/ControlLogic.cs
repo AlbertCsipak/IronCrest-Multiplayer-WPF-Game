@@ -22,10 +22,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void Polygon_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var player = gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault();
-            if (player.TurnActivity == TurnActivity.Move)
+            if (player.TurnActivity == TurnActivity.Move && player.RemainingMoves!=0 && !player.IsRecentTurnActivityMove)
             {
                 Polygon polygon = sender as Polygon;
-                if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean && (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().RemainingMoves != 0))
+                if ((polygon.Tag as HexagonTile).FieldType != FieldType.ocean)
                 {
                     if ((polygon.Tag as HexagonTile).FieldType == FieldType.goldMine && !gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).FirstOrDefault().HasEnteredGoldMine)
                     {
@@ -42,7 +42,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                             {
                                 clientLogic.BattleViewChange("battle");
                             }
-                            if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null && player.RemainingMoves!=0)
+                            if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null)
                             {
                                 gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
                                 if (gameLogic.CurrentMystery != null)
@@ -69,14 +69,14 @@ namespace GUI_20212022_Z6O9JF.Logic
                     }
                     else
                     {
-                        if (SelectedPolygon != null && SelectedPolygon != polygon)
+                        if (SelectedPolygon != null && SelectedPolygon != polygon && player.RemainingMoves != 0)
                         {
                             gameLogic.MoveUnit(polygon.Tag as HexagonTile);
                             if (gameLogic.Game.CurrentBattle != null)
                             {
                                 clientLogic.BattleViewChange("battle");
                             }
-                            if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null && player.RemainingMoves != 0)
+                            if (gameLogic.Game.CurrentBattle == null && gameLogic.SelectedHexagonTile != null)
                             {
                                 gameLogic.MysteryBoxEvent(polygon.Tag as HexagonTile);
                                 if (gameLogic.CurrentMystery != null)
