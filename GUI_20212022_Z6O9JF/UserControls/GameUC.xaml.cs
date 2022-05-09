@@ -7,11 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
@@ -34,6 +31,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public MediaPlayer bell_sound = new MediaPlayer();
         public MediaPlayer quest_sound = new MediaPlayer();
         public MediaPlayer placement = new MediaPlayer();
+        public MediaPlayer upgrade_sound = new MediaPlayer();
+        public MediaPlayer move_sound = new MediaPlayer();
         DispatcherTimer dt;
         bool IsResourceChanged;
         List<SubItem<Quest>> quests;
@@ -45,6 +44,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             InitializeComponent();
             ClientLogic.StartOfTurnEvent += StartOfTurn;
             ClientLogic.EndOfTurnEvent += EndOfTurn;
+            GameLogic.Move += Move;
             this.DataContext = new GameViewModel();
             this.gameLogic = (this.DataContext as GameViewModel).gameLogic;
             this.clientLogic = (this.DataContext as GameViewModel).clientLogic;
@@ -71,7 +71,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(0)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(1)));
             quests.Add(new SubItem<Quest>(player.Quests.ElementAt(2)));
-            itemQuest= new ItemMenu("Quests", quests, PackIconKind.ViewDashboard);
+            itemQuest = new ItemMenu("Quests", quests, PackIconKind.ViewDashboard);
 
             Menu.Children.Add(new UserControlMenuItem(itemQuest));
             dt.Tick += (sender, eventargs) =>
@@ -120,18 +120,26 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
 
         }
+        public void Move(object sender, EventArgs e)
+        {
+            move_sound.Open(new Uri("Resources/Music/move_sound.mp3", UriKind.RelativeOrAbsolute));
+            move_sound.Play();
+        }
+
         public void StartOfTurn(object sender, EventArgs e)
         {
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => {
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
+            {
                 bell_sound.Open(new Uri("Resources/Music/bell.mp3", UriKind.RelativeOrAbsolute));
                 bell_sound.Play();
             }));
         }
-        public void EndOfTurn(object sender, EventArgs e )
+        public void EndOfTurn(object sender, EventArgs e)
         {
             if (gameLogic.IsQuestDone((e as LastClientEventArgs).lastClientId))
             {
-                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => {
+                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
+                {
                     Menu.Children.Clear();
                     Menu.Children.Add(new UserControlMenuItem(itemQuest));
                     quest_sound.Open(new Uri("Resources/Music/quest_completed_sound.mp3", UriKind.RelativeOrAbsolute));
@@ -464,25 +472,23 @@ namespace GUI_20212022_Z6O9JF.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
-            window = Window.GetWindow(this);
-            window.KeyDown += HandleKeyPress;
+            //window = Window.GetWindow(this);
+            //window.KeyDown += HandleKeyPress;
         }
-        private void HandleKeyPress(object sender, KeyEventArgs e)
-        {
-            ;
-            if (clientLogic.ESCView == null && e.Key == Key.Escape)
-            {
-                clientLogic.ESCChange("ESC");
-            }
+        //private void HandleKeyPress(object sender, KeyEventArgs e)
+        //{
+        //    ;
+        //    if (clientLogic.ESCView == null && e.Key == Key.Escape)
+        //    {
+        //        clientLogic.ESCChange("ESC");
+        //    }
 
-        }
+        //}
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
         }
-
-
 
         private void Build_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -490,7 +496,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
             button_click.Play();
             gameLogic.AddVillage();
-            if (player.TurnActivity==TurnActivity.Build)
+            if (player.TurnActivity == TurnActivity.Build)
             {
                 placement.Open(new Uri("Resources/Music/placement.mp3", UriKind.RelativeOrAbsolute));
                 placement.Play();
@@ -518,6 +524,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
             button_click.Play();
             SetTurnActivities();
             DisableAllActivities();
+            if (player.TurnActivity == TurnActivity.Build)
+            {
+                SetTurnActivities();
+                DisableAllActivities();
+            }
         }
 
         private void Upgrade_Button_Click(object sender, RoutedEventArgs e)
@@ -528,6 +539,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
             gameLogic.UpgradeVillage();
             if (player.TurnActivity == TurnActivity.Upgrade)
             {
+                upgrade_sound.Open(new Uri("Resources/Music/upgrade.mp3", UriKind.RelativeOrAbsolute));
+                upgrade_sound.Play();
                 SetTurnActivities();
                 DisableAllActivities();
             }

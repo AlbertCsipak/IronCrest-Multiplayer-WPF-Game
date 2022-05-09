@@ -24,7 +24,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public MysteryEvent CurrentMystery { get; set; }
         public Hero FirstHero { get; set; }
         public Hero SecondaryHero { get; set; }
-
+        public static event EventHandler Move;
         public bool IsGameEnded;
 
         public GameLogic(IMessenger messenger)
@@ -816,25 +816,25 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.TurnActivity = TurnActivity.Move;
-            if (SelectedHexagonTile != null)
-            {
-                if (SelectedHexagonTile.OwnerId == ClientID && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count > 0)
-                {
-                    if (player != null && player.RemainingMoves != 0)
-                    {
-                        Unit newUnit = new Unit();
-                        newUnit.FactionType = player.Faction;
-                        newUnit.Position = SelectedHexagonTile.Position;
-                        newUnit.Name = player.Faction.ToString();
-                        newUnit.OwnerId = player.PlayerID;
+            //if (SelectedHexagonTile != null)
+            //{
+            //    if (SelectedHexagonTile.OwnerId == ClientID && SelectedHexagonTile.Objects.Where(t => t.CanMove == false).ToList().Count > 0)
+            //    {
+            //        if (player != null && player.RemainingMoves != 0)
+            //        {
+            //            Unit newUnit = new Unit();
+            //            newUnit.FactionType = player.Faction;
+            //            newUnit.Position = SelectedHexagonTile.Position;
+            //            newUnit.Name = player.Faction.ToString();
+            //            newUnit.OwnerId = player.PlayerID;
 
-                        SelectedHexagonTile.Objects.Add(newUnit);
-                        SelectedHexagonTile.OwnerId = ClientID;
+            //            SelectedHexagonTile.Objects.Add(newUnit);
+            //            SelectedHexagonTile.OwnerId = ClientID;
 
-                        player.Units.Add(newUnit);
-                    }
-                }
-            }
+            //            player.Units.Add(newUnit);
+            //        }
+            //    }
+            //}
         }
         public void AddVillage()
         {
@@ -859,6 +859,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         SelectedHexagonTile.OwnerId = player.PlayerID;
                         player.Villages.Add(newVillage);
                         player.TurnActivity = TurnActivity.Build;
+                        player.IsRecentTurnActivityMove = false;
                     }
                 }
 
@@ -879,6 +880,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                     if (village != null && village.Level < 3)
                     {
                         player.TurnActivity = TurnActivity.Upgrade;
+                        player.IsRecentTurnActivityMove = false;
                         SelectedHexagonTile.Objects.Remove(village);
                         village.Level++;
                         player.Gold -= 3;
@@ -902,7 +904,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void AddGold()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            if (player!=null && Game.CurrentGoldMineOwner==player)
+            if (player != null && Game.CurrentGoldMineOwner == player)
             {
                 if (player.Faction == Faction.Mongolian)
                 {
@@ -910,115 +912,122 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 else
                 {
-                    Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold+=GameMap[5,10].Objects.Where(x=>x is Unit).FirstOrDefault().Level;
+                    Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault().Gold += GameMap[5, 10].Objects.Where(x => x is Unit).FirstOrDefault().Level;
                 }
             }
         }
 
         public void MoveUnit(HexagonTile hexagonTile)
         {
-
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
+            if (!player.IsRecentTurnActivityMove && player.RemainingMoves!=0)
             {
-                Point[] points = SelectedHexagonTile.NeighborCoords();
-                Point point = new Point();
-                point.X = hexagonTile.Position[0];
-                point.Y = hexagonTile.Position[1];
-
-                if (points.Contains(point))
+                Move?.Invoke(this, EventArgs.Empty);
+                if (SelectedHexagonTile != null && SelectedHexagonTile.OwnerId == ClientID)
                 {
-                    var unit = SelectedHexagonTile.Objects.Where(t => t is Unit && t.OwnerId == ClientID).FirstOrDefault();
-                    
-                    if (unit != null && player.RemainingMoves != 0)
+                    Point[] points = SelectedHexagonTile.NeighborCoords();
+                    Point point = new Point();
+                    point.X = hexagonTile.Position[0];
+                    point.Y = hexagonTile.Position[1];
+
+                    if (points.Contains(point))
                     {
-                        if (hexagonTile.FieldType == FieldType.goldMine)
+                        var unit = SelectedHexagonTile.Objects.Where(t => t is Unit && t.OwnerId == ClientID).FirstOrDefault();
+
+                        if (unit != null && player.RemainingMoves != 0)
                         {
-                            Game.CurrentGoldMineOwner = player;
-                        }
-                        if (SelectedHexagonTile.FieldType == FieldType.goldMine)
-                        {
-                            Game.CurrentGoldMineOwner = null;
-                        }
-                        if (hexagonTile.Objects.ToList().Count == 0)
-                        {
-                            unit.Move(hexagonTile.Position);
-                            
-                            hexagonTile.Objects.Add(unit);
-                            hexagonTile.OwnerId = unit.OwnerId;
-                            SelectedHexagonTile.Objects.Remove(unit);
-                            if (SelectedHexagonTile.Objects.Count == 0)
+                            if (hexagonTile.FieldType == FieldType.goldMine)
                             {
-                                SelectedHexagonTile.OwnerId = 0;
+                                Game.CurrentGoldMineOwner = player;
                             }
-                            //SelectedHexagonTile = null;
-                            DecreaseMoves();
-                        }
-                        else if (hexagonTile.Objects.ToList().Where(x => x is Unit && x.OwnerId == ClientID).FirstOrDefault() != null)
-                        {
-                            if (hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level + unit.Level <= 3)
+                            if (SelectedHexagonTile.FieldType == FieldType.goldMine)
                             {
-                                hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level += unit.Level;
+                                Game.CurrentGoldMineOwner = null;
+                            }
+                            if (hexagonTile.Objects.ToList().Count == 0)
+                            {
+                                unit.Move(hexagonTile.Position);
+
+                                hexagonTile.Objects.Add(unit);
+                                hexagonTile.OwnerId = unit.OwnerId;
                                 SelectedHexagonTile.Objects.Remove(unit);
-                                player.Units.Remove(unit as Unit);
                                 if (SelectedHexagonTile.Objects.Count == 0)
                                 {
                                     SelectedHexagonTile.OwnerId = 0;
                                 }
-                                SelectedHexagonTile = null;
+                                //SelectedHexagonTile = null;
                                 DecreaseMoves();
                             }
+                            else if (hexagonTile.Objects.ToList().Where(x => x is Unit && x.OwnerId == ClientID).FirstOrDefault() != null)
+                            {
+                                if (hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level + unit.Level <= 3)
+                                {
+                                    hexagonTile.Objects.First(x => x.OwnerId == ClientID).Level += unit.Level;
+                                    SelectedHexagonTile.Objects.Remove(unit);
+                                    player.Units.Remove(unit as Unit);
+                                    if (SelectedHexagonTile.Objects.Count == 0)
+                                    {
+                                        SelectedHexagonTile.OwnerId = 0;
+                                    }
+                                    SelectedHexagonTile = null;
+                                    DecreaseMoves();
+                                }
+                            }
+                            else if (hexagonTile.Objects.ToList().Any(x => x is Unit && x.OwnerId != ClientID))
+                            {
+                                Battle(hexagonTile);
+                                DecreaseMoves();
+                            }
+                            //{
+                            //    //battle
+                            //    var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
+                            //    if (enemy != null)
+                            //    {
+                            //        var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
+                            //        //CurrentBattle = new Battle();
+                            //        //CurrentBattle.Defender = enemyPlayer;
+                            //        //CurrentBattle.Attacker = player;
+                            //        //clientLogic.BattleViewChange("battle");
+
+                            //        if (player.ArmyPower * (item as Unit).Level >= enemy.Level * enemyPlayer.ArmyPower)
+                            //        {
+                            //            hexagonTile.Objects.Remove(enemy);
+
+                            //            if (hexagonTile.Objects.Count == 0)
+                            //            {
+                            //                hexagonTile.OwnerId = 0;
+                            //            }
+
+                            //            enemy.Move(enemyPlayer.Villages.FirstOrDefault().Position);
+                            //            GameMap[enemy.Position[0], enemy.Position[1]].Objects.Add(enemy);
+
+                            //            item.Move(hexagonTile.Position);
+                            //            hexagonTile.Objects.Add(item);
+                            //            hexagonTile.OwnerId = item.OwnerId;
+                            //        }
+                            //        else
+                            //        {
+                            //            item.Move(player.Villages.FirstOrDefault().Position);
+                            //            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
+                            //        }
+
+                            //        SelectedHexagonTile.Objects.Remove(item);
+
+                            //        if (SelectedHexagonTile.Objects.Count == 0)
+                            //        {
+                            //            SelectedHexagonTile.OwnerId = 0;
+                            //        }
+                            //        SelectedHexagonTile = null;
+
+                            //        DecreaseMoves();
+                            //    }
+                            //}
                         }
-                        else if (hexagonTile.Objects.ToList().Any(x => x is Unit && x.OwnerId != ClientID))
-                        {
-                            Battle(hexagonTile);
-                            DecreaseMoves();
-                        }
-                        //{
-                        //    //battle
-                        //    var enemy = hexagonTile.Objects.Where(t => t.CanMove && t.FactionType != player.Faction).FirstOrDefault();
-                        //    if (enemy != null)
-                        //    {
-                        //        var enemyPlayer = Players.Where(t => t.PlayerID == enemy.OwnerId).FirstOrDefault();
-                        //        //CurrentBattle = new Battle();
-                        //        //CurrentBattle.Defender = enemyPlayer;
-                        //        //CurrentBattle.Attacker = player;
-                        //        //clientLogic.BattleViewChange("battle");
-
-                        //        if (player.ArmyPower * (item as Unit).Level >= enemy.Level * enemyPlayer.ArmyPower)
-                        //        {
-                        //            hexagonTile.Objects.Remove(enemy);
-
-                        //            if (hexagonTile.Objects.Count == 0)
-                        //            {
-                        //                hexagonTile.OwnerId = 0;
-                        //            }
-
-                        //            enemy.Move(enemyPlayer.Villages.FirstOrDefault().Position);
-                        //            GameMap[enemy.Position[0], enemy.Position[1]].Objects.Add(enemy);
-
-                        //            item.Move(hexagonTile.Position);
-                        //            hexagonTile.Objects.Add(item);
-                        //            hexagonTile.OwnerId = item.OwnerId;
-                        //        }
-                        //        else
-                        //        {
-                        //            item.Move(player.Villages.FirstOrDefault().Position);
-                        //            GameMap[item.Position[0], item.Position[1]].Objects.Add(item);
-                        //        }
-
-                        //        SelectedHexagonTile.Objects.Remove(item);
-
-                        //        if (SelectedHexagonTile.Objects.Count == 0)
-                        //        {
-                        //            SelectedHexagonTile.OwnerId = 0;
-                        //        }
-                        //        SelectedHexagonTile = null;
-
-                        //        DecreaseMoves();
-                        //    }
-                        //}
                     }
+                }
+                if (player.RemainingMoves==0)
+                {
+                    player.IsRecentTurnActivityMove = true;
                 }
             }
 
@@ -1040,6 +1049,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
             player.TurnActivity = TurnActivity.Harvest;
+            player.IsRecentTurnActivityMove = false;
             //bool success = false;
             if (player != null && player.RemainingMoves != 0)
             {

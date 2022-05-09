@@ -44,7 +44,7 @@ namespace GUI_20212022_Z6O9JF
             background_music.Open(new Uri("Resources/Music/Lannister_music.mp3", UriKind.RelativeOrAbsolute));
             background_music.Volume = 0.025;
             background_music.Play();
-            
+
         }
 
         private void Background_ambient_MediaEnded(object sender, EventArgs e)

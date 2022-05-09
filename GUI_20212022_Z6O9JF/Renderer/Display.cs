@@ -194,7 +194,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                                 {
                                 }
                             }
-                            if (birdgif%100<50)
+                            if (birdgif % 100 < 50)
                             {
                                 drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri($"Resources/Images/Menu/ducks1.png", UriKind.RelativeOrAbsolute))), new Pen(Brushes.Black, 0), new Rect(-150 + birdgif, size.Height / 4, 75, 75));
                             }
@@ -211,12 +211,12 @@ namespace GUI_20212022_Z6O9JF.Renderer
                 {
                     vizgif = 0;
                 }
-                felhogif+=0.5;
+                felhogif += 0.5;
                 if (felhogif > size.Width + 2000)
                 {
                     felhogif = 0;
                 }
-                birdgif+=2;
+                birdgif += 2;
                 if (birdgif > size.Width + 2000)
                 {
                     birdgif = 0;

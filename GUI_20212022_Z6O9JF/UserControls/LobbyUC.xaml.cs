@@ -10,7 +10,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
     /// </summary>
     public partial class LobbyUC : UserControl
     {
-        public static event EventHandler StartOfGame ;
+        public static event EventHandler StartOfGame;
         public MediaPlayer button_click = new MediaPlayer();
         public LobbyUC()
         {
