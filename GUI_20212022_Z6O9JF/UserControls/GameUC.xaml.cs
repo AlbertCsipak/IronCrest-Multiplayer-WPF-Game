@@ -365,80 +365,81 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         private void ResourceChanging(object sender, EventArgs e)
         {
-            var eventData = (e as ResourceChangedEventArgs);
-            player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
-            
-            if (eventData.Resource != "" && eventData.Number!=0 )
+            if (clientLogic.CanSend)
             {
-                player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
-                if (eventData.Resource == "popularity")
-                {
-                    //POP
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        HeartChange.Opacity = 1;
-                        HeartChangeLabel.Opacity = 1;
-                        string s = eventData.Number > 0 ? "+" : "";
-                        HeartChangeLabel.Content = s + eventData.Number;
-                    });
-                    
-                }
-                if (eventData.Resource == "armyPower")
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        //ArmyPower
-                        ArmyPowerChange.Opacity = 1;
-                        ArmyPowerChangeLabel.Opacity = 1;
-                        string s = eventData.Number > 0 ? "+" : "";
-                        ArmyPowerChangeLabel.Content = s + eventData.Number;
-                    });
-                }
-                if (eventData.Resource == "wood")
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        //Wood
-                        WoodChange.Opacity = 1;
-                        WoodChangeLabel.Opacity = 1;
-                        string s = eventData.Number > 0 ? "+" : "";
-                        WoodChangeLabel.Content = s + eventData.Number;
-                    });
-                }
-                if (eventData.Resource == "stone")
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        //Stone
-                        StoneChange.Opacity = 1;
-                        StoneChangeLabel.Opacity = 1;
-                        string s = eventData.Number > 0 ? "+" : "";
-                        StoneChangeLabel.Content = s + eventData.Number;
-                    });
-                }
-                if (eventData.Resource == "wheat")
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        //Food
-                        FoodChange.Opacity = 1;
-                        FoodChangeLabel.Opacity = 1;
-                        string s = eventData.Number > 0 ? "+" : "";
-                        FoodChangeLabel.Content = s + eventData.Number;
-                    });
-                }
-                if (eventData.Resource == "gold")
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        //Gold
-                        GoldChange.Opacity = 1;
-                        GoldChangeLabel.Opacity = 1;
-                        string s = eventData.Number > 0 ? "+" : "";
-                        GoldChangeLabel.Content = s + eventData.Number;
-                    });
-                }
+                var eventData = (e as ResourceChangedEventArgs);
 
+                if (eventData.Resource != "" && eventData.Number != 0)
+                {
+                    player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
+                    if (eventData.Resource == "popularity")
+                    {
+                        //POP
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            HeartChange.Opacity = 1;
+                            HeartChangeLabel.Opacity = 1;
+                            string s = eventData.Number > 0 ? "+" : "-";
+                            HeartChangeLabel.Content = s + eventData.Number;
+                        });
+
+                    }
+                    if (eventData.Resource == "armyPower")
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            //ArmyPower
+                            ArmyPowerChange.Opacity = 1;
+                            ArmyPowerChangeLabel.Opacity = 1;
+                            string s = eventData.Number > 0 ? "+" : "-";
+                            ArmyPowerChangeLabel.Content = s + eventData.Number;
+                        });
+                    }
+                    if (eventData.Resource == "wood")
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            //Wood
+                            WoodChange.Opacity = 1;
+                            WoodChangeLabel.Opacity = 1;
+                            string s = eventData.Number > 0 ? "+" : "-";
+                            WoodChangeLabel.Content = s + eventData.Number;
+                        });
+                    }
+                    if (eventData.Resource == "stone")
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            //Stone
+                            StoneChange.Opacity = 1;
+                            StoneChangeLabel.Opacity = 1;
+                            string s = eventData.Number > 0 ? "+" : "-";
+                            StoneChangeLabel.Content = s + eventData.Number;
+                        });
+                    }
+                    if (eventData.Resource == "wheat")
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            //Food
+                            FoodChange.Opacity = 1;
+                            FoodChangeLabel.Opacity = 1;
+                            string s = eventData.Number > 0 ? "+" : "-";
+                            FoodChangeLabel.Content = s + eventData.Number;
+                        });
+                    }
+                    if (eventData.Resource == "gold")
+                    {
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            //Gold
+                            GoldChange.Opacity = 1;
+                            GoldChangeLabel.Opacity = 1;
+                            string s = eventData.Number > 0 ? "+" : "-";
+                            GoldChangeLabel.Content = s + eventData.Number;
+                        });
+                    }
+                }
             }
         }
 

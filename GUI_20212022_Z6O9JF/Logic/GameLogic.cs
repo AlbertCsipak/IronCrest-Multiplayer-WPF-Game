@@ -988,7 +988,8 @@ namespace GUI_20212022_Z6O9JF.Logic
                 Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Popularity -= armypower < 0 ? Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Popularity = 0 : Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Popularity -= armypower;
                 Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().ArmyPower -= defenderArmyPower < 0 ? Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().ArmyPower = 0 : Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().ArmyPower -= defenderArmyPower;
 
-                var defenderunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Units.Where(x => x.Position == Game.CurrentBattle.BattleLocation.Position).FirstOrDefault();
+                //var defenderunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Units.Where(x => x.Position == Game.CurrentBattle.BattleLocation.Position).FirstOrDefault();
+                var defenderunit = Game.CurrentBattle.BattleLocation.Objects.Where(x => x is Unit).FirstOrDefault();
                 var defenderBaseVillage = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Villages.First(x => x.IsBase);
 
                 defenderunit.Move(defenderBaseVillage.Position);
