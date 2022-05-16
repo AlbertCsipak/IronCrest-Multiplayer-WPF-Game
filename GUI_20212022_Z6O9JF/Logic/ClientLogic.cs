@@ -147,14 +147,15 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 try
                                 {
                                     Game game = JsonConvert.DeserializeObject<Game>(message);
+                                    ;
                                     if (game != null)
                                     {
                                         gameLogic.Game = game;
-                                        gameLogic.Game.CurrentBattle = game.CurrentBattle;
                                     }
                                 }
                                 catch (NullReferenceException) { }
                                 catch (Exception) { }
+                                ;
                             }
                         }
                     }
