@@ -179,7 +179,12 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             inBattle = false;
                         }
-                        if (gameLogic.Game.WinOrder.Count==gameLogic.Game.Players.Count && gameLogic.Game.WinOrder.Count >=1)
+
+                        if (CanSend)
+                        {
+                            IsAllQuestsDone();
+                        }
+                        if (gameLogic.Game.WinOrder.Count==gameLogic.Game.Players.Count && gameLogic.Game.Players.Count!=0)
                         {
                             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => ChangeView("ending")));
                         }
@@ -201,7 +206,8 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (player.Quests.All(x => x.Done))
             {
                 gameLogic.SetGameEndOrder();
-                ChangeView("ending");
+                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => ChangeView("ending")));
+                
             }
         }
 
