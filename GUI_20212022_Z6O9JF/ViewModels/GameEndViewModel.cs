@@ -13,14 +13,14 @@ namespace GUI_20212022_Z6O9JF.ViewModels
         public IGameLogic gameLogic { get; set; }
         public IClientLogic clientLogic { get; set; }
         public IControlLogic controlLogic { get; set; }
-        public Player First { get { return gameLogic.Game.WinOrder.ElementAt(0); } }
+        public Player First { get { return gameLogic.Game.Players.Where(x=>x.PlayerID == gameLogic.Game.WinOrder.ElementAt(0)).FirstOrDefault(); }}
         public Player Second
         {
             get
             {
                 if (gameLogic.Game.WinOrder.Count >= 2)
                 {
-                    return gameLogic.Game.WinOrder.ElementAt(1);
+                    return gameLogic.Game.Players.Where(x => x.PlayerID == gameLogic.Game.WinOrder.ElementAt(1)).FirstOrDefault();
                 }
                 return null;
             }
@@ -31,7 +31,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             {
                 if (gameLogic.Game.WinOrder.Count >= 3)
                 {
-                    return gameLogic.Game.WinOrder.ElementAt(2);
+                    return gameLogic.Game.Players.Where(x => x.PlayerID == gameLogic.Game.WinOrder.ElementAt(2)).FirstOrDefault();
                 }
                 return null;
             }
@@ -42,7 +42,7 @@ namespace GUI_20212022_Z6O9JF.ViewModels
             {
                 if (gameLogic.Game.WinOrder.Count == 4)
                 {
-                    return gameLogic.Game.WinOrder.ElementAt(3);
+                    return gameLogic.Game.Players.Where(x => x.PlayerID == gameLogic.Game.WinOrder.ElementAt(3)).FirstOrDefault(); ;
                 }
                 return null;
             }

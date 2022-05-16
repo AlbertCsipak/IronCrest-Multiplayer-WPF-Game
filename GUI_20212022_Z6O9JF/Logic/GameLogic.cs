@@ -782,21 +782,21 @@ namespace GUI_20212022_Z6O9JF.Logic
         {
             if (!IsGameEnded)
             {
-                Game.WinOrder.Add(Game.Players.First(x => x.Quests.All(x => x.Done)));
+                Game.WinOrder.Add(Game.Players.First(x => x.Quests.All(x => x.Done)).PlayerID);
                 var playerWith2QuestsDoneAndMostGold = Game.Players.Where(x => x.Quests.Select(x => x.Done).Count() == 2).OrderBy(x => x.Gold).ToList();
                 if (playerWith2QuestsDoneAndMostGold != null)
                 {
-                    playerWith2QuestsDoneAndMostGold.ForEach(x => Game.WinOrder.Add(x));
+                    playerWith2QuestsDoneAndMostGold.ForEach(x => Game.WinOrder.Add(x.PlayerID));
                 }
                 var playerWith1QuestsDoneAndMostGold = Game.Players.Where(x => x.Quests.Select(x => x.Done).Count() == 1).OrderBy(x => x.Gold).ToList();
                 if (playerWith1QuestsDoneAndMostGold != null)
                 {
-                    playerWith1QuestsDoneAndMostGold.ForEach(x => Game.WinOrder.Add(x));
+                    playerWith1QuestsDoneAndMostGold.ForEach(x => Game.WinOrder.Add(x.PlayerID));
                 }
                 var playerWith0QuestsDoneAndMostGold = Game.Players.Where(x => x.Quests.Select(x => x.Done).Count() == 0).OrderBy(x => x.Gold).ToList();
                 if (playerWith0QuestsDoneAndMostGold != null)
                 {
-                    playerWith0QuestsDoneAndMostGold.ForEach(x => Game.WinOrder.Add(x));
+                    playerWith0QuestsDoneAndMostGold.ForEach(x => Game.WinOrder.Add(x.PlayerID));
                 }
                 IsGameEnded = true;
             }
