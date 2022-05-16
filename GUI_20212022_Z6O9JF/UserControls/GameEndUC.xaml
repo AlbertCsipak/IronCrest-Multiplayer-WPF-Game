@@ -84,7 +84,7 @@
         <Viewbox Grid.Row="6" Grid.Column="6" Grid.RowSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left">
             <Image x:Name="img_third" Source="{Binding Third.Faction, Converter={StaticResource converter}}"/>
         </Viewbox>
-        <Viewbox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
+        <!--<Viewbox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
             <Button Style="{DynamicResource button_image_style}" Background="Transparent"
                 Command="{Binding ExitCommand}"
                 BorderBrush="Transparent" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Button_Exit_Click" >
@@ -104,6 +104,6 @@
                     </Image.Style>
                 </Image>
             </Button>
-        </Viewbox>
+        </Viewbox>-->
     </Grid>
 </UserControl>

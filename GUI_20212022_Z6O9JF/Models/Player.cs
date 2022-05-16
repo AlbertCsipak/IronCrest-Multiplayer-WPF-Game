@@ -51,9 +51,12 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return popularity; }
             set
             {
-                if (popularity > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", (value - popularity) * -1));
-                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", value - popularity));
-                popularity = value;
+                if (popularity!=value)
+                {
+                    if (popularity > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", (value - popularity) * -1));
+                    else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", value - popularity));
+                    popularity = value;
+                }
             }
         }//MysteryResource
 
@@ -67,9 +70,12 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return armyPower; }
             set
             {
-                if (armyPower > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("armyPower", (value - armyPower) * -1));
-                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("armyPower", value - armyPower));
-                armyPower = value;
+                if (armyPower != value)
+                {
+                    if (armyPower > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("armyPower", (value - armyPower) * -1));
+                    else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("armyPower", value - armyPower));
+                    armyPower = value;
+                }
             }
         }//MysteryResource
 
@@ -83,9 +89,12 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return gold; }
             set
             {
-                if (gold > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("gold", (value - gold) * -1));
-                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("gold", value - gold));
-                gold = value;
+                if (gold != value)
+                {
+                    if (gold > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("gold", (value - gold) * -1));
+                    else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("gold", value - gold));
+                    gold = value;
+                }
             }
         }//MysteryResource
         private int wood;
@@ -99,9 +108,12 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return wood; }
             set
             {
-                if (wood > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wood", (value - wood) * -1));
-                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wood", value - wood));
-                wood = value;
+                if (wood != value)
+                {
+                    if (wood > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wood", (value - wood) * -1));
+                    else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wood", value - wood));
+                    wood = value;
+                }
             }
         }//MysteryResource
 
@@ -116,9 +128,12 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return stone; }
             set
             {
-                if (stone > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("stone", (value - stone) * -1));
-                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("stone", value - stone));
-                stone = value;
+                if (stone != value)
+                {
+                    if (stone > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("stone", (value - stone) * -1));
+                    else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("stone", value - stone));
+                    stone = value;
+                }
             }
         }//MysteryResource
 
@@ -132,9 +147,12 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return wheat; }
             set
             {
-                if (wheat > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wheat", (value - wheat) * -1));
-                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wheat", value - wheat));
-                wheat = value;
+                if (wheat != value)
+                {
+                    if (wheat > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wheat", (value - wheat) * -1));
+                    else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wheat", value - wheat));
+                    wheat = value;
+                }
             }
         }//MysteryResource
 

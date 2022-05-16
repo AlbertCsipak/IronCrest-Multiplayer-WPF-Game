@@ -368,7 +368,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             var eventData = (e as ResourceChangedEventArgs);
             player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             
-            if (eventData.Resource != "")
+            if (eventData.Resource != "" && eventData.Number!=0 )
             {
                 player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
                 if (eventData.Resource == "popularity")
