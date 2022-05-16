@@ -203,7 +203,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void IsAllQuestsDone()
         {
             var player = gameLogic.Game.Players.Where(t => t.PlayerID == ClientId).FirstOrDefault();
-            if (player.Quests.All(x => x.Done))
+            if (player!=null && player.Quests.All(x => x.Done))
             {
                 gameLogic.SetGameEndOrder();
                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => ChangeView("ending")));
@@ -363,16 +363,12 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Trade = null,
                         HasEnteredGoldMine = false
                     };
-                    //player.SetupGold(RandomNumber.RandomNumberGenerator(2, 5));
-                    player.SetupGold(30);
-                    //player.SetupArmyPower(RandomNumber.RandomNumberGenerator(0, 3));
-                    //player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(0, 3));
-                    //player.SetupGold(20);
-                    player.SetupArmyPower(20);
-                    player.SetupPopulatiry(20);
-                    player.SetupStone(20);
-                    player.SetupWood(20);
-                    player.SetupWheat(20);
+                    player.SetupGold(RandomNumber.RandomNumberGenerator(5, 10));
+                    player.SetupArmyPower(RandomNumber.RandomNumberGenerator(3, 7));
+                    player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(3, 7));
+                    player.SetupStone(RandomNumber.RandomNumberGenerator(3, 7));
+                    player.SetupWood(RandomNumber.RandomNumberGenerator(3, 7));
+                    player.SetupWheat(RandomNumber.RandomNumberGenerator(3, 7));
                     gameLogic.Game.Players.Add(player);
 
                 }
