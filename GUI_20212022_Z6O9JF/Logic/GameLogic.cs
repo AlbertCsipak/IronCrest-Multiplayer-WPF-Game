@@ -943,7 +943,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 DecreaseMoves();
                             }
                         }
-                        else if (hexagonTile.Objects.ToList().Any(x => x is Unit && x.OwnerId != ClientID))
+                        else if (hexagonTile.Objects.ToList().Where(x => x is Unit && x.OwnerId != ClientID).FirstOrDefault() != null)
                         {
                             ;
                             unit.IsAttackerUnit = true;
@@ -988,9 +988,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                 //Game.CurrentBattle.BattleLocation.Objects.Clear();
 
                 var defenderunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Units.Where(x => x.Position == Game.CurrentBattle.BattleLocation.Position).FirstOrDefault();
-                var defenderBaseVillagePosition = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Villages.First(x => x.IsBase).Position;
-                defenderunit.Move(defenderBaseVillagePosition);
-                GameMap[defenderBaseVillagePosition[0], defenderBaseVillagePosition[1]].Objects.Add(defenderunit);
+                var defenderBaseVillage = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Villages.First(x => x.IsBase);
+                defenderunit.Move(defenderBaseVillage.Position);
+
+                GameMap[defenderBaseVillage.Position[0],defenderBaseVillage.Position[1]].Objects.Add(defenderunit);
                 Game.CurrentBattle.BattleLocation.Objects.Clear();
 
                 var attackerunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Units.Where(x => x.IsAttackerUnit).FirstOrDefault();
@@ -1001,6 +1002,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 {
                     GameMap[attackerunit.Position[0], attackerunit.Position[1]].OwnerId = 0;
                 }
+                attackerunit.Move(Game.CurrentBattle.BattleLocation.Position);
             }
             else
             {
@@ -1010,18 +1012,17 @@ namespace GUI_20212022_Z6O9JF.Logic
                 Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Popularity -= armypower < 0 ? Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().ArmyPower = 0 : Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().ArmyPower -= defenderArmyPower;
                 
                 var attackerunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Units.Where(x => x.IsAttackerUnit).FirstOrDefault();
-                var attackerBaseVillagePosition = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Villages.First(x => x.IsBase).Position;
+                var attackerBaseVillage = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Villages.First(x => x.IsBase);
                 
                 SelectedHexagonTile = GameMap[attackerunit.Position[0], attackerunit.Position[1]];
-                attackerunit.Move(attackerBaseVillagePosition);
-                if (SelectedHexagonTile != null)
+                SelectedHexagonTile.Objects.Remove(attackerunit);
+                if (SelectedHexagonTile.Objects.Count == 0)
                 {
-                    SelectedHexagonTile.Objects.Remove(attackerunit);
-                    if (SelectedHexagonTile.Objects.Count == 0)
-                    {
-                        SelectedHexagonTile.OwnerId = 0;
-                    }
+                    SelectedHexagonTile.OwnerId = 0;
                 }
+                attackerunit.Move(attackerBaseVillage.Position);
+                GameMap[attackerBaseVillage.Position[0], attackerBaseVillage.Position[1]].Objects.Add(attackerunit);
+
             }
         }
         public void GetResources()
