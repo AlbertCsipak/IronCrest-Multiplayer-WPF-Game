@@ -162,11 +162,13 @@ namespace GUI_20212022_Z6O9JF.Logic
                     while (socketClient.MySocket.Connected)
                     {
                         gameLogic.ReloadHexagonObjects();
-
+                        ;
                         if (gameLogic.Game.CurrentBattle != null)
                         {
+                            ;
                             if (!inBattle && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId && gameLogic.Game.CurrentBattle.IsBattleStarted)
                             {
+                                ;
                                 inBattle = true;
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => BattleViewChange("battle")));
                             }
