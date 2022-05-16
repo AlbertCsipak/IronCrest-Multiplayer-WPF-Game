@@ -48,9 +48,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 int i = 0;
                 dt_counter.Tick += (sender, eventargs) =>
                 {
-                    if (gameLogic.Game.CurrentBattle.IsBattleStarted)
+                    if (gameLogic.Game.CurrentBattle!=null)
                     {
-                        battleDisplay.InvalidateVisual();
+                        if (gameLogic.Game.CurrentBattle.IsBattleStarted)
+                        {
+                            battleDisplay.InvalidateVisual();
+                        }
                     }
                 };
                 dt_counter.Start();
