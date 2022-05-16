@@ -1,12 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace GUI_20212022_Z6O9JF.Models
 {
     public enum Faction { Viking, Crusader, Mongolian, Arabian }
     public enum TurnActivity { Init, Move, Build, Upgrade, Harvest }
+
+    public class ResourceChangedEventArgs : EventArgs
+    {
+        public ResourceChangedEventArgs(string resource, int number)
+        {
+            Resource = resource;
+            Number = number;
+        }
+
+        public string Resource { get; set; }
+        public int Number { get; set; }
+    }
+
     public class Player
     {
+        public event EventHandler ResourceChanged;
         public int PlayerID { get; set; }
         public string Name { get; set; }
         public Faction Faction { get; set; }
@@ -37,8 +52,12 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return popularity; }
             set
             {
-                if (popularity > value) ResourceChanges[0] = (popularity - value) * (-1);
-                else ResourceChanges[0] = value - popularity;
+                if (popularity > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", (value - popularity)*-1));
+                else
+                {
+                    //ResourceChangedEventArgs res = new ResourceChangedEventArgs("popularity", value-popularity);
+                    ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", value - popularity));
+                }
                 popularity = value;
             }
         }//MysteryResource
