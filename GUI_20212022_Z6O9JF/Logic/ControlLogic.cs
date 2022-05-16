@@ -257,23 +257,27 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         void PolygonBorderBrush(Polygon polygon)
         {
-            switch (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Faction).FirstOrDefault())
+            if (polygon!=null)
             {
-                case Faction.Arabian:
-                    polygon.Stroke = Brushes.Red;
-                    break;
-                case Faction.Crusader:
-                    polygon.Stroke = Brushes.Black;
-                    break;
-                case Faction.Mongolian:
-                    polygon.Stroke = Brushes.Yellow;
-                    break;
-                case Faction.Viking:
-                    polygon.Stroke = Brushes.Blue;
-                    break;
-                default:
-                    break;
+                switch (gameLogic.Game.Players.Where(t => t.PlayerID == gameLogic.ClientID).Select(t => t.Faction).FirstOrDefault())
+                {
+                    case Faction.Arabian:
+                        polygon.Stroke = Brushes.Red;
+                        break;
+                    case Faction.Crusader:
+                        polygon.Stroke = Brushes.Black;
+                        break;
+                    case Faction.Mongolian:
+                        polygon.Stroke = Brushes.Yellow;
+                        break;
+                    case Faction.Viking:
+                        polygon.Stroke = Brushes.Blue;
+                        break;
+                    default:
+                        break;
+                }
             }
+            
         }
     }
 }

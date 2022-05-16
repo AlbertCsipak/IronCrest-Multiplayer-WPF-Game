@@ -53,9 +53,10 @@ namespace GUI_20212022_Z6O9JF.Models
             {
                 if (popularity!=value)
                 {
-                    if (popularity > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", (value - popularity) * -1));
+                    if (popularity > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", (popularity-value) * -1));
                     else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", value - popularity));
                     popularity = value;
+                    
                 }
             }
         }//MysteryResource
@@ -72,7 +73,7 @@ namespace GUI_20212022_Z6O9JF.Models
             {
                 if (armyPower != value)
                 {
-                    if (armyPower > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("armyPower", (value - armyPower) * -1));
+                    if (armyPower > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("armyPower", (armyPower - value) * -1));
                     else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("armyPower", value - armyPower));
                     armyPower = value;
                 }
@@ -91,7 +92,7 @@ namespace GUI_20212022_Z6O9JF.Models
             {
                 if (gold != value)
                 {
-                    if (gold > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("gold", (value - gold) * -1));
+                    if (gold > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("gold", (gold - value) * -1));
                     else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("gold", value - gold));
                     gold = value;
                 }
@@ -110,7 +111,7 @@ namespace GUI_20212022_Z6O9JF.Models
             {
                 if (wood != value)
                 {
-                    if (wood > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wood", (value - wood) * -1));
+                    if (wood > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wood", (wood - value) * -1));
                     else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wood", value - wood));
                     wood = value;
                 }
@@ -130,7 +131,7 @@ namespace GUI_20212022_Z6O9JF.Models
             {
                 if (stone != value)
                 {
-                    if (stone > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("stone", (value - stone) * -1));
+                    if (stone > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("stone", (stone - value) * -1));
                     else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("stone", value - stone));
                     stone = value;
                 }
@@ -149,7 +150,7 @@ namespace GUI_20212022_Z6O9JF.Models
             {
                 if (wheat != value)
                 {
-                    if (wheat > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wheat", (value - wheat) * -1));
+                    if (wheat > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wheat", (wheat - value) * -1));
                     else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wheat", value - wheat));
                     wheat = value;
                 }
