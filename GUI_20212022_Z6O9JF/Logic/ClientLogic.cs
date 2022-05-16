@@ -177,6 +177,10 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => BattleViewChange("battle")));
                             }
                         }
+                        else
+                        {
+                            inBattle = false;
+                        }
                         ;
                         messenger.Send("Message", "Base");
                         System.Threading.Thread.Sleep(500);
