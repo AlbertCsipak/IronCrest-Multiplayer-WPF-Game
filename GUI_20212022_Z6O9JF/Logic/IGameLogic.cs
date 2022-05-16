@@ -14,7 +14,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         HexagonTile[,] GameMap { get; set; }
         string Map { get; set; }
         Queue<MysteryEvent> MysteryEvents { get; set; }
-        Player playersResources { get; set; }
         Hero SecondaryHero { get; set; }
         HexagonTile SelectedHexagonTile { get; set; }
 

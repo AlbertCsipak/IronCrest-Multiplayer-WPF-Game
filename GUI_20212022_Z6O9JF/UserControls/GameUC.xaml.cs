@@ -379,7 +379,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                         {
                             HeartChange.Opacity = 1;
                             HeartChangeLabel.Opacity = 1;
-                            string s = eventData.Number > 0 ? "+" : "-";
+                            string s = eventData.Number > 0 ? "+" : "";
                             HeartChangeLabel.Content = s + eventData.Number;
                         });
 
@@ -391,7 +391,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                             //ArmyPower
                             ArmyPowerChange.Opacity = 1;
                             ArmyPowerChangeLabel.Opacity = 1;
-                            string s = eventData.Number > 0 ? "+" : "-";
+                            string s = eventData.Number > 0 ? "+" : "";
                             ArmyPowerChangeLabel.Content = s + eventData.Number;
                         });
                     }
@@ -402,7 +402,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                             //Wood
                             WoodChange.Opacity = 1;
                             WoodChangeLabel.Opacity = 1;
-                            string s = eventData.Number > 0 ? "+" : "-";
+                            string s = eventData.Number > 0 ? "+" : "";
                             WoodChangeLabel.Content = s + eventData.Number;
                         });
                     }
@@ -413,7 +413,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                             //Stone
                             StoneChange.Opacity = 1;
                             StoneChangeLabel.Opacity = 1;
-                            string s = eventData.Number > 0 ? "+" : "-";
+                            string s = eventData.Number > 0 ? "+" : "";
                             StoneChangeLabel.Content = s + eventData.Number;
                         });
                     }
@@ -424,7 +424,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                             //Food
                             FoodChange.Opacity = 1;
                             FoodChangeLabel.Opacity = 1;
-                            string s = eventData.Number > 0 ? "+" : "-";
+                            string s = eventData.Number > 0 ? "+" : "";
                             FoodChangeLabel.Content = s + eventData.Number;
                         });
                     }
@@ -435,7 +435,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                             //Gold
                             GoldChange.Opacity = 1;
                             GoldChangeLabel.Opacity = 1;
-                            string s = eventData.Number > 0 ? "+" : "-";
+                            string s = eventData.Number > 0 ? "+" : "";
                             GoldChangeLabel.Content = s + eventData.Number;
                         });
                     }

@@ -48,7 +48,6 @@ namespace GUI_20212022_Z6O9JF.Logic
                 }
                 if (!CanSend && lastValue)
                 {
-                    gameLogic.playersResources = null;
                     e.lastClientId = this.ClientId;
                     e.CanSendBool = canSend;
                     EndOfTurnEvent?.Invoke(this, e);
@@ -69,11 +68,10 @@ namespace GUI_20212022_Z6O9JF.Logic
         }
         public void YourTurn()
         {
-            //var player = gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault();
-            //player.RecentTurnActivity = player.TurnActivity;
-            //player.TurnActivity = TurnActivity.Init;
-            gameLogic.playersResources = gameLogic.Game.Players.Where(x => x.PlayerID == ClientId).FirstOrDefault();
-            gameLogic.AddGold();
+            if (gameLogic.Game.CurrentGoldMineOwner!=null)
+            {
+                gameLogic.AddGold();
+            }
         }
 
         public void ClientConnect(string ip)

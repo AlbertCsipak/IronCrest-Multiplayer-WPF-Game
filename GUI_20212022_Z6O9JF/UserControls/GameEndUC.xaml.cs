@@ -19,12 +19,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
             InitializeComponent();
         }
 
-        private void Button_Exit_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
-            button_click.Play();
-            System.Threading.Thread.Sleep(300);
-            System.Windows.Application.Current.Shutdown();
-        }
+        //private void Button_Exit_Click(object sender, System.Windows.RoutedEventArgs e)
+        //{
+        //    button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));
+        //    button_click.Play();
+        //    System.Threading.Thread.Sleep(300);
+        //    System.Windows.Application.Current.Shutdown();
+        //}
     }
 }

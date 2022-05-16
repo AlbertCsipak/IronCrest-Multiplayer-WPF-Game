@@ -25,7 +25,6 @@ namespace GUI_20212022_Z6O9JF.Logic
         public Hero FirstHero { get; set; }
         public Hero SecondaryHero { get; set; }
         public static Random Random = new Random();
-        public Player playersResources { get; set; }
 
         public static event EventHandler Move;
         public bool IsGameEnded;
@@ -877,7 +876,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void AddGold()
         {
             var player = Game.Players.Where(t => t.PlayerID == ClientID).FirstOrDefault();
-            if (player != null && Game.CurrentGoldMineOwner == player)
+            if (player != null && Game.CurrentGoldMineOwner.PlayerID == player.PlayerID)
             {
                 if (player.Faction == Faction.Mongolian)
                 {
