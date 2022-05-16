@@ -179,7 +179,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         {
                             inBattle = false;
                         }
-                        if (gameLogic.Game.WinOrder.Count==gameLogic.Game.Players.Count)
+                        if (gameLogic.Game.WinOrder.Count==gameLogic.Game.Players.Count && gameLogic.Game.WinOrder.Count >=1)
                         {
                             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => ChangeView("ending")));
                         }
