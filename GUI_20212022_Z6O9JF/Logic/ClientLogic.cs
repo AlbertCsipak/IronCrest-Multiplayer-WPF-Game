@@ -150,6 +150,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                     if (game != null)
                                     {
                                         gameLogic.Game = game;
+                                        gameLogic.Game.CurrentBattle = game.CurrentBattle;
                                     }
                                 }
                                 catch (NullReferenceException) { }
@@ -175,6 +176,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                                 Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() => BattleViewChange("battle")));
                             }
                         }
+                        ;
                         messenger.Send("Message", "Base");
                         System.Threading.Thread.Sleep(500);
                     }
@@ -405,7 +407,7 @@ namespace GUI_20212022_Z6O9JF.Logic
             ProcessStartInfo server = new ProcessStartInfo();
             server.FileName = "SocketServer.exe";
             server.Arguments = $" {ip} {clients} {port} {map} {turnLength} {bufferSize}";
-            server.CreateNoWindow = true;
+            server.CreateNoWindow = false;
             Process.Start(server);
             ClientConnect(ip);
         }

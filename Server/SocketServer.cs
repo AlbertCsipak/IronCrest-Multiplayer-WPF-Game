@@ -83,7 +83,7 @@ namespace Server
                                         break;
                                     }
                                 }
-                                //Console.WriteLine(message);
+                                Console.WriteLine(message);
 
                                 if (msg.Contains("skip"))
                                 {
