@@ -976,6 +976,7 @@ namespace GUI_20212022_Z6O9JF.Logic
         public void MakeBattle(int armypower)
         {
             ;
+            Game.CurrentBattle.IsBattleStarted = true;
             var defender = Game.CurrentBattle.Defender;
             var attacker = Game.CurrentBattle.Attacker;
             var defenderArmyPower = RandomNumber.RandomNumberGenerator(0, defender.ArmyPower + 1);
@@ -1023,10 +1024,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                 GameMap[attackerBaseVillage.Position[0], attackerBaseVillage.Position[1]].Objects.Add(attackerunit);
 
             }
-            if (Game.CurrentBattle != null)
-            {
-                Game.CurrentBattle = null;
-            }
+
         }
         public void GetResources()
         {

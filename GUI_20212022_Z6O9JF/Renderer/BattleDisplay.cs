@@ -46,9 +46,8 @@ namespace GUI_20212022_Z6O9JF.Renderer
             {
                 DefenderXPos = 49;
             }
-            if (gameLogic.Game.CurrentBattle != null) {
-
-
+            if (gameLogic.Game.CurrentBattle != null) 
+            {
                 if (gameLogic.Game.CurrentBattle.IsBattleStarted)
                 {
                     if (size.Width != 0 && size.Height != 0 && !IsExplosionCalled)

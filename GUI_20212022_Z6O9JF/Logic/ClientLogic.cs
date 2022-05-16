@@ -211,6 +211,10 @@ namespace GUI_20212022_Z6O9JF.Logic
             }
             else
             {
+                if (gameLogic.Game.CurrentBattle != null)
+                {
+                    gameLogic.Game.CurrentBattle = null;
+                }
                 BattleView = null;
             }
             messenger.Send("Message", "Base");
