@@ -34,7 +34,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public MediaPlayer upgrade_sound = new MediaPlayer();
         public MediaPlayer move_sound = new MediaPlayer();
         DispatcherTimer dt;
-        bool IsResourceChanged;
+        //bool IsResourceChanged;
         List<SubItem<Quest>> quests;
         Player player;
         bool bell = false;
@@ -42,6 +42,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public GameUC()
         {
             InitializeComponent();
+            Player.ResourceChanged += ResourceChanging;
             ClientLogic.StartOfTurnEvent += StartOfTurn;
             ClientLogic.EndOfTurnEvent += EndOfTurn;
             GameLogic.Move += Move;
@@ -51,7 +52,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.controlLogic = (this.DataContext as GameViewModel).controlLogic;
             player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
             display.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
-            player.ResourceChanges.CollectionChanged += ResourceChanges_CollectionChanged;
             HeartChange.Opacity = 0;
             HeartChangeLabel.Opacity = 0;
             ArmyPowerChange.Opacity = 0;
@@ -78,7 +78,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
             {
                 SetMovePictures();
                 clientLogic.IsAllQuestsDone();
-                ResourceChanging();
+                //ResourceChanging();
                 OpacityDefault();
                 if (clientLogic.Timer == 60.0)
                 {
@@ -363,89 +363,64 @@ namespace GUI_20212022_Z6O9JF.UserControls
 
         }
 
-        private void ResourceChanging()
+        private void ResourceChanging(object sender, EventArgs e)
         {
+            var eventData = (e as ResourceChangedEventArgs);
             //player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
-            if (IsResourceChanged)
+            if (eventData.Resource != "")
             {
                 player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
-                if (player.ResourceChanges[0] != 0)
+                if (eventData.Resource == "popularity")
                 {
                     //POP
                     HeartChange.Opacity = 1;
                     HeartChangeLabel.Opacity = 1;
-                    string s = player.ResourceChanges[0] > 0 ? "+" : "";
-                    HeartChangeLabel.Content = s + player.ResourceChanges[0];
-                    player.ResourceChanges[0] = 0;
+                    string s = eventData.Number > 0 ? "+" : "";
+                    HeartChangeLabel.Content = s + eventData.Number;
                 }
-                if (player.ResourceChanges[1] != 0)
+                if (eventData.Resource == "armyPower")
                 {
                     //ArmyPower
                     ArmyPowerChange.Opacity = 1;
                     ArmyPowerChangeLabel.Opacity = 1;
-                    string s = player.ResourceChanges[1] > 0 ? "+" : "";
-                    ArmyPowerChangeLabel.Content = s + player.ResourceChanges[1];
-                    player.ResourceChanges[1] = 0;
+                    string s = eventData.Number > 0 ? "+" : "";
+                    ArmyPowerChangeLabel.Content = s + eventData.Number;
                 }
-                if (player.ResourceChanges[2] != 0)
+                if (eventData.Resource == "wood")
                 {
                     //Wood
                     WoodChange.Opacity = 1;
                     WoodChangeLabel.Opacity = 1;
-                    string s = player.ResourceChanges[2] > 0 ? "+" : "";
-                    WoodChangeLabel.Content = s + player.ResourceChanges[2];
-                    player.ResourceChanges[2] = 0;
+                    string s = eventData.Number > 0 ? "+" : "";
+                    WoodChangeLabel.Content = s + eventData.Number;
                 }
-                if (player.ResourceChanges[3] != 0)
+                if (eventData.Resource == "stone")
                 {
                     //Stone
                     StoneChange.Opacity = 1;
                     StoneChangeLabel.Opacity = 1;
-                    string s = player.ResourceChanges[3] > 0 ? "+" : "";
-                    StoneChangeLabel.Content = s + player.ResourceChanges[3];
-                    player.ResourceChanges[3] = 0;
+                    string s = eventData.Number > 0 ? "+" : "";
+                    StoneChangeLabel.Content = s + eventData.Number;
                 }
-                if (player.ResourceChanges[4] != 0)
+                if (eventData.Resource == "wheat")
                 {
                     //Food
                     FoodChange.Opacity = 1;
                     FoodChangeLabel.Opacity = 1;
-                    string s = player.ResourceChanges[4] > 0 ? "+" : "";
-                    FoodChangeLabel.Content = s + player.ResourceChanges[4];
-                    player.ResourceChanges[4] = 0;
+                    string s = eventData.Number > 0 ? "+" : "";
+                    FoodChangeLabel.Content = s + eventData.Number;
                 }
-                if (player.ResourceChanges[5] != 0)
+                if (eventData.Resource == "gold")
                 {
                     //Gold
                     GoldChange.Opacity = 1;
                     GoldChangeLabel.Opacity = 1;
-                    string s = player.ResourceChanges[5] > 0 ? "+" : "";
-                    GoldChangeLabel.Content = s + player.ResourceChanges[5];
-                    player.ResourceChanges[5] = 0;
+                    string s = eventData.Number > 0 ? "+" : "";
+                    GoldChangeLabel.Content = s + eventData.Number;
                 }
 
             }
-
-
-            //if (PopChange.Opacity <= 0)
-            //{
-            //    IsResourceChanged = false;
-            //    PopChange.Opacity = 1;
-            //}
-
-
-
-            //if (!clientLogic.CanSend)
-            //{
-            //    skip_image.Visibility = Visibility.Hidden;
-            //}
         }
-
-        private void ResourceChanges_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            IsResourceChanged = true;
-        }
-
 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {

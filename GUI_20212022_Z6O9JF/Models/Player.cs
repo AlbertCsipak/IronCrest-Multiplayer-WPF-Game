@@ -21,7 +21,7 @@ namespace GUI_20212022_Z6O9JF.Models
 
     public class Player
     {
-        public event EventHandler ResourceChanged;
+        static public event EventHandler ResourceChanged;
         public int PlayerID { get; set; }
         public string Name { get; set; }
         public Faction Faction { get; set; }
@@ -33,7 +33,6 @@ namespace GUI_20212022_Z6O9JF.Models
         public int DefaultNumOfMoves { get; set; }
         public int RemainingMoves { get; set; }
         private int popularity;
-        public ObservableCollection<int> ResourceChanges { get; set; }
         public int BattlesWon { get; set; }
         public List<Quest> Quests { get; set; }
         //public int QuestsDone { get; set; }
@@ -52,12 +51,8 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return popularity; }
             set
             {
-                if (popularity > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", (value - popularity)*-1));
-                else
-                {
-                    //ResourceChangedEventArgs res = new ResourceChangedEventArgs("popularity", value-popularity);
-                    ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", value - popularity));
-                }
+                if (popularity > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", (value - popularity) * -1));
+                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("popularity", value - popularity));
                 popularity = value;
             }
         }//MysteryResource
@@ -72,8 +67,8 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return armyPower; }
             set
             {
-                if (armyPower > value) ResourceChanges[1] = (armyPower - value) * (-1);
-                else ResourceChanges[1] = value - armyPower;
+                if (armyPower > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("armyPower", (value - armyPower) * -1));
+                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("armyPower", value - armyPower));
                 armyPower = value;
             }
         }//MysteryResource
@@ -88,8 +83,8 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return gold; }
             set
             {
-                if (gold > value) ResourceChanges[5] = (gold - value) * (-1);
-                else ResourceChanges[5] = value - gold;
+                if (gold > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("gold", (value - gold) * -1));
+                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("gold", value - gold));
                 gold = value;
             }
         }//MysteryResource
@@ -104,9 +99,8 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return wood; }
             set
             {
-                ;
-                if (wood > value) ResourceChanges[2] = (wood - value) * (-1);
-                else ResourceChanges[2] = value - wood;
+                if (wood > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wood", (value - wood) * -1));
+                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wood", value - wood));
                 wood = value;
             }
         }//MysteryResource
@@ -122,8 +116,8 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return stone; }
             set
             {
-                if (stone > value) ResourceChanges[3] = (stone - value) * (-1);
-                else ResourceChanges[3] = value - stone;
+                if (stone > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("stone", (value - stone) * -1));
+                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("stone", value - stone));
                 stone = value;
             }
         }//MysteryResource
@@ -138,8 +132,8 @@ namespace GUI_20212022_Z6O9JF.Models
             get { return wheat; }
             set
             {
-                if (wheat > value) ResourceChanges[4] = (wheat - value) * (-1);
-                else ResourceChanges[4] = value - wheat;
+                if (wheat > value) ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wheat", (value - wheat) * -1));
+                else ResourceChanged?.Invoke(this, new ResourceChangedEventArgs("wheat", value - wheat));
                 wheat = value;
             }
         }//MysteryResource
@@ -155,7 +149,6 @@ namespace GUI_20212022_Z6O9JF.Models
             //QuestsDone = 0;
             Villages = new List<Village>();
             TurnActivity = TurnActivity.Init;
-            ResourceChanges = new ObservableCollection<int>() { 0, 0, 0, 0, 0, 0 };
         }
     }
 }
