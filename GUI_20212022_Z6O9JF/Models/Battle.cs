@@ -8,5 +8,14 @@
         public Player Loser { get; set; }
         public bool IsBattleStarted { get; set; }
         public HexagonTile BattleLocation { get; set; }
+        public Battle()
+        {
+            Attacker = null;
+            Defender = null;
+            Winner = null;
+            Loser = null;
+            IsBattleStarted = false;
+            BattleLocation = null;
+        }
     }
 }

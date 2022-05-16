@@ -16,6 +16,7 @@ namespace GUI_20212022_Z6O9JF.Models
             Players = new List<Player>();
             Trades = new List<Trade>();
             WinOrder = new List<Player>();
+
         }
     }
 }
