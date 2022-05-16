@@ -1,19 +1,7 @@
 ﻿Bugs:
-- mystery event meg tud jelenni, ha jobb klikkel kattintunk egy hexagonra, nem nézi h a játékossal léptünk-e rá
-- ha egy compassos mezőről lekerül a compass át kell alakitani a hexagon grass FieldType-ra, mert különben nem enged falut építeni rá 
 
 Todo:
-- button animáció (skip,back,exit()
-- combox lenyitásakor a szöveg legyen középen
 - harcrendszer
-- game screen brightness/saturation/hue levétele
-- champselect teljes fix
-- number of quest beállítása a logicba (n random quest)
-- mukodjon a map2, és map3
 - legyen letiltva a build/upgrade gomb, ha nincs elég nyersanyagunk hozzá
 
 Features:
-- Reconnect a serverre
-
-STEVE TO DO: 
-LILI TO DO: 

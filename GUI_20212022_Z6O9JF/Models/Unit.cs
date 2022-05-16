@@ -10,6 +10,7 @@
         public bool CanMove { get; set; }
         public Faction FactionType { get; set; }
         public int Level { get; set; }
+        public bool IsAttackerUnit { get; set; }
 
         public Unit()
         {

@@ -9,6 +9,7 @@
         public bool CanMove { get; set; }
         public Faction FactionType { get; set; }
         public bool IsBase { get; set; }
+        public bool IsAttackerUnit { get; set; }
 
         public Village()
         {

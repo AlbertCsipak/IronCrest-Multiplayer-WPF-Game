@@ -455,18 +455,9 @@ namespace GUI_20212022_Z6O9JF.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             display.Resize(new Size(grid.ActualWidth, grid.ActualHeight));
-            //window = Window.GetWindow(this);
-            //window.KeyDown += HandleKeyPress;
+            
         }
-        //private void HandleKeyPress(object sender, KeyEventArgs e)
-        //{
-        //    ;
-        //    if (clientLogic.ESCView == null && e.Key == Key.Escape)
-        //    {
-        //        clientLogic.ESCChange("ESC");
-        //    }
-
-        //}
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             button_click.Open(new Uri("Resources/Music/button.mp3", UriKind.RelativeOrAbsolute));

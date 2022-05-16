@@ -2,11 +2,14 @@
 {
     public interface IGameItem
     {
-        public int OwnerId { get; set; }
+        bool CanMove { get; set; }
         Faction FactionType { get; set; }
-        public int[] Position { get; set; }
-        public bool CanMove { get; set; }
-        public int Level { get; set; }
-        public void Move(int[] pos);
+        bool IsAttackerUnit { get; set; }
+        int Level { get; set; }
+        string Name { get; set; }
+        int OwnerId { get; set; }
+        int[] Position { get; set; }
+
+        void Move(int[] pos);
     }
 }
