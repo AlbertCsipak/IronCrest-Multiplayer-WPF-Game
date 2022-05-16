@@ -363,12 +363,12 @@ namespace GUI_20212022_Z6O9JF.Logic
                         Trade = null,
                         HasEnteredGoldMine = false
                     };
-                    player.SetupGold(RandomNumber.RandomNumberGenerator(5, 10));
-                    player.SetupArmyPower(RandomNumber.RandomNumberGenerator(3, 7));
-                    player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(3, 7));
-                    player.SetupStone(RandomNumber.RandomNumberGenerator(3, 7));
-                    player.SetupWood(RandomNumber.RandomNumberGenerator(3, 7));
-                    player.SetupWheat(RandomNumber.RandomNumberGenerator(3, 7));
+                    player.SetupGold(RandomNumber.RandomNumberGenerator(15, 20));
+                    player.SetupArmyPower(RandomNumber.RandomNumberGenerator(15, 20));
+                    player.SetupPopulatiry(RandomNumber.RandomNumberGenerator(15, 20));
+                    player.SetupStone(RandomNumber.RandomNumberGenerator(15, 20));
+                    player.SetupWood(RandomNumber.RandomNumberGenerator(15, 20));
+                    player.SetupWheat(RandomNumber.RandomNumberGenerator(15, 20));
                     gameLogic.Game.Players.Add(player);
 
                 }
