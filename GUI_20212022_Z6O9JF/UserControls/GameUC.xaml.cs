@@ -34,10 +34,8 @@ namespace GUI_20212022_Z6O9JF.UserControls
         public MediaPlayer upgrade_sound = new MediaPlayer();
         public MediaPlayer move_sound = new MediaPlayer();
         DispatcherTimer dt;
-        //bool IsResourceChanged;
         List<SubItem<Quest>> quests;
         Player player;
-        bool bell = false;
         ItemMenu itemQuest;
         public GameUC()
         {
@@ -78,7 +76,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
             {
                 SetMovePictures();
                 clientLogic.IsAllQuestsDone();
-                //ResourceChanging();
                 OpacityDefault();
                 if (clientLogic.Timer == 60.0)
                 {
@@ -91,16 +88,11 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     ImageBehavior.SetAnimatedSource(hourglass_gif, image);
                     ImageBehavior.SetRepeatBehavior(hourglass_gif, new RepeatBehavior(1));
                 }
-                //if (clientLogic.Timer != 60)
-                //{
-                //    bell = false;
-                //}
                 display.InvalidateVisual();
             };
             dt.Start();
-
-
         }
+
         public void Move(object sender, EventArgs e)
         {
             move_sound.Open(new Uri("Resources/Music/move_sound.mp3", UriKind.RelativeOrAbsolute));
@@ -116,6 +108,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 bell_sound.Play();
             }));
         }
+
         public void EndOfTurn(object sender, EventArgs e)
         {
             if (gameLogic.IsQuestDone((e as LastClientEventArgs).lastClientId))

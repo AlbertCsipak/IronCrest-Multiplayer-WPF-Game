@@ -968,52 +968,52 @@ namespace GUI_20212022_Z6O9JF.Logic
             if (defenderenemy != null)
             {
                 Game.CurrentBattle = new Battle();
-                Game.CurrentBattle.Defender = defenderenemy;
-                Game.CurrentBattle.Attacker = attackerplayer;
-                Game.CurrentBattle.BattleLocation = hexagonTile;
+                Game.CurrentBattle.DefenderID = defenderenemy.PlayerID;
+                Game.CurrentBattle.AttackerID = attackerplayer.PlayerID;
+                Game.CurrentBattle.BattleLocation = hexagonTile.Position;
             }
         }
         public void MakeBattle(int armypower)
         {
             ;
             Game.CurrentBattle.IsBattleStarted = true;
-            var defender = Game.CurrentBattle.Defender;
-            var attacker = Game.CurrentBattle.Attacker;
+            var defender = Game.Players.Where(x=>x.PlayerID== Game.CurrentBattle.DefenderID).FirstOrDefault();
+            var attacker = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.AttackerID).FirstOrDefault();
             var defenderArmyPower = RandomNumber.RandomNumberGenerator(0, defender.ArmyPower + 1);
             if (armypower + attacker.Heroes.Select(x => x.Damage).Sum() >= defenderArmyPower + defender.Heroes.Select(x => x.Damage).Sum())
             {
-                Game.CurrentBattle.Winner = attacker;
-                Game.CurrentBattle.Loser = defender;
-                Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Popularity -= armypower < 0 ? Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Popularity = 0 : Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Popularity -= armypower;
-                Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().ArmyPower -= defenderArmyPower < 0 ? Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().ArmyPower = 0 : Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().ArmyPower -= defenderArmyPower;
+                Game.CurrentBattle.WinnerID = attacker.PlayerID;
+                Game.CurrentBattle.LoserID = defender.PlayerID;
+                Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.WinnerID).FirstOrDefault().Popularity -= armypower < 0 ? Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.WinnerID).FirstOrDefault().Popularity = 0 : Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.WinnerID).FirstOrDefault().Popularity -= armypower;
+                Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.LoserID).FirstOrDefault().ArmyPower -= defenderArmyPower < 0 ? Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.LoserID).FirstOrDefault().ArmyPower = 0 : Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.LoserID).FirstOrDefault().ArmyPower -= defenderArmyPower;
 
                 //var defenderunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Units.Where(x => x.Position == Game.CurrentBattle.BattleLocation.Position).FirstOrDefault();
-                var defenderunit = Game.CurrentBattle.BattleLocation.Objects.Where(x => x is Unit).FirstOrDefault();
-                var defenderBaseVillage = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Villages.First(x => x.IsBase);
+                var defenderunit = GameMap[Game.CurrentBattle.BattleLocation[0], Game.CurrentBattle.BattleLocation[1]].Objects.Where(x => x is Unit).FirstOrDefault();
+                var defenderBaseVillage = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.LoserID).FirstOrDefault().Villages.First(x => x.IsBase);
 
                 defenderunit.Move(defenderBaseVillage.Position);
                 GameMap[defenderBaseVillage.Position[0], defenderBaseVillage.Position[1]].Objects.Add(defenderunit);
-                Game.CurrentBattle.BattleLocation.Objects.Clear();
+                GameMap[Game.CurrentBattle.BattleLocation[0], Game.CurrentBattle.BattleLocation[1]].Objects.Clear();
 
-                var attackerunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Units.Where(x => x.IsAttackerUnit).FirstOrDefault();
-                Game.CurrentBattle.BattleLocation.Objects.Add(attackerunit);
-                Game.CurrentBattle.BattleLocation.OwnerId = Game.CurrentBattle.Attacker.PlayerID;
+                var attackerunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.WinnerID).FirstOrDefault().Units.Where(x => x.IsAttackerUnit).FirstOrDefault();
+                GameMap[Game.CurrentBattle.BattleLocation[0], Game.CurrentBattle.BattleLocation[1]].Objects.Add(attackerunit);
+                GameMap[Game.CurrentBattle.BattleLocation[0], Game.CurrentBattle.BattleLocation[1]].OwnerId = Game.CurrentBattle.AttackerID;
                 GameMap[attackerunit.Position[0], attackerunit.Position[1]].Objects.Remove(attackerunit);
                 if (GameMap[attackerunit.Position[0], attackerunit.Position[1]].Objects.Count == 0)
                 {
                     GameMap[attackerunit.Position[0], attackerunit.Position[1]].OwnerId = 0;
                 }
-                attackerunit.Move(Game.CurrentBattle.BattleLocation.Position);
+                attackerunit.Move(Game.CurrentBattle.BattleLocation);
             }
             else
             {
-                Game.CurrentBattle.Winner = defender;
-                Game.CurrentBattle.Loser = attacker;
-                Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().ArmyPower += 2;
-                Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().Popularity -= armypower < 0 ? Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().ArmyPower = 0 : Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Winner.PlayerID).FirstOrDefault().ArmyPower -= defenderArmyPower;
+                Game.CurrentBattle.WinnerID = defender.PlayerID;
+                Game.CurrentBattle.LoserID = attacker.PlayerID;
+                Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.WinnerID).FirstOrDefault().ArmyPower += 2;
+                Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.WinnerID).FirstOrDefault().Popularity -= armypower < 0 ? Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.WinnerID).FirstOrDefault().ArmyPower = 0 : Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.WinnerID).FirstOrDefault().ArmyPower -= defenderArmyPower;
 
-                var attackerunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Units.Where(x => x.IsAttackerUnit).FirstOrDefault();
-                var attackerBaseVillage = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.Loser.PlayerID).FirstOrDefault().Villages.First(x => x.IsBase);
+                var attackerunit = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.LoserID).FirstOrDefault().Units.Where(x => x.IsAttackerUnit).FirstOrDefault();
+                var attackerBaseVillage = Game.Players.Where(x => x.PlayerID == Game.CurrentBattle.LoserID).FirstOrDefault().Villages.First(x => x.IsBase);
 
                 SelectedHexagonTile = GameMap[attackerunit.Position[0], attackerunit.Position[1]];
                 SelectedHexagonTile.Objects.Remove(attackerunit);

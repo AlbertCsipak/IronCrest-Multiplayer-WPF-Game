@@ -22,7 +22,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
         IGameLogic gameLogic;
         IControlLogic controlLogic;
         DispatcherTimer dt_counter;
-        DispatcherTimer dt_movement;
         MediaPlayer counterSoundEffect = new MediaPlayer();
         MediaPlayer buttonSoundEffect = new MediaPlayer();
         MediaPlayer battle_result_sound = new MediaPlayer();
@@ -36,12 +35,12 @@ namespace GUI_20212022_Z6O9JF.UserControls
             this.clientLogic = (this.DataContext as BattleViewModel).clientLogic;
             this.controlLogic = (this.DataContext as BattleViewModel).controlLogic;
             battleDisplay.LogicSetup(clientLogic, gameLogic, controlLogic, grid);
-            if (gameLogic.Game.CurrentBattle.Attacker.PlayerID == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().PlayerID)
+            if (gameLogic.Game.CurrentBattle.AttackerID == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().PlayerID)
             {
                 lbl_counter.Visibility = Visibility.Hidden;
                 lbl_result.Visibility = Visibility.Hidden;
             }
-            if (gameLogic.Game.CurrentBattle.Defender.PlayerID == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().PlayerID)
+            if (gameLogic.Game.CurrentBattle.DefenderID == gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault().PlayerID)
             {
                 DefenderView();
                 dt_counter = new DispatcherTimer();
@@ -56,7 +55,6 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 };
                 dt_counter.Start();
             }
-
         }
 
         public void ExplosionGif(object sender, EventArgs e)
@@ -69,7 +67,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                 image.EndInit();
                 ImageBehavior.SetAnimatedSource(img_explosion, image);
                 var player = gameLogic.Game.Players.Where(x => x.PlayerID == clientLogic.ClientId).FirstOrDefault();
-                if (player.PlayerID==gameLogic.Game.CurrentBattle.Winner.PlayerID)
+                if (player.PlayerID==gameLogic.Game.CurrentBattle.WinnerID)
                 {
                     btn_ready.Visibility = Visibility.Hidden;
                     lbl_result.Content = "Victory!";
@@ -78,7 +76,7 @@ namespace GUI_20212022_Z6O9JF.UserControls
                     battle_result_sound.Volume = 0.2;
                     battle_result_sound.Play();
                 }
-                else if (player.PlayerID == gameLogic.Game.CurrentBattle.Loser.PlayerID)
+                else if (player.PlayerID == gameLogic.Game.CurrentBattle.LoserID)
                 {
                     btn_ready.Visibility = Visibility.Hidden;
                     lbl_result.Content = "Defeat!";

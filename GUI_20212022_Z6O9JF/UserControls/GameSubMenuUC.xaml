@@ -43,7 +43,7 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Image x:Name="img_mute" Grid.Column="1" Width="70" Height="70" HorizontalAlignment="Left" Margin="30,0,0,0"/>
-                <Slider Style="{DynamicResource SliderStyle1}" Grid.Column="1" VerticalAlignment="Center" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="300" Value="{Binding CurrentVolume, Mode=OneWay}" Minimum="0" Maximum="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Cursor="Hand" SmallChange="0.1" Height="30"/>
+                <Slider Style="{DynamicResource SliderStyle1}" Grid.Column="1" VerticalAlignment="Center" x:Name="volume_slider" ValueChanged="volume_slider_ValueChanged" Width="200" Value="{Binding CurrentVolume, Mode=OneWay}" Minimum="0" Maximum="1" TickFrequency="0.1" IsSnapToTickEnabled="True" Cursor="Hand" SmallChange="0.1" Height="30"/>
             </Grid>
             
         <Button Content="Resume" Height="90" Width="300" FontSize="40" FontFamily="Poor Richard" Command="{Binding ResumeCommand}" Grid.Row="2" Grid.Column="1"/>

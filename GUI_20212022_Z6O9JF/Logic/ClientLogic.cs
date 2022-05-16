@@ -168,7 +168,7 @@ namespace GUI_20212022_Z6O9JF.Logic
                         if (gameLogic.Game.CurrentBattle != null)
                         {
                             ;
-                            if (!inBattle && gameLogic.Game.CurrentBattle.Defender.PlayerID == ClientId && gameLogic.Game.CurrentBattle.IsBattleStarted)
+                            if (!inBattle && gameLogic.Game.CurrentBattle.DefenderID == ClientId && gameLogic.Game.CurrentBattle.IsBattleStarted)
                             {
                                 ;
                                 inBattle = true;

@@ -2,20 +2,20 @@
 {
     public class Battle
     {
-        public Player Attacker { get; set; }
-        public Player Defender { get; set; }
-        public Player Winner { get; set; }
-        public Player Loser { get; set; }
+        public int AttackerID { get; set; }
+        public int DefenderID { get; set; }
+        public int WinnerID { get; set; }
+        public int LoserID { get; set; }
         public bool IsBattleStarted { get; set; }
-        public HexagonTile BattleLocation { get; set; }
+        public int[] BattleLocation { get; set; }
         public Battle()
         {
-            Attacker = null;
-            Defender = null;
-            Winner = null;
-            Loser = null;
+            AttackerID = 0;
+            DefenderID = 0;
+            WinnerID = 0;
+            LoserID = 0;
             IsBattleStarted = false;
-            BattleLocation = null;
+            BattleLocation = new int[2] {0,0,};
         }
     }
 }

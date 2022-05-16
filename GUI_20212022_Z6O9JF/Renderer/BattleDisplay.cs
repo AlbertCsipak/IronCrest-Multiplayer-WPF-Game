@@ -3,6 +3,7 @@ using GUI_20212022_Z6O9JF.Models;
 using GUI_20212022_Z6O9JF.UserControls;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -54,7 +55,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                     {
                         double attackernum = (size.Width / 50 * AttackerXPos) + size.Width * 0.2;
                         double defendernum = (size.Width / 50 * DefenderXPos) - size.Width * 0.2;
-                        switch (battle.Defender.Faction)
+                        switch (gameLogic.Game.Players.Where(x => x.PlayerID == battle.DefenderID).FirstOrDefault().Faction)
                         {
                             case Faction.Viking:
                                 switch (DefenderXPos % 3)
@@ -115,7 +116,7 @@ namespace GUI_20212022_Z6O9JF.Renderer
                         }
 
 
-                        switch (battle.Attacker.Faction)
+                        switch (gameLogic.Game.Players.Where(x=>x.PlayerID == battle.AttackerID).FirstOrDefault().Faction)
                         {
                             case Faction.Viking:
                                 switch (AttackerXPos % 3)
