@@ -474,12 +474,6 @@
     <Content Include="Resources\Images\Menu\button_board_short.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Menu\deer1.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\Menu\deer2.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Images\Menu\ducks1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
